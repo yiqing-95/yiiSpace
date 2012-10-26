@@ -1,0 +1,116 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="../../css/css.css" rel="stylesheet" />
+	<style>
+	.slide-trigger { display:none; /* 隐藏 triggers */ }
+	
+	.slide-panel {
+		/* 下面四项必须设置 */
+		position:relative;
+		width:470px;
+		height:150px;
+		overflow:hidden;
+		
+		border:1px solid #B6D1E6;
+	}
+	.slide-panel div {
+		position:absolute;
+		width:2010em; /* 设置足够的宽度 */
+	}
+	.slide-panel div img {
+		float:left;
+		display:block; /* fix img's 3px bug in ie6*/
+		width:470px;
+		height:150px;
+	}
+	</style>
+
+	<!-- syntaxhighlighter -->
+	<link href="../../../asset/styles/shCore.css" rel="stylesheet" />
+	<link href="../../../asset/styles/shThemeDefault.css" rel="stylesheet" />
+
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>Demos | jQuery.Switchable</title>
+	<script src="../../../asset/jquery.min.js"></script>
+	<script src="../../js/jquery.switchable[all].min.js"></script>
+
+	<!-- syntaxhighlighter -->
+	<script src="../../../asset/scripts/shCore.js"></script>
+	<script src="../../../asset/scripts/shBrushJScript.js"></script>
+
+	<script>
+	$(function(){
+		$('.slide-trigger').switchable('.slide-panel > div > img', {
+			effect: 'scroll',
+			panelSwitch: true,
+			circular: true
+		});
+	});
+	
+	// syntaxhighlighter
+	SyntaxHighlighter.config.clipboardSwf = '../asset/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="logo"></div>
+	<div id="nav">
+		<a href="../../../switchable">Home</a>
+		<a href="../../download.html">Download</a>
+		<a href="../../demos" class="current">Demos</a>
+		<a href="http://t.qq.com/jsw0528" title="Follow me on Tencent" class="tencent" target="_blank">Tencent</a>
+		<a href="http://t.sina.com.cn/jsw0528" title="Follow me on Sina" class="sina" target="_blank">Sina</a>
+		<a href="http://twitter.com/jsw0528" title="Follow me on Twitter" class="twitter" target="_blank">Twitter</a>
+	</div>
+</div>
+
+<div class="wrap clearfix">
+	<h2>Without triggers</h2>
+
+	<h3>Click image to view the next one</h3>
+	<div class="slide-panel" title="Click image to view the next one">
+		<div>
+			<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-27/100227200543.jpg" />
+			<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-25/100225114729.gif" />
+			<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-26/100226150931.jpg" />
+			<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-25/100225173603.jpg" />
+			<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-22/100222173158.jpg" />
+		</div>
+	</div>
+	<div class="slide-trigger"><!-- 标签必须存在，通过CSS隐藏 --></div>
+
+	<h3>jQuery Code:</h3>
+	<pre class="brush: js;">
+	$(function(){
+		$('.slide-trigger').switchable('.slide-panel > div > img', {
+			effect: 'scroll',
+			panelSwitch: true,
+			circular: true
+		});
+	});
+	</pre>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>
