@@ -1,0 +1,135 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="../../css/css.css" rel="stylesheet" />
+	<link href="../../css/demo.css" rel="stylesheet" />
+
+	<!-- syntaxhighlighter -->
+	<link href="../../../asset/styles/shCore.css" rel="stylesheet" />
+	<link href="../../../asset/styles/shThemeDefault.css" rel="stylesheet" />
+
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>Demos | jQuery.Switchable</title>
+	<script src="../../../asset/jquery.min.js"></script>
+	<script src="../../js/jquery.switchable[all].min.js"></script>
+
+	<!-- syntaxhighlighter -->
+	<script src="../../../asset/scripts/shCore.js"></script>
+	<script src="../../../asset/scripts/shBrushJScript.js"></script>
+
+	<script>
+	$(function(){
+		window.api = $('.scrollable-trigger').switchable('.scrollable-panel > div > img', {
+			triggerType: 'click',
+			effect: 'scroll',
+			steps: 3,
+			visible: 3,
+			api: true
+		});
+		$('.next').click(function(){
+			api.next();
+		});
+		$('.prev').click(function(){
+			api.prev();
+		});
+		
+		/* Custom widget */
+		$('.scrollable-panel > div > img').click(function() {
+			$('.widget').empty();
+			$('<img/>', { src: $(this).attr('src') }).appendTo('.widget');
+		}).css('cursor', 'pointer').first().trigger('click');
+	});
+	
+	// syntaxhighlighter
+	SyntaxHighlighter.config.clipboardSwf = '../asset/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="logo"></div>
+	<div id="nav">
+		<a href="../../../switchable">Home</a>
+		<a href="../../download.html">Download</a>
+		<a href="../" class="current">Demos</a>
+		<a href="http://t.qq.com/jsw0528" title="Follow me on Tencent" class="tencent" target="_blank">Tencent</a>
+		<a href="http://t.sina.com.cn/jsw0528" title="Follow me on Sina" class="sina" target="_blank">Sina</a>
+		<a href="http://twitter.com/jsw0528" title="Follow me on Twitter" class="twitter" target="_blank">Twitter</a>
+	</div>
+</div>
+
+<div class="wrap clearfix">
+	<h2>Custom widget</h2>
+	<br />
+
+	<div class="widget"></div>
+	
+	<div class="trigger-bar">
+		<a href="javascript:void(0);" title="下翻" class="next"></a>
+		<a href="javascript:void(0);" title="上翻" class="prev"></a>
+		<div class="scrollable-trigger"></div>
+	</div>
+	<div class="scrollable-panel">
+		<div class="clearfix">
+			<!-- 1~3 -->
+			<img src="http://img04.taobaocdn.com/tps/i4/T1uRBrXe0XXXXXXXXX-120-60.gif" />
+			<img src="http://img02.taobaocdn.com/tps/i2/T1bQVrXaVpXXXXXXXX-120-60.gif" />
+			<img src="http://img01.taobaocdn.com/tps/i1/T1l7FrXgNvXXXXXXXX-120-60.gif" />
+			<!-- 4~6 -->
+			<img src="http://img04.taobaocdn.com/tps/i4/T1ikRrXglqXXXXXXXX-120-60.gif" />
+			<img src="http://img01.taobaocdn.com/tps/i1/T1XYRsXipXXXXXXXXX-120-60.gif" />
+			<img src="http://img06.taobaocdn.com/tps/i6/T1MQ8rXe8kXXXXXXXX-120-60.gif" />
+			<!-- 7~9 -->
+			<img src="http://img05.taobaocdn.com/tps/i5/T1mOJsXXdEXXXXXXXX-120-60.gif" />
+			<img src="http://img06.taobaocdn.com/tps/i6/T1bkNrXb8sXXXXXXXX-120-60.gif" />
+			<img src="http://img07.taobaocdn.com/tps/i7/T1Ck8rXiXkXXXXXXXX-120-60.gif" />
+		</div>
+	</div>
+	
+	<h3>jQuery Code:</h3>
+	<pre class="brush: js;">
+	$(function(){
+		window.api = $('.scrollable-trigger').switchable('.scrollable-panel > div > img', {
+			triggerType: 'click',
+			effect: 'scroll',
+			steps: 3,
+			visible: 3,
+			api: true
+		});
+		$('.next').click(function(){
+			api.next();
+		});
+		$('.prev').click(function(){
+			api.prev();
+		});
+		
+		/* Custom widget */
+		$('.scrollable-panel > div > img').click(function() {
+			$('.widget').empty();
+			$('&lt;img/&gt;', { src: $(this).attr('src') }).appendTo('.widget');
+		}).css('cursor', 'pointer').first().trigger('click');
+	});
+	</pre>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>

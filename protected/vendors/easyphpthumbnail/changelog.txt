@@ -1,0 +1,58 @@
+Version 2.0.5
+
+* Fixed a transparency bug in the function createemptythumbnail(); thanks to Alexander Vasilyev from http://www.Hamster3d.com
+* Added an example for a dynamically created thumbnail
+
+Version 2.0.4
+
+* Improved transparency function Maketransparent
+* Added option to keep transparency of source image
+* Added canvas function to create an image from memory 
+* Added base64 function to output thumbnail as base64 encoded data
+* Added the 'polaroid' and 'displacementmap' functions to the open source version
+* Added Addtext function to add text to the original image
+* Added comments to the code to allow custom 'lightweight' builds
+* Fixed a bug in the displacementmap function
+
+Version 2.0.3
+
+* Added filename option (idea from Neopheus)
+* Added option to set both width & height (idea from Neopheus)
+* Removed an unused Polaroid setting
+* Fixed a bug in the chmod option
+* Added Animated PNG support (ANPG)
+
+Version 2.0.2
+
+* Fixed resizing bug (percentage and inflate restriction)
+
+Version 2.0.1
+
+* Expanded functionality of cropimage() to allow a square crop
+
+Version 2.0.0
+
+
+
+* Added many new features and effects
+
+* Optimized the code and fixed some minor bugs
+
+
+
+Version 1.0.2
+
+
+* Fixed bug for saving the image in a directory other than root
+
+* Added 3x3 matrix filter support for PHP4 & PHP5
+
+* Added rotate and crop support (native PHP function)
+
+
+Version 1.0.1
+
+* Fixed bug in binder_offset parameter - binder was not properly positioned
+* Fixed bug in free rotate function - rotating multiple images resulted in 180 degree offset
+
+

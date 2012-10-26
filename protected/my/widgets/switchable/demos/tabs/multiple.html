@@ -1,0 +1,222 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="../../css/css.css" rel="stylesheet" />
+	<link href="../../css/demo.css" rel="stylesheet" />
+
+	<!-- syntaxhighlighter -->
+	<link href="../../../asset/styles/shCore.css" rel="stylesheet" />
+	<link href="../../../asset/styles/shThemeDefault.css" rel="stylesheet" />
+
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>Demos | jQuery.Switchable</title>
+	<script src="../../../asset/jquery.min.js"></script>
+	<script src="../../js/jquery.switchable[all].min.js"></script>
+
+	<!-- syntaxhighlighter -->
+	<script src="../../../asset/scripts/shCore.js"></script>
+	<script src="../../../asset/scripts/shBrushJScript.js"></script>
+	<script src="../../../asset/scripts/shBrushXml.js"></script>
+
+	<script>
+	$(function(){
+		$('.tabs-trigger').switchable('> .tabs-panel');
+	});
+	
+	// syntaxhighlighter
+	SyntaxHighlighter.config.clipboardSwf = '../asset/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="logo"></div>
+	<div id="nav">
+		<a href="../../../switchable">Home</a>
+		<a href="../../download.html">Download</a>
+		<a href="../" class="current">Demos</a>
+		<a href="http://t.qq.com/jsw0528" title="Follow me on Tencent" class="tencent" target="_blank">Tencent</a>
+		<a href="http://t.sina.com.cn/jsw0528" title="Follow me on Sina" class="sina" target="_blank">Sina</a>
+		<a href="http://twitter.com/jsw0528" title="Follow me on Twitter" class="twitter" target="_blank">Twitter</a>
+	</div>
+</div>
+
+<div class="wrap clearfix">
+	<h2>Multiple Tabs</h2>
+	<br />
+
+	<div>
+		<!-- First Tabs -->
+		<div class="tabs-trigger">
+			<a href="#First">First</a>
+			<a href="#Second">Second</a>
+			<a href="#Third">Third</a>
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 1 <a href="#Third">Open third tab</a></p>
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 2</p>
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 3 <a href="#Second">Open second tab</a></p>
+		</div>
+	</div>
+
+	<br />
+	<div>
+		<!-- Second Tabs -->
+		<div class="tabs-trigger">
+			<a href="#First">First</a>
+			<a href="#Second">Second</a>
+			<a href="#Third">Third</a>
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 1</p>
+
+			<!-- Third Tabs -->
+			<div class="tabs-trigger w1">
+				<a href="#First">First</a>
+				<a href="#Second">Second</a>
+				<a href="#Third">Third</a>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 1-1</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 1-2</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 1-3</p>
+			</div>
+
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 2</p>
+
+			<!-- Fourth Tabs -->
+			<div class="tabs-trigger w1">
+				<a href="#First">First</a>
+				<a href="#Second">Second</a>
+				<a href="#Third">Third</a>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 2-1</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 2-2</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 2-3</p>
+			</div>
+
+		</div>
+		<div class="tabs-panel">
+			<p>Tab Panel 3</p>
+
+			<!-- Fifth Tabs -->
+			<div class="tabs-trigger w1">
+				<a href="#First">First</a>
+				<a href="#Second">Second</a>
+				<a href="#Third">Third</a>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 3-1</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 3-2</p>
+			</div>
+			<div class="tabs-panel w2">
+				<p>Tab Panel 3-3</p>
+			</div>
+
+		</div>
+	</div>
+	
+	<h3>jQuery Code:</h3>
+	<p><strong>jQuery.Switchable</strong> is possible to instantiate multiple Tabs instances with a single call. Here you can see five different Tabs where the last three of them have been nested under the second Tabs instance. This whole thing has been setup with a single call as follows:</p>
+	<pre class="brush: js;">
+	$(function(){
+		$('.tabs-trigger').switchable('> .tabs-panel');
+	});
+	</pre>
+	<p>The jQuery selector: "> .tabs-panel" searches for panels under the wrapper element. This is the key. Of course you can always instantiate your Tabs separately but you need to supply different selector for the panels. For example:</p>
+	<pre class="brush: js;">
+	$(function(){
+		$('#tabs1').switchable('#panel1 > div');
+		$('#tabs2').switchable('#panel2 > div');
+	});
+	</pre>
+
+	<h3>HTML Code:</h3>
+	<p>Now how do we know which panels belong to which Tabs? The solution is to enclose each trigger/panel combination inside the same parent (or wrapper) element. Here is my setup: </p>
+	<pre class="brush: html;">
+	&lt;div&gt;
+		<!-- First Tabs -->
+		&lt;div class="tabs-trigger"&gt;
+			&lt;a href="#First"&gt;First&lt;/a&gt;
+			&lt;a href="#Second"&gt;Second&lt;/a&gt;
+			&lt;a href="#Third"&gt;Third&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 1 &lt;a href="#Third"&gt;Open third tab&lt;/a&gt;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 2&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 3 &lt;a href="#Second"&gt;Open second tab&lt;/a&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div&gt;
+		<!-- Second Tabs -->
+		&lt;div class="tabs-trigger"&gt;
+			&lt;a href="#First"&gt;First&lt;/a&gt;
+			&lt;a href="#Second"&gt;Second&lt;/a&gt;
+			&lt;a href="#Third"&gt;Third&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 1&lt;/p&gt;
+			
+			<!-- Third Tabs -->
+			[ nested Tabs #1 ]
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 2&lt;/p&gt;
+			
+			<!-- Fourth Tabs -->
+			[ nested Tabs #2 ]
+		&lt;/div&gt;
+		&lt;div class="tabs-panel"&gt;
+			&lt;p&gt;Tab Panel 3&lt;/p&gt;
+			
+			<!-- Fifth Tabs -->
+			[ nested Tabs #3 ]
+		&lt;/div&gt;
+	&lt;/div&gt;
+	</pre>
+	<p>Each nested Tabs are contained within a separate div.tabs-panel which work as their wrapping element and they do not need any extra wrapper.</p>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>

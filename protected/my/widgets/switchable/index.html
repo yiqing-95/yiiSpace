@@ -1,0 +1,427 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="css/css.css" rel="stylesheet" />
+	<!-- syntaxhighlighter -->
+	<link href="../asset/styles/shCore.css" rel="stylesheet" />
+	<link href="../asset/styles/shThemeDefault.css" rel="stylesheet" />
+
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>jQuery.Switchable</title>
+	<script src="../asset/jquery.min.js"></script>
+	<!-- syntaxhighlighter -->
+	<script src="../asset/scripts/shCore.js"></script>
+	<script src="../asset/scripts/shBrushJScript.js"></script>
+
+	<script>
+	$(function(){
+		$('table.detail tr').each(function(){
+			$(this).children('td').first().css('color', '#07f');
+		})
+	});
+	
+	// syntaxhighlighter
+	SyntaxHighlighter.config.clipboardSwf = '../asset/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="logo"></div>
+	<div id="nav">
+		<a href="index.html" class="current">Home</a>
+		<a href="download.html">Download</a>
+		<a href="demos/">Demos</a>
+		<!--<a href="http://v.t.sina.com.cn/share/share.php?url=http%3A%2F%2Filikejquery%2Ecom%2Fswitchable&title=@jsw0528+jQuery%2ESwitchable" title="分享到新浪微博" class="sina" target="_blank">Sina</a>-->
+		<a href="http://t.qq.com/jsw0528" title="Follow me on Tencent" class="tencent" target="_blank">Tencent</a>
+		<a href="http://t.sina.com.cn/jsw0528" title="Follow me on Sina" class="sina" target="_blank">Sina</a>
+		<a href="http://twitter.com/jsw0528" title="Follow me on Twitter" class="twitter" target="_blank">Twitter</a>
+	</div>
+</div>
+
+<div class="wrap clearfix">
+	<p class="tips corner-all">由于jQuery1.5+的Bug，isDefaultPrevented()在Firefox中总是返回True，所以jQuery.Switchable只能基于jQuery1.5-运行，推荐1.4.4。</p>
+
+	<h2>Introduction</h2>
+	<p><strong>jQuery.Switchable</strong>是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。</p>
+	<p>下面是<strong>jQuery.Switchable</strong>的几个亮点：</p>
+	<ol class="list">
+		<li>在当前 trigger 中 mouseenter/mouseleave, click 不触发</li>
+		<li>鼠标快速滑过非当前 trigger, 不触发</li>
+		<li>mouseenter 到非当前 trigger, 停留时间到达延迟时，触发</li>
+		<li>click trigger/panel, 立即触发</li>
+		<li>beforeSwitch/onSwitch 事件的触发</li>
+		<li>panel 内的锚链触发</li>
+		<li>无法获取 trigger 时，自动创建 trigger</li>
+	</ol>
+
+	<h2 id="cfg">Configuration</h2>
+	<p>下面是构建<strong>jQuery.Switchable</strong>的基本格式：</p>
+	<pre class="brush: js;">
+	$('trigger-container-selector').switchable('panel-selector', {
+		triggerType: 'mouse', // or click
+		effect: 'default',
+		circular: false
+	});
+	</pre>
+
+	<p style="font-weight:700;">trigger-container-selector</p>
+	<p>是trigger的容器，使用 <a href="http://api.jquery.com/category/selectors/" class="external" target="_blank">jQuery Selector</a> 获取。trigger默认是&lt;a&gt;标签，如果没有获取到，将自动创建。</p>
+	<br />
+	<p style="font-weight:700;">1<sup>st</sup> argument: panel-selector</p>
+	<p>是具体的panel元素，使用 <a href="http://api.jquery.com/category/selectors/" class="external" target="_blank">jQuery Selector</a> 获取，比如：#panel > img。</p>
+	<br />
+	<p style="font-weight:700;">2<sup>st</sup> argument: configuration</p>
+	<p>可以是一个<b>function</b>，或者是一个<b>object</b>，甚至可以省略。如果是<b>function</b>，那么就是仅配置beforeSwitch；如果是<b>object</b>，参数有如下：</p>
+	<table class="detail">
+		<tr>
+			<th scope="col" width="20%">property</th>
+			<th scope="col" width="15%">default</th>
+			<th scope="col">description</th>
+		</tr>
+		<tr>
+			<td>triggers</td>
+			<td>"a"</td>
+			<td>触点，默认是&lt;a&gt;标签</td>
+		</tr>
+		<tr>
+			<td>currentCls</td>
+			<td>"current"</td>
+			<td>当前触点的className</td>
+		</tr>
+		<tr>
+			<td>initIndex</td>
+			<td>0</td>
+			<td>默认激活项</td>
+		</tr>
+		<tr>
+			<td>triggerType</td>
+			<td>"mouse"</td>
+			<td>触发类型，还可以是"click"</td>
+		</tr>
+		<tr>
+			<td>delay</td>
+			<td>.1</td>
+			<td>触发延迟，单位是秒。默认值即100毫秒</td>
+		</tr>
+		<tr>
+			<td>effect</td>
+			<td>"default"</td>
+			<td>
+			切换效果。内置效果有：<br />
+			"default"：最简单的显/隐效果<br />
+			"ajax"：AJAX动态加载 Panel 的内容<br />
+			<a href="#effect">你还可以自己动手制作 Effect</a>
+			</td>
+		</tr>
+		<tr>
+			<td>steps</td>
+			<td>1</td>
+			<td>每次切换的 Panel 数量</td>
+		</tr>
+		<tr>
+			<td>visible</td>
+			<td>1</td>
+			<td>可见区域的 Panel 数量</td>
+		</tr>
+		<tr>
+			<td>speed</td>
+			<td>.7</td>
+			<td>动画步时，单位是秒。默认值即700毫秒</td>
+		</tr>
+		<tr>
+			<td>easing</td>
+			<td>"swing"</td>
+			<td>动画效果</td>
+		</tr>
+		<tr>
+			<td>circular</td>
+			<td>false</td>
+			<td>循环</td>
+		</tr>
+		<tr>
+			<td>vertical</td>
+			<td>false</td>
+			<td>纵向切换</td>
+		</tr>
+		<tr>
+			<td>panelSwitch</td>
+			<td>false</td>
+			<td>点击 Panels 触发</td>
+		</tr>
+		<tr>
+			<td>beforeSwitch</td>
+			<td>null</td>
+			<td>触发前的 Callback</td>
+		</tr>
+		<tr>
+			<td>onSwitch</td>
+			<td>null</td>
+			<td>触发时的 Callback</td>
+		</tr>
+		<tr>
+			<td>api</td>
+			<td>false</td>
+			<td><strong>jQuery.Switchable</strong>默认返回的是jQuery对象。当该属性设置为 true 时，将返回 <a href="#api">JavaScript API</a></td>
+		</tr>
+	</table>
+
+	<h2 id="api">Scripting API</h2>
+	<p>下面是使用 <b>API</b> 的例子：</p>
+	<pre class="brush: js;">
+	// 方法一：
+	window.api = $('trigger-container-selector').switchable('panel-selector', { api: true });
+	
+	// 方法二：
+	var api = $('trigger-container-selector').switchable();
+	
+	// 调用：
+	api.next();
+	api.getTriggers();
+	</pre>
+	<p>所有<b>API</b>方法如下：</p>
+	<table class="detail">
+		<tr>
+			<th scope="col" width="20%">method</th>
+			<th scope="col" width="15%">return value</th>
+			<th scope="col">description</th>
+		</tr>
+		<tr>
+			<td>getCfg()</td>
+			<td>Object</td>
+			<td>返回 Configuration</td>
+		</tr>
+		<tr>
+			<td>getTriggers()</td>
+			<td>jQuery</td>
+			<td>返回 Triggers</td>
+		</tr>
+		<tr>
+			<td>getPanels()</td>
+			<td>jQuery</td>
+			<td>返回 Panels</td>
+		</tr>
+		<tr>
+			<td>getVisiblePanel(index)</td>
+			<td>jQuery</td>
+			<td>返回可见区域内的 Panels</td>
+		</tr>
+		<tr>
+			<td>getIndex()</td>
+			<td>Integer</td>
+			<td>返回当前 Trigger 的索引值</td>
+		</tr>
+		<tr>
+			<td>move(index)</td>
+			<td>API</td>
+			<td>激活指定索引的 Trigger，索引值是从0开始的自然数</td>
+		</tr>
+		<tr>
+			<td>next()</td>
+			<td>API</td>
+			<td>触发下一个 Trigger</td>
+		</tr>
+		<tr>
+			<td>prev()</td>
+			<td>API</td>
+			<td>触发上一个 Trigger</td>
+		</tr>
+		<tr>
+			<td>bind(name, fn)</td>
+			<td>API</td>
+			<td>为 Trigger 绑定一个或者多个 Callback</td>
+		</tr>
+		<tr>
+			<td>unbind(name)</td>
+			<td>API</td>
+			<td>解除绑定</td>
+		</tr>
+		<tr>
+			<td>beforeSwitch(fn)</td>
+			<td>API</td>
+			<td>触发前的 Callback。该Callback function的第一个参数是 <a href="http://api.jquery.com/category/events/" class="external" target="_blank">jQuery.Event</a> 对象，第二个参数是被触发的 Trigger 的索引值</td>
+		</tr>
+		<tr>
+			<td>onSwitch(fn)</td>
+			<td>API</td>
+			<td>触发时的 Callback。该Callback function的第一个参数是 <a href="http://api.jquery.com/category/events/" class="external" target="_blank">jQuery.Event</a> 对象，第二个参数是被触发的 Trigger 的索引值</td>
+		</tr>
+	</table>
+
+	<h2 id="effect">Making custom effects</h2>
+	<p>你可以使用 <b>$.switchable.addEffect</b> 方法来自定义Effect。Effect可以在<strong>jQuery.Switchable</strong>被构造前就添加，并不需要等到API加载之后。函数有两个参数，<b>index</b> 是当前索引值，<b>done</b> 是 Effect 执行完毕后必须调用的 function，调用方法可以是 <b>done.call();</b>。</p>
+	<pre class="brush: js;">
+	$.switchable.addEffect('newEffect', function(index, done) {
+	
+		/* here you'll write your effect. the 'this' variable points to the API */ 
+	
+	});
+	</pre>
+	<p>我已经在 <b>switchable.effect.js</b> 中添加了"fade"和"scroll"两个Effect:</p>
+	<pre class="brush: js;">
+	/**
+	 * 淡隐淡现
+	**/
+	$.switchable.addEffect('fade', function(i, done) {
+		var self = this,
+			cfg = self.getCfg(),
+			items = self.getPanels(),
+			thisItem = self.getVisiblePanel(i);
+	
+		items.hide();
+		thisItem.fadeIn(cfg.speed * 1000, done);
+	});
+	
+	/**
+	 * 滚动
+	 *
+	 * Panel's HTML Makeup:
+	 * &lt;container&gt;
+	 *    &lt;wrapper&gt;
+	 *       &lt;panel /&gt;
+	 *       &lt;panel /&gt;
+	 *       &lt;panel /&gt;
+	 *    &lt;/wrapper&gt;
+	 * &lt;/container>
+	**/
+	$.switchable.addEffect('scroll', function(i, done) {
+		var self = this,
+			cfg = self.getCfg(),
+			thisItem = self.getVisiblePanel(i),
+			wrap = self.getPanels().parent(),
+			current = self.getIndex(),
+			len = self.getTriggers().length - 1,
+	
+			// 从第一个反向滚动到最后一个 or 从最后一个正向滚动到第一个
+			isCritical = (current === 0 && i === len) || (current === len && i === 0),
+			isBackward = (current === 0 && i === len) ? true : false,
+			prop = cfg.vertical ? { top : -thisItem.position().top } : { left : -thisItem.position().left };
+		
+		// 开始动画
+		if ( wrap.is(':animated') ) {
+			wrap.stop(true);
+		}
+		wrap.animate(prop, cfg.speed * 1000, cfg.easing, function() {
+			done.call();
+			// 复原位置（为了兼容plugin-carousel.js）
+			if ( isCritical ) {
+				self.resetPosition(isBackward);
+			}
+		});
+	});
+	</pre>
+
+	<h2 id="plugin">jQuery.Switchable Plugins</h2>
+	<hr />
+	<p>你可以在这个 <a href="demos/scrollable/plugin.html" target="_blank">Demo</a> 页面了解更多的具体应用。下面是几个官方插件：</p>
+	<ol class="list">
+		<li><a href="#autoplay">autoplay</a></li>
+		<li><a href="#carousel">carousel</a></li>
+		<li><a href="#mousewheel">mousewheel</a></li>
+	</ol>
+	
+	<!-- Autoplay plugin -->
+	<h2 id="autoplay"><strong>Autoplay plugin</strong></h2>
+	<p>自动播放插件，使用该插件的方法如下：</p>
+	<pre class="brush: js;">
+	$("trigger-container-selector").switchable("panel-selector").autoplay();
+	</pre>
+	<p><a href="demos/scrollable/plugin.html#autoplay" target="_blank">查看Demo</a></p>
+	<h2>Configuration</h2>
+	<table class="detail">
+		<tr>
+			<th scope="col" width="20%">property</th>
+			<th scope="col" width="15%">default</th>
+			<th scope="col">description</th>
+		</tr>
+		<tr>
+			<td>autoplay</td>
+			<td>true</td>
+			<td>自动播放</td>
+		</tr>
+		<tr>
+			<td>interval</td>
+			<td>3</td>
+			<td>
+			自动播放间隔，单位是秒。默认值即3000毫秒。当插件的参数是数字时，就是配置这个属性。例如：<br />
+			<b>$("trigger-container-selector").switchable("panel-selector").autoplay(1.8);</b>
+			</td>
+		</tr>
+		<tr>
+			<td>autopause</td>
+			<td>true</td>
+			<td>通过该属性可以控制鼠标 mouseenter 进 panel 区域是否暂停动画。mouseleave 后将自动恢复动画</td>
+		</tr>
+		<tr>
+			<td>api</td>
+			<td>false</td>
+			<td>该插件默认返回的是jQuery对象。当该属性设置为 true 时，将返回 <a href="#api2">JavaScript API</a></td>
+		</tr>
+	</table>
+	<h2 id="api2">Scripting API</h2>
+	<table class="detail">
+		<tr>
+			<th scope="col" width="20%">method</th>
+			<th scope="col" width="15%">return value</th>
+			<th scope="col">description</th>
+		</tr>
+		<tr>
+			<td>play()</td>
+			<td>API</td>
+			<td>开始自动播放</td>
+		</tr>
+		<tr>
+			<td>pause()</td>
+			<td>API</td>
+			<td>暂停播放。当 autopause 为 true 时，鼠标经过 Panels 后将重新触发 autoplay</td>
+		</tr>
+		<tr>
+			<td>stop()</td>
+			<td>API</td>
+			<td>停止播放。必须使用 <b>play()</b> 方法才能重新触发 autoplay</td>
+		</tr>
+	</table>
+
+	<!-- Carousel plugin -->
+	<h2 id="carousel"><strong>Carousel plugin</strong></h2>
+	<p>旋转木马插件，使用该插件的方法如下：</p>
+	<pre class="brush: js;">
+	$('trigger-container-selector').switchable('panel-selector').carousel();
+	
+	/*
+	使用该插件后，jQuery.Switchable的 circular 属性将自动设为 true。上面这行代码等同于：
+	$('trigger-container-selector').switchable('panel-selector', { circular: true }).carousel();
+	*/
+	</pre>
+	<p><a href="demos/scrollable/plugin.html#carousel" target="_blank">查看Demo</a></p>
+
+	<!-- Mousewheel plugin -->
+	<h2 id="mousewheel"><strong>Mousewheel plugin</strong></h2>
+	<p>鼠标滚珠插件，使用该插件的方法如下：</p>
+	<pre class="brush: js;">
+	$('trigger-container-selector').switchable('panel-selector').mousewheel();
+	</pre>
+	<p><a href="demos/scrollable/plugin.html#mousewheel" target="_blank">查看Demo</a></p>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>

@@ -1,0 +1,87 @@
+/* 
+ * Liquid Layout Style Sheet for PHPCalendar 
+ * Author: Ryan Kulla <rkulla AT gmail>
+ */
+
+
+/* The navigation buttons and current month/year heading */
+#cal-date-heading {
+    font-size: 13pt;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    padding-bottom: 3px;
+    line-height: normal;
+    color: #060;
+}
+
+
+/* The div we encompass all the calendar stuff in */
+#cal-content {
+    margin-top: 25px;
+    padding: 0 10px 0 10px;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    text-align: justify;
+    line-height: 25px;
+    font-size: 10pt;
+    color: #06253d;
+}
+
+
+/* Just the calendar */
+#calendar {
+    background-color: #FFF;
+    font-size: 8pt;
+
+    margin: 2px;
+    border: 1px solid #000; /* Table border */
+    width: 50%; /* Table width */
+}
+
+
+/* Table cellpadding */
+#calendar td {
+    padding: 0; 
+}
+
+
+/* The boxes where the day names go */
+.days_header td {
+    background-color: #06253D;
+    color: #FFF;
+    text-align: center;
+}
+
+
+.cal-nav-buttons, .cal-nav-buttons:visited {
+    color: #0000FF;
+}
+
+
+/* The individual calendar day boxes */
+#calendar a,#calendar a.today {
+    background-color: #d5e1eb;
+    border: 1px solid #6f97ba;
+    font-weight: bold;
+    color: #06253d;
+    text-align: left;
+    display: block;
+    height: 75px;
+    text-decoration: none;
+    font-size: 13pt;
+}
+
+
+/* The calendar box just for today */
+#calendar a.today {
+    background-color: #fb5;
+    border: 1px solid;
+}
+
+
+/* The effect of hovering over calendar boxes */
+#calendar a:hover {
+    background-color: #fb5;
+    color: #600;
+    border: 1px dashed #06253D;
+}
+

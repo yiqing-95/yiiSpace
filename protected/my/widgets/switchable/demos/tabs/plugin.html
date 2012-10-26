@@ -1,0 +1,130 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="../../css/css.css" rel="stylesheet" />
+	<link href="../../css/demo.css" rel="stylesheet" />
+
+	<!-- syntaxhighlighter -->
+	<link href="../../../asset/styles/shCore.css" rel="stylesheet" />
+	<link href="../../../asset/styles/shThemeDefault.css" rel="stylesheet" />
+
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>Demos | jQuery.Switchable</title>
+	<script src="../../../asset/jquery.min.js"></script>
+	<script src="../../js/jquery.switchable[all].min.js"></script>
+
+	<!-- syntaxhighlighter -->
+	<script src="../../../asset/scripts/shCore.js"></script>
+	<script src="../../../asset/scripts/shBrushJScript.js"></script>
+
+	<script>
+	$(function(){
+		window.api = $('#tabs1').switchable('#panels1 > p', {
+			circular: true
+		}).autoplay({
+			autopause: false,
+			api: true
+		});
+		$('#tabs2').switchable('#panels2 > p').mousewheel();
+	});
+	
+	// syntaxhighlighter
+	SyntaxHighlighter.config.clipboardSwf = '../asset/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<div id="header">
+	<div id="logo"></div>
+	<div id="nav">
+		<a href="../../../switchable">Home</a>
+		<a href="../../download.html">Download</a>
+		<a href="../" class="current">Demos</a>
+		<a href="http://t.qq.com/jsw0528" title="Follow me on Tencent" class="tencent" target="_blank">Tencent</a>
+		<a href="http://t.sina.com.cn/jsw0528" title="Follow me on Sina" class="sina" target="_blank">Sina</a>
+		<a href="http://twitter.com/jsw0528" title="Follow me on Twitter" class="twitter" target="_blank">Twitter</a>
+	</div>
+</div>
+
+<div class="wrap clearfix">
+	<h2>Plugins in action</h2>
+	<p>Here are the available plugins in action:</p>
+	<ol class="list">
+		<li><a href="#autoplay">autoplay</a></li>
+		<li><a href="#mousewheel">mousewheel</a></li>
+	</ol>
+	
+	<h2 id="autoplay">Autoplay plugin:</h2>
+	<br />
+
+	<div id="tabs1" class="tabs-trigger">
+		<a href="#First">First</a>
+		<a href="#Second">Second</a>
+		<a href="#Third">Third</a>
+	</div>
+	<div id="panels1" class="tabs-panel">
+		<p>Tab Panel 1 <a href="#Third">Open third tab</a></p>
+		<p>Tab Panel 2</p>
+		<p>Tab Panel 3 <a href="#Second">Open second tab</a></p>
+	</div>
+	<div class="ctrl">
+		<button class="play" onClick="api.play();" title="Play"></button>
+		<button class="pause" onClick="api.pause();" title="Pause"></button>
+		<button class="stop" onClick="api.stop();" title="Stop"></button>
+	</div>
+	
+	<h3>jQuery Code:</h3>
+	<pre class="brush: js;">
+	$(function(){
+		window.api = $('#tabs1').switchable('#panels1 > p', {
+			circular: true
+		}).autoplay({
+			autopause: false,
+			api: true
+		});
+	});
+	</pre>
+	
+	<h2 id="mousewheel">Mousewheel plugin:</h2>
+	<br />
+
+	<div id="tabs2" class="tabs-trigger">
+		<a href="#First">First</a>
+		<a href="#Second">Second</a>
+		<a href="#Third">Third</a>
+	</div>
+	<div id="panels2" class="tabs-panel">
+		<p>Tab Panel 1 <a href="#Third">Open third tab</a></p>
+		<p>Tab Panel 2</p>
+		<p>Tab Panel 3 <a href="#Second">Open second tab</a></p>
+	</div>
+	
+	<h3>jQuery Code:</h3>
+	<pre class="brush: js;">
+	$(function(){
+		$('#tabs2').switchable('#panels2 > p').mousewheel();
+	});
+	</pre>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>

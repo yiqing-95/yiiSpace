@@ -1,0 +1,35 @@
+1.7
+---
+Warning: this version is not backwards compatible to 1.6 and required framework version 1.1.7.
+
+- Add experemental JS for beta version 3.0.0. (Veaceslav Medvedev)
+- JS updated to version 2.1.4 (Veaceslav Medvedev)
+
+1.6
+---
+- Added property $sessionParam that can be used to send session id via POST. (Veaceslav Medvedev)
+- JS updated to version 2.1.3. (Veaceslav Medvedev)
+- Fixed error with `fileDesc` option. (Veaceslav Medvedev)
+
+1.5
+---
+- Code optimization. (Veaceslav Medvedev)
+
+1.4
+---
+- Rename class to EUploadifyWidget (Veaceslav Medvedev)
+
+1.3
+---
+- readme_ru, readme_en. (Veaceslav Medvedev)
+- Code style fixes. (Veaceslav Medvedev)
+- Compatible with Yii 1.1. (Veaceslav Medvedev)
+- New naming conventions. (Veaceslav Medvedev)
+
+1.2
+---
+- Transformed module into widget extension. (Veaceslav Medvedev)
+
+1.1
+---
+- Initial public release. (Veaceslav Medvedev)

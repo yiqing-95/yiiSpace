@@ -1,0 +1,260 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="jQuery, Switchable, Tabs, Slide, Scrollable, UI, Plugin, Ajax" />
+	<meta name="description" content="jQuery.Switchable是一款整合了Tabs、Slide、Scrollable等常见UI组件的jQuery插件。它有简单易用的API、可灵活配置的Configuration，支持自定义Effect，支持自主开发Plugin。" />
+	<link href="css/taobao.css" rel="stylesheet" />
+	<!--[if IE 7]>
+	<link href="css/ie7.css" rel="stylesheet" />
+	<![endif]-->
+	
+	<!--[if lt IE 7]>
+	<style>
+	body { width:100%; height:100%; }
+	a.overlay { display:block; }
+	</style>
+	<![endif]-->
+	<link href="/asset/favicon.png" rel="icon" type="image/png" />
+	<title>taobao.com | jQuery.Switchable</title>
+	<script src="../../../asset/jquery.min.js"></script>
+	<script src="../../js/jquery.switchable[all].min.js"></script>
+	<script>
+	$(function(){
+		// Slide
+		$('#slide-trigger').switchable('#slide-panel > div > img', {
+			effect: 'scroll',
+			speed: .4,
+			vertical: true
+		}).autoplay(5).carousel();
+			
+		// Scrollable
+		$('#scrollable-1-trigger').switchable('#scrollable-1-panel > div > img', {
+			effect: 'scroll',
+			steps: 5,
+			visible: 5
+		}).carousel();
+		$('#scrollable-2-trigger').switchable('#scrollable-2-panel > ul > li', {
+			effect: 'scroll',
+			steps: 2,
+			visible: 2
+		}).carousel();
+		// 一个按钮控制两组Scrollable
+		var api1 = $('#scrollable-1-trigger').switchable();
+		var api2 = $('#scrollable-2-trigger').switchable();
+		$('.prev').click(function(){
+			api1.prev();
+			api2.prev();
+			return false;
+		});
+		$('.next').click(function(){
+			api1.next();
+			api2.next();
+			return false;
+		});
+			
+		// Tabs
+		/*
+		* Left
+		*/
+		window.api = $('.tabs-1-trigger').switchable('.tabs-1-panel', {
+			triggers: 'li.s',
+			initIndex: null,
+			api: true
+		});
+		$('.tabs-1-trigger > li.s, .tabs-1-panel').bind({
+			'mouseenter': function() {
+				clearTimeout(timer);
+			},
+			'mouseleave': function() {
+				timer = setTimeout(function() {
+					// 鼠标移出后返回默认激活项
+					var index = api.getCfg().initIndex;
+					api.move(index);
+				}, 1000);
+			}
+		});
+		$('a.close').click(function(){
+			$(this).parent().hide();
+			return false;
+		});
+
+		/*
+		* Right
+		*/
+		$('.tabs-2-trigger').switchable('> .tabs-2-panel', { triggers: 'li' });
+	});
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16622252-3']);
+	_gaq.push(['_addIgnoredOrganic', 'ilikejquery.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.ilikejquery.com']);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<a href="http://www.ie6nomore.com/" class="overlay" title="You are using an outdated browser" target="_blank"></a>
+<![endif]-->
+<div id="top"></div>
+
+<div class="wrap clearfix">
+	<div class="middle">
+		<div class="slide-container">
+			<!-- Slide -->
+			<div id="slide-panel">
+				<div>
+					<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-27/100227200543.jpg" />
+					<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-25/100225114729.gif" />
+					<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-26/100226150931.jpg" />
+					<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-25/100225173603.jpg" />
+					<img src="http://img.alimama.cn/bcrm/adboard/picture/2010-02-22/100222173158.jpg" />
+				</div>
+			</div>
+			<div id="slide-trigger"></div>
+		</div>
+		
+		<!-- Scrollable -->
+		<div id="scrollable-1-panel">
+			<div>
+				<!-- 1 to 5 -->
+				<img src="http://img04.taobaocdn.com/tps/i4/T1ODhtXoJsXXXXXXXX-80-30.jpg" />
+				<img src="http://img07.taobaocdn.com/tps/i7/T1ZZ4uXjRMXXXXXXXX-80-30.jpg" />
+				<img src="http://img07.taobaocdn.com/tps/i7/T1DzRrXgFCXXXXXXXX-80-30.jpg" />
+				<img src="http://img06.taobaocdn.com/tps/i6/T1hvltXcRAXXXXXXXX-80-30.jpg" />
+				<img src="http://img01.taobaocdn.com/tps/i1/T1vqVuXcNBXXXXXXXX-80-30.jpg" />
+				<!-- 6 to 10 -->
+				<img src="http://img03.taobaocdn.com/tps/i3/T1R5RsXoVEXXXXXXXX-80-30.jpg" />
+				<img src="http://img03.taobaocdn.com/tps/i3/T1Hr8sXdNmXXXXXXXX-80-30.jpg" />
+				<img src="http://img07.taobaocdn.com/tps/i7/T1xP4sXm0cXXXXXXXX-80-30.jpg" />
+				<img src="http://img07.taobaocdn.com/tps/i7/T10zXsXfViXXXXXXXX-80-30.jpg" />
+				<img src="http://img04.taobaocdn.com/tps/i4/T1Ij4sXi8cXXXXXXXX-80-30.jpg" />
+				<!-- 11 to 15 -->
+				<img src="http://img08.taobaocdn.com/tps/i8/T1z2BtXjFDXXXXXXXX-80-30.jpg" />
+				<img src="http://img08.taobaocdn.com/tps/i8/T1NVXtXdhAXXXXXXXX-80-30.jpg" />
+				<img src="http://img06.taobaocdn.com/tps/i6/T1nz4sXaJdXXXXXXXX-80-30.jpg" />
+				<img src="http://img06.taobaocdn.com/tps/i6/T1_sxsXhFaXXXXXXXX-80-30.jpg" />
+				<img src="http://img06.taobaocdn.com/tps/i6/T1gfJtXoBAXXXXXXXX-80-30.jpg" />
+			</div>
+		</div>
+		<div id="scrollable-1-trigger" style="display:none;"></div>
+		
+		<!-- Scrollable -->
+		<div id="scrollable-2-panel">
+			<ul>
+				<!-- 1 to 2 -->
+				<li><img src="http://img07.taobaocdn.com/tps/i7/T1NtxuXkXfXXXXXXXX-190-70.gif" /></li>
+				<li><img src="http://img02.taobaocdn.com/tps/i2/T1E18uXgRtXXXXXXXX-190-70.gif" /></li>
+				<!-- 3 to 4 -->
+				<li><img src="http://img08.taobaocdn.com/tps/i8/T1oe0tXipPXXXXXXXX-190-70.gif" /></li>
+				<li><img src="http://img01.taobaocdn.com/tps/i1/T10JFuXnNwXXXXXXXX-190-70.gif" /></li>
+				<!-- 5 to 6 -->
+				<li><img src="http://img02.taobaocdn.com/tps/i2/T1hZxuXo0pXXXXXXXX-190-70.gif" /></li>
+				<li><img src="http://img07.taobaocdn.com/tps/i7/T1LYhuXi0zXXXXXXXX-190-70.gif" /></li>
+			</ul>
+		</div>
+		<div id="scrollable-2-trigger" style="display:none;"></div>
+		<a href="#" class="prev"></a>
+		<a href="#" class="next"></a>
+	</div>
+	
+	<div class="left">
+		<ul class="tabs-1-trigger">
+			<li class="s"><a href="#" class="t-mall"><i></i><b>淘宝商城</b><span></span></a></li>
+			<li class="s"><a href="#" class="t-3c"><i></i><b>淘宝电器城</b></a></li>
+			<li class="s"><a href="#" class="t-news"><i></i><b>消费者门户</b></a></li>
+			<li class="s"><a href="#" class="t-life"><i></i><b>口碑淘生活</b></a></li>
+			<li><a href="#" class="t-digi"><i></i><b>高清影院</b></a></li>
+			<li><a href="#" class="t-jipiao"><i></i><b>机票酒店</b></a></li>
+			<li><a href="#" class="t-caipiao"><i></i><b>彩票</b></a></li>
+			<li><a href="#" class="t-jianghu"><i></i><b>淘江湖</b></a></li>
+			<li><a href="#" class="t-shiyi"><i></i><b>试衣间</b></a></li>
+			<li><a href="#" class="t-wangwang"><i></i><b>阿里旺旺</b></a></li>
+			<li><a href="#" class="t-wap"><i></i><b>手机版淘宝</b></a></li>
+		</ul>
+		<p class="more"><a href="#">更多</a></p>
+		
+		<div class="tabs-1-panel">
+			<div><img src="image/popup1.png" /></div>
+			<a href="#" class="close"></a>
+		</div>
+		<div class="tabs-1-panel">
+			<div><img src="image/popup2.png" /></div>
+			<a href="#" class="close"></a>
+		</div>
+		<div class="tabs-1-panel">
+			<div><img src="image/popup3.png" /></div>
+			<a href="#" class="close"></a>
+		</div>
+		<div class="tabs-1-panel">
+			<div><img src="image/popup4.png" /></div>
+			<a href="#" class="close"></a>
+		</div>
+	</div>
+	
+	<div class="right">
+		<div class="tb-btn"></div>
+		
+		<div class="box corner-top">
+			<ul class="tabs-2-trigger fourth">
+				<li><a href="#">公告</a></li>
+				<li>规则</li>
+				<li><a href="#">安全保障</a></li>
+				<li><a href="#">公益</a></li>
+			</ul>
+			<ul class="tabs-2-panel clearfix">
+				<li><a href="#">淘宝入选中国企业诚信榜</a></li>
+				<li><a href="#">电子商务获两会代表肯定</a></li>
+				<li><a href="#">诚信网购推动低碳生活</a></li>
+				<li><a href="#">淘宝卖家上央视竞当英雄</a></li>
+			</ul>
+			<ul class="tabs-2-panel clearfix hidden">
+				<li><a href="#">退款超时规则变更通知</a></li>
+				<li><a href="#">消保数码家电规则变更</a></li>
+				<li><a href="#">商城积分发票主体变更</a></li>
+				<li><a href="#">淘宝补偿3G卡受损失买家</a></li>
+			</ul>
+			<ul class="tabs-2-panel clearfix hidden">
+				<li><a href="#">"不怕死"大婶8年网购经</a></li>
+				<li><a href="#">自动发货规则意见征集</a></li>
+				<li><a href="#">一字之差损失1万元</a></li>
+				<li><a href="#">卖家售后情况正式展现</a></li>
+			</ul>
+			<ul class="tabs-2-panel clearfix hidden">
+				<li><a href="#">淘宝发布社会责任报告</a></li>
+				<li><a href="#">包邮休闲鞋义卖捐二姐</a></li>
+				<li><a href="#">淘宝成为气候组织会员</a></li>
+				<li><a href="#">阿里在杭州认养碳汇林</a></li>
+			</ul>
+		</div>
+		
+		<div class="box corner-top">
+			<ul class="tabs-2-trigger third">
+				<li>精彩活动</li>
+				<li><a href="#">创意极品</a></li>
+				<li>特价宝贝</li>
+			</ul>
+			<div class="tabs-2-panel"><img src="image/tabs1.png" /></div>
+			<div class="tabs-2-panel"><img src="image/tabs2.png" /></div>
+			<div class="tabs-2-panel"><img src="image/tabs3.png" /></div>
+		</div>
+	</div>
+</div>
+
+<div class="wrap declare">
+	<p>本页内容仅供学习之用，外链内容的版权解释权归<a href="http://www.taobao.com/" target="_blank">淘宝</a>所有。</p>
+	<p>使用IE8或者非IE内核的浏览器（如：<a href="http://www.mozillaonline.com/" target="_blank">Firefox</a>、<a href="http://www.google.com/chrome/" target="_blank">Chrome</a>）浏览本页效果更佳。</p>
+</div>
+
+<p class="copyright">&copy;2010-2011 IlikejQuery.com</p>
+</body>
+</html>

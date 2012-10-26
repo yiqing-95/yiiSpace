@@ -1,0 +1,330 @@
+
+Initialize the class and output a thumbnail to the screen:
+
+include_once('easyphpthumbnail.class.php');
+$thumb = new easyphpthumbnail;
+$thumb -> Createthumb('image.jpg');
+
+
+Over 60+ Options, in alphabetical order:
+
+
+A
+
+$thumb -> Addtext               = array()       // Add text to the original image
+                                                   Array with 6 values
+                                                   [0]: 0=disable 1=enable
+                                                   [1]: The text to add
+                                                   [2]: The position of the text '50% 50%' is the center
+                                                   [3]: Path to the TTF font (standard systemfont will be used)
+                                                   [4]: The fontsize to use
+                                                   [5]: The copyright text color in web format '#000000'
+$thumb -> Ageimage              = (array)       // Apply greyscale array(1,0,0) or aging effect array(1,10,80)
+                                                   Age image; array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Add noise 0-100, 0=disable
+                                                   [2]: Sephia depth 0-100, 0=disable (greyscale)
+$thumb -> Applyfilter           = (boolean)     // Apply a user defined 3x3 filter		
+
+B
+
+$thumb -> Backgroundcolor       = (string)      // The backgroundcolor in web format '#FFFFFF'
+$thumb -> Binder                = (boolean)     // Draw a binder on the left side of the thumbnail
+$thumb -> Binderspacing         = (int)         // Space between binder rings in pixels
+$thumb -> Blur                  = (boolean)     // Auto-filter: Blur
+
+$thumb -> Borderpng             = (string)      // The path to the thumbnail border PNG image
+$thumb -> Brightness            = (array)       // Change the brightness of the image array(1,50)
+                                                   Array with 2 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Brightness -100 to 100
+
+
+C
+
+$thumb -> Chmodlevel            = (string)      // The chmod command to apply to saved thumbnails '0755'
+$thumb -> Clipcorner            = (array)       // Clip the corners of the thumbnail array(2,15,0,1,1,1,0)
+                                                   Clip corners; array with 7 values
+                                                   [0]: 0=disable 1=straight 2=rounded
+                                                   [1]: Percentage of clipping
+                                                   [2]: Clip randomly Boolean 0=disable 1=enable
+                                                   [3]: Clip top left Boolean 0=disable 1=enable
+                                                   [4]: Clip bottom left Boolean 0=disable 1=enable
+                                                   [5]: Clip top right Boolean 0=disable 1=enable
+                                                   [6]: Clip bottom right Boolean 0=disable 1=enable
+$thumb -> Colorreplace          = (array)       // Replace a color in the image array(1,'#FFFFFF','#FF6600',60)
+                                                   Array with 4 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Color to replace in web format: '#00FF00'
+                                                   [2]: Replacement color in web format: '#FF0000'
+
+                                                   [3]: RGB tolerance 0 - 100
+
+$thumb -> Colorize              = (array)       // Merge a color in the image array(1,0,0,125,0)
+                                                   Array with 5 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Red component 0 - 255
+                                                   [2]: Green component 0 - 255
+
+                                                   [3]: Blue component 0 - 255
+
+                                                   [4]: Opacity level 0 - 127
+
+$thumb -> Contrast              = (array)       // Change the contrast of the image array(1,30)
+                                                   Array with 2 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Contrast -100 to 100
+
+$thumb -> Copyrighttext         = (string)      // Copyright text
+$thumb -> Copyrightposition     = (string)      // The position of the text '50% 50%' is the center
+$thumb -> Copyrightfonttype     = (string)      // The path to the TTF font (standard systemfont will be used)
+$thumb -> Copyrightfontsize     = (int)         // The fontsize to use
+$thumb -> Copyrighttextcolor    = (string)      // The copyright text color in web format '#000000'
+$thumb -> Createthumb('imagepath'[,'output'])   // Create and output thumbnail 
+                                                   Function with 2 values
+                                                   [string]: Filename for the image to convert
+                                                   [string]: Output to the 'screen' (standard) or 'file' (option)
+$thumb -> Createbase64('imagepath')                // Output the thumbnail as base64 encoded data 
+                                                   Function with 1 value
+                                                   [string]: Filename for image to convert
+$thumb -> Createcanvas(i,i,i,s,b)               // Create an image from a canvas - use with Createthumb() 
+                                                   Function with 5 values
+                                                   [int]: Canvas width in pixels
+                                                   [int]: Canvas height in pixels
+                                                   [int]: Imagetype PHP: IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGETYPE_JPEG
+                                                   [string]: Fill color
+                                                   [boolean]: Transparent (boolean)
+$thumb -> Create_apng(array, string, int)       // Create the APNG thumbnail 
+                                                   Function with 3 values
+                                                   [array]: Array with filenames of PNG images (frames)
+                                                   [string]: Filename for APNG: 'animation.png'
+                                                   [int]: Delay between frames in milliseconds
+$thumb -> Cropimage             = (array)       // Crop the thumbnail array(0,0,20,20,20,20)
+                                                   Crop image; array with 6 values
+                                                   [0]: 0=disable 1=free crop 2=center crop 3=square crop
+                                                   [1]: 0=percentage 1=pixels
+                                                   [2]: Crop left
+                                                   [3]: Crop right
+                                                   [4]: Crop top
+                                                   [5]: Crop bottom
+$thumb -> Croprotate            = (boolean)     // Rotate function that crops the image to fit on the same canvas size
+
+
+D
+
+$thumb -> Displacementmap       = (array)       // Deform the image with a displacementmap 
+                                                   Array with 7 values: array(1,'gfx/displacementmap.jpg',0,0,0,50,50)
+                                                   [0]: 0=disable 1=enable
+                                                   [1]: Path to displacement image (grey #808080 is neutral)
+                                                   [2]: 0=resize the map to fit the image 1=keep original map size
+                                                   [3]: X coordinate for map position in px 
+                                                   [4]: Y coordinate for map position in px
+                                                   [5]: X displacement scale in px
+                                                   [6]: Y displacement scale in px
+
+$thumb -> Displacementmapthumb  = (array)       // Deform the thumbnail with a displacementmap 
+                                                   Array with 7 values: array(1,'gfx/displacementmap.jpg',0,0,0,50,50)
+                                                   [0]: 0=disable 1=enable
+                                                   [1]: Path to displacement image (grey #808080 is neutral)
+                                                   [2]: 0=resize the map to fit the image 1=keep original map size
+                                                   [3]: X coordinate for map position in px 
+                                                   [4]: Y coordinate for map position in px
+                                                   [5]: X displacement scale in px
+                                                   [6]: Y displacement scale in px
+
+
+$thumb -> Divisor               = (int)         // The divisor for the 3x3 filter
+
+E
+
+$thumb -> Edge                  = (boolean)     // Auto-filter: Edge
+
+$thumb -> Emboss                = (boolean)     // Auto-filter: Emboss
+
+
+
+F
+
+$thumb -> Fliphorizontal        = (boolean)     // Flips the image over the horizontal axis
+$thumb -> Flipvertical          = (boolean)     // Flips the image over the vertical axis
+$thumb -> Filter                = (array)       // Matrix of size 3x3 array(-1,-1,-1,-1,8,-1,-1,-1,-1)
+
+                                                   Filter, array with 9 values
+
+                                                   [0]: a1,1
+                                                   [1]: a1,2
+                                                   [2]: a1,3
+                                                   [3]: a2,1
+                                                   [4]: a2,2
+                                                   [5]: a2,3
+                                                   [6]: a3,1
+                                                   [7]: a3,2
+
+                                                   [8]: a3,3
+$thumb -> Framewidth            = (int)         // Add a frame around the thumbnail in pixels
+$thumb -> Framecolor            = (string)      // The framecolor in web format '#FFFFFF'
+
+G
+
+$thumb -> Gamma                 = (array)       // Change the gamma of the image array(1,0.5)
+                                                   Array with 2 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Gamma correction factor
+
+$thumb -> Greyscale             = (boolean)     // Convert to true color grayscale
+
+
+I
+
+$thumb -> Inflate               = (boolean)     // Allow images to be enlarged
+
+K
+
+$thumb -> Keeptransparency     = (boolean)      // Keep transparency of original image
+
+L
+
+$thumb -> Lakefx                = (array)       // Apply a lake deformation to the image array(1,15,80)
+                                                   Array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Density of the waves
+                                                   [2]: Lake area measured from bottom 0 - 100
+
+
+M
+
+$thumb -> Maketransparent       = (array)       // Make the image transparent array(1,0,'#171915',30)
+                                                   Array with 4 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: 0=PNG 1=GIF
+                                                   [2]: Replacement color in web format: '#FF0000'
+
+                                                   [3]: RGB tolerance 0 - 100
+
+$thumb -> Mean                  = (boolean)     // Auto-filter: Mean
+
+$thumb -> Medianfilter          = (boolean)     // Apply a median noise reduction filter
+
+$thumb -> Mirror                = (array)       // Apply a mirror effect to the thumbnail array(1,10,70,40,2)
+                                                   Array with 5 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Mirror transparency gradient starting strength 0 - 100
+                                                   [2]: Mirror transparency gradient ending strength 0 - 100
+
+                                                   [3]: Mirror area 0 - 100
+
+                                                   [4]: Mirror 'gap' between original image and reflection in px
+
+$thumb -> Mirrorcolor           = (string)      // The Mirror gradient color in web format '#000000'
+
+
+N
+
+$thumb -> Negative              = (boolean)     // Create image negative
+
+
+O
+
+$thumb -> Offset                = (int)         // The color offset for the filter
+
+P
+
+$thumb -> Palette               = (array)       // Change the palette of the image array(1,32)
+                                                   Array with 2 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Amount of colors for the palette
+$thumb -> Percentage            = (boolean)     // Use percentage instead of pixels
+$thumb -> Perspective           = (array)       // Apply a perspective to the image array(1,0,20)
+                                                   Array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Direction 0=left 1=right 2=top 3=bottom
+                                                   [2]: Perspective strength 0 - 100
+
+$thumb -> Perspectivethumb      = (array)       // Apply a perspective to the thumbnail array(1,0,20)
+                                                   Array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Direction 0=left 1=right 2=top 3=bottom
+                                                   [2]: Perspective strength 0 - 100
+
+$thumb -> Pixelscramble         = (array)       // Scramble pixels in the image array(1,4,2)
+                                                   Array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Pixel range
+                                                   [2]: Repeats (use with care!)
+$thumb -> Pixelate              = (array)       // Pixelate the image array(1,10)
+                                                   Array with 2 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Block size in px
+
+$thumb -> Polaroid              = (boolean)     // Convert the thumbnail to a polaroid look
+$thumb -> Polaroidtext          = (string)      // Write a text on the polaroid
+$thumb -> Polaroidfonttype      = (string)      // The path to the TTF font
+$thumb -> Polaroidfontsize      = (int)         // The fontsize to use
+$thumb -> Polaroidtextcolor     = (string)      // The polaroid text color in web format '#000000'
+$thumb -> Polaroidframecolor    = (string)      // The polaroid frame color in web format '#FFFFFF'
+
+
+Q
+
+$thumb -> Quality               = (int)         // The output quality of JPG images
+
+R
+
+$thumb -> Ripplefx              = (array)       // Apply a ripple deformation to the image array(1,5,15,5,5)
+                                                   Array with 5 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Amount of horizontal waves
+                                                   [2]: Amplitude of horizontal waves in px
+
+                                                   [3]: Amount of vertical waves
+
+                                                   [4]: Amplitude of vertical waves in px
+
+$thumb -> Rotate                = (int)         // Rotate the image in degrees
+
+S
+
+$thumb -> Shadow                = (boolean)     // Add a shadow around the thumbnail
+$thumb -> Shading               = (array)       // Apply shading to the image array(1,70,80,0)
+                                                   Array with 4 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Shading strength 0 - 100
+                                                   [2]: Shading area 0 - 100
+
+                                                   [3]: Shading direction 0=right 1=left 2=top 3=bottom
+
+$thumb -> Shadingcolor          = (string)      // The shading gradient color in web format '#000000'
+
+$thumb -> Sharpen               = (boolean)     // Auto-filter: Sharpen
+
+$thumb -> Square                = (boolean)     // Draw thumbnail on a square canvas
+
+T
+
+$thumb -> Thumbfilename         = (string)      // New filename (with extension)
+$thumb -> Thumbheight           = (int)         // Height of the thumbnail in pixels
+$thumb -> Thumblocation         = (string)      // The path to the thumbnail directory
+$thumb -> Thumbprefix           = (string)      // The prefix for the thumb filename
+$thumb -> Thumbsaveas           = (string)      // Convert the thumbnail to a different format, JPG, GIF or PNG
+$thumb -> Thumbsize             = (int)         // Thumbnailsize in pixels for width (landscape) or height (portrait)
+$thumb -> Thumbwidth            = (int)         // Width of the thumbnail in pixels
+$thumb -> Twirlfx               = (array)       // Apply a twirl deformation to the image array(1,20,0)
+                                                   Array with 3 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Effect strength 0 to 100
+                                                   [2]: Direction of twirl 0=clockwise 1=anti-clockwise
+
+
+W
+
+$thumb -> Waterdropfx           = (array)       // Apply a waterdrop deformation to the image array(1,1.2,400,40)
+                                                   Array with 4 values
+                                                   [0]: Boolean 0=disable 1=enable
+                                                   [1]: Amplitude in px
+                                                   [2]: Radius in px
+
+                                                   [3]: Wavelength in px
+$thumb -> Watermarkpng          = (string)      // The path to the watermark PNG image
+$thumb -> Watermarkposition     = (string)      // The position of the watermark '50% 50%' is the center
+$thumb -> Watermarktransparency = (int)         // The transparency of the watermark 0 to 100
+

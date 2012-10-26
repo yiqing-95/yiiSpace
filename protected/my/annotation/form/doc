@@ -1,0 +1,141 @@
+http://code.google.com/p/addendum/wiki/ShortTutorialByExample
+
+Annotation简单用法：
+
+1.先定义一个自己的 注解类 继承自Addendum 的Annotation类
+
+class Persistent extends Annotation {}
+
+2. 将注解类用在 类 方法 属性定义之上 类似于@return @var @author 等标准注解用法
+   但全是大写的！
+
+   /** @Persistent */
+class Person {
+   // some code
+}.
+
+上例是将注解应用在Person类上。  语义是持久化的。注意docblock是一个斜杠两个星 不同常规注释。
+
+3.访问注解：
+$reflection = new ReflectionAnnotatedClass('Person'); // 通过类名
+
+$person = new Person();
+$reflection = new ReflectionAnnotatedClass($person); // 通过pserson类的实例来访问
+
+$reflection->hasAnnotation('Persistent'); // true 目标上是否应用有注解Persistent
+要访问 方法和属性的注解 请使用：ReflectionAnnotatedMethod ，ReflectionAnnotatedProperty（连同上面的那个类 这三个类都是扩展自核心反射类的）
+To access method/property annotations you can use ReflectionAnnotatedMethod and ReflectionAnnotatedProperty.
+
+
+4. 有值得注解：
+4.1 定义注解
+class Table extends Annotation {}
+4.2.使用带值的注解来作用在一个类上：
+/** @Table("people") */
+class Person {
+   // some code
+}
+4.3 通过反射来获取注解的值：
+$reflection = new ReflectionAnnotatedClass('Person'); // by class name
+$reflection->getAnnotation('Table')->value; // contains string "people"
+
+5 多个值得注解：
+5.1： 定义一个注解：
+class Secured extends Annotation {
+   public $role;
+   public $level;
+}
+5.2： 应用多值注解：
+/** @Secured(role = "admin", level = 2) */
+class Administration {
+ // some code
+}
+5.3 利用扩展的反射api来访问注解的值：
+$reflection = new ReflectionAnnotatedClass('Administration'); // by class name
+$annotation = $reflection->getAnnotation('Secured');
+$annotation->role; // contains string "admin"
+$annotation->level; // contains integer "2"
+
+6 含数组值得注解：
+class RolesAllowed extends Annotation {}
+
+/** @RolesAllowed({'admin', 'web-editor'}) */
+class CMS {
+ // some code
+}
+
+$reflection = new ReflectionAnnotatedClass('CMS');
+$annotation = $reflection->getAnnotation('RolesAllowed');
+$annotation->value; // contains array('admin', 'web-editor')
+ 当然可以应用关联数组了：
+ @Annotation({key1 = 1, key2 = 2, key3 = 3})
+
+ 也可以混合使用 嵌套使用：
+ @Annotation({key1 = 1, 2, 3, {4, key = 5}})
+
+ ------------------------------------------------------------------------------------------------
+ 高级用法：
+ 将一个注解类的多个实例应用到同一个目标上：
+ /**
+ @Title(value='Welcome', lang='en')
+ @Title(value='Wilkommen', lang='de')
+ @Title(value='Vitajte', lang='sk')
+ @Snippet
+ */
+class WelcomeScreen {}
+ 之后可以这样访问他们：
+ $reflection = new ReflectionAnnotatedClass('WelcomeScreen');
+$annotations = $reflection->getAllAnnotations(); // array of all 4 annotations
+$just_titles = $reflection->getAllAnnotations('Title'); // array of those 3 Title annotations
+
+下面是原文  高级用法中的恐怖用法：
+Constrained annotations
+Meta-annotation @Target
+Using @Target meta-annotation you can easily annotate annotations (yes, it's kind of scary!) to prevent annotations to be misplaced.
+
+For example you might want a @Route annotation that can be only used to annotate methods. It's easy:
+
+/** @Target("method") */
+class Route extends Annotation {}
+Besides "method" target definition you can also use "class", "property" and "nested".
+
+Implementing custom constraints
+Sometimes @Target meta-annotation does not provide enough power to check for additional constraints. You can override Annotation::checkConstraints method to add additional rules for validation, etc.
+
+class Route extends Annotation {
+   protected function checkConstraints($target) {
+      if($this->value == /* something bad */) {
+         // trigger some error
+      } else {
+         // do something else
+      }
+      // variable $target holds reflection class of annotation target (class, method, property)
+   }
+}
+Nested annotations
+As if it were not enough, even annotations can be nested inside each other. Look at this:
+
+/** @Mapping(inheritance = @SingleTableInheritance, columns = {@ColumnMapping('id'), @ColumnMapping('name')}) */
+class Person {}
+
+$reflection = new ReflectionAnnotatedClass('Person');
+$annotation = $reflection->getAnnotation('Mapping');
+$annotation->inheritance; // SingleTableInheritance annotation
+$annotation->columns; // array of ColumnMapping annotations
+$annotation->columns[0]->value; // 'id'
+If you want to ensure that your @ColumnMapping annotation should be only used in nested contexts, add @Target meta-annotation with "nested".
+
+/** @Target("nested") */
+class ColumnMapping extends Annotation {}
+Annotation class name resolving
+If you use prefixed annotation class names like MyDoomdayProject_God. You can save yourself a few keystrokes by using:
+
+class MyDoomsdayProject_God extends Annotation {}
+
+/** @God */
+class Me {}
+
+$reflection = new ReflectionAnnotatedClass('Me');
+$reflection->getAnnotation('God'); // returns MyDoomsdayProject_God
+Did you notice that Addendum automatically resolves @God annotation into @MyDoomsdayProject_God annotation? And of course you can also use the full class name.
+ 

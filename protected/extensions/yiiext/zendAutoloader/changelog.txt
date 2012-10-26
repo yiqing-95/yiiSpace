@@ -1,0 +1,6 @@
+1.1
+[+] Ability to load custom code that is using Zend class naming convention but
+with different prefix.
+
+1.0
+[+] Initial public release.

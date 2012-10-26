@@ -1,0 +1,35 @@
+3.0.0 (beta)
+---
+- Uses SWFUpload for more stability and compatibility
+- Completely rewritten Javascript form the ground up
+- No documentation yet
+- Plans for HTML5 option
+
+2.1.4
+---
+- Fixed scope of settings for multiple instances on a page
+- File size error is now triggered on select instead of on upload
+- Updating settings can be done via the onSelectOnce function
+
+2.1.3
+---
+- Fixed issue of delay when adding files to the queue
+
+2.1.2
+---
+- Fixed issue with uploadifyClearQueue() not working with custom queueIDs
+
+2.1.1
+---
+- onSWFReady event handler added
+- removeCompleted option added
+- Fixed issues with being unable to remove queue items if the file was canceled
+- Fixed issues with the check script not working correctly when using a folder relative path
+- cancel.png updated
+- Styling of Uploadify queue updated
+- Default text on button changed to 'SELECT FILES'
+- Animation added to progress bar
+
+2.1.0
+---
+- Added new onOpen event to get details of a file when it is first opened by Flash for upload.

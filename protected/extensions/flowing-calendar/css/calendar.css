@@ -1,0 +1,122 @@
+  /*
+  * This Calendar Application was designed by:
+  *
+  *         Kyle Ferreira
+  *         http://www.SterlingSavvy.com
+  *
+  * Credits for following the template of:
+  *
+  *         David Walsh
+  *        http://davidwalsh.name/php-calendar
+  *
+  * You are free and welcome to use and manipulate this code as you wish.
+  * Please keep a reference to those who helped shape it (ie: the sources above)
+  */
+  
+/*     If you wish to make a second calendar class just duplicate this css and change the calendar key words
+     to that of the new calendar class you want to use. Like maybe calendar2.
+     then when you call the instance of the class of the calendar make sure to specify the style in the
+     parameters of the constructor
+*/
+/* calendar */
+/* by not setting a table width you get a table that will cover the size of the div or page you put it in  */
+table.calendar {
+     border-left:1px solid #999;
+}
+/* Settings for the control menu */
+table.calendar-control {
+     width: 100%;
+     text-align: center;
+}
+/* This changes the select month and select year drop down menus */
+table.calendar-control-select {  
+}
+
+tr.calendar-row {  
+}
+td.calendar-day, td.calendar-weekend-day, td.calendar-current-day {
+     height:100px;
+     font-size:11px;
+     position:relative;
+     vertical-align: top;
+     line-height: 4px; /* This determins the space that will  space out the events on the calendar */
+}
+* html div.calendar-day, div.calendar-weekend-day, div.calendar-current-day {
+     height:100px;
+}
+/* This alters the headings (the days of the week) Change the colour and background for those here */
+td.calendar-day-head {
+     background:#CCC;
+     color: #000;
+     font-weight:bold;
+     text-align:center;
+     width:120px;
+     padding:5px;
+     border-bottom:1px solid #999;
+     border-top:1px solid #999;
+     border-right:1px solid #999;
+}
+/* Change these colours to alter the respective portion of the calendar */
+td.calendar-day    {
+     background-color: #E1E1E1;
+}
+td.calendar-weekend-day    {
+     background-color: #CFCFCF;
+}
+td.calendar-current-day    {
+     background-color: #ECEFF5;
+}
+/* These colours are for the mouse over effects on the calendar */
+td.calendar-day:hover {
+     background:#ECEFF5;
+}
+td.calendar-weekend-day:hover {
+     background:#D7DADF;
+}
+td.calendar-current-day:hover {
+     background:#E5E7ED;
+}
+/* background colour of the blank dates */
+td.calendar-day-np {
+     background:#EEE;
+     min-height:100px;
+}
+* html div.calendar-day-np {
+     height:100px; }
+/* This alters the number dates of the calendar */
+div.calendar-day-number {
+     position: relative;
+     padding:5px;
+     color:#000;
+     /*
+     Uncomment this to make a background square around the dates
+     Personally I think it looks ugly, but depending on your colour scheme
+     it can work :)
+     background-color: #C1C1C1;
+     */
+     font-weight:bold;
+     float:right;
+     margin:-5px -5px 0 0;
+     width:20px;
+     text-align:right;
+     line-height: normal;
+}
+/* This alters the text section for events on the calendar. */
+div.calendar-text {
+     color:#111;    
+}
+div.calendar-text a {
+     color: #111;
+     text-decoration: none;
+}
+div.calendar-text a:hover {
+     color: #333;
+     text-decoration: underline;
+}
+/* shared */
+td.calendar-day,td.calendar-current-day, td.calendar-weekend-day, td.calendar-day-np {
+     width:120px;
+     padding:5px;
+     border-bottom:1px solid #999;
+     border-right:1px solid #999;
+}

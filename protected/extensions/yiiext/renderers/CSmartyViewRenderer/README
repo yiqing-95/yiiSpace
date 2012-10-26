@@ -1,0 +1,29 @@
+## Smarty view render for Yii Framework
+
+If Smarty is a required template engine for your project - do use this view renderer. 
+
+Working with online games and especially PenguinFarmer and using Yii Framework I've been driven to solve a problem with Smarty view renderers available already on the internet.
+
+Fast, efficient and tested on a huge traffik load.
+
+Problems resolved:
+1) Why do we need to save the rendered view template? This is a unnecessary disk I/O
+2) Why do we need to read the smarty parsed temp file again to parse it as a PHP template? Again unnecessary disk I/O
+3) When there is a lot of traffik there is a gap between writing a smarty template and reading it again. So many times there were a blank pages or wrong smarty templates. Even with fast HDDs there we enought time between reads and writes so we can get problems.
+
+After going throught the code, optimizing it and testing I am glad to present you a good and reliable Smarty view renderer for Yii Framework that you can use as a drop in replacement for your current renderer.
+
+* [Wiki](http://wiki.github.com/svilen/Yii-Framework-Smarty-Renderer/)
+* [Issue Tracker](http://github.com/svilen/Yii-Framework-Smarty-Renderer/issues)
+
+## Required Packages
+* Yii Framework 1.0.x
+* PHP 5.0.x or later
+
+## Installation
+
+See INSTALL file 
+
+## Running Smarty View Renderer
+
+Please see (http://blog.svilen.com/2010/02/fast-efficient-smarty-view-renderer-for.html)

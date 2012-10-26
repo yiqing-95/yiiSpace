@@ -1,0 +1,18 @@
+## Installation
+
+1) Copy CSmartyViewRender.php into:
+framework/web/renderers
+2) Download a copy of Smarty 2.x and put it into:
+framework/web/renderers/smarty/
+3) To use CSmartyViewRenderer, configure it as an application component named "viewRenderer" in the application configuration:
+
+array(
+	'components' => array(
+			......
+			'viewRenderer' => array(
+				'class' => 'CSmartyViewRenderer',
+		),
+	),
+)
+
+4) Go run your application
