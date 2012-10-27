@@ -75,11 +75,6 @@ return array(
     //dashboard module
     'sdashboard'=>array(),
 	
-	//syte module
-	'syte',  // need oauth installed !
-
-    //test module to study css knowledge
-    'cssTest',
 
     'friend',
 
@@ -92,16 +87,6 @@ return array(
     'group',
 
     'test',
-	
-	'badger' => array(
-                  //'layout' => '//layouts/mainx', //default: "//layouts/main"
-                  //'userTable' => 'userx', // default: "user"
-                  'cacheSec' => 3600 * 24, // cache duration. default: 3600
 
-                  // Creates tables and copy necessary files
-                  //'install' => true, // remove/comment after succesful install
-                   // drop all badger tables before installing (fresh install)
-                  'dropBeforeInstall' => false, 
-            ),
 );
 

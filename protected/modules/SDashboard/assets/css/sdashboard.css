@@ -1,0 +1,10 @@
+		#update-form-wrapper,#form-wrapper,#active-form-wrapper{}
+		.renderspan{display:none;}
+		#portlets{display:inline; list-style:none; z-index:50;}
+		.portletcontent{clear:both; border-top:3px ridge #0088cc; margin-top:5px; padding-top:5px;} 
+		.maximized{ position:absolute; left:0; top:0;z-index:1000;}
+		.portlettitlediv{float:left; padding:6px 6px 10px 6px;}
+		.thumbnail a {float:right;padding:6px 5px 0px 0px;}
+		.portlettitle{}
+		.dialog{display:none;}
+		.moveOut{display:none;}

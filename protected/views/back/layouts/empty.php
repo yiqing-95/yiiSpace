@@ -19,7 +19,7 @@
                 'class' => 'alert alert-success',// alert-error,alert-block ,alert-info ,alert-success
             )
         ));
-        $this->widget('foundation.widgets.FounSubNav', array(
+        $this->widget('bootstrap.widgets.TbNavbar', array(
             'items' => $this->menu
         ));
 

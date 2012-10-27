@@ -1,4 +1,4 @@
-<?php $this->beginContent('//layouts/found_main'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
 
 <section class="two columns">
 
@@ -9,9 +9,14 @@
 </section>
 <section class="two columns">
     <?php
-    if (!empty($this->menu)) :
-        $this->widget("foundation.widgets.FounTabs", array('items' => $this->menu, 'type' => 'nice vertical hide-on-phones'));
-    endif;
+    $this->beginWidget('zii.widgets.CPortlet', array(
+        'title'=>'Operations',
+    ));
+    $this->widget('zii.widgets.CMenu', array(
+        'items'=>$this->menu,
+        'htmlOptions'=>array('class'=>'operations'),
+    ));
+    $this->endWidget();
     ?>
 </section>
 

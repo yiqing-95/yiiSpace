@@ -31,7 +31,7 @@ $publicBaseUrl = PublicAssets::url();
     <div class="slide-trigger"><!-- 标签必须存在，通过CSS隐藏 --></div>
 </div>
 <?php
-$this->widget('foundation.widgets.FounNavbar', array(
+$this->widget('bootstrap.widgets.FounNavbar', array(
         'items' => array(
             array('label' => '首页', 'url' => '#', 'active' => true),
             array('label' => '找人', 'url' => array('/user/userSearch')),
