@@ -4,7 +4,7 @@ return array(
     /**
      * foundation extension
      */
-    'foundation',
+    'bootstrap',
 
     'modUrlRuleManager',
 

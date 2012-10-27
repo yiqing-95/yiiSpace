@@ -1,5 +1,5 @@
 <div class="form well">
-    <?php $form = $this->beginWidget('foundation.widgets.FounActiveForm', array(
+    <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'relationship-form',
     'enableAjaxValidation' => false,
     'method' => 'post',

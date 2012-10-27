@@ -1,4 +1,4 @@
-<?php $form=$this->beginWidget('foundation.widgets.FounActiveForm',array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     'action'=>Yii::app()->createUrl($this->route),
     'method'=>'get',
     'htmlOptions'=>array('class'=>'well'),

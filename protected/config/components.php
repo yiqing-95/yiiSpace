@@ -95,13 +95,6 @@ return array(
         'class' => 'ext.file.CFile'
     ),
 
-    //触发器管理器
-    'triggerManager' => array(
-        'class' => 'application.common.components.LTriggerManager',
-        'triggers' => require(dirname(__FILE__) . '/triggers.php'),
-    ),
-
-
     'uploadStorage'=>array(
       'class'=>'application.components.YsUploadStorage'
     ),
@@ -122,8 +115,8 @@ return array(
     ),
 
 
-    'foundation' => array(
-        "class" => "ext.foundation.components.Foundation"
+    'bootstrap' => array(
+        "class" => "ext.YiiBooster.components.Bootstrap"
     ),
 
     //互斥锁
@@ -138,5 +131,7 @@ return array(
         // ImageMagick setup path
         // 'params'=>array('directory'=>'/opt/local/bin'),
     ),
+
+
     //............{extension from yii repo /}................................................................
 );
