@@ -6,6 +6,67 @@ class Test1Controller extends Controller
 {
 
     /**
+     * @Desc('测试1列布局！')
+     */
+    public function actionLayoutColumn1(){
+        $this->renderText('juiLayout');
+    }
+
+    /**
+     * @Desc('测试2列布局！ 参数sidebar试着用right 看看效果！')
+     */
+    public function actionLayoutColumn2($sidebar='left'){
+        Layout::addBlock($sidebar, array(
+            'id'=>$sidebar. '_sidebar',
+            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            /*
+            $this->renderPartial('/partial/aspect_index_right', array(
+                    'aspects'=>$user->aspects,
+                    'controller'=>$this,
+                ), true)
+            */
+        ));
+        $this->renderText('layout name : '. $this->layout);
+
+    }
+
+    /**
+     * @Desc('测试3列布局！')
+     */
+    public function actionLayoutColumn3(){
+        $sidebar = 'left';
+        Layout::addBlock($sidebar, array(
+            'id'=>$sidebar. '_sidebar',
+            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            /*
+            $this->renderPartial('/partial/aspect_index_right', array(
+                    'aspects'=>$user->aspects,
+                    'controller'=>$this,
+                ), true)
+            */
+        ));
+        $sidebar = 'right' ;
+        Layout::addBlock($sidebar, array(
+            'id'=>$sidebar. '_sidebar',
+            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            /*
+            $this->renderPartial('/partial/aspect_index_right', array(
+                    'aspects'=>$user->aspects,
+                    'controller'=>$this,
+                ), true)
+            */
+        ));
+        $this->renderText('layout name : '. $this->layout);
+    }
+    /**
+     * @Desc('测试jqueryUiLayout')
+     */
+    public function actionJuiLayout(){
+        $this->layout = false;
+        $this->render('juiLayout');
+    }
+
+    /**
      * @Desc('测试FleetBox')
      */
     public function actionFleetBox(){
