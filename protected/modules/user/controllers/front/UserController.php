@@ -123,6 +123,7 @@ class UserController extends BaseUserController
      * dashboard for the current login user
      */
     public function actionHome(){
+        $this->layout = "//layouts/user/user_center";
         $model = User::model()->findByPk(Yii::app()->user->id);
 
         $this->render('home',array(
