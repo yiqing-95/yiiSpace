@@ -1,4 +1,4 @@
-<?php $this->beginContent('//layouts/found_main'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
 
 <section class="two columns">
 

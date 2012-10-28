@@ -2,7 +2,7 @@
 
 class MenuBuilderController extends Controller
 {
-    public $layout = '//layouts/found_main';
+    public $layout = '//layouts/main';
 
     public function actionIndex()
     {

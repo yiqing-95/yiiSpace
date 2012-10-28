@@ -1,4 +1,4 @@
-<?php $this->beginContent('//layouts/found_main'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
 
 <section class="two columns">
 
@@ -10,7 +10,7 @@
 <section class="two columns">
     <?php
     if (!empty($this->menu)) :
-        $this->widget("bootstrap.widgets.FounTabs", array('items' => $this->menu, 'type' => 'nice vertical hide-on-phones'));
+        $this->widget("bootstrap.widgets.TbMenu", array('items' => $this->menu, 'type' => 'pills'));
     endif;
     ?>
 </section>

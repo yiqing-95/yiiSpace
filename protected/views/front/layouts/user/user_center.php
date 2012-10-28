@@ -1,18 +1,19 @@
-<?php $this->beginContent('//layouts/found_main'); ?>
+<?php $this->beginContent('//layouts/main'); ?>
 
-<div class="four columns" role="complementary" >
-   <?php $this->widget('user.widgets.sidebar.UserSidebar'); ?>
-</div>
-<div class="six columns ">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3" >
+            <div style="margin-left: 50px;">
+                <?php $this->widget('user.widgets.sidebar.UserSidebar'); ?>
+            </div>
 
-    <?php echo $content; ?>
-</div>
-<div class="two columns">
-    <?php
-    if (!empty($this->menu)) :
-        $this->widget("bootstrap.widgets.FounTabs", array('items' => $this->menu, 'type' => 'nice vertical hide-on-phones'));
-    endif;
-    ?>
+            <!--Sidebar content-->
+        </div>
+        <div class="span9">
+            <?php echo $content; ?>
+            <!--Body content-->
+        </div>
+    </div>
 </div>
 
 <?php $this->endContent(); ?>
