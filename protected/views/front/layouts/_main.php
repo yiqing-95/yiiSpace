@@ -77,7 +77,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
             'htmlOptions' => array('class' => 'pull-left'),
         ),
         '<form class="navbar-search pull-left" action="">' .
-            CHtml::dropDownList('chang_theme', '', array_combine($themes, $themes), array('onchange' => 'changeTheme(this)'))
+            CHtml::dropDownList('chang_theme', '', array_combine($themes, $themes), array('onchange' => 'changeTheme(this)','class'=>'input-mini'))
             . '</form>',
         '<div class="add-this pull-right">
                         <!-- AddThis Button BEGIN -->
