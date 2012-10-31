@@ -21,17 +21,11 @@ for ($i = 1; $i <= 5; $i++) {
     </div>
     <div class="span4">
         <?php
-        $this->widget('bootstrap.widgets.TbBox', array(
-        'title' => '最近加入',
-        'headerIcon' => 'icon-user',
-        'content' => 'So this box has actions, isn\'t that cool?',
-        'headerButtonActionsLabel' => 'My actions',
-        'headerActions' => array(
-        array('label'=>'first action', 'url'=>'#', 'icon'=>'icon-music'),
-        array('label'=>'second action', 'url'=>'#', 'icon'=>'icon-headphones'),
-        '---',
-        array('label'=>'third action', 'url'=>'#', 'icon'=>'icon-facetime-video')
-        )
+        $this->widget('user.widgets.pageblock.UserHomeBlock',array(
+            'title'=>'最新加入',
+            'tbBoxOptions'=>array(
+                'headerActions'=>false,
+            )
         )); ?>
 
     </div>
@@ -60,7 +54,7 @@ for ($i = 1; $i <= 5; $i++) {
                         CHtml::link('delete', '#'),
                     )
                 ),
-                'size' => 'small',         //'','large','small'
+                'size' => 'large',         //'','large','small'
                 'body' => 'FleetBox size:small',
             )
         );
