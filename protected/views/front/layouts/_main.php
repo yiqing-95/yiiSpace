@@ -98,7 +98,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         ),
     ),
 )); ?>
-<div style="margin-top: 50px;">
+<div style="margin-top: 90px;">
 
 </div>
 <!--    主布局不做宽度限制 交由下面的子布局决定-->
