@@ -58,7 +58,9 @@
 <body>
 <header class="header">
     <div class="row-fluid">
-        <div class="span1">logo here</div>
+        <div class="span1">
+            <?php echo CHtml::image(bu('public/images/yii.png')); ?>
+        </div>
         <div class="span10">
             <div class="row-fluid">
                 <div class="span4 pull-right">
