@@ -6,20 +6,32 @@
  * Time: 上午9:52
  * To change this template use File | Settings | File Templates.
  */
-class UserSidebar extends CWidget
+class UserSidebar extends YsSectionWidget
 {
-
     /**
-     * @var int
+     * @var User
      */
-    public $uid = 1;
+    protected  $user ;
 
-    public function run(){
-        $model = User::model()->findByPk(Yii::app()->user->id);
-        $this->render('userSidebar',array(
+    public $template = '{userBox}';
+
+   public function init(){
+       parent::init();
+       $this->user  = User::model()->findByPk(Yii::app()->user->id);
+   }
+
+    public function renderUserBox(){
+        $model = $this->user ;
+        $this->render('_profileBox',array(
             'model'=>$model,
             'profile'=>$model->profile,
         )
+        );
+    }
+
+    public function renderSidebarMenu(){
+        $this->render('_sidebarMenu',array(
+            )
         );
     }
 

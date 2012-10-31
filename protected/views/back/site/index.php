@@ -15,38 +15,6 @@
 
         .activeTreeMenu {
         }
-
-        #topNav li {
-            float: left;
-            list-style-type: none;
-        }
-
-        #topNav li a {
-            color: #000000;
-            text-decoration: none;
-            padding-top: 4px;
-            display: block;
-            width: 97px;
-            height: 22px;
-            text-align: center;
-            background-color: #ececec;
-            margin-left: 2px;
-        }
-
-        #topNav li a:hover {
-            background-color: #bbbbbb;
-            color: #FFFFFF;
-        }
-
-        #topNav li a.current {
-            background-color: #2788da;
-            color: #FFFFFF;
-        }
-
-        #topNav {
-            height: 26px;
-            border-bottom: 2px solid #2788da;
-        }
     </style>
 
     <?php
@@ -56,7 +24,8 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#topNav").currentActive({target:'a', activeClass:'current'});
+           // $("#topNav").currentActive({target:'a', activeClass:'active'});
+            $("#topNav").currentActive({target:'li', activeClass:'active'});
             //左侧菜单点击后目标显示窗体是 contentframe
             $("#left_side_nav a").attr('target', 'contentFrame');
             //隐藏所有左侧导航菜单先
@@ -87,52 +56,81 @@
     </script>
 </head>
 <body>
-<header id="header" class="row">
-    <div class="row">
-        <div class="logo two columns "></div>
-        <div class="four columns">
-            <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" class="cWhite">menuBuilder</a>
-              |
-            <a title="frontend" href="<?php echo abu('index.php'); ?>" target="_blank" class="cWhite">frontEnd</a> |
-            <a title="refresh" href="javascript:;" onclick='refresh()'>refresh</a> |
-            <?php echo CHtml::link("logout(" . Yii::app()->user->name . ')', array('site/logout'), array('class' => 'cWhite')); ?>
+<header class="header">
+    <div class="row-fluid">
+        <div class="span1">
+            <?php echo CHtml::image(bu('public/images/yii.png')); ?>
+        </div>
+        <div class="span10">
+            <div class="row-fluid">
+                <div class="span4 pull-right">
+                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" class="cWhite">menuBuilder</a>
+                      |
+                    <a title="frontend" href="<?php echo abu('index.php'); ?>" target="_blank"
+                       class="cWhite">frontEnd</a> |
+                    <a title="refresh" href="javascript:;" onclick='refresh()'>refresh</a> |
+                    <?php echo CHtml::link("logout(" . Yii::app()->user->name . ')', array('site/logout')); ?>
+                </div>
+            </div>
+            <div class="row-fluid span12">
+                <?php
+                $topMenuItems = array();
+                foreach ($roots as $menuNode) {
+                    $topMenuItems[] = array('label' => $menuNode->label,
+                        'url' => 'javascript:;',
+                       // 'active'=>true,
+                        'linkOptions' => array('id' => 'menu' . $menuNode->id, 'www' => 'jjj')
+                    );
+                }
+
+                $this->widget('bootstrap.widgets.TbMenu', array(
+                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+                    'stacked' => false, // whether this is a stacked menu
+                    'items' => $topMenuItems,
+                    'htmlOptions' => array(
+                        'id' => 'topNav', //  这个竟然不管用
+                    ),
+                    'id' => 'topNav'
+                )); ?>
+            </div>
         </div>
     </div>
 
-    <div class="main_nav row">
-        <ul id="topNav">
-            <?php foreach ($roots as $menuNode): ?>
-            <li>
-                <?php
-                //顶部菜单不做链接，只是做JS的菜单切换
-                echo CHtml::link($menuNode->label, 'javascript:;', array('id' => 'menu' . $menuNode->id));
-                ?>
-            </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
 </header>
 
-<div class="row ">
-    <div class="leftmenu two columns">
-        <div id='left_side_nav'>
-            <?php $this->renderPartial('_leftSide', array('descendants' => $descendants)); ?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="leftmenu">
+                <div id='left_side_nav'>
+                    <?php $this->renderPartial('_leftSide', array('descendants' => $descendants)); ?>
+                </div>
+
+            </div>
         </div>
-
-    </div>
-
-
-    <div class="main ten columns ">
-        <?php
-        $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
-                //'debug' => false
-            )
-        );
-        ?>
-        <iframe src="http://localhost/my/yiiSpace/" name="contentFrame" id="contentFrame" width="100%" height="800px"/>
-
+        <div class="span10">
+            <?php
+            $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
+                    //'debug' => false
+                )
+            );
+            ?>
+            <iframe src="http://www.g.cn/" name="contentFrame" id="contentFrame" frameborder="0"
+                    width="100%"
+                    height="900px"/>
+            <!--Body content-->
+        </div>
     </div>
 </div>
+
+<footer class=footer>
+    <div class="row">
+        <div class="span12">
+            <p class="pull-left">&copy; <?php echo date('Y'); ?> - <?php echo Yii::app()->name ; ?>, All rights reserved.</p>
+            <p class="pull-right"><a href="#">Terms of Use</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
