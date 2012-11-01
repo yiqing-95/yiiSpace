@@ -714,6 +714,50 @@ class YiiUtil
         }
     }
 
+
+    /**
+     * @param CSqlDataProvider $dp
+     * genViewFromSqlDataProvider
+     * ---------------------------------------------
+     * 用一个sqlDataProvider 来审查视图
+     * ---------------------------------------------
+     */
+    static   public function listView4sqlDataProvider(CSqlDataProvider $dp){
+
+        $viewStr = CHtml::openTag('div',array());
+        $idItem = <<<KEY_ITEM
+    <b> id:</b>
+	<?php echo CHtml::link(CHtml::encode(\$data['id']),array('view','id'=>\$data['id'])); ?>
+	<br />
+KEY_ITEM;
+        $viewStr .= "\n".$idItem;
+
+        $rowSet = $dp->getData();
+        $firstRow = array();
+        if(!empty($rowSet)){
+            $firstRow = current($rowSet);
+        }
+        foreach(array_keys($firstRow) as $column){
+            $columnItem = <<<COL_ITEM
+    <b>{$column}:</b>
+	<?php echo CHtml::encode(\$data['{$column}']); ?>
+	<br />
+COL_ITEM;
+            $viewStr .= ("\n".$columnItem);
+        }
+        $viewStr .= CHtml::closeTag('div');
+
+        //echo "<pre>{$viewStr}</pre>" ;
+        $controller = Yii::app()->getController();
+
+        $controller->widget('ext.jchili.JChiliHighlighter', array(
+            'lang' => "html",
+            'code' => "{$viewStr}",
+            'showLineNumbers' => false
+        ));
+    }
+
+
 }
 
 if (!class_exists('KErrorException', false)) {

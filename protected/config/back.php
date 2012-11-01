@@ -23,6 +23,12 @@ return CMap::mergeArray(
                     //'<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
                 ),
             ),
+            'user' => array(
+                // 'class' => 'RWebUser',
+                // enable cookie-based authentication
+                'allowAutoLogin' => true,
+                'stateKeyPrefix'=>'admin',
+            ),
         ),
     )
 );
