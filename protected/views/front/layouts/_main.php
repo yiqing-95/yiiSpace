@@ -66,8 +66,8 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         array(
             'class' => 'bootstrap.widgets.TbMenu',
             'items' => array(
-                array('url' =>array('/user/user/space','u'=>Yii::app()->user->isGuest?0:Yii::app()->user->getId()), 'label' => '个人首页',
-                     'visible' => !Yii::app()->user->isGuest),
+                array('url' => array('/user/user/space', 'u' => Yii::app()->user->isGuest ? 0 : Yii::app()->user->getId()), 'label' => '个人首页',
+                    'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'user', 'url' => array('/user/user/index'),
                     'active' => Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
                 array('label' => 'blog', 'url' => Yii::app()->homeUrl,
@@ -77,20 +77,8 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
             'htmlOptions' => array('class' => 'pull-left'),
         ),
         '<form class="navbar-search pull-left" action="">' .
-            CHtml::dropDownList('chang_theme', '', array_combine($themes, $themes), array('onchange' => 'changeTheme(this)','class'=>'input-mini'))
+            CHtml::dropDownList('chang_theme', '', array_combine($themes, $themes), array('onchange' => 'changeTheme(this)', 'class' => 'input-mini'))
             . '</form>',
-        '<div class="add-this pull-right">
-                        <!-- AddThis Button BEGIN -->
-                        <div class="addthis_toolbox addthis_default_style">
-                        <a class="addthis_button_facebook"></a>
-                        <a class="addthis_button_twitter"></a>
-                        <a class="addthis_button_google"></a>
-                        <a class="addthis_button_email"></a>
-                        <a class="addthis_button_compact"></a>
-                        <a class="addthis_counter addthis_bubble_style"></a>
-                        </div>
-                        <!-- AddThis Button END -->
-                </div>',
         array(
             'class' => 'bootstrap.widgets.TbMenu',
             'items' => $topUserMenus,

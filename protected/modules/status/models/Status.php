@@ -9,6 +9,16 @@ class Status extends BaseStatus
         return parent::model($className);
     }
 
+    public function relations()
+    {
+        return array(
+            'owner'=>array(self::BELONGS_TO, 'User', 'creator'),
+            'image'=>array(self::HAS_ONE, 'StatusImage', 'id'),
+            'link'=>array(self::HAS_ONE, 'StatusLink', 'id'),
+            'video'=>array(self::HAS_ONE, 'StatusVideo', 'id'),
+        );
+    }
+
     protected  $typeReference = 'update';
 
     /**
@@ -38,8 +48,12 @@ class Status extends BaseStatus
      * @param $user
      * @param array $sqlDataProviderConfig
      * @return CSqlDataProvider
+     * --------------------------------------------------------------------
+     * sql语句中出现连接两次user_profile 现象 这个是应对 a用户到b用户的主页去发言去了
+     *
+     * ---------------------------------------------------------------------
      */
-    static  public function listRecentStatuses( $user , $sqlDataProviderConfig = array() ){
+    static  public function listRecentStatuses( $user = null , $sqlDataProviderConfig = array() ){
        /*
         $sql = "SELECT t.type_reference, t.type_name, s.*, pa.first_name as poster_name, i.image, v.video_id, l.url, l.description
          FROM status_type t, user_profile p, user_profile pa, status s
@@ -56,7 +70,11 @@ class Status extends BaseStatus
             ->leftJoin('status_image i','s.id = i.id')
             ->leftJoin('status_video v','s.id = v.id')
             ->leftJoin('status_link l','s.id = l.id')
-            ->where(" t.id = s.type AND p.user_id = s.profile AND pa.user_id = s.creator AND p.user_id={$user}");
+            ->where(" t.id = s.type AND p.user_id = s.profile AND pa.user_id = s.creator ".(empty($user)? '': " AND p.user_id={$user}"));
+        if(empty($user)){
+             $cmd->select("t.type_reference, t.type_name, s.*, pa.first_name as poster_name, i.image, v.video_id, l.url, l.description,u.username,pa.photo as avatar");
+            $cmd->join('user u','s.creator = u.id ');
+        }
         $sql = $cmd->text;
 
         $config = array();

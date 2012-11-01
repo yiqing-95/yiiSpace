@@ -46,11 +46,7 @@ abstract class BaseStatus extends YsActiveRecord
         );
     }
 
-    public function relations()
-    {
-        return array(
-        );
-    }
+
 
     public function pivotModels()
     {
