@@ -6,6 +6,15 @@ class Test1Controller extends Controller
 {
 
     /**
+     * @Desc('测试一个页面布局效果！')
+     */
+    public function actionT1(){
+     //  $this->layout = false ;
+        $this->render('t1');
+    }
+
+
+    /**
      * @Desc('测试1列布局！')
      */
     public function actionLayoutColumn1(){
