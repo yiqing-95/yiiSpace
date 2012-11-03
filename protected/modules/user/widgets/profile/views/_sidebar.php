@@ -2,7 +2,7 @@
 <!--    <div style="text-align:center; padding-top: 5px;">-->
 <!--        <img src="uploads/profile/{profile_photo}" />-->
 <!--    </div>-->
-    <div style="padding: 5px;">
+    <div style="margin-left: 20px;">
         <h2>Friends</h2>
         <ul>
             <!-- START profile_friends_sample -->

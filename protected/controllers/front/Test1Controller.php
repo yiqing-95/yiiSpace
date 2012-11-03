@@ -4,6 +4,35 @@
  */
 class Test1Controller extends Controller
 {
+    /**
+     * @Desc('模拟请求N次 ')
+     */
+    public function actionMockRequest($times=10){
+        $url = $this->createUrl('',array('times'=>--$times));
+        $js = <<<JS
+         <script type="text/javascript">
+         location.href = "{$url}";
+         </script>
+JS;
+       if($times>0){
+           echo $js;
+       }else{
+         echo "you have try enough times :) ";
+       }
+    }
+
+    public function actionTestSession(){
+        print_r(YiiUtil::getPathOfClass(Yii::app()->session)) ;
+        echo Yii::app()->session->sessionTableName ;
+    }
+    /**
+     * @Desc('测试一个页面布局效果！')
+     */
+    public function actionT1(){
+     //  $this->layout = false ;
+        $this->render('t1');
+    }
+
 
     /**
      * @Desc('测试1列布局！')
