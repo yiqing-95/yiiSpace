@@ -18,6 +18,15 @@ class UserProfile extends CWidget
      */
     protected $_userModel ;
 
+    /**
+     * @return User
+     */
+    public function getUserModel(){
+        return $this->_userModel ;
+    }
+
+
+
     public function init(){
        if($this->user instanceof User){
          $this->_userModel = $this->user;

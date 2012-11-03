@@ -6,9 +6,11 @@
 
         ?>
         <img src="<?Php echo $userPhotoUrl; ?>"
-             width="360px" height="360px"
-             alt=""/>
+             alt=""
+             class="thumbnail"
+            />
     </section>
+    <?php /*
     <section>
         <table class="dataGrid">
             <tr>
@@ -47,7 +49,9 @@
             </tr>
         </table>
     </section>
+
     <div >
         user apps here this is for public 
     </div>
+ */ ?>
 </div>

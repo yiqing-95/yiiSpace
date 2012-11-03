@@ -43,6 +43,7 @@ for ($i = 1; $i <= 5; $i++) {
                    }'
         ),
     )); ?>
+
     </div>
     <div class="span4">
         <div>
@@ -101,6 +102,21 @@ for ($i = 1; $i <= 5; $i++) {
             <?php $this->endWidget(); ?>
 
         </div>
+
+        <!--        在线用户-->
+        <div>
+            <?php $this->widget('ext.metabox.EMetabox', array(
+            'id' => 'online_users',
+            'url' => array('/user/home/onlineUsers'),
+            'refreshOnInit' => true,
+            'options' => array(
+                'afterRefresh' => 'js:function(data){
+                  // alert("youyou");
+                   }'
+            ),
+        )); ?>
+        </div>
+        <!--        在线用户 end-->
 
     </div>
 </div>

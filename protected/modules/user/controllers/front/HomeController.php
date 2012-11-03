@@ -12,4 +12,8 @@ class HomeController extends Controller
       $this->widget('user.widgets.pageblock.UserHomeBlock');
   }
 
+    public function actionOnlineUsers(){
+        $this->widget('user.widgets.useronline.UserOnline');
+    }
+
 }

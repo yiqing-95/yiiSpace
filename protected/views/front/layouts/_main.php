@@ -36,7 +36,17 @@ if (Yii::app()->user->isGuest) {
 
     $topUserMenus = array(
         array('label' => Yii::app()->user->name, 'url' => Yii::app()->getModule('user')->returnUrl,),
-        array('url' => Yii::app()->getModule('user')->profileUrl, 'label' => Yii::app()->getModule('user')->t("Profile"), 'visible' => !Yii::app()->user->isGuest),
+        //array('url' => Yii::app()->getModule('user')->profileUrl, 'label' => Yii::app()->getModule('user')->t("Profile"), 'visible' => !Yii::app()->user->isGuest),
+
+        '---',
+        array('label' => '设置', 'url' => '#', 'items' => array(
+            array('label' => '图像', 'url' => array('/user/settings/photo')),
+            array('label' => 'Another action', 'url' => '#'),
+            array('label' => 'Something else here', 'url' => '#'),
+            '---',
+            array('label' => 'Separated link', 'url' => '#'),
+        )),
+        '---',
         array('url' => Yii::app()->getModule('user')->logoutUrl, 'label' => Yii::app()->getModule('user')->t("Logout") . ' (' . Yii::app()->user->name . ')', 'visible' => !Yii::app()->user->isGuest),
     );
 }
