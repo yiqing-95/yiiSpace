@@ -5,8 +5,11 @@ return array(
 
     //................{yii standard components}....................................................................
     'session' => array(
-        'class' => 'CHttpSession',
+        'class' => 'application.my.components.YsDbHttpSession',
         'sessionName' => 'yiiSpace',
+        'connectionID'=>'db',  // important !! if not set will use sqliteDb as storage .
+       // 'gCProbability'=>4  , // every 4 request will invoke the Session  GC 测试打开之
+       // 'timeout'=>120 ,
     ),
 
     /* uncomment the following to enable URLs in path-format
@@ -37,7 +40,7 @@ return array(
     ),
 
     'user' => array(
-        // 'class' => 'RWebUser',
+         'class' => 'application.my.components.YsWebUser',
         // enable cookie-based authentication
         'allowAutoLogin' => true,
     ),
@@ -52,7 +55,7 @@ return array(
         'routes' => array(
             array(
                 'class' => 'CFileLogRoute',
-                'levels' => 'error,warning ,info,trace',
+                'levels' => 'error,warning ,info',// 'error,warning ,info,trace',
             ),
 
             array(

@@ -202,8 +202,8 @@ if (Yii::app()->user->getIsGuest()):
             <div class="span9">
                 <?php echo $content; ?>
             </div>
-            <div class="span3">
-                <?php $profile->renderSidebar(); ?>
+            <div class="span3" style="border-left: 1px solid #d935cc ;">
+                    <?php $profile->renderSidebar(); ?>
             </div>
         </div>
     </div>
