@@ -31,23 +31,12 @@ class YsWebUser extends CWebUser
             $sql = "UPDATE {$sessionTable} SET `user_id` = '$id' WHERE `id` = '{$sessionId}'";
             Yii::app()->db->createCommand($sql)->execute();
         }
-        //  i add a field in user table  which is a indicator for user is online
-        $user = User::model()->findByPk($id);
-        if($user->hasAttribute('is_online')){
-            $user->is_online = true ;
-            $user->save(false);
-        }
     }
 
 
     public function logout($destroySession = true)
     {
-        //  i add a field in user table  which is a indicator for user is online
-        $user = User::model()->findByPk($this->getId());
-        if($user->hasAttribute('is_online')){
-            $user->is_online = false ;
-            $user->save(false);
-        }
+
         parent::logout($destroySession);
         if (!$destroySession) {
             $session = Yii::app()->getSession();

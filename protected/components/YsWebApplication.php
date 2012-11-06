@@ -22,6 +22,8 @@ class YsWebApplication extends CWebApplication
 
     }
 
+
+
     /**
      * @param int $status
      * @param bool $exit

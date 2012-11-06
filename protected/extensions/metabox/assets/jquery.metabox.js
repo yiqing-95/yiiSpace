@@ -4,20 +4,28 @@
 
 !function( $ ){
 
-    "use strict"
+    "use strict";
 
     var Metabox = function ( element, options ) {
-        this.$element = $(element)
-        this.options = $.extend({}, $.fn.metabox.defaults, options)
-        if(this.options.refreshOnInit)
-            this.refresh();
+        this.$element = $(element);
+        this.options = $.extend({}, $.fn.metabox.defaults, options);
         
+        this.options.errorText = this.options.errorText.replace('{url}', this.options.url);
+        
+        if(this.options.loadingContainer)
+            this.options.loadingContainer = $(this.options.loadingContainer);
+        else
+            this.options.loadingContainer = this.$element;
+    
         if(this.options.refreshTimeout>0)
             this.createTimeout();
         
         else if(this.options.refreshInterval>0)
             this.createInterval();
-    }
+        
+        if(this.options.refreshOnInit)
+            this.refresh();
+    };
 
     Metabox.prototype = {
 
@@ -50,23 +58,24 @@
             var $box = this;
             
             options = $.extend({
-                type: 'GET',
+                type: this.options.type,
                 url : this.options.url,
+                data : this.options.data,
                 beforeSend : function() {
                     $box.$element.addClass($box.options.loadingClass);
-                    $box.$element.hide().next().show();
+                    $box.options.loadingContainer.html($box.options.loadingText);
                     $box.options.beforeRefresh.apply($box);
                 },
                 success : function(data) {
                     $box.$element.removeClass($box.options.loadingClass);
-                    $box.$element.show().next().hide();
-                    $box.$element.html(data);
+                    $box.options.loadingContainer.html('');
+                    $box.options.handleResponse.apply($box, [data]);
                     $box.options.afterRefresh.apply($box, [data]);
                 },
                 error: function (XHR, textStatus, errorThrown) {
                     var ret, err;
                     $box.$element.removeClass($box.options.loadingClass);
-                    $box.$element.show().next().hide();
+                    $box.options.loadingContainer.html($box.options.errorText);
                     if (XHR.readyState === 0 || XHR.status === 0) {
                         return;
                     }
@@ -106,7 +115,7 @@
             $.ajax(options);
         }
 
-    }
+    };
 
 
     /* METABOX PLUGIN DEFINITION
@@ -116,30 +125,32 @@
         return this.each(function () {
             var $this = $(this)
             , data = $this.data('metabox')
-            , options = typeof option == 'object' && option
-            if (!data) $this.data('metabox', (data = new Metabox(this, options)))
+            , options = typeof option == 'object' && option;
+            if (!data) $this.data('metabox', (data = new Metabox(this, options)));
             
-            if (option == 'refresh') data.refresh(ajaxoptions)
+            if (option == 'refresh') data.refresh(ajaxoptions);
         })
-    }
+    };
 
     $.fn.metabox.defaults = {
         loadingText: 'loading...',
         loadingClass: 'metabox-loading',
+        loadingContainer: null,
+        errorText: 'Error loading {url}',
         url: null,
+        data : {},
+        type : 'GET',
         refreshOnInit : false,
         refreshTimeout : 0,
         refreshInterval : 0,
         beforeRefresh: function() {},
-        afterRefresh: function(data) {}
-    }
+        handleResponse: function(data) {
+            this.$element.html(data);
+        },
+        afterRefresh: function(data) {},
+        debug: true
+    };
 
     $.fn.metabox.Constructor = Metabox
-
-    /* METABOX DATA-API
-  * =============== */
-
-    $(function () {
-        })
 
 }( window.jQuery );

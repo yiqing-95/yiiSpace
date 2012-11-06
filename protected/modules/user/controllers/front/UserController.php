@@ -115,6 +115,8 @@ class UserController extends BaseUserController
     }
 
     public function actionSpace(){
+       // $this->forward('/status/status/index');
+        //
         $this->layout = "//layouts/user/user_space";
         $this->render('space');
     }
@@ -123,6 +125,10 @@ class UserController extends BaseUserController
      * dashboard for the current login user
      */
     public function actionHome(){
+
+        $this->forward('/status/status/create');
+
+        // 下面的暂时不用了
         $this->layout = "//layouts/user/user_center";
         $model = User::model()->findByPk(Yii::app()->user->id);
 

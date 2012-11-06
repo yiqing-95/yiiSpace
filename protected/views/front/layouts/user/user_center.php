@@ -1,7 +1,9 @@
 <?php $this->beginContent('//layouts/_main'); ?>
 
     <div class="row-fluid">
-        <div class="span2 offset1">
+        <div class="span1"></div>
+        <div class="span2 ">
+<!--        <div class="span2 offset1"> 早期的bootstrap 没有offset1 这个css类-->
 
             <!--Sidebar content-->
             <div class="alert alert-info span12">

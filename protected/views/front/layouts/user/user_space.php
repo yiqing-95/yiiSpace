@@ -35,9 +35,9 @@ if (Yii::app()->user->getIsGuest()):
 
         $user = new User();
         $profile = $this->widget('user.widgets.profile.UserProfile', array(
-        'user' => $_GET['u'], //we assume when access some one 's space we will always pass the param "u" to the $_GET
-    ));
-        $user = $profile->getUserModel() ;
+            'user' => $_GET['u'], //we assume when access some one 's space we will always pass the param "u" to the $_GET
+        ));
+        $user = $profile->getUserModel();
         ?>
         <p>
             <?php
@@ -76,7 +76,7 @@ if (Yii::app()->user->getIsGuest()):
     <div class="span7 userHeader">
         <div style="padding-left: 30px;">
             <h1>
-               <?php echo $user->username ; ?>
+                <?php echo $user->username; ?>
             </h1>
 
             <div><strong>3</strong> Projects</div>
@@ -139,8 +139,8 @@ if (Yii::app()->user->getIsGuest()):
             <?php
             $this->widget('bootstrap.widgets.TbButtonGroup', array(
                 'size' => 'large',
-                'htmlOptions'=>array(
-                 //  'class'=>'pull-right',
+                'htmlOptions' => array(
+                    //  'class'=>'pull-right',
                 ),
                 'buttons' => array(
                     array('label' => '日志', 'url' => '#'),
@@ -192,7 +192,7 @@ if (Yii::app()->user->getIsGuest()):
 <hr size="2px">
 <div class="row-fluid">
     <div class="span12">
-<!--        Fluid 12-->
+        <!--        Fluid 12-->
         <?php
         if (!empty($this->menu)) :
             $this->widget("bootstrap.widgets.TbMenu", array('items' => $this->menu, 'type' => 'pills'));
@@ -202,8 +202,32 @@ if (Yii::app()->user->getIsGuest()):
             <div class="span9">
                 <?php echo $content; ?>
             </div>
-            <div class="span3" style="border-left: 1px solid #d935cc ;">
+            <div class="span3" style="">
+<!--                最近来访-->
+                <h3>最近来访：</h3>
+                <?php for ($j = 0; $j < 3; $j++): ?>
+                <div class="row-fluid span12">
+                    <ul class="thumbnails">
+                        <?php for ($i = 0; $i < 3; $i++): ?>
+                        <li class="span3">
+                            <a href="#" class="thumbnail">
+                                <img src="<?php echo bu('public/default/user/avatars/1.gif');?>" alt="">
+                            </a>
+                            <p>
+                            </p>
+                        </li>
+                        <?php endfor; ?>
+                    </ul>
+                </div>
+                <?php endfor; ?>
+                <!--                最近来访 end-->
+
+                <div class="row-fluid span12">
+                    <h3>-------</h3>
                     <?php $profile->renderSidebar(); ?>
+                </div>
+
+
             </div>
         </div>
     </div>

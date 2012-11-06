@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo CHtml::encode(Yii::app()->name); ?></title>
-    <?php //WebUtil::registerRandomBootstrapTheme() ;
-    // WebUtil::bootSwatch() ;
+    <?php //WebUtil::bootSwatch() ;
+    WebUtil::registerRandomBootstrapTheme();
+    //
     ?>
 
     <link id="theme_style" rel="stylesheet"
@@ -17,6 +18,50 @@
             var themeStyle = "<?php echo Yii::app()->request->baseUrl; ?>/public/bootswatch2-0-4/{themeName}/bootstrap.min.css";
             $("#theme_style").attr("href", themeStyle.replace("{themeName}", $(ddlEle).val()));
         }
+        /**
+         * http://www.eirikhoem.net/blog/2011/08/29/yii-framework-preventing-duplicate-jscss-includes-for-ajax-requests/
+         */
+        $.ajaxSetup({
+            global:true,
+            dataFilter:function (data, type) {
+                var getScriptUrl = function (entry) {
+                    if (entry.type == "text/css") {
+                        return entry.href;
+                    }
+                    return entry.src;
+                };
+                // only ‘text’ and ‘html’ dataType should be filtered
+                if (type && type != "html" && type != "text") {
+                    return data;
+                }
+                var selector = 'script[src],link[rel="stylesheet"] ';
+                // get loaded scripts from DOM the first time we execute.
+                if (!$._loadedScripts) {
+                    $._loadedScripts = {};
+                    $._dataHolder = $(document.createElement('div'));
+
+                    var loadedScripts = $(document).find(selector);
+
+                    //fetching scripts from the DOM
+                    for (var i = 0, len = loadedScripts.length; i < len; i++) {
+                        $._loadedScripts[getScriptUrl(loadedScripts[i])] = 1;
+                    }
+                }
+                //$._dataHolder.html(data) does not work
+                $._dataHolder[0].innerHTML = data;
+                // iterate over new scripts and remove if source is already in DOM:
+                var incomingScripts = $($._dataHolder).find(selector);
+                for (var i = 0, len = incomingScripts.length; i < len; i++) {
+                    if ($._loadedScripts[getScriptUrl(incomingScripts[i])]) {
+                        $(incomingScripts[i]).remove();
+                    }
+                    else {
+                        $._loadedScripts[getScriptUrl(incomingScripts[i])] = 1;
+                    }
+                }
+                return $._dataHolder[0].innerHTML;
+            }
+        });
     </script>
 </head>
 
@@ -131,4 +176,5 @@ $this->widget('ext.scrolltop.ScrollTop',
 ?>
 
 </body>
+
 </html>
