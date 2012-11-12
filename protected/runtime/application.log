@@ -130,3 +130,463 @@ Stack trace:
 REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home/onlineUsers
 HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
 ---
+2012/11/04 04:48:04 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OR r.user_b=) AND IF( r.user_a=,u.id=
+                          r.user_b,u.id = ' at line 5. The SQL statement executed was: SELECT COUNT(*) FROM
+                    user u, user_profile p,
+                    relationship r, relationship_type t
+                    WHERE t.id = r.type AND r.accepted=1 AND (r.user_a=
+                          OR r.user_b=) AND IF( r.user_a=,u.id=
+                          r.user_b,u.id = r.user_a) AND p.user_id = u.id.
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\utils\YiiUtil.php (713)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\models\Relationship.php (96)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\views\msg\_form.php (26)
+2012/11/04 04:48:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OR r.user_b=) AND IF( r.user_a=,u.id=
+                          r.user_b,u.id = ' at line 5. The SQL statement executed was: SELECT COUNT(*) FROM
+                    user u, user_profile p,
+                    relationship r, relationship_type t
+                    WHERE t.id = r.type AND r.accepted=1 AND (r.user_a=
+                          OR r.user_b=) AND IF( r.user_a=,u.id=
+                          r.user_b,u.id = r.user_a) AND p.user_id = u.id' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(424): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\utils\YiiUtil.php(713): CDbCommand->queryScalar(Array)
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\models\Relationship.php(96): YiiUtil::countBySql('SELECT t.plural...')
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\views\msg\_form.php(26): Relationship::getByUser(NULL)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require('D:\wamp\www\my\...')
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): CBaseController->renderInternal('D:\wamp\www\my\...', Array, true)
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile(Object(MsgController), 'D:\wamp\www\my\...', Array, true)
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\wamp\www\my\...', Array, true)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\views\msg\create.php(15): CController->renderPartial('_form', Array)
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require('D:\wamp\www\my\...')
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): CBaseController->renderInternal('D:\wamp\www\my\...', Array, true)
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile(Object(MsgController), 'D:\wamp\www\my\...', Array, true)
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\wamp\www\my\...', Array, true)
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#14 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\controllers\MsgController.php(81): CController->render('create', Array)
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): MsgController->actionCreate()
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('msg/msg/create')
+#21 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#23 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#24 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#25 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#26 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#27 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/msg/create
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/msg/inbox
+---
+2012/11/04 04:52:08 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'profile' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) FROM
+                    user u, user_profile p,
+                    relationship r, relationship_type t
+                    WHERE t.id = r.type AND r.accepted=1 AND (r.user_a=profile
+                          OR r.user_b=profile) AND IF( r.user_a=profile,u.id=
+                          r.user_b,u.id = r.user_a) AND p.user_id = u.id.
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\utils\YiiUtil.php (713)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\models\Relationship.php (96)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\controllers\front\RelationshipController.php (291)
+2012/11/04 04:52:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'profile' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) FROM
+                    user u, user_profile p,
+                    relationship r, relationship_type t
+                    WHERE t.id = r.type AND r.accepted=1 AND (r.user_a=profile
+                          OR r.user_b=profile) AND IF( r.user_a=profile,u.id=
+                          r.user_b,u.id = r.user_a) AND p.user_id = u.id' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(424): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\utils\YiiUtil.php(713): CDbCommand->queryScalar(Array)
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\models\Relationship.php(96): YiiUtil::countBySql('SELECT t.plural...')
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\controllers\front\RelationshipController.php(291): Relationship::getByUser('profile')
+#4 [internal function]: RelationshipController->actionViewAll('profile')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CAction.php(106): ReflectionMethod->invokeArgs(Object(RelationshipController), Array)
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(RelationshipController), Object(ReflectionMethod), Array)
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('viewAll')
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('friend/relation...')
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#13 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#14 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#17 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#18 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/friend/relationship/viewAll/u/profile/statuses/%7BID%7D
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/friend/relationship/viewAll/u/1
+---
+2012/11/05 15:44:50 [warning] [application] Failed to set unsafe attribute "created" of "StatusLink".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/05 15:44:51 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id' cannot be null. The SQL statement executed was: INSERT INTO `status_link` (`id`, `url`, `description`) VALUES (:id, :url, :description). Bound with :id=NULL, :url='', :description=''.
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\EasyQuery.php (365)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\models\StatusLink.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (90)
+2012/11/05 15:44:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id' cannot be null. The SQL statement executed was: INSERT INTO `status_link` (`id`, `url`, `description`) VALUES (:id, :url, :description). Bound with :id=NULL, :url='', :description=''' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:353
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(1227): CDbCommand->execute(Array)
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\EasyQuery.php(365): CDbCommand->insert('status_link', Array)
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\models\StatusLink.php(59): EasyQuery->insert(Array)
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php(90): StatusLink->save()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): StatusController->actionCreate()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('status/status/c...')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#12 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#14 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#16 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/status/create
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/status/create
+---
+2012/11/05 15:45:12 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/05 15:45:48 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/05 15:47:46 [warning] [application] Failed to set unsafe attribute "created" of "StatusImage".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/06 03:19:45 [error] [php] Trying to get property of non-object (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\sidebar\UserSidebar.php:27)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php(50): preg_replace_callback()
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php(39): UserSidebar->renderContent()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): UserSidebar->run()
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_center.php(10): StatusController->widget()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require()
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): StatusController->renderInternal()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(784): StatusController->renderFile()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php(118): StatusController->render()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): StatusController->actionCreate()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): StatusController->runAction()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): StatusController->runActionWithFilters()
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): StatusController->run()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#17 unknown(0): WebApplicationEndBehavior->runEnd()
+#18 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#20 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/status/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\sidebar\UserSidebar.php (27)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php (63)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php (50)
+2012/11/06 04:42:04 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/06 04:42:40 [warning] [application] Failed to set unsafe attribute "created" of "StatusImage".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/06 04:43:59 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/06 05:33:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "/status/create"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(752): CWebApplication->runController('/status/create')
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\UserController.php(126): CController->forward('/status/create')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): UserController->actionHome()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('home')
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/user/home')
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#14 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#15 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#17 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#19 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/status/create
+---
+2012/11/06 05:33:41 [error] [php] strpos() expects parameter 1 to be string, array given (D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:746)
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): UserController->actionHome()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(133): UserController->runAction()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CInlineFilter.php(58): UserController->filterAccessControl()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): UserController->run()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#13 unknown(0): WebApplicationEndBehavior->runEnd()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\UserController.php (126)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/06 05:37:02 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\UserController.php (127)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/07 15:26:48 [warning] [application] Failed to set unsafe attribute "created" of "Status".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (86)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/08 15:01:03 [error] [php] Trying to get property of non-object (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\sidebar\UserSidebar.php:27)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php(53): preg_replace_callback()
+#1 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php(42): UserSidebar->renderContent()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): UserSidebar->run()
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_center.php(10): RelationshipController->widget()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require()
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): RelationshipController->renderInternal()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(784): RelationshipController->renderFile()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\controllers\front\RelationshipController.php(273): RelationshipController->render()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): RelationshipController->actionPendingRelationships()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): RelationshipController->runAction()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): RelationshipController->runActionWithFilters()
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): RelationshipController->run()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#17 unknown(0): WebApplicationEndBehavior->runEnd()
+#18 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#20 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\sidebar\UserSidebar.php (27)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php (66)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsSectionWidget.php (53)
+2012/11/09 05:04:20 [warning] [application] Failed to set unsafe attribute "sent" of "Msg".
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\controllers\MsgController.php (73)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/09 08:55:24 [error] [php] Undefined variable: profile (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_space_column2.php:37)
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(833): Test1Controller->renderFile()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(20): Test1Controller->renderText()
+#3 unknown(0): Test1Controller->actionUserLayout()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CAction.php(106): ReflectionMethod->invokeArgs()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): Test1Controller->runAction()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): Test1Controller->runActionWithFilters()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): Test1Controller->run()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#13 unknown(0): WebApplicationEndBehavior->runEnd()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/userLayout/?layout=_column2&cate=space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_space_column2.php (37)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php (20)
+2012/11/09 08:55:52 [error] [php] Undefined variable: profile (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_space_column2.php:37)
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(833): Test1Controller->renderFile()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(20): Test1Controller->renderText()
+#3 unknown(0): Test1Controller->actionUserLayout()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CAction.php(106): ReflectionMethod->invokeArgs()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): Test1Controller->runAction()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): Test1Controller->runActionWithFilters()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): Test1Controller->run()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#13 unknown(0): WebApplicationEndBehavior->runEnd()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#16 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/userLayout/?layout=_column2&cate=space&u=1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\layouts\user\user_space_column2.php (37)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php (20)
+2012/11/12 03:31:29 [error] [php] include(TbBox.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\widgets\YsBox.php(10): spl_autoload_call()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\YiiBase.php(314): require()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWidgetFactory.php(146): import()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(189): Test1Controller->createWidget()
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\test1\ysBox.php(14): Test1Controller->beginWidget()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): Test1Controller->renderInternal()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(869): Test1Controller->renderFile()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(782): Test1Controller->renderPartial()
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(9): Test1Controller->render()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): Test1Controller->actionYsBox()
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): Test1Controller->runAction()
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): Test1Controller->runActionWithFilters()
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): Test1Controller->run()
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#18 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#20 unknown(0): WebApplicationEndBehavior->runEnd()
+#21 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#23 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/ysBox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\my\widgets\YsBox.php (10)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\test1\ysBox.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/12 03:34:04 [error] [exception.CException] exception 'CException' with message '属性 "YsBox.freeHeadActions" 未被定义.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('freeHeadActions', 'hello')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(Test1Controller), 'my.widgets.YsBo...', Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(189): CBaseController->createWidget('my.widgets.YsBo...', Array)
+#3 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\test1\ysBox.php(10): CBaseController->beginWidget('my.widgets.YsBo...', Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(126): require('D:\wamp\www\my\...')
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): CBaseController->renderInternal('D:\wamp\www\my\...', NULL, true)
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile(Object(Test1Controller), 'D:\wamp\www\my\...', NULL, true)
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\wamp\www\my\...', NULL, true)
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(782): CController->renderPartial('ysBox', NULL, true)
+#9 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(9): CController->render('ysBox')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): Test1Controller->actionYsBox()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('ysBox')
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('test1/ysBox')
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#17 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#18 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#19 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#20 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#22 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/ysBox
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/test1/help
+---
+2012/11/12 05:16:43 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Wrong params' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:49
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): PublicController->actionThumbs()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('thumbs')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/thumbs')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#8 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#12 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/
+---
+2012/11/12 05:28:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:31
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): PublicController->actionThumbs()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('thumbs')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/thumbs/p...')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#8 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#12 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/public/images/banner1.jpg_200x300.jpg
+---
+2012/11/12 05:28:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:31
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): PublicController->actionThumbs()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('thumbs')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/thumbs/p...')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#8 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#12 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/public/images/banner1.jpg_200x300.jpg
+---
+2012/11/12 05:32:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'File not found' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:34
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): PublicController->actionThumbs()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('thumbs')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/thumbs/i...')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#8 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#12 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/images/banner1.jpg_200x300.jpg
+---
+2012/11/12 05:45:51 [error] [php] Use of undefined constant bu - assumed 'bu' (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:19)
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): PublicController->runAction()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): PublicController->runActionWithFilters()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): PublicController->run()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): YsWebApplication->processRequest()
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#6 unknown(0): WebApplicationEndBehavior->runEnd()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->__call()
+#9 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/images/banner1.jpg_200x300.jpg
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php (19)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/12 05:46:12 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Wrong params' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\PublicController.php:55
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): PublicController->actionThumbs()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('thumbs')
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/thumbs/i...')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#8 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
+#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
+#12 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/thumbs/images/banner1.jpg_200x300.jpg
+---

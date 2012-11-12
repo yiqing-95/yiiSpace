@@ -4,32 +4,60 @@
  */
 class Test1Controller extends Controller
 {
+
+
+    public function actionYsBox()
+    {
+        $this->render('ysBox');
+    }
+
+    /**
+     * @Desc('测试用户布局效果,layout=column2, cate=space 可以指定其他参数')
+     */
+    public function actionUserLayout($layout = '', $cate = 'center')
+    {
+        if (isset($_GET['layout'])) {
+            $layout = $layout;
+        }
+        if (isset($_GET['cate'])) {
+            $cate = $_GET['cate'];
+        }
+        $userLayout = ('//layouts/user/user_' . $cate . $layout);
+        $this->layout = $userLayout;
+        //print_r($_GET); die($layout);
+        $this->renderText('test User layout! --->' . $this->layout);
+    }
+
     /**
      * @Desc('模拟请求N次 ')
      */
-    public function actionMockRequest($times=10){
-        $url = $this->createUrl('',array('times'=>--$times));
+    public function actionMockRequest($times = 10)
+    {
+        $url = $this->createUrl('', array('times' => --$times));
         $js = <<<JS
          <script type="text/javascript">
          location.href = "{$url}";
          </script>
 JS;
-       if($times>0){
-           echo $js;
-       }else{
-         echo "you have try enough times :) ";
-       }
+        if ($times > 0) {
+            echo $js;
+        } else {
+            echo "you have try enough times :) ";
+        }
     }
 
-    public function actionTestSession(){
-        print_r(YiiUtil::getPathOfClass(Yii::app()->session)) ;
-        echo Yii::app()->session->sessionTableName ;
+    public function actionTestSession()
+    {
+        print_r(YiiUtil::getPathOfClass(Yii::app()->session));
+        echo Yii::app()->session->sessionTableName;
     }
+
     /**
      * @Desc('测试一个页面布局效果！')
      */
-    public function actionT1(){
-     //  $this->layout = false ;
+    public function actionT1()
+    {
+        //  $this->layout = false ;
         $this->render('t1');
     }
 
@@ -37,17 +65,19 @@ JS;
     /**
      * @Desc('测试1列布局！')
      */
-    public function actionLayoutColumn1(){
+    public function actionLayoutColumn1()
+    {
         $this->renderText('juiLayout');
     }
 
     /**
      * @Desc('测试2列布局！ 参数sidebar试着用right 看看效果！')
      */
-    public function actionLayoutColumn2($sidebar='left'){
+    public function actionLayoutColumn2($sidebar = 'left')
+    {
         Layout::addBlock($sidebar, array(
-            'id'=>$sidebar. '_sidebar',
-            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            'id' => $sidebar . '_sidebar',
+            'content' => 'the content you want to add to your layout', // eg the result of a partial or widget
             /*
             $this->renderPartial('/partial/aspect_index_right', array(
                     'aspects'=>$user->aspects,
@@ -55,18 +85,19 @@ JS;
                 ), true)
             */
         ));
-        $this->renderText('layout name : '. $this->layout);
+        $this->renderText('layout name : ' . $this->layout);
 
     }
 
     /**
      * @Desc('测试3列布局！')
      */
-    public function actionLayoutColumn3(){
+    public function actionLayoutColumn3()
+    {
         $sidebar = 'left';
         Layout::addBlock($sidebar, array(
-            'id'=>$sidebar. '_sidebar',
-            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            'id' => $sidebar . '_sidebar',
+            'content' => 'the content you want to add to your layout', // eg the result of a partial or widget
             /*
             $this->renderPartial('/partial/aspect_index_right', array(
                     'aspects'=>$user->aspects,
@@ -74,10 +105,10 @@ JS;
                 ), true)
             */
         ));
-        $sidebar = 'right' ;
+        $sidebar = 'right';
         Layout::addBlock($sidebar, array(
-            'id'=>$sidebar. '_sidebar',
-            'content'=>'the content you want to add to your layout', // eg the result of a partial or widget
+            'id' => $sidebar . '_sidebar',
+            'content' => 'the content you want to add to your layout', // eg the result of a partial or widget
             /*
             $this->renderPartial('/partial/aspect_index_right', array(
                     'aspects'=>$user->aspects,
@@ -85,12 +116,14 @@ JS;
                 ), true)
             */
         ));
-        $this->renderText('layout name : '. $this->layout);
+        $this->renderText('layout name : ' . $this->layout);
     }
+
     /**
      * @Desc('测试jqueryUiLayout')
      */
-    public function actionJuiLayout(){
+    public function actionJuiLayout()
+    {
         $this->layout = false;
         $this->render('juiLayout');
     }
@@ -98,58 +131,66 @@ JS;
     /**
      * @Desc('测试FleetBox')
      */
-    public function actionFleetBox(){
+    public function actionFleetBox()
+    {
         $this->render('fleetBox');
     }
 
     /**
      * @Desc('测试安装')
      */
-    public function actionInstaller(){
+    public function actionInstaller()
+    {
         print_r(BaseModuleInstaller::getInstallableModules());
     }
 
     /**
      * @Desc('测试日历')
      */
-    public function actionCalendar1(){
+    public function actionCalendar1()
+    {
         $this->render('calendar1');
     }
 
     /**
      * @Desc('测试ESeasonWidget组件 可以根据季节更换图片')
      */
-    public function actionSeason(){
+    public function actionSeason()
+    {
         $this->render('season');
     }
+
     /**
      * @Desc('测试php模板基本实现 replace')
      */
-    public function actionTplIdea(){
+    public function actionTplIdea()
+    {
 
         $tplStr = "Hello, {name}!";
-        $data = array('name'=>'yiqing');
+        $data = array('name' => 'yiqing');
 
-        echo str_replace(array_keys($data),array_values($data),$tplStr);
+        echo str_replace(array_keys($data), array_values($data), $tplStr);
 
-        echo '<br/> another: '. strtr($tplStr,$data);
+        echo '<br/> another: ' . strtr($tplStr, $data);
 
     }
 
     /**
      * @Desc('测试smarty')
      */
-    public function actionSmarty(){
-        $this->renderString('Hello, {$name}!',array('name'=>'yiqing'));
-        $output = $this->renderString('Hello, {$name}!',array('name'=>'yiqing'),true);
-        echo '<br/>yes: ', $output ;
+    public function actionSmarty()
+    {
+        $this->renderString('Hello, {$name}!', array('name' => 'yiqing'));
+        $output = $this->renderString('Hello, {$name}!', array('name' => 'yiqing'), true);
+        echo '<br/>yes: ', $output;
     }
 
     /**
      * @Desc('测试twig')
      */
-    public function actionTwig(){
-        require Yii::getPathOfAlias('application.vendors.Twig').'/Autoloader.php';
+    public function actionTwig()
+    {
+        require Yii::getPathOfAlias('application.vendors.Twig') . '/Autoloader.php';
         Yii::registerAutoloader(array('Twig_Autoloader', 'autoload'), true);
 
         $loader = new Twig_Loader_String();
@@ -164,14 +205,14 @@ JS;
      */
     public function actionImgOp()
     {
-        $img =   AppComponent::image();
-        $picId = rand(1,5);
-        $userPhotoUrl =  PublicAssets::instance()->getBasePath(). ("/images/user/avatars/{$picId}.jpg") ;
-       /*
-        $image = Yii::app()->image->load('images/test.jpg');
-        $image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
-        $image->save(); // or $image->save('images/small.jpg');
-       */
+        $img = AppComponent::image();
+        $picId = rand(1, 5);
+        $userPhotoUrl = PublicAssets::instance()->getBasePath() . ("/images/user/avatars/{$picId}.jpg");
+        /*
+         $image = Yii::app()->image->load('images/test.jpg');
+         $image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
+         $image->save(); // or $image->save('images/small.jpg');
+        */
 
         Yii::import('application.extensions.image.Image');
         $image = new Image($userPhotoUrl);
@@ -184,7 +225,7 @@ JS;
      */
     public function actionUploadStorage()
     {
-         echo YsUploadStorage::instance()->getUploadDir();
+        echo YsUploadStorage::instance()->getUploadDir();
         echo "<br/>",
         Yii::app()->request->getScriptFile();
         echo "<br/>",
@@ -192,6 +233,7 @@ JS;
         echo "<br/>",
         Yii::app()->request->getBaseUrl();
     }
+
     /**
      * @Desc('测试JSwitchable 插件')
      */
@@ -309,7 +351,7 @@ JS;
         echo Yii::app()->settings->get($categoryName, $itemName);
         //.......................................................
         $itemName = 'key2';
-        $itemValue = array('k'=>'v','k2'=>2);
+        $itemValue = array('k' => 'v', 'k2' => 2);
         Yii::app()->settings->set($categoryName, $itemName, $itemValue, $toDatabase = true);
         var_dump(Yii::app()->settings->get($categoryName, $itemName));
     }

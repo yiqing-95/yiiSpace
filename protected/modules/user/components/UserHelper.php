@@ -9,6 +9,10 @@
 class UserHelper
 {
 
+    /**
+     * @var array
+     */
+    static private $_cache = array();
 
   static public function renderUserIcon($user){
 
@@ -30,15 +34,32 @@ U_FACE;
      * @return UserProfile
      */
     static public function getUserPublicProfile(){
-     $controller = Yii::app()->controller;
-      return $controller->widget('user.widgets.profile.UserProfile', array(
-          'user' => $_GET['u'], //we assume when access some one 's space we will always pass the param "u" to the $_GET
-          'template'=>'',
-      ));
+        $userId =  $_GET['u'];
+        $cacheKey = __METHOD__.'#'.$userId;
+        if (!isset(self::$_cache[$cacheKey])){
+            $controller = Yii::app()->controller;
+            self::$_cache[$cacheKey] = $controller->widget('user.widgets.profile.UserProfile', array(
+                'user' => $userId, //we assume when access some one 's space we will always pass the param "u" to the $_GET
+                'template'=>'',
+            ));
+        }
+          return self::$_cache[$cacheKey] ;
   }
 
-  static public function getUserCenterProfile(){
-
+    /**
+     * @static
+     * @return UserCenterProfile
+     *
+     */
+    static public function getUserCenterProfile(){
+        $cacheKey = __METHOD__;
+        if (!isset(self::$_cache[$cacheKey])){
+            $controller = Yii::app()->controller;
+            self::$_cache[$cacheKey] = $controller->widget('user.widgets.usercenter.UserCenterProfile', array(
+                'template'=>'',
+            ));
+        }
+        return self::$_cache[$cacheKey] ;
   }
 
 }

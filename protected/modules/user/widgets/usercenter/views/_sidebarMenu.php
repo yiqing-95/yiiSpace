@@ -1,7 +1,6 @@
 <?php $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=>array(
-        array('label'=>'更新状态','url'=>array('/status/create')),
         array('label'=>'朋友'),
         array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
         array('label'=>'我的基友', 'icon'=>'home', 'url'=>array('/friend/relationship/myRelationships'), 'active'=>true),
@@ -10,6 +9,10 @@
         array('label'=>'消息'),
         array('label'=>'收件箱', 'icon'=>'cog', 'url'=>array('/msg/inbox')),
         array('label'=>'创建消息', 'icon'=>'flag', 'url'=>array('/msg/create')),
+        array('label'=>'应用'),
+        array('label'=>'相册', 'icon'=>'photo', 'url'=>array('/album/admin')),
+        array('label'=>'日志', 'icon'=>'flag', 'url'=>array('/blog/admin')),
+
     ),
 )); ?>
 

@@ -6,17 +6,32 @@
     <?php //WebUtil::bootSwatch() ;
     WebUtil::registerRandomBootstrapTheme();
     //
+    $themeName = (isset(Yii::app()->request->cookies['themeName'])) ? Yii::app()->request->cookies['themeName']->value : '';
+
+    if (empty($themeName)) {
+        $themeUrl = '';
+    } else {
+        $themeUrl = Yii::app()->request->baseUrl . "/public/bootswatch2-0-4/{$themeName}/bootstrap.min.css";
+    }
     ?>
 
     <link id="theme_style" rel="stylesheet"
-          href="" type="text/css"
+          href="<?php  echo $themeUrl?>" type="text/css"
           media="screen"/>
 
     <script type="text/javascript">
         function changeTheme(ddlEle) {
             //  alert($(ddlEle).val());
-            var themeStyle = "<?php echo Yii::app()->request->baseUrl; ?>/public/bootswatch2-0-4/{themeName}/bootstrap.min.css";
+            var themeStyle = "";
+            if ($(ddlEle).val().length !== 0) {
+                themeStyle = "<?php echo Yii::app()->request->baseUrl; ?>/public/bootswatch2-0-4/{themeName}/bootstrap.min.css";
+            }
             $("#theme_style").attr("href", themeStyle.replace("{themeName}", $(ddlEle).val()));
+            /**
+             * write it  to cookie
+             * http://www.yiiframework.com/wiki/152/cookie-management-in-yii
+             */
+            $.cookie('themeName', $(ddlEle).val());
         }
         /**
          * http://www.eirikhoem.net/blog/2011/08/29/yii-framework-preventing-duplicate-jscss-includes-for-ajax-requests/
@@ -82,7 +97,14 @@ if (Yii::app()->user->isGuest) {
     $topUserMenus = array(
         array('label' => Yii::app()->user->name, 'url' => Yii::app()->getModule('user')->returnUrl,),
         //array('url' => Yii::app()->getModule('user')->profileUrl, 'label' => Yii::app()->getModule('user')->t("Profile"), 'visible' => !Yii::app()->user->isGuest),
-
+        '---',
+        array('label' => '消息', 'url' => '#', 'items' => array(
+            array('label' => '私信', 'url' => '#'),
+            array('label' => 'Another action', 'url' => '#'),
+            array('label' => 'Something else here', 'url' => '#'),
+            '---',
+            array('label' => 'Separated link', 'url' => '#'),
+        )),
         '---',
         array('label' => '设置', 'url' => '#', 'items' => array(
             array('label' => '图像', 'url' => array('/user/settings/photo')),
@@ -115,6 +137,7 @@ foreach ($di as $d) {
 
 $this->widget('bootstrap.widgets.TbNavbar', array(
     //'type'=>'inverse',
+    'fluid' => true,
     'brand' => CHtml::encode(Yii::app()->name),
     'collapse' => true,
     'items' => array(
@@ -132,7 +155,7 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
             'htmlOptions' => array('class' => 'pull-left'),
         ),
         '<form class="navbar-search pull-left" action="">' .
-            CHtml::dropDownList('chang_theme', '', array_combine($themes, $themes), array('onchange' => 'changeTheme(this)', 'class' => 'input-mini'))
+            CHtml::dropDownList('chang_theme', '', array('' => '请选择') + array_combine($themes, $themes), array('onchange' => 'changeTheme(this)', 'class' => 'input-mini'))
             . '</form>',
         array(
             'class' => 'bootstrap.widgets.TbMenu',

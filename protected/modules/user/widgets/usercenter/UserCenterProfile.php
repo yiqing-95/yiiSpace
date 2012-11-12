@@ -6,8 +6,9 @@
  * Time: 上午9:52
  * To change this template use File | Settings | File Templates.
  */
-class UserSidebar extends YsSectionWidget
+class UserCenterProfile extends YsSectionWidget
 {
+
     /**
      * @var User
      */
@@ -17,9 +18,12 @@ class UserSidebar extends YsSectionWidget
 
    public function init(){
        parent::init();
-       $this->user  = User::model()->findByPk(Yii::app()->user->id);
+       $this->user  =  UserModule::user(Yii::app()->user->id);// User::model()->findByPk(Yii::app()->user->id);
    }
 
+    /**
+     *
+     */
     public function renderUserBox(){
         $model = $this->user ;
         $this->render('_profileBox',array(
@@ -29,6 +33,9 @@ class UserSidebar extends YsSectionWidget
         );
     }
 
+    /**
+     *
+     */
     public function renderSidebarMenu(){
         $this->render('_sidebarMenu',array(
             )

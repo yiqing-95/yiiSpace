@@ -7,7 +7,7 @@
 
             <!--Sidebar content-->
             <div class="alert alert-info span12">
-                <?php $userProfile = $this->widget('user.widgets.sidebar.UserSidebar'); ?>
+                <?php $userProfile = $this->widget('user.widgets.usercenter.UserCenterProfile'); ?>
                 <br/>
                 <?php $userProfile->renderSidebarMenu(); ?>
             </div>
