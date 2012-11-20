@@ -3,6 +3,12 @@
     .btn-toolbar .btn-group {
         display: inline-block;
     }
+    /*
+    .row.content{
+        border-radius: 10px 10px 10px 10px;
+        background: none repeat scroll 0 0 white;
+    }
+    */
 </style>
 <!--    如果未登录-->
 <?php
@@ -29,15 +35,15 @@ if (Yii::app()->user->getIsGuest()):
 
 <!--如果未登录 end-->
 
-<div class="row userSpacer">
+<div class="row-fluid userSpacer">
     <div class="span2">
         <?php
 
         $user = new User();
         $profile = $this->widget('user.widgets.profile.UserProfile', array(
-        'user' => $_GET['u'], //we assume when access some one 's space we will always pass the param "u" to the $_GET
-    ));
-        $user = $profile->getUserModel() ;
+            'user' => $_GET['u'], //we assume when access some one 's space we will always pass the param "u" to the $_GET
+        ));
+        $user = $profile->getUserModel();
         ?>
         <p>
             <?php
@@ -71,46 +77,61 @@ if (Yii::app()->user->getIsGuest()):
             ));
             ?>
         </p>
+            <ul class="unstyled">
+                <li><i class="icon-user"></i>加入于
+                    <span class="badge badge-info">2012-11-11</span>
+                </li>
+                <li><i class="icon-star"></i>最后登录
+                    <span class="badge badge-info">2012-11-11</span>
+                </li>
+            </ul>
     </div>
+    <div class="span10">
 
-    <div class="span7 userHeader">
-        <div style="padding-left: 30px;">
-            <h1>
-               <?php echo $user->username ; ?>
-            </h1>
+        <div class="row-fluid">
+            <div class="span8 userHeader">
+                <div style="padding-left: 30px;">
+                    <h1>
+                        <?php echo $user->username; ?>
+                    </h1>
 
-            <div><strong>3</strong> Projects</div>
-            <div class="userBio">
-                <strong>Bio</strong>
+                    <div>
+                        <strong></strong>
+                        <!--                Projects-->
+                    </div>
+                    <div class="userBio">
+                        <strong>介绍</strong>
 
-                <p class="userHeader">
-                    Principal at @XtremeLabs, fronts @TheEatons. Handy with things #mobile, #agile, #startups. Loves
-                    #music,
-                    #design. Giant information junkie.
-                </p>
+                        <p class="userHeader">
+                            出生于天朝
+                        </p>
+                    </div>
+                    <div class="user-tags">
+                        <ul class="unstyled">
+                            <li>屌丝</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            <div class="span3">
+                <h2 style="margin-top: 50px;"></h2>
 
-    <div class="span3">
-        <h2 style="margin-top: 50px;"></h2>
+                <p>
+                <ul class="unstyled">
+                    <li><i class="icon-user"></i>关注
+                        <span class="badge badge-info">23</span>
+                    </li>
+                    <li><i class="icon-star"></i>粉丝
+                        <span class="badge badge-info">23</span>
+                    </li>
 
-        <p>
-        <ul class="unstyled">
-            <li><i class="icon-user"></i>关注
-                <span class="badge badge-info">23</span>
-            </li>
-            <li><i class="icon-star"></i>粉丝
-                <span class="badge badge-info">23</span>
-            </li>
+                    <li><i class="icon-share"></i>状态
+                        <span class="badge badge-info">23</span>
+                    </li>
+                </ul>
+                </p>
 
-            <li><i class="icon-share"></i>状态
-                <span class="badge badge-info">23</span>
-            </li>
-        </ul>
-        </p>
-
-        <?php /*
+                <?php /*
         <p>
         <dl class="dl-horizontal">
             <dt><i class="icon-user"></i>关注</dt>
@@ -124,89 +145,81 @@ if (Yii::app()->user->getIsGuest()):
         </dl>
         </p>
        */ ?>
-    </div>
-
-</div>
-
-<div class="row userSpacer">
-    <!--    用户菜单（顶级）-->
-    <div class="span10 offset2 userHeader">
-        <h2>
-            <!--            用户操作 菜单这里-->
-        </h2>
-
-        <div class="well well-small btn-toolbar " align="center">
-            <?php
-            $this->widget('bootstrap.widgets.TbButtonGroup', array(
-                'size' => 'large',
-                'htmlOptions'=>array(
-                 //  'class'=>'pull-right',
-                ),
-                'buttons' => array(
-                    array('label' => '日志', 'url' => '#'),
-                    array('label' => '相册', 'url' => '#'),
-                    array('label' => '微博', 'url' => '#'),
-                    array('label' => '收藏', 'url' => '#'),
-                    array('label' => '分享', 'url' => '#'),
-                ),
-            ));
-            $this->widget('bootstrap.widgets.TbButtonGroup', array(
-                'size' => 'large',
-                'type' => 'info', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-                'buttons' => array(
-                    array('label' => 'Inverse', 'items' => array(
-                        array('label' => 'Action', 'url' => '#'),
-                        array('label' => 'Another action', 'url' => '#'),
-                        array('label' => 'Something else', 'url' => '#'),
-                        '---',
-                        array('label' => 'Separate link', 'url' => '#'),
-                    )),
-                ),
-            ));
-            ?>
-        </div>
-
-        <br/>
-        <?php
-        /*
-        $this->widget('bootstrap.widgets.TbNavbar', array(
-            'fixed' => false,
-            'brand' => 'Title',
-            'items' => array(
-                array(
-                    'class' => 'bootstrap.widgets.TbMenu',
-                    'items' => array(
-                        array('label' => 'Home', 'url' => '#', 'active' => true),
-                        array('label' => 'Link', 'url' => '#'),
-                        array('label' => 'Dropdown', 'items' => array(
-                            array('label' => 'Item1', 'url' => '#')
-                        )),)
-                )
-            )
-        )); */
-        ?>
-    </div>
-    <!--    用户菜单（顶级）end -->
-</div>
-
-<hr size="2px">
-<div class="row-fluid">
-    <div class="span12">
-<!--        Fluid 12-->
-        <?php
-        if (!empty($this->menu)) :
-            $this->widget("bootstrap.widgets.TbMenu", array('items' => $this->menu, 'type' => 'pills'));
-        endif;
-        ?>
-        <div class="row-fluid">
-            <div class="span9">
-                <?php echo $content; ?>
-            </div>
-            <div class="span3" style="border-left: 1px solid #d935cc ;">
-                    <?php $profile->renderSidebar(); ?>
             </div>
         </div>
+        <div class="row userSpacer">
+            <!--    用户菜单（顶级）-->
+            <div class="span10  userHeader pull-right ">
+                <h2>
+                    <!--            用户操作 菜单这里-->
+                </h2>
+
+                <div class="well well-small btn-toolbar " align="center">
+                    <?php
+                    $this->widget('bootstrap.widgets.TbButtonGroup', array(
+                        'size' => 'large',
+                        'htmlOptions' => array(
+                            //  'class'=>'pull-right',
+                        ),
+                        'buttons' => array(
+                            array('label' => '日志', 'url' => '#'),
+                            array('label' => '相册', 'url' => array('/album/member','u'=>$_GET['u'])),
+                            array('label' => '微博', 'url' => '#'),
+                            array('label' => '收藏', 'url' => '#'),
+                            array('label' => '分享', 'url' => '#'),
+                        ),
+                    ));
+                    $this->widget('bootstrap.widgets.TbButtonGroup', array(
+                        'size' => 'large',
+                        'type' => 'info', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+                        'buttons' => array(
+                            array('label' => 'Inverse', 'items' => array(
+                                array('label' => 'Action', 'url' => '#'),
+                                array('label' => 'Another action', 'url' => '#'),
+                                array('label' => 'Something else', 'url' => '#'),
+                                '---',
+                                array('label' => 'Separate link', 'url' => '#'),
+                            )),
+                        ),
+                    ));
+                    ?>
+                </div>
+
+                <br/>
+                <?php
+                /*
+               $this->widget('bootstrap.widgets.TbNavbar', array(
+                   'fixed' => false,
+                   'brand' => 'Title',
+                   'items' => array(
+                       array(
+                           'class' => 'bootstrap.widgets.TbMenu',
+                           'items' => array(
+                               array('label' => 'Home', 'url' => '#', 'active' => true),
+                               array('label' => 'Link', 'url' => '#'),
+                               array('label' => 'Dropdown', 'items' => array(
+                                   array('label' => 'Item1', 'url' => '#')
+                               )),)
+                       )
+                   )
+               )); */
+                ?>
+            </div>
+            <!--    用户菜单（顶级）end -->
+        </div>
     </div>
+
+
+
+
 </div>
+
+
+
+<div class="row content">
+    <?php echo $content ;?>
+</div>
+
+
 
 <?php $this->endContent(); ?>

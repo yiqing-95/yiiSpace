@@ -1,132 +1,1896 @@
-2012/11/03 13:45:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`prof' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15.
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php (49)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (130)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (77)
-2012/11/03 13:45:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`prof' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
-Stack trace:
-#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(389): CDbCommand->queryInternal('fetchAll', Array, Array)
-#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(765): CDbCommand->queryAll()
-#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(417): CJoinElement->runQuery(Object(CJoinQuery))
-#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
-#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1302): CActiveFinder->query(Object(CDbCriteria), true)
-#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
-#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php(49): CActiveRecord->findAll(Object(CDbCriteria))
-#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(130): UserOnline->actionOnline()
-#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(77): HomePageBlock->getActiveContent()
-#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): HomePageBlock->run()
-#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\HomeController.php(16): CBaseController->widget('user.widgets.us...')
-#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): HomeController->actionOnlineUsers()
-#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
-#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
-#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('onlineUsers')
-#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/home/onlin...')
-#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
-#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
-#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
-#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
-#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
-#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
-#23 {main}
-REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home/onlineUsers
-HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
----
-2012/11/03 13:49:11 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15.
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php (49)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (130)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (77)
-2012/11/03 13:49:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
-Stack trace:
-#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(389): CDbCommand->queryInternal('fetchAll', Array, Array)
-#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(765): CDbCommand->queryAll()
-#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(417): CJoinElement->runQuery(Object(CJoinQuery))
-#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
-#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1302): CActiveFinder->query(Object(CDbCriteria), true)
-#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
-#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php(49): CActiveRecord->findAll(Object(CDbCriteria))
-#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(130): UserOnline->actionOnline()
-#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(77): HomePageBlock->getActiveContent()
-#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): HomePageBlock->run()
-#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\HomeController.php(16): CBaseController->widget('user.widgets.us...')
-#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): HomeController->actionOnlineUsers()
-#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
-#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
-#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('onlineUsers')
-#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/home/onlin...')
-#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
-#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
-#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
-#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
-#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
-#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
-#23 {main}
-REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home/onlineUsers
-HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
----
-2012/11/03 13:50:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15.
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php (48)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (130)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (77)
-2012/11/03 13:50:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`' at line 1. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
-Stack trace:
-#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(389): CDbCommand->queryInternal('fetchAll', Array, Array)
-#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(765): CDbCommand->queryAll()
-#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(417): CJoinElement->runQuery(Object(CJoinQuery))
-#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
-#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1302): CActiveFinder->query(Object(CDbCriteria), true)
-#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
-#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php(48): CActiveRecord->findAll(Object(CDbCriteria))
-#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(130): UserOnline->actionOnline()
-#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(77): HomePageBlock->getActiveContent()
-#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): HomePageBlock->run()
-#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\HomeController.php(16): CBaseController->widget('user.widgets.us...')
-#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): HomeController->actionOnlineUsers()
-#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
-#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
-#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('onlineUsers')
-#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/home/onlin...')
-#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
-#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
-#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
-#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
-#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
-#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
-#23 {main}
-REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home/onlineUsers
-HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
----
-2012/11/03 13:53:06 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 't.id' in 'on clause'. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` JOIN YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15.
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php (48)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (130)
-in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (77)
-2012/11/03 13:53:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42S22]: Column not found: 1054 Unknown column 't.id' in 'on clause'. The SQL statement executed was: SELECT `user`.`id` AS `t0_c0`, `user`.`username` AS `t0_c1`, `user`.`email` AS `t0_c3`, `user`.`create_at` AS `t0_c7`, `user`.`lastvisit_at` AS `t0_c8`, `user`.`superuser` AS `t0_c5`, `user`.`status` AS `t0_c6`, `profile`.`user_id` AS `t1_c0`, `profile`.`first_name` AS `t1_c1`, `profile`.`last_name` AS `t1_c2`, `profile`.`photo` AS `t1_c3` FROM `user` `user` JOIN YiiSession s ON  t.id = s.user_id LEFT OUTER JOIN `user_profile` `profile` ON (`profile`.`user_id`=`user`.`id`)  ORDER BY create_at DESC LIMIT 15' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php:528
-Stack trace:
-#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbCommand.php(389): CDbCommand->queryInternal('fetchAll', Array, Array)
-#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(765): CDbCommand->queryAll()
-#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(417): CJoinElement->runQuery(Object(CJoinQuery))
-#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveFinder.php(68): CJoinElement->find(Object(CDbCriteria))
-#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1302): CActiveFinder->query(Object(CDbCriteria), true)
-#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
-#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\useronline\UserOnline.php(48): CActiveRecord->findAll(Object(CDbCriteria))
-#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(130): UserOnline->actionOnline()
-#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php(77): HomePageBlock->getActiveContent()
-#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CBaseController.php(173): HomePageBlock->run()
-#10 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\HomeController.php(16): CBaseController->widget('user.widgets.us...')
-#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): HomeController->actionOnlineUsers()
-#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
-#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
-#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('onlineUsers')
-#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/home/onlin...')
-#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(168): CWebApplication->processRequest()
-#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
-#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
-#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(260): call_user_func_array(Array, Array)
-#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): CComponent->__call('runEnd', Array)
-#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(28): YsWebApplication->runEnd('front')
-#23 {main}
-REQUEST_URI=/my/MyGithubProjects/yiiSpace/user/home/onlineUsers
-HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
----
+2012/11/17 10:19:12 [info] [application] /site/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/17 10:19:19 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:19:19 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:19:19 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:19:19 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:19:19 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:09 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:09 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:10 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/17 10:21:11 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:11 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:55 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\space.php (16)
+2012/11/17 10:21:57 [info] [application] album/member
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (226)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (175)
+2012/11/17 10:21:57 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:57 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:57 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:57 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:21:57 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:29 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/17 10:22:56 [info] [application] photo/photoAlbum/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\views\front\photoAlbum\_view.php (4)
+2012/11/17 10:22:57 [info] [application] album/member
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (226)
+2012/11/17 10:22:57 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+2012/11/17 10:22:57 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+2012/11/17 10:22:57 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+2012/11/17 10:22:57 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+2012/11/17 10:22:57 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\photo\components\BasePhotoController.php (26)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+2012/11/19 02:44:40 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:44:40 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:44:40 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:44:40 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\UserHomeBlock.php (32)
+2012/11/19 02:44:40 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\UserHomeBlock.php (35)
+2012/11/19 02:44:40 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\site\index.php (45)
+2012/11/19 02:44:41 [info] [application] user/home/onlineUsers
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\site\index.php (117)
+2012/11/19 02:44:41 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:41 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:41 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:41 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:41 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/19 02:44:51 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (32)
+2012/11/19 02:44:51 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (35)
+2012/11/19 02:44:58 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\login.php (72)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:44:58 [info] [application] user/recovery
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\login.php (73)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:44:58 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:58 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:58 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:58 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:44:58 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:20 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\LoginController.php (23)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/19 02:45:23 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:23 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] msg/msg/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\views\msg\_inboxView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:30 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:30 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] friend/relationship/approve
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\views\front\relationship\pendingRelations.php (44)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:37 [info] [application] friend/relationship/reject
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\views\front\relationship\pendingRelations.php (46)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:37 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:37 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] msg/msg/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\msg\views\msg\_inboxView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:45:44 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:44 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:45:48 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] friend/relationship/approve
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\views\front\relationship\pendingRelations.php (44)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:46:25 [info] [application] friend/relationship/reject
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\friend\views\front\relationship\pendingRelations.php (46)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 02:46:25 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:25 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:28 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\space.php (16)
+2012/11/19 02:46:29 [info] [application] album/member
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (226)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (175)
+2012/11/19 02:46:29 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:29 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:29 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:29 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:29 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 02:46:30 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/19 05:47:04 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\space.php (16)
+2012/11/19 05:47:06 [info] [application] album/member
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (226)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (175)
+2012/11/19 05:47:07 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 05:47:07 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 05:47:07 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 05:47:07 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 05:47:07 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 06:40:39 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:40:39 [info] [application] gii
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:40:44 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:40:45 [info] [application] gii/default/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:40:45 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:40:45 [info] [application] gii/controller
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/crud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/form
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/model
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/module
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/bootstrap
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/giixCrud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/giixModel
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/foundation
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:45 [info] [application] gii/default/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:40:45 [info] [application] gii
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:40:49 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:40:50 [info] [application] gii/controller
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/crud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/form
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/model
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/module
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/bootstrap
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/giixCrud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/giixModel
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/foundation
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:40:50 [info] [application] gii/default/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:40:50 [info] [application] gii
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:41:13 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:41:13 [info] [application] gii/giixModel/code
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\giix-core\giixModel\views\index.php (108)
+2012/11/19 06:41:13 [info] [application] gii/giixModel/code
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\giix-core\giixModel\views\index.php (108)
+2012/11/19 06:41:13 [info] [application] gii/controller
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/crud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/form
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/model
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/module
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/bootstrap
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/giixCrud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/giixModel
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/foundation
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:13 [info] [application] gii/default/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:41:13 [info] [application] gii
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:41:17 [info] [application] gii/default/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php (28)
+2012/11/19 06:41:17 [info] [application] gii/controller
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/crud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/form
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/model
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/module
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/bootstrap
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/giixCrud
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/giixModel
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/foundation
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 06:41:17 [info] [application] gii/default/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 06:41:17 [info] [application] gii
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/19 09:28:01 [info] [application] test1/genPhpUnitCmd
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/ysBox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/userLayout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/mockRequest
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testSession
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/t1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/layoutColumn1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/layoutColumn2
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/layoutColumn3
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/juiLayout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/fleetBox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/installer
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/calendar1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/season
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/tplIdea
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/smarty
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/twig
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/imgOp
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/uploadStorage
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/switchable
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/ysPortLet
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testGetModules
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/installDashboardTable
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testMy
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testSwiftMailer
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testRemoteUrl
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testCurl
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/testCmsSettings
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/help
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:05 [info] [application] test1/help
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:28:09 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:28:09 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:28:09 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:28:09 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:28:09 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:48:18 [info] [application] test1/testHookService
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/genPhpUnitCmd
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/ysBox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/userLayout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/mockRequest
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testSession
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/t1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/layoutColumn1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/layoutColumn2
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/layoutColumn3
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/juiLayout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/fleetBox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/installer
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/calendar1
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/season
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/tplIdea
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/smarty
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/twig
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/imgOp
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/uploadStorage
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/switchable
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/ysPortLet
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testGetModules
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/installDashboardTable
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testMy
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testSwiftMailer
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testRemoteUrl
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testCurl
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/testCmsSettings
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/help
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] test1/help
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\Controller.php (129)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/19 09:48:18 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:48:18 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:48:18 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:48:18 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/19 09:48:18 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:17 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:15:17 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:15:17 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\views\_latest.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:15:17 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\UserHomeBlock.php (32)
+2012/11/20 02:15:17 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\widgets\pageblock\UserHomeBlock.php (35)
+2012/11/20 02:15:18 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\site\index.php (45)
+2012/11/20 02:15:18 [info] [application] user/home/onlineUsers
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\views\front\site\index.php (117)
+2012/11/20 02:15:22 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:22 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:22 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:22 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:22 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] /user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (5)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\views\_statusView.php (14)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (57)
+2012/11/20 02:15:51 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (32)
+2012/11/20 02:15:53 [info] [application] status/home/block
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\HomePageBlock.php (119)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\widgets\pageblock\StatusHomeBlock.php (35)
+2012/11/20 02:17:25 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\login.php (72)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:25 [info] [application] user/recovery
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\login.php (73)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:25 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:25 [info] [application] site/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:25 [info] [application] user/login
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:25 [info] [application] user/registration
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:25 [info] [application] site/page
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:46 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\controllers\front\LoginController.php (23)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php (32)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_statusView.php (3)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:49 [info] [application] status/status/listRecentStatus
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (296)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\create.php (18)
+2012/11/20 02:17:50 [info] [application] friend/relationship/myRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] friend/relationship/pendingRelationships
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] msg/inbox
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] msg/create
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] album/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] blog/admin
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:17:50 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:46 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\metabox\EMetabox.php (65)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\user\views\front\user\space.php (16)
+2012/11/20 02:18:46 [info] [application] album/member
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (226)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbButton.php (175)
+2012/11/20 02:18:46 [info] [application] user/user/space
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:46 [info] [application] user/user/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:46 [info] [application] user/home
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:46 [info] [application] user/settings/photo
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbDropdown.php (59)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:46 [info] [application] user/logout
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (146)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\extensions\YiiBooster\widgets\TbBaseMenu.php (83)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/view
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\_view.php (4)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)
+2012/11/20 02:18:48 [info] [application] status/status/index
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (55)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\views\front\status\index.php (18)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\status\controllers\front\StatusController.php (183)

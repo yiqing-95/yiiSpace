@@ -9,8 +9,11 @@ return array(
         // If removed, Gii defaults to localhost only. Edit carefully to taste.
         'ipFilters' => array('127.0.0.1', '::1'),
         'generatorPaths' => array(
-            'ext.giix-core', // giix generators
+            // 顺序也可能影响 有些模板不能加载哦！
             'my.gii',
+            'ext.giix-core', // giix generators
+
+            'ext.YiiBooster.gii'
         ),
     ),
 
@@ -88,5 +91,6 @@ return array(
 
     'test',
 
+    'photo',
 );
 

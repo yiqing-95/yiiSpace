@@ -28,7 +28,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 <?php endif; ?>
 
 		if (isset($_POST['<?php echo $this->modelClass; ?>'])) {
-			$model->attributes = $_POST['<?php echo $this->modelClass; ?>'];
+			$model->setAttributes($_POST['<?php echo $this->modelClass; ?>']);
 <?php if ($this->hasManyManyRelation($this->modelClass)): ?>
 			$relatedData = <?php echo $this->generateGetPostRelatedData($this->modelClass, 4); ?>;
 <?php endif; ?>
@@ -38,7 +38,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 <?php else: ?>
 			if ($model->save()) {
 <?php endif; ?>
-				if (Yii::app()->request->isAjaxRequest)
+				if (Yii::app()->getRequest()->getIsAjaxRequest())
 					Yii::app()->end();
 				else
 					$this->redirect(array('view', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>));
@@ -56,7 +56,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 <?php endif; ?>
 
 		if (isset($_POST['<?php echo $this->modelClass; ?>'])) {
-			$model->attributes = $_POST['<?php echo $this->modelClass; ?>'];
+			$model->setAttributes($_POST['<?php echo $this->modelClass; ?>']);
 <?php if ($this->hasManyManyRelation($this->modelClass)): ?>
 			$relatedData = <?php echo $this->generateGetPostRelatedData($this->modelClass, 4); ?>;
 <?php endif; ?>
@@ -76,10 +76,10 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	}
 
 	public function actionDelete($id) {
-		if (Yii::app()->request->isPostRequest) {
+		if (Yii::app()->getRequest()->getIsPostRequest()) {
 			$this->loadModel($id, '<?php echo $this->modelClass; ?>')->delete();
 
-			if (!Yii::app()->request->isAjaxRequest)
+			if (!Yii::app()->getRequest()->getIsAjaxRequest())
 				$this->redirect(array('admin'));
 		} else
 			throw new CHttpException(400, Yii::t('app', 'Your request is invalid.'));
@@ -97,7 +97,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		$model->unsetAttributes();
 
 		if (isset($_GET['<?php echo $this->modelClass; ?>']))
-			$model->attributes = $_GET['<?php echo $this->modelClass; ?>'];
+			$model->setAttributes($_GET['<?php echo $this->modelClass; ?>']);
 
 		$this->render('admin', array(
 			'model' => $model,

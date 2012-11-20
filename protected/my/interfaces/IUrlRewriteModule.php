@@ -26,6 +26,14 @@
  *      '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
  * ------------------------------------------------------------
  * 处理类：my.components.ModuleUrlRuleManager
+ * -------------------------------------------------------------
+ * array('app/get',
+ *       'pattern' => 'apps(/<app:[\w\d\.]+>)?(/updates/<update:\d+>)?(/<revision:published|draft>)?',
+ *       'verb' => 'GET'
+ *   ),
+ *@see http://www.yiiframework.com/forum/index.php/topic/35616-yii-url-rules-optional-parameters/page__pid__179679#entry179679
+ *
+ * -------------------------------------------------------------
  */
 interface IUrlRewriteModule
 {

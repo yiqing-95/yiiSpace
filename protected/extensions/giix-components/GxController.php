@@ -13,7 +13,6 @@
  * GxController is the base class for the generated controllers.
  *
  * @author Rodrigo Coelho <rodrigo@giix.org>
- * @since 1.0
  */
 abstract class GxController extends Controller {
 
@@ -76,10 +75,14 @@ abstract class GxController extends Controller {
 	 * ideally part of or multiple unique keys).
 	 * @param string $modelClass The model class name.
 	 * @return GxActiveRecord The loaded model.
-	 * @see {@link GxActiveRecord::pkSeparator}.
-	 * @throws CHttpException if there's an invalid request or if the model is not found.
+	 * @see GxActiveRecord::pkSeparator
+	 * @throws CHttpException if there's an invalid request (with code 400) or if the model is not found (with code 404).
 	 */
 	public function loadModel($key, $modelClass) {
+
+		// Get the static model.
+		$staticModel = GxActiveRecord::model($modelClass);
+
 		if (is_array($key)) {
 			// The key is an array.
 			// Check if there are column names indexing the values in the array.
@@ -92,7 +95,7 @@ abstract class GxController extends Controller {
 
 				// Now we will use the composite PK.
 				// Check if the table has composite PK.
-				$tablePk = GxActiveRecord::model($modelClass)->getTableSchema()->primaryKey;
+				$tablePk = $staticModel->getTableSchema()->primaryKey;
 				if (!is_array($tablePk))
 					throw new CHttpException(400, Yii::t('giix', 'Your request is invalid.'));
 
@@ -101,19 +104,19 @@ abstract class GxController extends Controller {
 					throw new CHttpException(400, Yii::t('giix', 'Your request is invalid.'));
 
 				// Get an array of PK values indexed by the column names.
-				$pk = GxActiveRecord::model($modelClass)->fillPkColumnNames($key);
+				$pk = $staticModel->fillPkColumnNames($key);
 
 				// Then load the model.
-				$model = GxActiveRecord::model($modelClass)->findByPk($pk);
+				$model = $staticModel->findByPk($pk);
 			} else {
 				// There are attribute names.
 				// Then we load the model now.
-				$model = GxActiveRecord::model($modelClass)->findByAttributes($key);
+				$model = $staticModel->findByAttributes($key);
 			}
 		} else {
 			// The key is not an array.
 			// Check if the table has composite PK.
-			$tablePk = GxActiveRecord::model($modelClass)->getTableSchema()->primaryKey;
+			$tablePk = $staticModel->getTableSchema()->primaryKey;
 			if (is_array($tablePk)) {
 				// The table has a composite PK.
 				// The key must be a string to have a PK separator.
@@ -132,7 +135,7 @@ abstract class GxController extends Controller {
 			} else {
 				// The table has a single PK.
 				// Then we load the model now.
-				$model = GxActiveRecord::model($modelClass)->findByPk($key);
+				$model = $staticModel->findByPk($key);
 			}
 		}
 
@@ -154,7 +157,7 @@ abstract class GxController extends Controller {
 	 * @param string $form The name of the form. Optional.
 	 */
 	protected function performAjaxValidation($model, $form = null) {
-		if (Yii::app()->request->isAjaxRequest && (($form === null) || (isset($_POST['ajax']) && $_POST['ajax'] == $form))) {
+		if (Yii::app()->getRequest()->getIsAjaxRequest() && (($form === null) || ($_POST['ajax'] == $form))) {
 			echo GxActiveForm::validate($model);
 			Yii::app()->end();
 		}
@@ -178,7 +181,7 @@ abstract class GxController extends Controller {
 	 * </pre>
 	 * An empty array is returned in case there is no related pk data from the post.
 	 * This data comes directly from the form POST data.
-	 * @see {@link GxHtml::activeCheckBoxList}.
+	 * @see GxHtml::activeCheckBoxList
 	 * @throws InvalidArgumentException If uncheckValue is null.
 	 */
 	protected function getRelatedData($form, $relations, $uncheckValue = '') {

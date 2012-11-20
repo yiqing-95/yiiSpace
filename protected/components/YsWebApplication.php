@@ -22,6 +22,8 @@ class YsWebApplication extends CWebApplication
 
     }
 
+
+
     /**
      * @param int $status
      * @param bool $exit
@@ -46,5 +48,11 @@ class YsWebApplication extends CWebApplication
         }
         parent::end($status, $exit);
 
+    }
+
+    public function createUrl($route,$params=array(),$ampersand='&')
+    {
+         Yii::log($route,CLogger::LEVEL_INFO);
+        return $this->getUrlManager()->createUrl($route,$params,$ampersand);
     }
 }

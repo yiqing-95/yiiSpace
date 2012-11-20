@@ -10,22 +10,19 @@
  */
 
 /**
- * GiixCrudGenerator is the controller for giix crud generator..
+ * GiixCrudGenerator is the controller for giix crud generator.
  *
  * @author Rodrigo Coelho <rodrigo@giix.org>
- * @since 1.0
  */
 class GiixCrudGenerator extends CCodeGenerator {
 
-	//修改了继承于GiixCrudCode的LivmxCrudCode类,所以该处引用也作相应的调整
-	//public $codeModel = 'ext.giix-core.giixCrud.GiixCrudCode';
-    public $codeModel = 'ext.giix-core.giixCrud.LivmxCrudCode';
+	public $codeModel = 'ext.giix-core.giixCrud.GiixCrudCode';
 
 	/**
 	 * Returns the model names in an array.
 	 * Only non abstract and subclasses of GxActiveRecord models are returned.
 	 * The array is used to build the autocomplete field.
-	 * @return array the names of the models
+	 * @return array The names of the models
 	 */
 	protected function getModels() {
 		$models = array();

@@ -25,6 +25,17 @@ return array(
         ),
     ),*/
 
+    // 云存储时的情况 参考： https://github.com/andremetzen/yii-s3assetmanager
+    /**
+     * 通过该例子 看出 凡是可以设置baseUrl的组件 都可以指到某个指定的域名去！！
+     * 比如用bu() 方法得到的图像地址 如果request 组件的baseUrl是全域名路径 那么
+     * 图像地址会变成全域名情况 所以在类似图像地址输出上尽量用bu方法 这样如果是
+     * 多台服务器都有图像那么.....
+     */
+    'assetManager'=>array(
+     // 'baseUrl'=>'http:://www.xx.com'  多web应用时可以指定一个服务器 cdn??
+   ),
+
     //  use  MySQL database
     'db' => array(
         'class' => 'CDbConnection',
@@ -67,6 +78,14 @@ return array(
 
     'cache'=>array(
         'class'=>'system.caching.CFileCache',
+    ),
+
+    'messages' => array (
+        'class'=>'application.components.ExPhpMessageSource',
+        // Pending on core: http://code.google.com/p/yii/issues/detail?id=2624
+        'extensionBasePaths' => array(
+            'giix' => 'ext.giix.messages', // giix messages directory.
+        ),
     ),
     //................{yii standard components /}....................................................................
 

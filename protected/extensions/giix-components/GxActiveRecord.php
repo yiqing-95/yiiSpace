@@ -13,7 +13,6 @@
  * GxActiveRecord is the base class for the generated AR (base) models.
  *
  * @author Rodrigo Coelho <rodrigo@giix.org>
- * @since 1.0
  */
 abstract class GxActiveRecord extends CActiveRecord {
 
@@ -37,6 +36,136 @@ abstract class GxActiveRecord extends CActiveRecord {
 	}
 
 	/**
+	 * The active record label.
+	 * The active record label is the user friendly name displayed in the views.
+	 * Each active record class should override this method and explicitly specify the label.
+	 * See the documentation when overriding: http://www.yiiframework.com/doc/guide/1.1/en/topics.i18n#plural-forms-format
+	 * @param integer $n The number value. This is used to support plurals. Defaults to 1 (means singular).
+	 * Notice that this number doesn't necessarily corresponds to the number (count) of items.
+	 * @return string The label.
+	 * @throws Exception If the method wasn't overriden.
+	 * @see getRelationLabel
+	 */
+	public static function label($n = 1) {
+		throw new Exception(Yii::t('giix', 'This method should be overriden by the Active Record class.'));
+	}
+
+	/**
+	 * Returns the text label for the specified active record relation, attribute or class property.
+	 * The labels are the user friendly names displayed in the views.
+	 * If defined in the model, the label for its attribute, property or relation is returned.
+	 * If not defined in the model (in {@link CModel::attributeLabels}),
+	 * the label is generated using the related active record class label (via {@link GxActiveRecord::label}) (for FK attributes and relations)
+	 * or using {@link CModel::generateAttributeLabel} (for other attributes and class properties).
+	 * @param string $relationName The relation, attribute or class property name.
+	 * This method supports chained relations in the form of "post.author.name".
+	 * @param integer $n The number value. This is used to support plurals.
+	 * In the default implementation, when this argument is null, if the relation is BELONGS_TO or HAS_ONE, the singular form is returned.
+	 * If the relation is HAS_MANY or MANY_MANY, the plural form is returned.
+	 * If this argument is null and the relation is not one of the types listed above, the singular form is returned.
+	 * For most languages, 1 means singular and all other values mean plural.
+	 * Defaults to null.
+	 * Note: It is not supported when returning labels for attributes or class properties.
+	 * @param boolean $useRelationLabel Whether to use the relation label for the FK attribute.
+	 * When true, if the specified attribute name is a FK, the corresponding related AR label will be used.
+	 * Defaults to true.
+	 * Note: this will only work when there is no label defined in {@link CModel::attributeLabels} for this attribute.
+	 * @return string The label.
+	 * @throws InvalidArgumentException If an attribute name is found and is not the last item in the relationName parameter.
+	 * @see label
+	 */
+	public function getRelationLabel($relationName, $n = null, $useRelationLabel = true) {
+		// Exploding the chained relation names.
+		$relNames = explode('.', $relationName);
+
+		// Everything starts with this object.
+		$relClassName = get_class($this);
+
+		// The item index.
+		$relIndex = 0;
+
+		// Get the count of relation names;
+		$countRelNames = count($relNames);
+
+		// Walk through the chained relations.
+		foreach ($relNames as $relName) {
+			// Increments the item index.
+			$relIndex++;
+
+			// Get the related static class.
+			$relStaticClass = self::model($relClassName);
+
+			// If is is the last name and the label is explicitly defined, return it.
+			if ($relIndex === $countRelNames) {
+				$labels = $relStaticClass->attributeLabels();
+				if (isset($labels[$relName]))
+					return $labels[$relName];
+			}
+
+			// Get the relations for the current class.
+			$relations = $relStaticClass->relations();
+
+			// Check if there is (not) a relation with the current name.
+			if (!isset($relations[$relName])) {
+				// There is no relation with the current name. It is an attribute or a property.
+				// It must be the last name.
+				if ($relIndex === $countRelNames) {
+					// Check if it is an attribute.
+					$attributeNames = $relStaticClass->attributeNames();
+					$isAttribute = in_array($relName, $attributeNames);
+					// If it is an attribute and the attribute is a FK and $useRelationLabel is true, return the related AR label.
+					if ($isAttribute && $useRelationLabel && (($relData = self::findRelation($relStaticClass, $relName)) !== null)) {
+						// This will always be a BELONGS_TO, then singular.
+						return self::model($relData[3])->label(1);
+					} else {
+						// There's no label for this attribute or property, generate one.
+						return $relStaticClass->generateAttributeLabel($relName);
+					}
+				} else {
+					// It is not the last item.
+					throw new InvalidArgumentException(Yii::t('giix', 'The attribute "{attribute}" should be the last name.', array('{attribute}' => $relName)));
+				}
+			}
+
+			// Change the current class name: walk to the next relation.
+			$relClassName = $relations[$relName][1];
+		}
+
+		// Automatically apply the correct number if requested.
+		if ($n === null) {
+			// Get the type of the last relation from the last but one class.
+			$relType = $relations[end($relNames)][0];
+
+			switch ($relType) {
+				case self::HAS_MANY:
+				case self::MANY_MANY:
+					$n = 2;
+					break;
+				case self::BELONGS_TO:
+				case self::HAS_ONE:
+				default :
+					$n = 1;
+			}
+		}
+
+		// Get and return the label from the related AR.
+		return self::model($relClassName)->label($n);
+	}
+
+	/**
+	 * Returns the text label for the specified attribute.
+	 * Also supported: relations and chained relations in the form of "post.author.name".
+	 * This method just calls {@link getRelationLabel}.
+	 * @param string $attribute The attribute name.
+	 * @return string The attribute label.
+	 * @see CActiveRecord::getAttributeLabel
+	 * @see getRelationLabel
+	 */
+	public function getAttributeLabel($attribute) {
+		return $this->getRelationLabel($attribute);
+	}
+
+	/**
 	 * The specified column(s) is(are) the responsible for the
 	 * string representation of the model instance.
 	 * The column is used in the {@link __toString} default implementation.
@@ -44,9 +173,9 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * string representation by overriding this method.
 	 * This method must be overriden in each model class
 	 * that extends this class.
-	 * @return string|array the name of the representing column for the table (string) or
+	 * @return string|array The name of the representing column for the table (string) or
 	 * the names of the representing columns (array).
-	 * @see {@link __toString}.
+	 * @see __toString
 	 */
 	public static function representingColumn() {
 		return null;
@@ -60,16 +189,19 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * When you overwrite this method, all model attributes used to build
 	 * the string representation of the model must be specified in
 	 * {@link representingColumn}.
-	 * @return string the string representation for the model instance.
+	 * @return string The string representation for the model instance.
+	 * @see representingColumn
 	 */
 	public function __toString() {
 		$representingColumn = $this->representingColumn();
 
-		if (($representingColumn === null) || (is_array($representingColumn) && ($representingColumn === array())))
-			if ($this->getTableSchema()->primaryKey !== null)
+		if (($representingColumn === null) || ($representingColumn === array()))
+			if ($this->getTableSchema()->primaryKey !== null) {
 				$representingColumn = $this->getTableSchema()->primaryKey;
-			else
-				$representingColumn=$this->getTableSchema()->columnNames[0];
+			} else {
+				$columnNames = $this->getTableSchema()->getColumnNames();
+				$representingColumn = $columnNames[0];
+			}
 
 		if (is_array($representingColumn)) {
 			$part = '';
@@ -93,19 +225,19 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * <li>Detects and selects the representing column.</li>
 	 * <li>Detects and selects the PK attribute.</li>
 	 * </ul>
-	 * @param string|array $attributes the names of the attributes to be selected.
+	 * @param string|array $attributes The names of the attributes to be selected.
 	 * Optional. If not specified, the {@link representingColumn} will be used.
-	 * @param boolean $withPk specifies if the primary keys will be selected.
-	 * @param mixed $condition query condition or criteria.
-	 * @param array $params parameters to be bound to an SQL statement.
-	 * @return array list of active records satisfying the specified condition. An empty array is returned if none is found.
+	 * @param boolean $withPk Specifies if the primary keys will be selected.
+	 * @param mixed $condition Query condition or criteria.
+	 * @param array $params Parameters to be bound to an SQL statement.
+	 * @return array List of active records satisfying the specified condition. An empty array is returned if none is found.
 	 */
 	public function findAllAttributes($attributes = null, $withPk = false, $condition='', $params=array()) {
 		$criteria = $this->getCommandBuilder()->createCriteria($condition, $params);
 		if ($attributes === null)
 			$attributes = $this->representingColumn();
 		if ($withPk) {
-			$pks = self::model(get_class($this))->tableSchema->primaryKey;
+			$pks = self::model(get_class($this))->getTableSchema()->primaryKey;
 			if (!is_array($pks))
 				$pks = array($pks);
 			if (!is_array($attributes))
@@ -118,11 +250,11 @@ abstract class GxActiveRecord extends CActiveRecord {
 
 	/**
 	 * Extracts and returns only the primary keys values from each model.
-	 * @param GxActiveRecord|array $model a model or an array of models.
-	 * @param boolean $forceString whether pk values on composite pk tables
+	 * @param GxActiveRecord|array $model A model or an array of models.
+	 * @param boolean $forceString Whether pk values on composite pk tables
 	 * should be compressed into a string. The values on the string will by
-	 * separated by {@link $pkSeparator}.
-	 * @return string|array the pk value as a string (for single pk tables) or
+	 * separated by {@link pkSeparator}.
+	 * @return string|array The pk value as a string (for single pk tables) or
 	 * array (for composite pk tables) if one model was specified or
 	 * an array of strings or arrays if multiple models were specified.
 	 */
@@ -130,7 +262,7 @@ abstract class GxActiveRecord extends CActiveRecord {
 		if ($model === null)
 			return null;
 		if (!is_array($model)) {
-			$pk = $model->primaryKey;
+			$pk = $model->getPrimaryKey();
 			if ($forceString && is_array($pk))
 				$pk = implode(self::$pkSeparator, $pk);
 			return $pk;
@@ -152,8 +284,8 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * The method supports single PK also.
 	 * @param mixed $pk The PK value or array of PK values.
 	 * @return array The array of PK values, indexed by column name.
-	 * {@see CActiveRecord::findByPk}
-	 * @throws InvalidArgumentException if the count of values doesn't match the
+	 * @see CActiveRecord::findByPk
+	 * @throws InvalidArgumentException If the count of values doesn't match the
 	 * count of columns in the composite PK.
 	 */
 	public function fillPkColumnNames($pk) {
@@ -203,7 +335,7 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * Batch is only supported for deletes.</li>
 	 * </ul>
 	 * @return boolean Whether the saving succeeds.
-	 * @see {@link pivotModels}.
+	 * @see pivotModels
 	 */
 	public function saveWithRelated($relatedData, $runValidation = true, $attributes = null, $options = array()) {
 		// Merge the specified options with the default options.
@@ -220,9 +352,9 @@ abstract class GxActiveRecord extends CActiveRecord {
 
 		try {
 			// Start the transaction if required.
-			if ($options['withTransaction'] && ($this->dbConnection->currentTransaction === null)) {
+			if ($options['withTransaction'] && ($this->getDbConnection()->getCurrentTransaction() === null)) {
 				$transacted = true;
-				$transaction = $this->dbConnection->beginTransaction();
+				$transaction = $this->getDbConnection()->beginTransaction();
 			} else
 				$transacted = false;
 
@@ -257,16 +389,18 @@ abstract class GxActiveRecord extends CActiveRecord {
 
 	/**
 	 * Saves the MANY_MANY relations of this record.
-	 * Internally used by {@link saveWithRelated}.
-	 * See {@link saveWithRelated} for details.
+	 * Internally used by {@link saveWithRelated} and {@link saveMultiple}.
+	 * See {@link saveWithRelated} and {@link saveMultiple} for details.
 	 * @param array $relatedData The relation data in the format returned by {@link GxController::getRelatedData}.
 	 * @param boolean $runValidation Whether to perform validation before saving the record.
 	 * @param boolean $batch Whether to try to do the deletes and inserts in batch.
 	 * While batches may be faster, using active record instances provides better control, validation, event support etc.
 	 * Batch is only supported for deletes.
 	 * @return boolean Whether the saving succeeds.
-	 * @see {@link saveWithRelated}.
+	 * @see saveWithRelated
+	 * @see saveMultiple
 	 * @throws CDbException If this record is new.
+	 * @throws Exception If this active record has composite PK.
 	 */
 	protected function saveRelated($relatedData, $runValidation = true, $batch = true) {
 		if (empty($relatedData))
@@ -291,7 +425,7 @@ abstract class GxActiveRecord extends CActiveRecord {
 				$relatedFkName = $matches[3];
 			}
 			// Get the primary key value of the main model.
-			$thisPkValue = $this->primaryKey;
+			$thisPkValue = $this->getPrimaryKey();
 			if (is_array($thisPkValue))
 				throw new Exception(Yii::t('giix', 'Composite primary keys are not supported.'));
 			// Get the current related models of this relation and map the current related primary keys.
@@ -338,8 +472,6 @@ abstract class GxActiveRecord extends CActiveRecord {
 				if ($batch) {
 					// Delete in batch mode.
 					if ($pivotModelStatic->deleteByPk($deleteMap) !== count($deleteMap)) {
-						if ($transacted)
-							$transaction->rollback();
 						return false;
 					}
 				} else {
@@ -347,8 +479,6 @@ abstract class GxActiveRecord extends CActiveRecord {
 					foreach ($deleteMap as $value) {
 						$pivotModel = GxActiveRecord::model($pivotClassName)->findByPk($value);
 						if (!$pivotModel->delete()) {
-							if ($transacted)
-								$transaction->rollback();
 							return false;
 						}
 					}
@@ -357,10 +487,8 @@ abstract class GxActiveRecord extends CActiveRecord {
 			// Insert the new data.
 			foreach ($insertMap as $value) {
 				$pivotModel = new $pivotClassName();
-				$pivotModel->attributes = $value;
+				$pivotModel->setAttributes($value);
 				if (!$pivotModel->save($runValidation)) {
-					if ($transacted)
-						$transaction->rollback();
 					return false;
 				}
 			}
@@ -414,8 +542,9 @@ abstract class GxActiveRecord extends CActiveRecord {
 	 * Defaults to false.</li>
 	 * </ul>
 	 * @return boolean Whether the saving succeeds.
-	 * @see {@link CActiveRecord::save}.
-	 * @see {@link saveWithRelated}.
+	 * @throws Exception If "detectRelations" is true and the related model is not found.
+	 * @see CActiveRecord::save
+	 * @see saveWithRelated
 	 */
 	public static function saveMultiple($models, $runValidation = true, $options = array()) {
 		// Merge the specified options with the default options.
@@ -446,9 +575,9 @@ abstract class GxActiveRecord extends CActiveRecord {
 
 		try {
 			// Start the transaction if required.
-			if ($options['withTransaction'] && ($this->dbConnection->currentTransaction === null)) {
+			if ($options['withTransaction'] && ($this->getDbConnection()->getCurrentTransaction() === null)) {
 				$transacted = true;
-				$transaction = $this->dbConnection->beginTransaction();
+				$transaction = $this->getDbConnection()->beginTransaction();
 			} else
 				$transacted = false;
 
@@ -460,7 +589,9 @@ abstract class GxActiveRecord extends CActiveRecord {
 					$modelOptions = array_merge($defaultModelOptions, $modelItem['modelOptions']);
 				else
 					$modelOptions = $defaultModelOptions;
-				$modelOptions['runValidation'] = ($runValidation === null) ? $modelOptions['runValidation'] : $runValidation;
+				// If set, the global "runValidation" value overrides the model setting.
+				if ($runValidation !== null)
+					$modelOptions['runValidation'] = $runValidation;
 
 				// Detect automatically the new active record and fill in the data for its FK.
 				if ($options['detectRelations']) {
@@ -476,7 +607,7 @@ abstract class GxActiveRecord extends CActiveRecord {
 									// We take the related model class name.
 									$relatedClassName = $relationData[1];
 									// And look for it in the array of the already saved models.
-									if (array_key_exists($relatedClassName, $savedModels)) {
+									if (isset($savedModels[$relatedClassName])) {
 										// We assume that this is the related model and
 										// we assume that the relation is to the PK.
 										$model->$fkName = $savedModels[$relatedClassName]->getPrimaryKey();
@@ -523,6 +654,46 @@ abstract class GxActiveRecord extends CActiveRecord {
 			throw $ex;
 		}
 		return true;
+	}
+
+	/**
+	 * Finds the relation of the specified column.
+	 * @param string|GxActiveRecord $modelClass The model class name or a model instance.
+	 * @param string|CDbColumnSchema $column The column.
+	 * @return array The relation. The array will have 3 values:
+	 * 0: the relation name,
+	 * 1: the relation type (will always be GxActiveRecord::BELONGS_TO),
+	 * 2: the foreign key (will always be the specified column),
+	 * 3: the related active record class name.
+	 * Or null if no matching relation was found.
+	 */
+	public static function findRelation($modelClass, $column) {
+		if (is_string($modelClass))
+			$staticModelClass = self::model($modelClass);
+		else
+			$staticModelClass = self::model(get_class($modelClass));
+
+		if (is_string($column))
+			$column = $staticModelClass->getTableSchema()->getColumn($column);
+
+		if (!$column->isForeignKey)
+			return null;
+
+		$relations = $staticModelClass->relations();
+		// Find the relation for this attribute.
+		foreach ($relations as $relationName => $relation) {
+			// For attributes on this model, relation must be BELONGS_TO.
+			if (($relation[0] === GxActiveRecord::BELONGS_TO) && ($relation[2] === $column->name)) {
+				return array(
+					$relationName, // the relation name
+					$relation[0], // the relation type
+					$relation[2], // the foreign key
+					$relation[1] // the related active record class name
+				);
+			}
+		}
+		// None found.
+		return null;
 	}
 
 }

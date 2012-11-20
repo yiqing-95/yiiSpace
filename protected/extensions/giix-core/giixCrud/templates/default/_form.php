@@ -34,7 +34,7 @@ $form = $this->beginWidget('GxActiveForm', array(
 
 <?php foreach ($this->getRelations($this->modelClass) as $relation): ?>
 <?php if ($relation[1] == GxActiveRecord::HAS_MANY || $relation[1] == GxActiveRecord::MANY_MANY): ?>
-		<label><?php echo $this->pluralize($this->class2name($relation[3])); ?></label>
+		<label><?php echo '<?php'; ?> echo GxHtml::encode($model->getRelationLabel('<?php echo $relation[0]; ?>')); ?></label>
 		<?php echo '<?php ' . $this->generateActiveRelationField($this->modelClass, $relation) . "; ?>\n"; ?>
 <?php endif; ?>
 <?php endforeach; ?>

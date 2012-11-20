@@ -1,7 +1,7 @@
 基于Yii的sns 测试项目
 =============================
 
-感性选择Yii 作为您的web应用程序框架.
+感谢选择Yii 作为您的web应用程序框架.
 
 
 安装
@@ -28,30 +28,11 @@ the requirements by Yii, assuming "YiiPath" is where Yii is installed:
 QUICK START
 -----------
 
-Yii comes with a command line tool called "yiic" that can create
-a skeleton Yii application for you to start with.
-
-On command line, type in the following commands:
-
-        $ cd YiiPath/framework                (Linux)
-        cd YiiPath\framework                  (Windows)
-
-        $ ./yiic webapp ../testdrive          (Linux)
-        yiic webapp ..\testdrive              (Windows)
-
-The new Yii application will be created at "YiiPath/testdrive".
-You can access it with the following URL:
-
-        http://hostname/YiiPath/testdrive/index.php
-
+等待开发差不多了 在考虑提供自动安装功能 现在只能手工安装 ^-^
 
 WHAT's NEXT
 -----------
 
-Please visit the project website for tutorials, class reference
-and join discussions with other Yii users.
+.....
 
 
-
-The Yii Developer Team
-http://www.yiiframework.com

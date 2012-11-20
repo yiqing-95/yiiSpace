@@ -6,8 +6,14 @@
  * Time: 下午1:35
  * To change this template use File | Settings | File Templates.
  */
-class UserProfile extends CWidget
+class UserProfile extends YsSectionWidget
 {
+
+    /**
+     * @var string
+     */
+    public $template = '{top}';
+
     /**
      * @var User|int
      * User model or user_id
@@ -33,12 +39,15 @@ class UserProfile extends CWidget
        } elseif($this->user){
           // $this->_userModel = User::model()->findByPk($this->user);
            Yii::import('user.UserModule');
+           //  用下面这个方法 可以保证同一个请求域只有一个个user实例
+           // 这个方法 一般可以用来返回当前用户（session对应的那个） 和当前访问的谁$_GET['u']
+           // 即 空间的主人
            $this->_userModel = UserModule::user($this->user);
        }
     }
 
-    public function run()
-    {
+
+    public function renderTop(){
         $model = $this->_userModel;
         $this->render('_top', array(
                 'model' => $model,
@@ -55,4 +64,15 @@ class UserProfile extends CWidget
         ));
     }
 
+    public function renderFriends(){
+
+    }
+
+    public function renderFans(){
+
+    }
+
+    public function renderLatestVisitors(){
+
+    }
 }
