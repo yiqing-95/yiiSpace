@@ -34,6 +34,9 @@ class YsSectionWidget extends CWidget
      */
     public function run()
     {
+        if(empty($this->template)){
+            return ;
+        }
         echo CHtml::openTag($this->tagName, $this->htmlOptions) . "\n";
 
         $this->renderContent();

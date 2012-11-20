@@ -173,9 +173,20 @@ class StatusController extends BaseStatusController
         $dataProvider->criteria = array(
             'condition'=>"profile={$user}" ,
         );
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+
+
+        if(Yii::app()->request->getIsAjaxRequest()){
+            $this->layout = false ;
+            $this->renderPartial('index', array(
+                'dataProvider' => $dataProvider,
+            ),false,true
+            );
+
+        }else{
+            $this->render('index', array(
+                'dataProvider' => $dataProvider,
+            ));
+        }
     }
 
     /**

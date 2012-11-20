@@ -5,21 +5,20 @@
  */
 ?>
 <?php
-echo "<?php\n";
-$label = $this->pluralize($this->class2name($this->modelClass));
-echo "\$this->breadcrumbs = array(
-	Yii::t('controller', '$label'),
+echo "<?php\n
+\$this->breadcrumbs = array(
+	{$this->modelClass}::label(2),
 	Yii::t('app', 'Index'),
 );\n";
 ?>
 
 $this->menu = array(
-	array('label'=>Yii::t('app', 'Create') . ' <?php echo $this->modelClass; ?>', 'url' => array('create')),
-	array('label'=>Yii::t('app', 'Manage') . ' <?php echo $this->modelClass; ?>', 'url' => array('admin')),
+	array('label'=>Yii::t('app', 'Create') . ' ' . <?php echo $this->modelClass; ?>::label(), 'url' => array('create')),
+	array('label'=>Yii::t('app', 'Manage') . ' ' . <?php echo $this->modelClass; ?>::label(2), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo $label; ?></h1>
+<h1><?php echo '<?php'; ?> echo GxHtml::encode(<?php echo $this->modelClass; ?>::label(2)); ?></h1>
 
 <?php echo "<?php"; ?> $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

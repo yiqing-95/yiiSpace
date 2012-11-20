@@ -1,0 +1,118 @@
+http://www.yiiframework.com/forum/index.php/topic/4330-users-online-feature/page__p__114267__hl__online++u+er#entry114267
+
+BY :  jacmoe
+Posted 10 September 2011 - 05:16 AM
+Migration:
+        $this->createTable('{{visitor}}', array(
+                'id' => 'pk',
+                'user_id' => 'integer NOT NULL',
+                'last_activity' => 'timestamp',
+                ), "ENGINE=InnoDB DEFAULT CHARSET=utf8");
+        $this->createIndex('fk_user_user_id', '{{visitor}}', 'user_id');
+        $this->addForeignKey('fk_user_user_id', '{{visitor}}', 'user_id', '{{user}}', 'id');
+
+Creates a table named 'visitor' with id, user_id and last_activity timestamp field.
+
+Base controller:
+        public $users_online = null;
+        public $visitorTableName = '{{visitor}}';
+
+        protected function beforeAction($action)
+        {
+                if(isset(Yii::app()->user->id)) {
+                $user_id = Yii::app()->user->id;
+
+                //TODO: Don't do this every time the app runs??
+
+                $sql = "SELECT user_id FROM {$this->visitorTableName} WHERE user_id=:user_id";
+                if (Yii::app()->db->createCommand($sql)->bindValue(':user_id', $user_id)->queryScalar() === false)
+                        $sql = "INSERT INTO {$this->visitorTableName} (user_id, last_activity) VALUES (:user_id, :last_activity)";
+                else
+                        $sql = "UPDATE {$this->visitorTableName} SET last_activity=:last_activity WHERE user_id=:user_id";
+                Yii::app()->db->createCommand($sql)->bindValue(':user_id', $user_id)->bindValue(':last_activity', date('Y-m-d H:i:s'))->execute();
+                }
+
+                $users = Yii::app()->db->createCommand()
+                ->select('u.id, username, TIMESTAMPDIFF(MINUTE, last_activity, UTC_TIMESTAMP())')
+                ->from('{{usergroups_user}} u')
+                ->join("{$this->visitorTableName} v", 'u.id=v.user_id')
+                ->wHERE('TIMESTAMPDIFF(MINUTE, last_activity, UTC_TIMESTAMP()) < 5')
+                ->queryAll();
+
+                $this->users_online = $users;
+
+                return true;
+        }
+
+If Yii::app()->user->id is not null, update the last_activity timestamp for that user.
+Then - regardless of the user being null or not, fetch the list of users which have been active for less than 5 minutes and assign it to $this->users_online.
+
+In a clip/widget/view/controller:
+                        <h2>Users Online</h2>
+                        <?php
+                if (isset($this->users_online)) {
+                foreach ($this->users_online as $user)
+                        if (isset($user)) {
+                        echo '<b>' . ucfirst($user['username']) . '</b> <small>(';
+                        echo 'Idle for ' . $user['TIMESTAMPDIFF(MINUTE, last_activity, UTC_TIMESTAMP())'] . ' minutes)</small><br/>';
+                        }
+                } else {
+                echo 'none';
+                }
+                        ?>
+
+
+It should echo something like this:
+Quote
+Users Online
+Admin (Idle for 2 minutes)
+
+If the user has been idle for more than 5 minutes, he/she is removed from the list of active users.
+"Less noise - more signal"
+
+一个页面不能停留超过多长时间 超过了就踢掉该用户：
+
+Hi,
+that's very true
+Here's another idea.
+You can create pinging mechanism: create with javascript invisible image tag and change its src every 30 seconds, tHerefore requesting url with GET method, change it a couple of times (eg. 30 times, that will give user 15 minutes to be on one page, maybe s/he is reading?) and after that you can safely mark user offline. So, in worst case, you end up making about 30 requests and 1 db query
+Implementation:
+<script>
+$(document).ready(function(){
+    var repeat=30;
+    var timeout=1000;
+    function getUrl(r){
+        return 'http://example.com/user/ping?repeat=' + r;
+    }
+    function ping(){
+        if(repeat>=0){
+            $img.attr('src', getUrl(repeat));
+            repeat--;
+            setTimeout(ping, timeout);
+        }
+    }
+    var $img=$('<img/>')
+         .css({display: 'none', height: 0, width: 0})
+         .appendTo('body');
+    setTimeout(ping, timeout);
+});
+</script>
+
+on server side:
+// UserController.php
+public function actionPing($repeat)
+{
+    if($repeat==0)
+        Yii::app()->getUser()->setUserOffline();
+}
+// WebUser.php
+public function setUserOffline()
+{
+    $db=Yii::app()->getDb();
+    $db->createCommand()->update('user', array('status'=>'0'), 'id=?', array($this->getId()));
+}
+
+
+another idea is to use xmpp, but for that jabber server is required
+
+Cheers

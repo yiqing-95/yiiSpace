@@ -60,7 +60,7 @@ class EMetabox extends CWidget
             $this->htmlOptions['class'] = 'metabox';
 
         if ($this->loadingIndicator == null)
-            $this->loadingIndicator = CHtml::image(self::$_assets . '/loader.gif', 'loading...', array('class' => 'loader hide'));
+            $this->loadingIndicator = CHtml::image(self::$_assets . '/loader.gif', 'loading...');
 
         $this->url = CHtml::normalizeUrl($this->url);
 
@@ -70,20 +70,24 @@ class EMetabox extends CWidget
     }
 
     /**
-     *
+     * Register extension assets
      */
     public function run()
     {
         $id = $this->id;
         echo CHtml::tag('div', $this->htmlOptions, $this->initHtml);
-        echo $this->loadingIndicator;
 
-        // Register extension assets
+        /* @var $cs CClientScript */
         $cs = Yii::app()->getClientScript();
 
+        $min = YII_DEBUG ? '.min' : '';
+
         // Register jQuery scripts
+        $cs->registerCoreScript('jquery');
+        $cs->registerCoreScript('bbq');
+
         $options = CJavaScript::encode($this->options);
-        $cs->registerScriptFile(self::$_assets . '/jquery.metabox.js', CClientScript::POS_END);
+        $cs->registerScriptFile(self::$_assets . '/jquery.metabox' . $min . '.js');
         $cs->registerScript('metabox#' . $id, "$('#{$id}').metabox({$options});", CClientScript::POS_READY);
     }
 
