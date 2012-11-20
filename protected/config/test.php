@@ -13,5 +13,6 @@ return CMap::mergeArray(
 			),
 			*/
 		),
+        'preload'=>false,
 	)
 );

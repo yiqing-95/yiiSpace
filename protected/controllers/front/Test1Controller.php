@@ -5,6 +5,31 @@
 class Test1Controller extends Controller
 {
 
+    public function actionTestHookService(){
+        YsHookService::addHook('app','test','app','app_onAppTest','yes');
+    }
+
+    /**
+     * @Desc('生成php unit运行脚本')
+     */
+    public function actionGenPhpUnitCmd()
+    {
+        $testDirPathAlias = 'application.tests';
+        $testDirPath = Yii::getPathOfAlias($testDirPathAlias);
+        $diskRoot = $testDirPath[0];
+
+        $eol = PHP_EOL;
+
+        $cmdContent = <<<RUN_PHPUNIT
+       {$diskRoot} {$eol}
+       cd {$testDirPath} {$eol}
+       phpunit unit/HelloWordTest.php {$eol}
+RUN_PHPUNIT;
+
+        $saveToPath = Yii::app()->getRuntimePath() . DIRECTORY_SEPARATOR . 'phpUnit.bat.template';
+        file_put_contents($saveToPath, $cmdContent);
+        echo file_get_contents($saveToPath);
+    }
 
     public function actionYsBox()
     {

@@ -10,7 +10,8 @@ class PublicController extends Controller
      */
     public function actionTestThumb(){
        // 最后面的 _200x300 将被换掉
-        echo CHtml::image(bu("/public/thumbs/images/banner1.jpg_200x300.jpg"));
+      //  echo CHtml::image(bu("/public/thumbs/public/images/banner1.jpg_200x300.jpg"));
+        echo Ys::thumbUrl('/public/images/banner1.jpg',200);
     }
     public function actionThumbs()
     {
@@ -18,7 +19,7 @@ class PublicController extends Controller
          // $request = str_replace(DIRECTORY_SEPARATOR . 'thumbs', '', Yii::app()->request->requestUri);
          // $resourcesPath = Yii::getPathOfAlias('webroot') . $request;
 
-        $request = str_replace('/thumbs', '', Yii::app()->request->requestUri);
+        $request = str_replace('/public/thumbs', '', Yii::app()->request->requestUri);
 
         $resourcesPath = Yii::getPathOfAlias('webroot') . substr($request,strlen(bu())) ;
         $targetPath = Yii::getPathOfAlias('webroot') . substr(Yii::app()->request->requestUri,strlen(bu()));
@@ -42,7 +43,7 @@ class PublicController extends Controller
 
             $dirname = dirname($targetPath);
 
-             die($matches[0]);
+            // die($matches[0]);
 
             if (!is_dir($dirname))
                 mkdir($dirname, 0775, true);

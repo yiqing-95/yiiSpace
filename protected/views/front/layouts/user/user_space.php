@@ -163,7 +163,7 @@ if (Yii::app()->user->getIsGuest()):
                         ),
                         'buttons' => array(
                             array('label' => '日志', 'url' => '#'),
-                            array('label' => '相册', 'url' => '#'),
+                            array('label' => '相册', 'url' => array('/album/member','u'=>$_GET['u'])),
                             array('label' => '微博', 'url' => '#'),
                             array('label' => '收藏', 'url' => '#'),
                             array('label' => '分享', 'url' => '#'),

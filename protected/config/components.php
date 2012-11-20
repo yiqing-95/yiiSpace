@@ -79,6 +79,14 @@ return array(
     'cache'=>array(
         'class'=>'system.caching.CFileCache',
     ),
+
+    'messages' => array (
+        'class'=>'application.components.ExPhpMessageSource',
+        // Pending on core: http://code.google.com/p/yii/issues/detail?id=2624
+        'extensionBasePaths' => array(
+            'giix' => 'ext.giix.messages', // giix messages directory.
+        ),
+    ),
     //................{yii standard components /}....................................................................
 
     //................{ components  special for this app}....................................................................

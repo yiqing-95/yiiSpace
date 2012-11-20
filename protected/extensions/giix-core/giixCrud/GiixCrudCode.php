@@ -15,7 +15,6 @@ Yii::import('ext.giix-core.helpers.*');
  * GiixCrudCode is the model for giix crud generator.
  *
  * @author Rodrigo Coelho <rodrigo@giix.org>
- * @since 1.0
  */
 class GiixCrudCode extends CrudCode {
 
@@ -121,8 +120,9 @@ class GiixCrudCode extends CrudCode {
 	 * the model relation.
 	 * @param string $modelClass The model class name.
 	 * @param array $relation The relation details in the same format
-	 * used by {@link getRelations()}.
+	 * used by {@link getRelations}.
 	 * @return string The source code line for the relation field.
+	 * @throws InvalidArgumentException If the relation type is not HAS_ONE, HAS_MANY or MANY_MANY.
 	 */
 	public function generateActiveRelationField($modelClass, $relation) {
 		$relationName = $relation[0];
@@ -174,7 +174,7 @@ class GiixCrudCode extends CrudCode {
 			$relatedControllerName = strtolower($relatedModelClass[0]) . substr($relatedModelClass, 1);
 
 			return "array(
-			'label' => '{$relatedModelClass}',
+			'name' => '{$relationName}',
 			'type' => 'raw',
 			'value' => \$model->{$relationName} !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx(\$model->{$relationName})), array('{$relatedControllerName}/view', 'id' => GxActiveRecord::extractPkValue(\$model->{$relationName}, true))) : null,
 			)";
@@ -276,6 +276,7 @@ class GiixCrudCode extends CrudCode {
 
 	/**
 	 * Finds the relation of the specified column.
+	 * Note: There's a similar method in the class GxActiveRecord.
 	 * @param string $modelClass The model class name.
 	 * @param CDbColumnSchema $column The column.
 	 * @return array The relation. The array will have 3 values:
