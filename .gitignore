@@ -69,3 +69,6 @@ Session.vim
 public/thumbs/
 protected/runtime/
 assets/
+#  qq 纯真ip库
+
+protected/vendors/ip/
