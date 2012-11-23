@@ -23,7 +23,6 @@ class YsWebApplication extends CWebApplication
     }
 
 
-
     /**
      * @param int $status
      * @param bool $exit
@@ -50,9 +49,45 @@ class YsWebApplication extends CWebApplication
 
     }
 
-    public function createUrl($route,$params=array(),$ampersand='&')
+    public function createUrl($route, $params = array(), $ampersand = '&')
     {
-         Yii::log($route,CLogger::LEVEL_INFO);
-        return $this->getUrlManager()->createUrl($route,$params,$ampersand);
+        // Yii::log($route,CLogger::LEVEL_INFO);
+        $hooks = $this->getCreateUrlHooks();
+        if(!empty($hooks)){
+            if(isset($hooks[$route])){
+                // 允许底层 其他模块附加参数
+              $params =  $this->evaluateExpression($hooks[$route],array('route'=>$route,'params'=>$params));
+            }
+        }
+
+        return $this->getUrlManager()->createUrl($route, $params, $ampersand);
+    }
+
+    /**
+     * @var array
+     */
+    protected  $createUrlHooks;
+    /**
+     * @return array
+     */
+    protected function getCreateUrlHooks()
+    {
+        if(!isset($this->createUrlHooks)){
+            $hooks = YsHookService::getHooks('app', 'createUrl');
+            $urlExpressions = array();
+            foreach ($hooks as $hook) {
+                $content = CJSON::decode($hook->hook_content);
+                if (is_array($routes = $content['route'])) {
+                    foreach ($routes as $route) {
+                        $urlExpressions[$route] = $content['paramsExpression'];
+                    }
+                } else {
+                    $urlExpressions[$content['route']] = $content['paramsExpression'];
+                }
+
+            }
+            $this->createUrlHooks = $urlExpressions ;
+        }
+        return $this->createUrlHooks;
     }
 }
