@@ -5,6 +5,21 @@
 class Test1Controller extends Controller
 {
 
+
+    public function actionGetIpLocation(){
+          Yii::import('application.vendors.Iplocation');
+         $ip = new Iplocation2(Yii::getPathOfAlias('application.vendors.ip') . DIRECTORY_SEPARATOR . 'qqwry.dat');
+        $r = $ip->getlocation(WebUtil::getIp());
+        WebUtil::printCharsetMeta();
+        print_r($r);
+        //$taoBaoIpUrl = 'http://ip.taobao.com/service/getIpInfo.php?ip=121.127.205.7';
+        /*
+        $taoBaoIpUrl = 'http://ip.taobao.com/service/getIpInfo.php?ip=';
+        $rc = new RestClient();
+        print_r($rc->get($taoBaoIpUrl));
+        */
+    }
+
     public function actionTestHookService(){
         YsHookService::addHook('app','test','app','app_onAppTest','yes');
     }

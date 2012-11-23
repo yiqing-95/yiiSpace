@@ -8,6 +8,11 @@ note
 
 > this project is only for chinese user
 
+git 协作
+=========
+     https://help.github.com/articles/using-pull-requests
+      http://git-scm.com/book/zh(书籍)
+
 ******************************************************************
 
   希望加入的朋友 请进群：posa（119500989） 注意是参与群 不是讨论群 因为群人数有限

@@ -1,0 +1,60 @@
+版权声明：转载时请以超链接形式标明文章原始出处和作者信息及本声明http://tugen.blogbus.com/logs/54793301.html
+自从SNS热以来，许多技术人员开始钻研SNS技术，模仿Facebook去实现一些有意思的功能，这里仅以我的经验介绍一些功能的架构与具体实现。
+查阅百度百科，SNS全称Social Networking Services，即社会性网络服务；它主要是一个人际关系的平台，具有行为信息(event)的传播性，行为的群体性。每一个用户的行为(event)都可以被记录、传播，进而凝聚具有共性的用户形成社群，导致群体性行为的发生。要架构SNS平台，从需求上来看，主要是要能把用户的行为浓缩成一个简洁的信息（惯例称之feed），根据用户设定的传播范围，通过用户的人际进行传播。用户也可以根据自己的喜好来建立与别的用户的关系（关注或成为朋友），然后根据喜好和人际关系的密切度，来设定接收别人的feed的类型和密度；那么，这里就要解决几个数据之间的关系：
+1、人际关系；一般人与人不外乎：有关系、没关系；而有关系在SNS中，又可以分为：关注，朋友；其中“关注”即是因为对某人感兴趣（因为对方有让人感兴趣的地方），想知道对方的行为和状态，进而“订阅对方的feed”的行为的名称；
+2、feed与人的关系； feed 是用户的行为产生的（谁产生，作用于谁），用户可以设定自己的行为可以被哪些人看见（可见权限）；而这个“哪些人”并不是具体的谁谁谁，而是针对人际关系的前提下而言的。
+3、范围，指用户设定的接收范围（属于过滤），这个“范围”是相对人际关系而言的，范围也不考虑级别关系（否则整个系统就更加复杂了）。
+4、密度，指获得feedlist时某些类型的feed出现的概率，所以“密度”是针对feed的“类型”而言的。
+
+好了概念和需求方面的阐述到此结束，以下来一一定义：
+1、人际关系在数据上的定义如下：
+RELATIONS_FOLLOW_UP = 1 （关注关系，二进制是 00000001）
+RELATIONS_FRIEND = 16 （朋友关系， 二进制是 00010000）
+RELATIONS_SELF = 128 （自己，二进制是 10000000 ）
+
+2、feed、内容(任何SNS里的内容元素，如日志、照片、投票等)的可见度
+VIEW_RANK_PUBLIC = 0 （公开可见的，二进制是 00000000， 比人际关系中的关注还要小）
+VIEW_RANK_FRIEND = 16 （朋友可见，二进制 00010000， 数字值上与 RELATIONS_FRIEND 相等）
+VIEW_RANK_SECRET = 128 （保密的， 二进制 10000000， 数值上与 RELATIONS_SELF 相等）
+
+通过以上数据定义，我们可以看出内容可见性（VIEW RANK）对于人际关系（ RELATIONS ）是有对应关系的；实际上我这里定义的含义是当 RELACTIONS 大于等于 VIEW RANK 时，feed（或内容）是可见的（也就是可以被从数据库中检索出来）。
+简单举个例子描述：
+
+#表 relations(uid, target_uid, r)
+#表 feedlist(fid, uid, title, view_rank, message)
+SELECT f.* FROM feedlist f, relations a WHERE a.r >= f.view_rank AND a.target_uid=:uid
+#其中:uid 为要获得feed list的用户的uid
+#其它内容元素的表与 relations 表的关系查询也是类似
+
+其中feed的view rank值可能是根据内容（如日志）发布的时候的设定，也可能是用户的统一设置来决定的。
+
+3、范围(range)
+VIEW_RANGE_SELF = 1 （二进制 00000001）
+VIEW_RANGE_FOLLOW_UP = 2 （二进制 00000010）
+VIEW_RANGE_FRIEND = 4 （二进制 00000100）
+VIEW_RANGE_TO_ME = 8 （二进制 00001000，这个要注意了，有的时候，某些别的用户的行为是作用与自己的，这个就不可以用人际关系范来限制了）
+这里考虑了位运算的组合，例如一个范围是自己的与关注的，则为：
+
+VIEW_RANGE_SELF | VIEW_RANGE_FOLLOW_UP = 3 （二进制 00000011）
+
+那么，如果我们定义一个函数 get_feed_list($view_range)，可以逐个与上面的几个产量“与运算”来判断范围组合，如
+
+function get_feed_list($view_range)
+{
+//f : table feedlist
+//a : table relations
+$sql = '';
+if($view_range & VIEW_RANGE_SELF == VIEW_RANGE_SELF) $sql .= ' OR f.uid= {current_visitor.uid}';
+if($view_range & VIEW_RANGE_FRIEND == VIEW_RANGE_FRIEND) $sql .= ' OR ( f.uid=a.target_uid AND a.uid={current_visitor.uid} )';
+}
+
+4、密度
+每个 feed 产生的时候，都有一个随机值,范围是 1 – 100，在 feed 的相关表结构建模的时候，加入这个字段，假设叫作“音量(volume)”，随机的音量值。用户可以设定自己对每种内容的音量开关的大小，数值范围是 0-100 ，这样就起到根据开关的大小决定见到的feed的概率。如
+
+#table feedlist(fid, uid, category_id, volume, ...)
+#table user_volume(uid, category_id, volume, ...)
+SELECT f.* FROM feedlist f LEFT JOIN user_volume v ON IFNULL(v.volume, 100) >= f.volume WHERE ...人际关系或范围的过滤条件
+
+这里使用 LEFT JOIN 的原因是可能用户从来没有设定密度，那么用IFNULL函数来默认为100，保证用户都能看见；而音量开关的范围是从0到100，而音量是从1到100的，所以当音量开关为0，则表示不列出某个类型feed。
+
+在具体的架构中，还需要根据用户量，承载流量去考虑一些具体的东西，这里只是把基本原理大概的讲了一下。
