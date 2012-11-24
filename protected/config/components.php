@@ -31,10 +31,11 @@ return array(
      * 比如用bu() 方法得到的图像地址 如果request 组件的baseUrl是全域名路径 那么
      * 图像地址会变成全域名情况 所以在类似图像地址输出上尽量用bu方法 这样如果是
      * 多台服务器都有图像那么.....
-     */
+     *
     'assetManager'=>array(
      // 'baseUrl'=>'http:://www.xx.com'  多web应用时可以指定一个服务器 cdn??
    ),
+    */
 
     //  use  MySQL database
     'db' => array(

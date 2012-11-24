@@ -1,0 +1,28 @@
+模块开发规约
+==============
+
+不要直接跨模块调用
+----------------------
+
+        使用系统组件来进行跨模块调用:  YsService()
+
+        这样做的原因是 将来进行负载均衡时 不同模块可以布置在不同web服务器上 如果进行的是直接跨模块调用 紧耦合的方式
+        会要求所有的模块都需要在一起 多个web服务器拥有相同拷贝 ，如果是不同的项目组开发不同模块 这样代码就完全对对方可见
+        了 不利于安全 。如果多个模块位于不同的开发组 ，那么在同步时也需要广播到所有代码库 ；
+
+       {
+        服务化的开发模式：
+        将本地化调用转为远程调用 ，方案（php FastRpc + service proxy）
+        include('fastRpc.php');
+        $rpc = new fastRpc();
+        $rpc->setServer('192.168.1.2',9000);
+        $rpc->setTimeOut(2,1);
+        $ret = $rpc->call('photo.getList',....);
+
+        这样整个系统变为 appLayer---》 serviceLayer ---》storageLayer(db、cache,..fileSystem,mongodb...)
+        service 层可以监控了！
+        }
+
+        在系统组件YsService 的隔离下 以后底层可以更换实现 服务路由可以参考MQ中的 RoutingKey 和 BindingKey
+        概念来设计！   rpc 还可以 选择（https://github.com/marcelklehr/tivoka.git）
+
