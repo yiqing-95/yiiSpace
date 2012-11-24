@@ -12,6 +12,8 @@ return CMap::mergeArray(
 				'connectionString'=>'DSN for test database',
 			),
 			*/
+            // no need to use this  component
+            'assetManager'=>false ,
 		),
         'preload'=>false,
 	)

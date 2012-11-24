@@ -5,6 +5,33 @@
 class Test1Controller extends Controller
 {
 
+    public function actionTestServiceSwitchMode(){
+        $serviceProxy = YsService::instance();
+        $serviceProxy->mode = YsService::MODE_JSON_RPC ;
+        echo $serviceProxy->callModuleService('test','sayHi');
+        echo $serviceProxy->callModuleService('test','getServiceMode');
+
+    }
+
+    public function actionTestRpcService(){
+
+        Yii::import('application.vendors.json_rpc.jsonRPCClient');
+        $serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'),true);
+        //$serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'));
+
+        try {
+            echo $serviceRemoteProxy->callModuleService('test','sayHi');
+            echo $serviceRemoteProxy->callModuleService('test','getServiceMode');
+        } catch (Exception $e) {
+            echo nl2br($e->getMessage()).'<br />'."\n";
+        }
+    }
+
+
+    public function actionTestService(){
+        $serviceProxy = YsService::instance();
+       echo $serviceProxy->callModuleService('test','sayHi');
+    }
 
     public function actionGetIpLocation(){
           Yii::import('application.vendors.Iplocation');
