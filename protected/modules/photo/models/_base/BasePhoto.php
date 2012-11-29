@@ -11,6 +11,7 @@
 *
 * @property string $id
 * @property string $uid
+* @property integer $album_id
 * @property string $title
 * @property string $desc
 * @property string $path
@@ -45,16 +46,16 @@ return 'desc';
 
 public function rules() {
 return array(
-array('desc, categories', 'required'),
-array('create_time, views, rate_count, cmt_count, is_featured', 'numerical', 'integerOnly'=>true),
+array('uid,album_id', 'required'),
+array('album_id, create_time, views, rate_count, cmt_count, is_featured', 'numerical', 'integerOnly'=>true),
 array('rate', 'numerical'),
 array('uid, size', 'length', 'max'=>10),
 array('title, path, orig_path, tags', 'length', 'max'=>255),
 array('ext', 'length', 'max'=>4),
 array('status', 'length', 'max'=>11),
 array('hash', 'length', 'max'=>32),
-array('uid, title, path, orig_path, ext, size, tags, create_time, views, rate, rate_count, cmt_count, is_featured, status, hash', 'default', 'setOnEmpty' => true, 'value' => null),
-array('id, uid, title, desc, path, orig_path, ext, size, tags, create_time, views, rate, rate_count, cmt_count, is_featured, status, hash, categories', 'safe', 'on'=>'search'),
+array('uid, album_id, title, path, orig_path, ext, size, tags, create_time, views, rate, rate_count, cmt_count, is_featured, status, hash', 'default', 'setOnEmpty' => true, 'value' => null),
+array('id, uid, album_id, title, desc, path, orig_path, ext, size, tags, create_time, views, rate, rate_count, cmt_count, is_featured, status, hash, categories', 'safe', 'on'=>'search'),
 );
 }
 
@@ -72,6 +73,7 @@ public function attributeLabels() {
 return array(
 'id' => Yii::t('photo', 'id'),
 'uid' => Yii::t('photo', 'uid'),
+'album_id' => Yii::t('photo', 'album_id'),
 'title' => Yii::t('photo', 'title'),
 'desc' => Yii::t('photo', 'desc'),
 'path' => Yii::t('photo', 'path'),
@@ -96,6 +98,7 @@ $criteria = new CDbCriteria;
 
 $criteria->compare('id', $this->id, true);
 $criteria->compare('uid', $this->uid, true);
+$criteria->compare('album_id', $this->album_id);
 $criteria->compare('title', $this->title, true);
 $criteria->compare('desc', $this->desc, true);
 $criteria->compare('path', $this->path, true);

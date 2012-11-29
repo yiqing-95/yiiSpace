@@ -11,7 +11,15 @@ class PhotoController extends BasePhotoController
 
     public function beforeAction(CAction $action){
 
-
+        switch ($action->id) {
+            case 'create':
+            case 'update':
+            case 'manage':
+                $this->layout = YsHelper::getUserCenterLayout();
+                break;
+            default:
+                ;
+        }
         return parent::beforeAction($action);
     }
 
@@ -57,9 +65,30 @@ class PhotoController extends BasePhotoController
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+        $spaceOwnerId = $_GET['u'];
+        $albumId = $_GET['aid'];
+
+        $allPhotosOfAlbum = Photo::model()->findAll(array(
+            'index'=>'id',
+            'order'=>'id DESC',
+            'condition'=> 'uid=:uid AND album_id=:aid',
+            'params'=>array(':uid'=>$spaceOwnerId,':aid'=>$albumId),
+        ));
+
+        if(!isset($allPhotosOfAlbum[$id])){
+            throw new CHttpException(404,'The requested page does not exist.');
+        }
+
+        $this->render('view',array(
+            'photos'=>$allPhotosOfAlbum,
+            'model' => $allPhotosOfAlbum[$id],
+        ));
+
+        /*
+        $this->render('view',array(
+            'model'=>$this->loadModel($id),
+        ));
+        */
 	}
 
 	/**
@@ -76,9 +105,60 @@ class PhotoController extends BasePhotoController
 		if(isset($_POST['Photo']))
 		{
 			$model->attributes=$_POST['Photo'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->validate()){
+                //=================================================================
+                // THIS is how you capture those uploaded images: remember that in your CMultiFile widget, you set 'name' => 'images'
+                $images = CUploadedFile::getInstancesByName('images');
+
+                $storage = YsUploadStorage::instance();
+                // proceed if the images have been set
+                if (isset($images) && count($images) > 0) {
+                    // go through each uploaded image
+                    foreach ($images as $image => $pic) {
+                        // echo $pic->name.'<br />';
+                        // $localTempFile = $pic->getTempName();
+                        $extName = $pic->getExtensionName();
+
+                         $saveToPath = $storage->getSaveToPath(user()->getId()).".{$extName}";
+                        if ($pic->saveAs($saveToPath)) {
+
+                            // add it to the main model now
+                            $photo = new Photo();
+                            $photo->uid = user()->getId();
+
+                            $photo->orig_path = WebUtil::getRelativeUrl($saveToPath);
+                            //==================================================
+                           // $smallImageSpec = array(220, 220);
+                           // $mediumImageSpec = array(800,800);
+                           // 这里应该用图像处理底层函数 先获取下上传图片大小 如果比较小
+                            // 可以不用缩放
+                            $phpThumb = AppComponent::phpThumb()->create($saveToPath);
+                            //$phpThumb->resize(550,800);
+                            $phpThumb->resize(550,550);
+                            $thumbImagePath = $storage->getSaveToPath(user()->id) . ".{$extName}";
+                            $phpThumb->save($thumbImagePath);
+                            $photo->path = WebUtil::getRelativeUrl($thumbImagePath);
+                            //===================================================
+
+                            $photo->title = $model->title;
+                            $photo->desc = $model->desc ;
+                            $photo->album_id = $model->album_id ;
+                            $photo->save(); // DONE
+                        } else {
+                            // handle the errors here, if you want
+
+                        }
+                    }
+                    $this->redirect(array('/album/view','u'=>user()->id,'id'=>$model->album_id));
+                } else {
+                    $model->addError('path', '请选择至少一个文件哦！');
+                }
+                //=================================================================
+            }
+
 		}
+
+        $model->uid = user()->getId();
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -140,7 +220,36 @@ class PhotoController extends BasePhotoController
 		));
 	}
 
-	/**
+    /**
+     * Lists all models.
+     */
+    public function actionMember()
+    {
+        $this->layout = YsHelper::getUserSpaceLayout();
+        $dataProvider=new CActiveDataProvider('Photo');
+
+        $criteria = $dataProvider->getCriteria();
+        $criteria->addColumnCondition(array(
+            'uid'=>UserHelper::getSpaceOwnerId(),
+        ));
+        if(isset($_GET['album'])){
+            $criteria->addColumnCondition(array(
+                'album_id'=>$_GET['album'],
+            ));
+
+        }
+        // $criteria->order = 'update_time DESC';
+        $criteria->order = 'id DESC';
+
+        $dataProvider->getPagination()->setPageSize(6);
+
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
+
+
+    /**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
@@ -217,5 +326,9 @@ class PhotoController extends BasePhotoController
         }else{
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
         }
+    }
+
+    public function actionTest($id=''){
+        $this->render('/test/test'.$id);
     }
 }

@@ -12,6 +12,7 @@
 * @property integer $id
 * @property integer $uid
 * @property string $name
+* @property string $desc
 * @property string $create_time
 * @property string $update_time
 * @property string $cover_uri
@@ -34,18 +35,20 @@ return 'photo_album';
 }
 
 public static function representingColumn() {
-return 'is_hot';
+return 'name';
 }
 
 public function rules() {
 return array(
+array('name', 'required'),
 array('uid, mbr_count, views, status, privacy', 'numerical', 'integerOnly'=>true),
-array('name, cover_uri', 'length', 'max'=>255),
+array('name', 'length', 'max'=>60),
+array('desc, cover_uri', 'length', 'max'=>255),
 array('create_time, update_time', 'length', 'max'=>11),
 array('is_hot', 'length', 'max'=>1),
 array('privacy_data', 'safe'),
-array('uid, name, create_time, update_time, cover_uri, mbr_count, views, status, is_hot, privacy, privacy_data', 'default', 'setOnEmpty' => true, 'value' => null),
-array('id, uid, name, create_time, update_time, cover_uri, mbr_count, views, status, is_hot, privacy, privacy_data', 'safe', 'on'=>'search'),
+array('uid, desc, create_time, update_time, cover_uri, mbr_count, views, status, is_hot, privacy, privacy_data', 'default', 'setOnEmpty' => true, 'value' => null),
+array('id, uid, name, desc, create_time, update_time, cover_uri, mbr_count, views, status, is_hot, privacy, privacy_data', 'safe', 'on'=>'search'),
 );
 }
 
@@ -64,6 +67,7 @@ return array(
 'id' => Yii::t('photo_album', 'id'),
 'uid' => Yii::t('photo_album', 'uid'),
 'name' => Yii::t('photo_album', 'name'),
+'desc' => Yii::t('photo_album', 'desc'),
 'create_time' => Yii::t('photo_album', 'create_time'),
 'update_time' => Yii::t('photo_album', 'update_time'),
 'cover_uri' => Yii::t('photo_album', 'cover_uri'),
@@ -82,6 +86,7 @@ $criteria = new CDbCriteria;
 $criteria->compare('id', $this->id);
 $criteria->compare('uid', $this->uid);
 $criteria->compare('name', $this->name, true);
+$criteria->compare('desc', $this->desc, true);
 $criteria->compare('create_time', $this->create_time, true);
 $criteria->compare('update_time', $this->update_time, true);
 $criteria->compare('cover_uri', $this->cover_uri, true);

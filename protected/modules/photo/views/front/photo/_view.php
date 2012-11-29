@@ -8,6 +8,10 @@
 	<?php echo CHtml::encode($data->uid); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('album_id')); ?>:</b>
+	<?php echo CHtml::encode($data->album_id); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
 	<?php echo CHtml::encode($data->title); ?>
 	<br />
@@ -24,11 +28,11 @@
 	<?php echo CHtml::encode($data->orig_path); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ext')); ?>:</b>
 	<?php echo CHtml::encode($data->ext); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('size')); ?>:</b>
 	<?php echo CHtml::encode($data->size); ?>
 	<br />

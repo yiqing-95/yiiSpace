@@ -65,11 +65,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'uid',
+		'album_id',
 		'title',
 		'desc',
 		'path',
-		'orig_path',
 		/*
+		'orig_path',
 		'ext',
 		'size',
 		'tags',

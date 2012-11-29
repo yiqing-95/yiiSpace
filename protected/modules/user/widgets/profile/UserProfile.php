@@ -64,6 +64,12 @@ class UserProfile extends YsSectionWidget
         ));
     }
 
+    /**
+     * @param int $uid
+     */
+    public function renderUserTopMenus($uid){
+        $this->render('_topMenus',array('uid'=>$uid));
+    }
     public function renderFriends(){
 
     }

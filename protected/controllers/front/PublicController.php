@@ -48,11 +48,19 @@ class PublicController extends Controller
             if (!is_dir($dirname))
                 mkdir($dirname, 0775, true);
 
-
+            /*
             $image = Yii::app()->image->load($originalFile);
             $image->resize($matches[1], $matches[2]);
 
             if ($image->save($targetPath)) {
+                if (Yii::app()->request->urlReferrer != Yii::app()->request->requestUri)
+                    $this->refresh();
+            }*/
+            $phpThumb = AppComponent::phpThumb()->create($originalFile);
+            //$phpThumb->resize(550,800);
+            $phpThumb->adaptiveResize($matches[1], $matches[2]);
+            $phpThumb->save($targetPath);
+            if(is_file($targetPath)){
                 if (Yii::app()->request->urlReferrer != Yii::app()->request->requestUri)
                     $this->refresh();
             }

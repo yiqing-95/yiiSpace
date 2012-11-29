@@ -14,6 +14,7 @@
 
         </div>
         <div class="span6">
+            <?php UserHelper::getUserPublicProfile()->renderUserTopMenus(0) ;?>
             <?php echo $content; ?>
             <!--Body content-->
         </div>

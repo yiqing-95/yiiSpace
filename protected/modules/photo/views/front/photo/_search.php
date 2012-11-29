@@ -7,6 +7,8 @@
 
 	<?php echo $form->textFieldRow($model,'uid',array('class'=>'span5','maxlength'=>10)); ?>
 
+	<?php echo $form->textFieldRow($model,'album_id',array('class'=>'span5')); ?>
+
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
 
 	<?php echo $form->textAreaRow($model,'desc',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>

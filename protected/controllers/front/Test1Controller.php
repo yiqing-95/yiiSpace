@@ -5,6 +5,28 @@
 class Test1Controller extends Controller
 {
 
+    public function actionQuickDialog(){
+        Yii::import('ext.quickdlgs.*');
+        $this->render('quickDialog');
+    }
+    /**
+     * @Desc('测试生成相册封面')
+     */
+    public function actionEasyPhpThumb(){
+        $classPath = Yii::getPathOfAlias('application.vendors.easyphpthumbnail.PHP5') . DIRECTORY_SEPARATOR .'easyphpthumbnail.class.php';
+         require_once($classPath) ;
+        $thumb = new easyphpthumbnail;
+        $thumb -> Framewidth = 10;
+        $thumb -> Framecolor = '#FFFFFF';
+        $thumb -> Backgroundcolor = '#D0DEEE';
+        $thumb -> Shadow = true;
+        $thumb -> Binder = true;
+        $thumb -> Binderspacing = 8;
+        $thumb -> Clipcorner = array(2,15,0,1,1,1,0);
+        $publicDirPath = PublicAssets::instance()->getBasePath();
+        $thumb -> Createthumb($publicDirPath. DIRECTORY_SEPARATOR . 'default/photo/5.jpg');
+    }
+
     public function actionTestServiceSwitchMode(){
         $serviceProxy = YsService::instance();
         $serviceProxy->mode = YsService::MODE_JSON_RPC ;

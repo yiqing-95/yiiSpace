@@ -13,7 +13,7 @@ class PhotoInstaller extends BaseModuleInstaller
 
        YsHookService::addHook('app','createUrl','photo','photo_appCreateUrl',CJSON::encode(array(
            'route'=>array('album/member','/album/member'),
-           'paramsExpression'=>'$params+array(\'u\'=>$_GET[\'u\'])'
+           'paramsExpression'=>'isset($_GET[\'u\'])?$params+array(\'u\'=>$_GET[\'u\']):$params;'
        )));
 
         echo __METHOD__ ;

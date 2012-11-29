@@ -55,6 +55,8 @@ return array(
          'class' => 'application.my.components.YsWebUser',
         // enable cookie-based authentication
         'allowAutoLogin' => true,
+        // @see http://www.yiiframework.com/wiki/321/using-loginrequiredajaxresponse-to-solve-ajax-session-timeout
+        'loginRequiredAjaxResponse' => 'YII_LOGIN_REQUIRED',
     ),
 
     'errorHandler' => array(

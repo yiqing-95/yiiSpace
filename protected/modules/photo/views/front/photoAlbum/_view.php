@@ -1,5 +1,31 @@
 <div class="view">
+    <li class="span3">
+        <div class="thumbnail">
+            <div align="center">
+                <?php echo CHtml::link(CHtml::image($data->getAlbumCoverUrl(), $data->name, array()), array('view', 'id' => $data->id)); ?>
+            </div>
+            <div >
+            <span class="pull-left"><?php echo $data->name; ?> </span>
+            <?php if (UserHelper::getIsOwnSpace()): ?>
+                <?php
+                $this->widget('bootstrap.widgets.TbButtonGroup', array(
+                   'htmlOptions'=>array(),
+                    'buttons' => array(
+                        array('label' => '编辑', 'url' => array(PhotoHelper::getEditAlbumRoute(), 'id' => $data->id),
+                            'htmlOptions' => array('class' => 'update btn-mini',)
+                        ),
+                        array('label' => '删除', 'url' => array(PhotoHelper::getDeleteAlbumRoute(), 'id' => $data->id),
+                            'htmlOptions' => array('class' => 'delete btn-mini'),),
+                    )));
 
+                ?>
+            </div>
+            <?php endif; ?>
+        </div>
+    </li>
+
+
+    <?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
@@ -28,7 +54,7 @@
 	<?php echo CHtml::encode($data->mbr_count); ?>
 	<br />
 
-	<?php /*
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('views')); ?>:</b>
 	<?php echo CHtml::encode($data->views); ?>
 	<br />

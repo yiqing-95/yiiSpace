@@ -62,7 +62,6 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
             'photo/<action:\w+>'=>'photo/photo/<action>',
             'photo/<action:\w+>/*'=>'photo/photo/<action>',
 
-            'album/member'=>array('photo/photoAlbum/member','defaultParams'=>$_GET),
             'album/<action:\w+>'=>'photo/photoAlbum/<action>',
             'album/<action:\w+>/*'=>'photo/photoAlbum/<action>',
         );
