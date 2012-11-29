@@ -49,10 +49,16 @@ class YsService extends CApplicationComponent
      */
     const MODE_FAST_RPC = 'fast_rpc';
 
-
-    static public function call()
+    /**
+     * @static
+     * @param string $moduleId
+     * @param string $serviceName
+     * @param array $params
+     * @return mixed|void
+     */
+    static public function call($moduleId = '', $serviceName = '', $params = array())
     {
-
+         return self::instance()->callModuleService($moduleId,$serviceName,$params);
     }
 
     public $mode = self::MODE_LOCAL;

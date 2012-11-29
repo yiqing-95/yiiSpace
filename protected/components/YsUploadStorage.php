@@ -302,7 +302,7 @@ class YsUploadStorage extends CApplicationComponent
      */
     public function genFileName($uid=0){
         $moduleId = $this->getCurrentModuleId();
-        $fileName = $this->hash($moduleId)."_{$uid}_".microtime();
+        $fileName = $this->hash($moduleId)."_{$uid}_".str_replace(array(' ','.'),'',microtime()) ;
         return $fileName;
     }
 
@@ -320,5 +320,9 @@ class YsUploadStorage extends CApplicationComponent
         }else{
             return $module->getId();
         }
+    }
+
+    public function getSaveToPath($uid=0){
+        return $this->getUploadDir(). DIRECTORY_SEPARATOR .$this->genFileName($uid);
     }
 }
