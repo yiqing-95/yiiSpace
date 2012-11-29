@@ -10,8 +10,8 @@
         array('label'=>'收件箱', 'icon'=>'cog', 'url'=>array('/msg/inbox')),
         array('label'=>'创建消息', 'icon'=>'flag', 'url'=>array('/msg/create')),
         array('label'=>'应用'),
-        array('label'=>'相册', 'icon'=>'photo', 'url'=>array('/album/admin')),
-        array('label'=>'日志', 'icon'=>'flag', 'url'=>array('/blog/admin')),
+        array('label'=>'相册', 'icon'=>'photo', 'url'=>array('/album/my')),
+        array('label'=>'日志', 'icon'=>'flag', 'url'=>array('/blog/my')),
 
     ),
 )); ?>

@@ -10,9 +10,69 @@ class UserHelper
 {
 
     /**
+     * @static
+     * @return string
+     */
+    static public function getLoginUrl(){
+        return  current(Yii::app()->getModule('user')->loginUrl) ;
+    }
+    /**
      * @var array
      */
     static private $_cache = array();
+
+    /**
+     * @static
+     * @return bool
+     */
+    static public function getIsOwnSpace(){
+        if(!user()->getIsGuest()){
+            $loginUserId = user()->getId();
+            $spaceOwnerId = self::getSpaceOwnerId();
+
+            return $loginUserId == $spaceOwnerId ;
+        }else{
+            return false ;
+        }
+    }
+
+    /**
+     * @static
+     * @return int|mixed
+     */
+    static public function getVisitorId(){
+        if(user()->getIsGuest()){
+            return 0;
+        }else{
+            return user()->getId();
+        }
+    }
+
+    /**
+     * @static
+     * @return mixed
+     * @throws CException
+     * 获取当前被访问空间的用户id
+     */
+    static public function getSpaceOwnerId(){
+       if(!isset($_GET['u'])){
+           if(user()->getIsGuest()){
+               throw new CException('must pass the u  param in  $_GET variable ');
+           }else{
+               return $_GET['u'] = user()->getId();
+           }
+
+       }else{
+           return $_GET['u'];
+       }
+    }
+    /**
+     * @static
+     * @return bool
+     */
+    static public function getIsLoginUser(){
+        return ! user()->getIsGuest();
+    }
 
   static public function renderUserIcon($user){
 
@@ -34,7 +94,7 @@ U_FACE;
      * @return UserProfile
      */
     static public function getUserPublicProfile(){
-        $userId =  $_GET['u'];
+        $userId =  isset($_GET['u'])?$_GET['u']:user()->getId();
         $cacheKey = __METHOD__.'#'.$userId;
         if (!isset(self::$_cache[$cacheKey])){
             $controller = Yii::app()->controller;
