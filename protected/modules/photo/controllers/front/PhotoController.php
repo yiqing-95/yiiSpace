@@ -84,6 +84,8 @@ class PhotoController extends BasePhotoController
             'model' => $allPhotosOfAlbum[$id],
         ));
 
+        // 点击量：
+        YsViewSystem::doView('photo',$id);
         /*
         $this->render('view',array(
             'model'=>$this->loadModel($id),
