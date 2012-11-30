@@ -16,12 +16,15 @@ class PhotoInstaller extends BaseModuleInstaller
            'paramsExpression'=>'isset($_GET[\'u\'])?$params+array(\'u\'=>$_GET[\'u\']):$params;'
        )));
 
+        YsViewSystem::registerObjectViewConfig('photo','photo_view_track','photo');
         echo __METHOD__ ;
 
     }
 
     public function uninstall(){
         YsHookService::removeAllHookByClientModule('photo');
+
+        YsViewSystem::unRegisterObjectViewConfig('photo');
         echo __METHOD__ ;
     }
 

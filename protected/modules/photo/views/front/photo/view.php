@@ -66,8 +66,8 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                         </a>
 
                         <div class="caption">
-                            <div class="image-title">Title #0</div>
-                            <div class="image-desc">Description</div>
+                            <div class="image-title"><?php echo  $photo->title; ?></div>
+                            <div class="image-desc">views<?php echo $photo->views ; ?></div>
                             <div class="download">
                                 <a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download
                                     Original</a>
