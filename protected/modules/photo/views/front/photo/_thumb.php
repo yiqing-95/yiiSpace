@@ -1,5 +1,5 @@
 <li class="span3">
-    <a href="<?php echo $this->createUrl('view',array('id'=>$data->id,'aid'=>$data->album_id)); ?>" class="thumbnail" rel="tooltip" data-title="Tooltip">
+    <a href="<?php echo $data->getUrl(); ?>" class="thumbnail" rel="tooltip" data-title="Tooltip">
         <img src="<?php echo $data->getThumbUrl(); ?>" alt="">
     </a>
         <?php /*

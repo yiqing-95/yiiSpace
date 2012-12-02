@@ -19,6 +19,7 @@ class YsHelper
 
     /**
      * @static
+     * @param bool $simple if return the simple layout
      * @return string
      * 返回 用户公共页面的布局路径
      * ----------------------------------------------
@@ -28,7 +29,7 @@ class YsHelper
      * 这样以后可以做参数化布局返回 比如根据用户设置返回不同的布局名称
      * ----------------------------------------------
      */
-    static public function getUserSpaceLayout(){
-        return '//layouts/user/user_space';
+    static public function getUserSpaceLayout($simple=false){
+        return ($simple == true)? '//layouts/user/user_space_simple' : '//layouts/user/user_space';
     }
 }

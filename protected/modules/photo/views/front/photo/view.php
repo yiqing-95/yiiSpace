@@ -28,7 +28,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 </script>
 <div class="fluid-row">
 
-    <div class="span8">
+    <div class="span9">
         <div class="content">
             <div class="slideshow-container">
                 <div id="controls" class="controls"></div>
@@ -41,7 +41,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
         </div>
     </div>
 
-    <div class="span3">
+    <div class="span2">
         <div class="navigation-container">
             <div id="thumbs" class="navigation">
                 <div class="span2">
@@ -92,7 +92,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
 <!-- End Gallery Html Containers -->
 <div style="clear: both;"></div>
-<?php echo $this->layout = '//layouts/column1'; ?>
+
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         // We only want these styles applied when javascript is enabled
@@ -140,6 +140,13 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                 // Update the photo index display
                 this.$captionContainer.find('div.photo-index')
                     .html('Photo ' + (nextIndex + 1) + ' of ' + this.data.length);
+
+               //  注意图片尺寸不符合时 布局会乱 所以这里要检查下
+                if($("img",this.$imageContainer).size()>0){
+                   //  $("img",this.$imageContainer).fitToParent();
+                    $("img",this.$imageContainer).attr("test",'jj');
+                }
+
             },
             onPageTransitionOut:function (callback) {
                 this.fadeTo('fast', 0.0, callback);
@@ -157,6 +164,8 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                     nextPageLink.css('visibility', 'visible');
 
                 this.fadeTo('fast', 1.0);
+
+
             }
         });
 

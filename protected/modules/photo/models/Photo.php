@@ -24,4 +24,21 @@ class Photo extends BasePhoto
     public function getViewUrl(){
         return bu($this->path);
     }
+
+    /**
+     * @return string the URL that shows the detail of the photo
+     * ------------------------------------------------------------
+     * 注意controller的createUrl 会考虑当前所处的module的 而直接用
+     * app的该方法 不考虑moduleId 所以如果进行了URL规则设置 要小心这个
+     * 东东！
+     * ------------------------------------------------------------
+     */
+    public function getUrl()
+    {
+        return Yii::app()->createUrl('photo/view', array(
+            'id'=>$this->id,
+            'aid'=>$this->album_id,
+            'u'=>$this->uid,
+        ));
+    }
 }

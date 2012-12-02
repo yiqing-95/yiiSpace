@@ -23,13 +23,14 @@ class BasePhotoController extends Controller
         if (is_array($this->urlAppendParams)) {
             $params = CMap::mergeArray($params, $this->urlAppendParams);
         }
+        /*
         if (isset($_GET['u'])) {
            if($this->endsWith($route,'create') || $this->endsWith($route,'update') || $this->endsWith($route,'edit')){
 
-           }else{
+           }elseif(Yii::app()->controller->getModule()->getId() == 'photo'){
                $params['u'] = $_GET['u'];
            }
-        }
+        }*/
         return parent::createUrl($route, $params, $ampersand);
     }
 
