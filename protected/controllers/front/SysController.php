@@ -11,5 +11,10 @@
  */
 class SysController extends YsController
 {
+    public function actionStarRatingAjax() {
+
+       $ratingAjax=isset($_POST['rate']) ? $_POST['rate'] : 0;
+       echo "You are voting $ratingAjax through AJAX!";
+   }
 
 }

@@ -46,6 +46,20 @@ for ($i = 1; $i <= 5; $i++) {
 
     </div>
     <div class="span4">
+
+        <div>
+            <?php $this->widget('ext.metabox.EMetabox', array(
+            'id' => 'photo_module',
+            'url' => array('/photo/home/block'),
+            'refreshOnInit' => true,
+            'options' => array(
+                'afterRefresh' => 'js:function(data){
+                  // alert("youyou");
+                   }'
+            ),
+        )); ?>
+        </div>
+
         <div>
             <?php
             $this->widget("ext.FleetBox.FleetBoxWidget", array(

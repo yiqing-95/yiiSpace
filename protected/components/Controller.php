@@ -35,7 +35,7 @@ class Controller extends CController
      */
     public function actionHelp()
     {
-        if(! YII_DEBUG ){
+        if(! YS_CONTROLLER_HELP ){
 
             return ;
 
@@ -125,7 +125,7 @@ class Controller extends CController
             <td><?php echo $actions[$i]; ?></td>
             <td> try to access：
                 <?php
-                if (YII_DEBUG) {
+                if (YS_CONTROLLER_HELP) {
                     echo CHtml::link($actions[$i], $controller->createUrl($actions[$i]));
                 } else {
                     echo "this link will be display only in debug mode ! ";

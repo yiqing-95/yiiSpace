@@ -17,6 +17,8 @@ class PhotoInstaller extends BaseModuleInstaller
        )));
 
         YsViewSystem::registerObjectViewConfig('photo','photo_view_track','photo');
+
+        YsVotingSystem::registerSysObjectVoteConfig('photo','photo_rating','photo_vote_track','pt_',5,0,'photo','rate','rate_count','id');
         echo __METHOD__ ;
 
     }
@@ -25,6 +27,7 @@ class PhotoInstaller extends BaseModuleInstaller
         YsHookService::removeAllHookByClientModule('photo');
 
         YsViewSystem::unRegisterObjectViewConfig('photo');
+        YsVotingSystem::unRegisterObjectVotingConfig('photo');
         echo __METHOD__ ;
     }
 

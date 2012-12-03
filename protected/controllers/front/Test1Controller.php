@@ -5,6 +5,20 @@
 class Test1Controller extends Controller
 {
 
+    /**
+     * @Desc('为指定的表名生成插入方法签名 可用的参数 tableName=user 或者 tableName/user ')
+     */
+    public function actionInsertMethod4table($tableName=''){
+        if(empty($tableName)){
+            echo "give a tableName to test this method , in pathinfo mode : tableName/user <br/>
+             quering string mode : tableName=user
+            ";
+        }else{
+            highlight_string(YiiUtil::insertMethodForTable($tableName,true));
+        }
+
+    }
+
     public function actionJRating()
     {
         $request = Yii::app()->request;

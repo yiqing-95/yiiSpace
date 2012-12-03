@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class YiiUtil
+class YiiUtil2
 {
     /**
      * Check if a model has the behavior

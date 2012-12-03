@@ -41,4 +41,37 @@ class Photo extends BasePhoto
             'u'=>$this->uid,
         ));
     }
+
+    /**
+     * @static
+     * @param null $user
+     * @param array $sqlDataProviderConfig
+     * @return CSqlDataProvider
+     */
+    static  public function listRecentPhotos( $user = null , $sqlDataProviderConfig = array() ){
+
+        $cmd = Yii::app()->db->createCommand();
+        $cmd->select("p.* , u.id as user_id , u.username ")
+            ->from(" user u , user_profile up, photo p");
+            //->leftJoin()
+
+        if(empty($user)){
+            $cmd->where("u.id=up.user_id AND p.uid=u.id");
+        }else{
+            $cmd->where("u.id=up.user_id AND p.uid=u.id AND u.id=:uid",array(':uid'=>$user));
+        }
+        $sql = $cmd->text;
+
+        $config = array();
+        $config['totalItemCount'] = YiiUtil::countBySql($sql);
+        $config['keyField'] = 'id';
+        $config['sort'] = array(
+            'defaultOrder'=>'id DESC',
+            'attributes'=>array(
+                'id'
+            )
+        );
+        $sqlDataProviderConfig = CMap::mergeArray($config, $sqlDataProviderConfig);
+        return new CSqlDataProvider($sql, $sqlDataProviderConfig);
+    }
 }
