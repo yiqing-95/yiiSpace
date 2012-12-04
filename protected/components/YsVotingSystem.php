@@ -10,15 +10,23 @@ class YsVotingSystem
 {
 
 
-    public static function doRating($sysName = '', $id = 0)
+    /**
+     * @static
+     * @param string $sysName
+     * @param int $id
+     * 测试时要在post请求下进行 不然可能无法测试
+     */
+    public static function doRating($sysName, $id )
     {
         $systems = self::getAllSystems();
+
         if (!isset($systems[$sysName])) {
             return;
         }
+
         $sysObjVote = SysObjectVote::model()->populateRecord($systems[$sysName]);
 
-        $sysObjVote->doRating($id);
+        $sysObjVote->doRating($sysName,$id);
     }
 
     public static function getAllSystems()

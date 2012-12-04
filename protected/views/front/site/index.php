@@ -47,7 +47,7 @@ for ($i = 1; $i <= 5; $i++) {
     </div>
     <div class="span4">
 
-        <div>
+        <div class="">
             <?php $this->widget('ext.metabox.EMetabox', array(
             'id' => 'photo_module',
             'url' => array('/photo/home/block'),
@@ -59,6 +59,22 @@ for ($i = 1; $i <= 5; $i++) {
             ),
         )); ?>
         </div>
+
+        <!--        在线用户-->
+        <div>
+            <?php $this->widget('ext.metabox.EMetabox', array(
+            'id' => 'online_users',
+            'url' => array('/user/home/onlineUsers'),
+            'refreshOnInit' => true,
+            'options' => array(
+                'afterRefresh' => 'js:function(data){
+                  // alert("youyou");
+                   }'
+            ),
+        )); ?>
+        </div>
+        <!--        在线用户 end-->
+
 
         <div>
             <?php
@@ -117,20 +133,6 @@ for ($i = 1; $i <= 5; $i++) {
 
         </div>
 
-        <!--        在线用户-->
-        <div>
-            <?php $this->widget('ext.metabox.EMetabox', array(
-            'id' => 'online_users',
-            'url' => array('/user/home/onlineUsers'),
-            'refreshOnInit' => true,
-            'options' => array(
-                'afterRefresh' => 'js:function(data){
-                  // alert("youyou");
-                   }'
-            ),
-        )); ?>
-        </div>
-        <!--        在线用户 end-->
 
     </div>
 </div>

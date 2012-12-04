@@ -15,7 +15,7 @@
 <div class="container" id="page">
     <div class="alert row">
 
-        <div class="span2">
+        <div class="span2" >
             <?php
             $user = new User();
             $profile = UserHelper::getUserPublicProfile();

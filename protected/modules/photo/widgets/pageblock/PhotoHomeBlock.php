@@ -52,12 +52,14 @@ class PhotoHomeBlock extends HomePageBlock
         $models = Status::model()->with('owner','image','link','video')->findAll($criteria);
         */
         $dataProvider = Photo::listRecentPhotos();
-        $dataProvider->getPagination()->setPageSize(12);
+        $dataProvider->getPagination()->setPageSize(8);
         // $this->render('_latest',array('dataProvider'=>$dataProvider));
+        echo '<ul class="thumbnails">';
         foreach($dataProvider->getData() as $data){
             $data = Photo::model()->populateRecord($data);
            $this->render('_thumb',array('data'=>$data));
             //print_r($data);
         }
+        echo "</ul>";
     }
 }

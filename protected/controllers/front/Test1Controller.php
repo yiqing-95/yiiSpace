@@ -4,17 +4,107 @@
  */
 class Test1Controller extends Controller
 {
+   public function actionVote2photo(){
+       //ob_start();
+       $_POST['rate']=3;
+       YsVotingSystem::doRating('photo',7);
+
+   }
+
+    /**
+     * @Desc(鉴于yiisolr不能用 所以测试这个古老的)
+     */
+    public function actionSolr(){
+        Yii::import('ext.solr.*');
+
+        $userSearchConf = array(
+            'class'=>'CSolrComponent',
+            'host'=>'localhost',
+            'port'=>8080,
+            'indexPath'=>'/solr/user'
+        );
+        Yii::app()->setComponent('userSearch', $userSearchConf);
+
+        $commentSearchConfig = array(
+            'class'=>'CSolrComponent',
+            'host'=>'localhost',
+            'port'=>8080,
+            'indexPath'=>'/solr/comment'
+        );
+        Yii::app()->setComponent('commentSearch', $commentSearchConfig);
+
+        //-------------------------------------------------
+        //To add or update an entry in your index
+        Yii::app()->commentSearch->updateOne(array(
+                'id'=>1,
+                'name'=>'tom',
+                'age'=>22)
+        );
+        //To add or update many documents
+
+        Yii::app()->userSearch->updateMany(array(
+            '1'=>array('id'=>1,
+            'name'=>'tom',
+            'age'=> 25),
+            '2'=>array('id'=>2,
+                'name'=>'pitt')
+        ));
+
+        //To search in your index
+        $result= Yii::app()->userSearch->get('name:tom',0,20);
+        echo "Results number is ".$result->response->numFound;
+        foreach($result->response->docs as $doc){
+            echo "{$doc->name} <br>";
+        }
+
+    }
+
+    /**
+     * @Desc('测试yiisolr扩展 注意有两个 一个不需要pecl solr扩展一个是纯php库另一个位于ext.solr下')
+     */
+    public function actionYiiSolr()
+    {
+        $solrManagerConfig = array(
+            'class' => 'ext.yiisolr.YSolrConnection',
+            'host' => 'localhost',
+            'port' => 8983,
+            'username' => '',
+            'password' => '',
+            'indexPath' => '/solr',
+        );
+        Yii::app()->setComponent('solrManager', $solrManagerConfig);
+
+        //Adding one document to your index
+        Yii::app()->solrManager->updateOne(array('id' => 1, 'title' => 'Test Title One'));
+        //Adding many documents to your index at once
+        $data = array(
+            array('id' => 1, 'title' => 'Test Title One'),
+            array('id' => 2, 'title' => 'Test Title Two'),
+            array('id' => 3, 'title' => 'Test Title Three')
+        );
+        Yii::app()->solrManager->updateMany($data);
+
+        //To search for these added documents
+        $result = Yii::app()->solrManager->get('title:Test', 0, 20);
+        //get the number of returned results
+        echo "Number of results returned: " . $result->response->numFound;
+        //iterate over the returned docs array to get information from each document
+        foreach ($result->response->docs as $doc) {
+            echo "{$doc->title} <br>";
+        }
+    }
 
     /**
      * @Desc('为指定的表名生成插入方法签名 可用的参数 tableName=user 或者 tableName/user ')
      */
-    public function actionInsertMethod4table($tableName=''){
-        if(empty($tableName)){
+    public function actionInsertMethod4table($tableName = '')
+    {
+        if (empty($tableName)) {
             echo "give a tableName to test this method , in pathinfo mode : tableName/user <br/>
              quering string mode : tableName=user
             ";
-        }else{
-            highlight_string(YiiUtil::insertMethodForTable($tableName,true));
+        } else {
+            highlight_string(YiiUtil::insertMethodForTable($tableName, true));
         }
 
     }

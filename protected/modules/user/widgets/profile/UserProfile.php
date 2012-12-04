@@ -140,10 +140,11 @@ EOD;
         $userSpaceUrl = UserHelper::getUserSpaceUrl($userModel->id);
 
         $userMiniIcon = <<<EOD
-<div class="user-mini-icon">
-    <a class="user-face" target="_self" uid="10235" rel="face" href="{$userSpaceUrl}">
-        <img class="thumbnail" src="{$userPhotoUrl}">
+<div class="user-mini-icon pull-left" align="center">
+    <a class="user-face thumbnail" target="_self" uid="{$userModel->id}" rel="face" href="{$userSpaceUrl}">
+        <img class="" src="{$userPhotoUrl}">
     </a>
+    <span>{$userModel->username}</span>
 </div>
 EOD;
         echo $userMiniIcon;
