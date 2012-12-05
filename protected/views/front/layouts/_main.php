@@ -196,7 +196,17 @@ $this->widget('ext.scrolltop.ScrollTop',
         'fadeTransitionEnd' => 200,
         'speed' => 'slow'
     ));
+$this->widget('application.my.widgets.jnotify.JNotify',
+    array(
+    ));
+
+
 ?>
+<script type="text/javascript">
+    $(function(){
+        jSuccess('welcome to yiiSpace!');
+    });
+</script>
 
 </body>
 

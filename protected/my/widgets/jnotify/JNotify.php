@@ -36,12 +36,6 @@ class JNotify   extends CWidget
     public $options = array();
 
     /**
-     * @var string
-     */
-    public $selector ;
-
-
-    /**
      * @return JNotify
      */
     public function publishAssets()
@@ -73,36 +67,6 @@ class JNotify   extends CWidget
             $this->registerScriptFile('jquery/jNotify.jquery.min.js', CClientScript::POS_HEAD);
         }
         $this->registerCssFile('jquery/jNotify.jquery.css');
-
-
-        if(empty($this->selector)) return ;
-
-        $defaultOptions = array(
-            'bigStarsPath' => $this->baseUrl.'/jquery/icons/stars.png', // path of the icon stars.png
-            'smallStarsPath' => $this->baseUrl. '/jquery/icons/small.png', // path of the icon small.png
-        );
-        //> encode it for initializing the current jquery  plugin
-        //$options = empty($this->options) ? '' : CJavaScript::encode($this->options);
-        /**
-         * now we do not support the string as options.
-         * if user give a string as options : js:{"key1"=>"someVal"}
-         * we can merge it  with defaultOptions  in jsCode using
-         * var defaultOptions = { validate: false, limit: 5, name: "foo" };
-         * var options = { validate: true, name: "bar" };
-         * options = jQuery.extend(defaultOptions, options);
-         * jQuery('{$this->selector}').jRating({$options});
-         */
-        $options =  CJavaScript::encode(CMap::mergeArray($defaultOptions,$this->options));
-
-        $jsCode = '';
-
-        //>  the js code for setup
-        $jsCode .= <<<SETUP
-        jQuery('{$this->selector}').jRating({$options});
-SETUP;
-
-        //> register jsCode
-        $this->cs->registerScript(__CLASS__ . '#' . $this->getId(), $jsCode, CClientScript::POS_READY);
     }
 
 

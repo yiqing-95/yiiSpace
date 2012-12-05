@@ -4,7 +4,16 @@
  */
 class Test1Controller extends Controller
 {
-   public function actionVote2photo(){
+
+    /**
+     * @Desc('测试投票功')
+     */
+    public function actionYsVote(){
+       $this->render('ysrating');
+    }
+
+
+    public function actionVote2photo(){
        //ob_start();
        $_POST['rate']=3;
        YsVotingSystem::doRating('photo',7);
