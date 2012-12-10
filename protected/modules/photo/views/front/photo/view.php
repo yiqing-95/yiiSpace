@@ -13,7 +13,15 @@ $this->menu = array(
 );
 ?>
 
-<h1>View Photo #<?php echo $model->id; ?></h1>
+<h1>View Photo #<?php echo $model->id; ?>
+<?php
+    $this->widget('application.components.sysVoting.YsStarRating', array(
+        'name' => 'ratingAjaxDynamicTarget',
+        'objectName'=>'photo',
+        'objectId' => new CJavaScriptExpression('$(".caption",$(".image-caption.current")).attr("photo_id")'),
+    ));
+?>
+</h1>
 <?php
 $this->widget('photo.extensions.galleriffic.JGalleriffic', array(
     'debug' => true
@@ -65,9 +73,14 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                             <img src="<?php echo $photo->getThumbUrl(); ?>" alt="Title #0"/>
                         </a>
 
-                        <div class="caption">
+                        <div class="caption" photo_id="<?php echo  $photo->id; ?>">
                             <div class="image-title"><?php echo  $photo->title; ?></div>
                             <div class="image-desc">views<?php echo $photo->views ; ?></div>
+                            <div class="image-rating">
+                                得票：
+                                <span class="rate badge badge-info"><?php echo $photo->rate ; ?></span>
+                                |投票人数：<span class="rate-count badge badge-info"><?php echo $photo->rate_count ; ?></span>
+                            </div>
                             <div class="download">
                                 <a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download
                                     Original</a>

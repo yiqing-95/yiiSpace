@@ -25,15 +25,50 @@ class YsStarRating extends CStarRating
      */
     public $objectId ;
 
+    /**
+     * @var string
+     * the js StarRating selector
+     */
+    protected $containerId ='';
+
+    /**
+     * @var string
+     * prevent for repeat post  ;
+     * for multiple instance  can share only one ;
+     */
+    protected $doPostFlagVar ;
 
     public function init(){
         parent::init();
 
         $this->allowEmpty = false;
-        $this->callback = $this->getCallBackJs();
+        $this->ratingStepSize = 1;
+        $this->minRating = 1;
+
 
     }
 
+    /**
+     * Registers the necessary javascript and css scripts.
+     * @param string $id the ID of the container
+     */
+    public function registerClientScript($id)
+    {
+       $this->containerId = $id;
+
+        $doPostFlagVar = $id.'_'.str_replace(':','_',__METHOD__);
+
+        $this->doPostFlagVar = $doPostFlagVar;
+
+        Yii::app()->getClientScript()->registerScript($doPostFlagVar,"var {$doPostFlagVar} = true ;",CClientScript::POS_HEAD);
+
+        /**
+         * the call back js code will use the containerId
+         */
+        $this->callback = $this->getCallBackJs();
+
+        parent::registerClientScript($id);
+    }
     /**
      * @return string
      */
@@ -64,12 +99,29 @@ class YsStarRating extends CStarRating
         );
         $js = <<<EOD
     function(){
+       if({$this->doPostFlagVar} == false) return ;
+
+        {$this->doPostFlagVar} = false;
+
         $.ajax({
         type: "POST",
         url: "{$url}",
         data: {$data},
-        success: function(msg){
-            $("#result").html(msg);
+        dataType: "json",
+        success: function(res){
+            //$("#result").html(res);
+            if(res.status == "success"){
+               jNotify("感谢您的参与！");
+
+            }else{
+               jNotify(res.msg);
+            }
+             // 重置
+              // $("#{$this->containerId} >input").rating();
+              //如果没有全局变量控制就不能设置某个值不然就死循环了！！
+              //$("#{$this->containerId} >input").rating('select',0);
+
+              {$this->doPostFlagVar} = true;
         }})}
 
 EOD;

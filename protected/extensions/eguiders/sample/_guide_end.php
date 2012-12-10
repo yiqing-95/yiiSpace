@@ -1,0 +1,2 @@
+<p>Ok, this was just a short demo to show you how you could use the <b>EGuider</b> extension in your next yii webapp.</p>
+<p>For more information on this great JQuery plugin visit <a href="https://github.com/jeff-optimizely/Guiders-JS" target="_guider">https://github.com/jeff-optimizely/Guiders-JS</a></p>

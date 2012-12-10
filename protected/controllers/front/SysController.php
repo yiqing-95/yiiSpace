@@ -13,8 +13,19 @@ class SysController extends YsController
 {
     public function actionStarRatingAjax() {
 
-       $ratingAjax=isset($_POST['rate']) ? $_POST['rate'] : 0;
-       echo "You are voting $ratingAjax through AJAX!";
+        /**
+         *
+        $ratingAjax=isset($_POST['rate']) ? $_POST['rate'] : 0;
+       echo "You are voting $ratingAjax through AJAX!";*/
+        $request = Yii::app()->request;
+        if($request->getIsAjaxRequest()){
+            //关于 RatePostName 系统统一吧 或者 UI上的YsStarRating 需要根据objectName来查询这个变量的名字
+            $rate = $request->getParam('rate');
+            $objectName = $request->getParam('objectName');
+            $objectId = $request->getParam('objectId');
+
+            YsVotingSystem::doRating($objectName,$objectId);
+        }
    }
 
 }
