@@ -75,9 +75,19 @@ ON_CLICK;
             'title' => $this->title,
             'headerIcon' => 'icon-home',
             'content' => CHtml::tag('div',$contentOptions, $this->getActiveContent()),
-            'headerButtonActionsLabel' => 'filters',
-
-            'headerActions' => $this->getHeaderActions(),
+           // 'headerButtonActionsLabel' => 'filters',
+            'headerButtons'=>array(
+                array(
+                    'class' => 'bootstrap.widgets.TbButtonGroup',
+                    'type' => '',
+                    'size' => 'mini',
+                    'buttons' => array(
+                             array(
+                            'items' => $this->getHeaderActions(),
+                        ))
+                )
+            ),
+           // 'headerActions' => $this->getHeaderActions(),
         );
 
         // 主要是复写下面这个widget的创建过程

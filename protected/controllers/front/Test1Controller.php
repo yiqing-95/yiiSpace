@@ -5,59 +5,283 @@
 class Test1Controller extends Controller
 {
 
-    public function actionQuickDialog(){
+    /**
+     * @Desc('创建评论相关的表')
+     */
+    public function actionCreateCommentTable(){
+        WebUtil::printCharsetMeta();
+       Yii::import('application.components.sysComment.CommentMigration');
+        $mig = new CommentMigration();
+        $mig->up();
+    }
+
+    /**
+     * @Desc('测试评论功能')
+     */
+    public function actionDbSchema2Migration(){
+         YsHelper::dbSchema2migration();
+     }
+
+    /**
+     * @Desc('测试评论功能')
+     */
+    public function actionYsComment(){
+        $this->render('comment');
+    }
+
+    /**
+     * @Desc('测试投票功')
+     */
+    public function actionYsVote(){
+       $this->render('ysrating');
+    }
+
+
+    public function actionVote2photo(){
+       //ob_start();
+       $_POST['rate']=3;
+       YsVotingSystem::doRating('photo',7);
+
+   }
+
+    /**
+     * @Desc(鉴于yiisolr不能用 所以测试这个古老的)
+     */
+    public function actionSolr(){
+        Yii::import('ext.solr.*');
+
+        $userSearchConf = array(
+            'class'=>'CSolrComponent',
+            'host'=>'localhost',
+            'port'=>8080,
+            'indexPath'=>'/solr/user'
+        );
+        Yii::app()->setComponent('userSearch', $userSearchConf);
+
+        $commentSearchConfig = array(
+            'class'=>'CSolrComponent',
+            'host'=>'localhost',
+            'port'=>8080,
+            'indexPath'=>'/solr/comment'
+        );
+        Yii::app()->setComponent('commentSearch', $commentSearchConfig);
+
+        //-------------------------------------------------
+        //To add or update an entry in your index
+        Yii::app()->commentSearch->updateOne(array(
+                'id'=>1,
+                'name'=>'tom',
+                'age'=>22)
+        );
+        //To add or update many documents
+
+        Yii::app()->userSearch->updateMany(array(
+            '1'=>array('id'=>1,
+            'name'=>'tom',
+            'age'=> 25),
+            '2'=>array('id'=>2,
+                'name'=>'pitt')
+        ));
+
+        //To search in your index
+        $result= Yii::app()->userSearch->get('name:tom',0,20);
+        echo "Results number is ".$result->response->numFound;
+        foreach($result->response->docs as $doc){
+            echo "{$doc->name} <br>";
+        }
+
+    }
+
+    /**
+     * @Desc('测试yiisolr扩展 注意有两个 一个不需要pecl solr扩展一个是纯php库另一个位于ext.solr下')
+     */
+    public function actionYiiSolr()
+    {
+        $solrManagerConfig = array(
+            'class' => 'ext.yiisolr.YSolrConnection',
+            'host' => 'localhost',
+            'port' => 8983,
+            'username' => '',
+            'password' => '',
+            'indexPath' => '/solr',
+        );
+        Yii::app()->setComponent('solrManager', $solrManagerConfig);
+
+        //Adding one document to your index
+        Yii::app()->solrManager->updateOne(array('id' => 1, 'title' => 'Test Title One'));
+        //Adding many documents to your index at once
+        $data = array(
+            array('id' => 1, 'title' => 'Test Title One'),
+            array('id' => 2, 'title' => 'Test Title Two'),
+            array('id' => 3, 'title' => 'Test Title Three')
+        );
+        Yii::app()->solrManager->updateMany($data);
+
+        //To search for these added documents
+        $result = Yii::app()->solrManager->get('title:Test', 0, 20);
+        //get the number of returned results
+        echo "Number of results returned: " . $result->response->numFound;
+        //iterate over the returned docs array to get information from each document
+        foreach ($result->response->docs as $doc) {
+            echo "{$doc->title} <br>";
+        }
+    }
+
+    /**
+     * @Desc('为指定的表名生成插入方法签名 可用的参数 tableName=user 或者 tableName/user ')
+     */
+    public function actionInsertMethod4table($tableName = '')
+    {
+        if (empty($tableName)) {
+            echo "give a tableName to test this method , in pathinfo mode : tableName/user <br/>
+             quering string mode : tableName=user
+            ";
+        } else {
+            highlight_string(YiiUtil::insertMethodForTable($tableName, true));
+        }
+
+    }
+
+    public function actionJRating()
+    {
+        $request = Yii::app()->request;
+        if ($request->getIsAjaxRequest()) {
+
+            $aResponse['error'] = false;
+            $aResponse['message'] = '';
+
+            // ONLY FOR THE DEMO, YOU CAN REMOVE THIS VAR
+            $aResponse['server'] = '';
+            // END ONLY FOR DEMO
+
+            if (isset($_POST['action'])) {
+                if (htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8') == 'rating') {
+                    /**
+                     * vars
+                     */
+                    $id = intval($_POST['idBox']);
+                    $rate = floatval($_POST['rate']);
+
+                    // YOUR MYSQL REQUEST HERE or other thing :)
+                    /**
+                     *
+                     */
+
+                    // if request successful
+                    $success = true;
+                    // else $success = false;
+
+
+                    // json datas send to the js file
+                    if ($success) {
+                        $aResponse['message'] = 'Your rate has been successfuly recorded. Thanks for your rate :)';
+
+                        // ONLY FOR THE DEMO, YOU CAN REMOVE THE CODE UNDER
+                        $aResponse['server'] = '<strong>Success answer :</strong> Success : Your rate has been recorded. Thanks for your rate :)<br />';
+                        $aResponse['server'] .= '<strong>Rate received :</strong> ' . $rate . '<br />';
+                        $aResponse['server'] .= '<strong>ID to update :</strong> ' . $id;
+                        // END ONLY FOR DEMO
+
+                        echo json_encode($aResponse);
+                    } else {
+                        $aResponse['error'] = true;
+                        $aResponse['message'] = 'An error occured during the request. Please retry';
+
+                        // ONLY FOR THE DEMO, YOU CAN REMOVE THE CODE UNDER
+                        $aResponse['server'] = '<strong>ERROR :</strong> Your error if the request crash !';
+                        // END ONLY FOR DEMO
+
+
+                        echo json_encode($aResponse);
+                    }
+                } else {
+                    $aResponse['error'] = true;
+                    $aResponse['message'] = '"action" post data not equal to \'rating\'';
+
+                    // ONLY FOR THE DEMO, YOU CAN REMOVE THE CODE UNDER
+                    $aResponse['server'] = '<strong>ERROR :</strong> "action" post data not equal to \'rating\'';
+                    // END ONLY FOR DEMO
+
+
+                    echo json_encode($aResponse);
+                }
+            } else {
+                $aResponse['error'] = true;
+                $aResponse['message'] = '$_POST[\'action\'] not found';
+
+                // ONLY FOR THE DEMO, YOU CAN REMOVE THE CODE UNDER
+                $aResponse['server'] = '<strong>ERROR :</strong> $_POST[\'action\'] not found';
+                // END ONLY FOR DEMO
+
+
+                echo json_encode($aResponse);
+            }
+        } else {
+            $this->render('jrating');
+        }
+
+    }
+
+    public function actionQuickDialog()
+    {
         Yii::import('ext.quickdlgs.*');
         $this->render('quickDialog');
     }
+
     /**
      * @Desc('测试生成相册封面')
      */
-    public function actionEasyPhpThumb(){
-        $classPath = Yii::getPathOfAlias('application.vendors.easyphpthumbnail.PHP5') . DIRECTORY_SEPARATOR .'easyphpthumbnail.class.php';
-         require_once($classPath) ;
+    public function actionEasyPhpThumb()
+    {
+        $classPath = Yii::getPathOfAlias('application.vendors.easyphpthumbnail.PHP5') . DIRECTORY_SEPARATOR . 'easyphpthumbnail.class.php';
+        require_once($classPath);
         $thumb = new easyphpthumbnail;
-        $thumb -> Framewidth = 10;
-        $thumb -> Framecolor = '#FFFFFF';
-        $thumb -> Backgroundcolor = '#D0DEEE';
-        $thumb -> Shadow = true;
-        $thumb -> Binder = true;
-        $thumb -> Binderspacing = 8;
-        $thumb -> Clipcorner = array(2,15,0,1,1,1,0);
+        $thumb->Framewidth = 10;
+        $thumb->Framecolor = '#FFFFFF';
+        $thumb->Backgroundcolor = '#D0DEEE';
+        $thumb->Shadow = true;
+        $thumb->Binder = true;
+        $thumb->Binderspacing = 8;
+        $thumb->Clipcorner = array(2, 15, 0, 1, 1, 1, 0);
         $publicDirPath = PublicAssets::instance()->getBasePath();
-        $thumb -> Createthumb($publicDirPath. DIRECTORY_SEPARATOR . 'default/photo/5.jpg');
+        $thumb->Createthumb($publicDirPath . DIRECTORY_SEPARATOR . 'default/photo/5.jpg');
     }
 
-    public function actionTestServiceSwitchMode(){
+    public function actionTestServiceSwitchMode()
+    {
         $serviceProxy = YsService::instance();
-        $serviceProxy->mode = YsService::MODE_JSON_RPC ;
-        echo $serviceProxy->callModuleService('test','sayHi');
-        echo $serviceProxy->callModuleService('test','getServiceMode');
+        $serviceProxy->mode = YsService::MODE_JSON_RPC;
+        echo $serviceProxy->callModuleService('test', 'sayHi');
+        echo $serviceProxy->callModuleService('test', 'getServiceMode');
 
     }
 
-    public function actionTestRpcService(){
+    public function actionTestRpcService()
+    {
 
         Yii::import('application.vendors.json_rpc.jsonRPCClient');
-        $serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'),true);
+        $serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'), true);
         //$serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'));
 
         try {
-            echo $serviceRemoteProxy->callModuleService('test','sayHi');
-            echo $serviceRemoteProxy->callModuleService('test','getServiceMode');
+            echo $serviceRemoteProxy->callModuleService('test', 'sayHi');
+            echo $serviceRemoteProxy->callModuleService('test', 'getServiceMode');
         } catch (Exception $e) {
-            echo nl2br($e->getMessage()).'<br />'."\n";
+            echo nl2br($e->getMessage()) . '<br />' . "\n";
         }
     }
 
 
-    public function actionTestService(){
+    public function actionTestService()
+    {
         $serviceProxy = YsService::instance();
-       echo $serviceProxy->callModuleService('test','sayHi');
+        echo $serviceProxy->callModuleService('test', 'sayHi');
     }
 
-    public function actionGetIpLocation(){
-          Yii::import('application.vendors.Iplocation');
-         $ip = new Iplocation2(Yii::getPathOfAlias('application.vendors.ip') . DIRECTORY_SEPARATOR . 'qqwry.dat');
+    public function actionGetIpLocation()
+    {
+        Yii::import('application.vendors.Iplocation');
+        $ip = new Iplocation2(Yii::getPathOfAlias('application.vendors.ip') . DIRECTORY_SEPARATOR . 'qqwry.dat');
         $r = $ip->getlocation(WebUtil::getIp());
         WebUtil::printCharsetMeta();
         print_r($r);
@@ -69,8 +293,9 @@ class Test1Controller extends Controller
         */
     }
 
-    public function actionTestHookService(){
-        YsHookService::addHook('app','test','app','app_onAppTest','yes');
+    public function actionTestHookService()
+    {
+        YsHookService::addHook('app', 'test', 'app', 'app_onAppTest', 'yes');
     }
 
     /**

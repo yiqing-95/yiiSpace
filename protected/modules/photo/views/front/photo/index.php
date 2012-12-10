@@ -16,6 +16,9 @@ $this->widget('bootstrap.widgets.TbThumbnails', array(
     'dataProvider'=>$dataProvider,
     'template'=>"{items}\n{pager}",
     'itemView'=>'_thumb',
+    'htmlOptions'=>array(
+        'style'=>'margin:5px;'
+    )
 ));
 /*
 $this->widget('bootstrap.widgets.TbListView',array(

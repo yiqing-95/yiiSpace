@@ -11,6 +11,14 @@ class UserHelper
 
     /**
      * @static
+     * @param int $uid
+     * @return string
+     */
+    static public function getUserSpaceUrl($uid=0){
+        return  Yii::app()->createUrl('/user/user/space',array( 'u' => $uid));
+    }
+    /**
+     * @static
      * @return string
      */
     static public function getLoginUrl(){
@@ -91,10 +99,16 @@ U_FACE;
 
     /**
      * @static
+     * @param int $u
      * @return UserProfile
      */
-    static public function getUserPublicProfile(){
-        $userId =  isset($_GET['u'])?$_GET['u']:user()->getId();
+    static public function getUserPublicProfile($u=0){
+        if($u !== 0){
+            $userId =  isset($_GET['u'])?$_GET['u']:user()->getId();
+        }else{
+            $userId = $u ;
+        }
+
         $cacheKey = __METHOD__.'#'.$userId;
         if (!isset(self::$_cache[$cacheKey])){
             $controller = Yii::app()->controller;

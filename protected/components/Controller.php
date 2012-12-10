@@ -28,6 +28,12 @@ class Controller extends CController
             'help' => array(
                 'class' => 'my.actions.HelpAction',
             ),
+            //  it suitable for test
+            // page action renders "static" pages stored under 'protected/views/site/pages'
+            // They can be accessed via: index.php?r=site/page&view=FileName
+            'page' => array(
+                'class' => 'CViewAction',
+            ),
         );
     }
     /**
@@ -35,7 +41,7 @@ class Controller extends CController
      */
     public function actionHelp()
     {
-        if(! YII_DEBUG ){
+        if(! YS_CONTROLLER_HELP ){
 
             return ;
 
@@ -125,7 +131,7 @@ class Controller extends CController
             <td><?php echo $actions[$i]; ?></td>
             <td> try to access：
                 <?php
-                if (YII_DEBUG) {
+                if (YS_CONTROLLER_HELP) {
                     echo CHtml::link($actions[$i], $controller->createUrl($actions[$i]));
                 } else {
                     echo "this link will be display only in debug mode ! ";

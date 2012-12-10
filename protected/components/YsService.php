@@ -78,6 +78,12 @@ class YsService extends CApplicationComponent
         }
     }
 
+    /**
+     * @param string $moduleId
+     * @param string $serviceName
+     * @param array $params
+     * @return mixed
+     */
     protected function callLocalModuleService($moduleId = '', $serviceName = '', $params = array())
     {
         $modulePath = $this->getModulePath($moduleId);

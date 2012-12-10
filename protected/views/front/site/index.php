@@ -24,7 +24,7 @@ for ($i = 1; $i <= 5; $i++) {
         $this->widget('user.widgets.pageblock.UserHomeBlock', array(
             'title' => '最新加入',
             'tbBoxOptions' => array(
-                'headerActions' => false,
+
             )
         )); ?>
 
@@ -46,6 +46,36 @@ for ($i = 1; $i <= 5; $i++) {
 
     </div>
     <div class="span4">
+
+        <div class="">
+            <?php $this->widget('ext.metabox.EMetabox', array(
+            'id' => 'photo_module',
+            'url' => array('/photo/home/block'),
+            'refreshOnInit' => true,
+            'options' => array(
+                'afterRefresh' => 'js:function(data){
+                  // alert("youyou");
+                   }'
+            ),
+        )); ?>
+        </div>
+
+        <!--        在线用户-->
+        <div>
+            <?php $this->widget('ext.metabox.EMetabox', array(
+            'id' => 'online_users',
+            'url' => array('/user/home/onlineUsers'),
+            'refreshOnInit' => true,
+            'options' => array(
+                'afterRefresh' => 'js:function(data){
+                  // alert("youyou");
+                   }'
+            ),
+        )); ?>
+        </div>
+        <!--        在线用户 end-->
+
+
         <div>
             <?php
             $this->widget("ext.FleetBox.FleetBoxWidget", array(
@@ -103,20 +133,6 @@ for ($i = 1; $i <= 5; $i++) {
 
         </div>
 
-        <!--        在线用户-->
-        <div>
-            <?php $this->widget('ext.metabox.EMetabox', array(
-            'id' => 'online_users',
-            'url' => array('/user/home/onlineUsers'),
-            'refreshOnInit' => true,
-            'options' => array(
-                'afterRefresh' => 'js:function(data){
-                  // alert("youyou");
-                   }'
-            ),
-        )); ?>
-        </div>
-        <!--        在线用户 end-->
 
     </div>
 </div>

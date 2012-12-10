@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery nbsp slider Plugin Demo7  自定义按钮样式扩展</title>
+<link type="text/css" rel="stylesheet" href="./css/css.css" />
+<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.nbspSlider.1.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#slider1").nbspSlider({
+			effect:	         "vertical",
+			numBtnSty:       "square",
+			speeds:          300,
+			preNexBtnShow:   0,
+			prevId: 		'prevBtn',      // 上一张幻灯片按钮ID
+			nextId: 		'nextBtn'		// 下一张幻灯片按钮I
+		});
+		$("#slider2").nbspSlider({
+			effect:	         "fade",
+			numBtnSty:       "circle",
+			speeds:          500,
+			prevId: 		'prevBtn',      // 上一张幻灯片按钮ID
+			nextId: 		'nextBtn'		// 下一张幻灯片按钮ID
+		});
+		$("#slider3").nbspSlider({
+			effect:	         "vertical",
+			numBtnSty:       "roundness",
+			speeds:          300,
+			prevId: 		'prevBts',      // 上一张幻灯片按钮ID
+			nextId: 		'nextBts'		// 下一张幻灯片按钮I
+		});
+		$("#slider4").nbspSlider({
+			effect:	         "horizontal",
+			numBtnSty:       "rectangle",
+			speeds:          300,
+			prevId: 		'prevBts',      // 上一张幻灯片按钮ID
+			nextId: 		'nextBts'		// 下一张幻灯片按钮
+		});
+		$("#slider5").nbspSlider({
+			widths:           "500px",
+			heights:          "200px",
+			effect:	         "horizontal",
+			speeds:          300,
+			prevId: 		'prevBts',      // 上一张幻灯片按钮ID
+			nextId: 		'nextBts',		// 下一张幻灯片按钮
+			numBtnShow:      0
+		});
+
+	});
+</script>
+<!--[if IE 6]>
+ <script type="text/javascript" src="./js/EvPng.js"></script>
+ <script> EvPNG.fix('.num,.num_act,.num_hover,.square,.square_act,.square_hover,.circle,.circle_act,.circle_hover,.roundness,.roundness_act,.roundness_hover,.rectangle,.rectangle_act,.rectangle_hover');
+ </script>
+<![endif]--> 
+<style>
+/* 自定义上一张下一张按钮 */
+#prevBts { background:url("./images/btnico/arrows.png") no-repeat; cursor: pointer; height:68px; position:relative; top:35%; z-index:100; width:33px; left:0; float:left;}
+#nextBts { background:url("./images/btnico/arrows.png") 0 -141px no-repeat; cursor: pointer; height:68px; position:relative; top:35%; z-index:100; width:33px; right:0; float:right;}
+</style>
+<meta name="description" content="jQuery nbsp slider">
+</meta>
+</head>
+
+<body> 
+
+<h2>幻灯片1 竖向切换模式/无上下张按钮/square 按钮样式扩展</h2>
+	<div id="slider1">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+<h2>幻灯片2 淡出切换模式/circle 按钮样式扩展</h2>
+	<div id="slider2">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+<h2>幻灯片3 竖向切换模式/roundness 按钮样式扩展</h2>
+	<div id="slider3">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+<h2>幻灯片4 横向切换模式/rectangle 按钮样式扩展</h2>
+	<div id="slider4">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+    
+<h2>幻灯片5 横向切换模式/rectangle/无数字按钮/宽：500px、高200px/ 按钮样式扩展</h2>
+	<div id="slider5">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+
+<br /><br />
+</body>
+</html>
+

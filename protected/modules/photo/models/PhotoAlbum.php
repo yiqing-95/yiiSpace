@@ -17,6 +17,17 @@ class PhotoAlbum extends BasePhotoAlbum
     }
 
     /**
+     * @return string the URL that shows the detail of the photo
+     */
+    public function getUrl()
+    {
+        return Yii::app()->createUrl('album/view', array(
+            'id'=>$this->id,
+            'u'=>$this->uid,
+        ));
+    }
+
+    /**
      * @static
      * @param int $uid
      * @return array
