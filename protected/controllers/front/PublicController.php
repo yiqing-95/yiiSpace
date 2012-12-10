@@ -2,7 +2,7 @@
 /**
  * @Desc('this is a test class . you can use test/help to see all available test items')
  */
-class PublicController extends Controller
+class PublicController extends YsController
 {
 
     /**

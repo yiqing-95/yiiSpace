@@ -21,7 +21,7 @@ class PhotoHomeBlock extends HomePageBlock
 
     public function init(){
         $this->tbBoxOptions['headerIcon'] = 'icon-photo' ;
-           $this->tbBoxOptions['headerActions'] = false; // this can empty the headerActions
+           $this->tbBoxOptions['headerButtons'] = false; // this can empty the headerButtons
     }
 
     /**

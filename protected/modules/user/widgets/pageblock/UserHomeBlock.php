@@ -21,7 +21,7 @@ class UserHomeBlock extends HomePageBlock
 
     public function init(){
         $this->tbBoxOptions['headerIcon'] = 'icon-user' ;
-          // 'headerActions'=>false, this can empty the headerActions
+          // 'headerButtons'=>false, this can empty the headerButtons
     }
 
     /**

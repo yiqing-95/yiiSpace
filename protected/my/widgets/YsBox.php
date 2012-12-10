@@ -9,55 +9,40 @@
 Yii::import('bootstrap.widgets.TbBox');
 class YsBox extends TbBox
 {
-
-    public $freeHeaderActions = '';
-
-    public $headActionsHtmlOptions = array();
-
-    public function renderActions()
+    /**
+     * Renders a header buttons to display the configured actions
+     */
+    public function renderButtons()
     {
-        if (empty($this->headerActions) && empty($this->freeHeaderActions)) {
+        if (empty($this->headerButtons))
             return;
-        }
 
-        if (isset($this->headActionsHtmlOptions['class'])) {
-            $this->headActionsHtmlOptions['class'] .= ' bootstrap-toolbar pull-right';
-        } else {
-            $this->headActionsHtmlOptions['class'] = 'bootstrap-toolbar pull-right';
-        }
+        echo '<div class="bootstrap-toolbar pull-right">';
 
-        echo CHtml::openTag('div', $this->headActionsHtmlOptions);
+        if (!empty($this->headerButtons) && is_array($this->headerButtons)) {
+            foreach ($this->headerButtons as $button) {
+                if (is_string($button)) {
+                    echo $button;
+                } else {
+                    $options = $button;
+                    $button = $options['class'];
+                    unset($options['class']);
 
-        if (!empty($this->freeHeaderActions)) {
-            if (is_string($this->freeHeaderActions)) {
-                echo $this->freeHeaderActions;
-            } elseif (is_array($this->freeHeaderActions)) {
-                foreach ($this->freeHeaderActions as $actionItem) {
-                    if (is_string($actionItem)) {
-                        echo $actionItem;
-                    } else {
-                        if (isset($actionItem['class'])) {
-                            $className = $actionItem['class'];
-                            unset($actionItem['class']);
-                            $this->controller->widget($className, $actionItem);
-                        }
-                    }
+                    if (strpos($button, 'TbButton') === false)
+                        throw new CException('message');
+
+                    if (!isset($options['htmlOptions']))
+                        $options['htmlOptions'] = array();
+
+                    $class = isset($options['htmlOptions']['class']) ? $options['htmlOptions']['class'] : '';
+                    $options['htmlOptions']['class'] = $class . ' pull-right';
+
+                    $this->controller->widget($button, $options);
                 }
-            }
-        } else {
 
-            $this->controller->widget('bootstrap.widgets.TbButtonGroup',
-                array(
-                    'type' => '',
-                    'size' => 'mini',
-                    'buttons' => array(
-                        array(
-                            'label' => $this->headerButtonActionsLabel,
-                            'url' => '#'),
-                        array(
-                            'items' => $this->headerActions
-                        ))
-                ));
+            }
+        } elseif (!empty($this->headerButtons) && is_string($this->headerButtons)) {
+            echo $this->headerButtons;
         }
 
         echo '</div>';

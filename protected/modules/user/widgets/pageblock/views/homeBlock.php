@@ -1,4 +1,7 @@
 <?php
+/**
+ * 这个是早期TbBox的用法 现在已经变样了！
+ */
 $this->widget('bootstrap.widgets.TbBox', array(
     'title' => 'Basic Box',
     'headerIcon' => 'icon-home',

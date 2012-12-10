@@ -24,7 +24,7 @@ for ($i = 1; $i <= 5; $i++) {
         $this->widget('user.widgets.pageblock.UserHomeBlock', array(
             'title' => '最新加入',
             'tbBoxOptions' => array(
-                'headerActions' => false,
+
             )
         )); ?>
 

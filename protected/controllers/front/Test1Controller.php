@@ -6,6 +6,30 @@ class Test1Controller extends Controller
 {
 
     /**
+     * @Desc('创建评论相关的表')
+     */
+    public function actionCreateCommentTable(){
+        WebUtil::printCharsetMeta();
+       Yii::import('application.components.sysComment.CommentMigration');
+        $mig = new CommentMigration();
+        $mig->up();
+    }
+
+    /**
+     * @Desc('测试评论功能')
+     */
+    public function actionDbSchema2Migration(){
+         YsHelper::dbSchema2migration();
+     }
+
+    /**
+     * @Desc('测试评论功能')
+     */
+    public function actionYsComment(){
+        $this->render('comment');
+    }
+
+    /**
      * @Desc('测试投票功')
      */
     public function actionYsVote(){
