@@ -731,9 +731,9 @@ function sendMail($email, $subject, $message)
     $mail->Port = 25;
     $mail->IsSMTP();
     $mail->SMTPAuth = true;
-    $mail->Username = "cg_admin@163.com"; //你的用户名，或者完整邮箱地址
-    $mail->Password = "cg!@#$%^"; //邮箱密码
-    $mail->SetFrom('cg_admin@163.com', 'yiqing95'); //发送的邮箱和发送人
+    $mail->Username = "yii_qing@163.com"; //你的用户名，或者完整邮箱地址
+    $mail->Password = "yiqing"; //邮箱密码
+    $mail->SetFrom('yii_qing@163.com', 'yiqing95'); //发送的邮箱和发送人
     $mail->AddAddress($email);
     //		$mail->AddAddress('61391362@qq.com');
     $mail->Subject = $subject;
@@ -756,9 +756,9 @@ function sendMail($email, $subject, $message)
         $mail->Port = 25;
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
-        $mail->Username = "cg_admin@163.com"; //你的用户名，或者完整邮箱地址
-        $mail->Password = "cg!@#$%^"; //邮箱密码
-        $mail->SetFrom('cg_admin@163.com', 'yiqing95'); //发送的邮箱和发送人
+        $mail->Username = "yii_qing@163.com"; //你的用户名，或者完整邮箱地址
+        $mail->Password = "yiqing^"; //邮箱密码
+        $mail->SetFrom('yii_qing@163.com', 'yiqing95'); //发送的邮箱和发送人
         $mail->AddAddress($email);
         //		$mail->AddAddress('61391362@qq.com');
         $mail->Subject = $subject;
