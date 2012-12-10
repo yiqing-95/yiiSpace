@@ -13,15 +13,16 @@ class YiiUtil
      * @static
      * @return PcMaxmindGeoIp
      */
-    public static function getGeoIpObject(){
-        if(!isset(Yii::app()->geoip)){
+    public static function getGeoIpObject()
+    {
+        if (!isset(Yii::app()->geoip)) {
             Yii::app()->setComponents(array(
-                'geoip'=>array(
-                    'class'=>'PcMaxmindGeoIp',
+                'geoip' => array(
+                    'class' => 'PcMaxmindGeoIp',
                 ),
             ), false);
         }
-        return Yii::app()->geoip ;
+        return Yii::app()->geoip;
     }
 
     /**
@@ -478,10 +479,50 @@ class YiiUtil
         return $ucwords ? ucwords($result) : $result;
     }
 
+    /**
+     * @static
+     * @param $name
+     * @return array
+     */
     static public function class2var($name)
     {
         $name[0] = strtolower($name[0]);
         return $name;
+    }
+
+
+    /**
+     * @static
+     * @param $subject
+     * @param string $delimiters
+     * @param bool $lcfirst
+     * @return array|mixed|string
+     * @throws Exception
+     */
+    public static function camelCase($subject, $delimiters = ' _-', $lcfirst = true)
+    {
+        if (!is_string($subject)) {
+            throw new Exception("Subject must be of type string");
+        }
+        $subject = preg_replace('/[\s]+/', ' ', $subject);
+
+        $subject = preg_split("/[$delimiters]/", $subject, -1, PREG_SPLIT_NO_EMPTY);
+
+        foreach ($subject as $key => &$word) {
+            $word = preg_replace('/[[:punct:]]/', '', $word);
+
+            if (preg_match('/[A-Z]+$/', $word)) $word = ucfirst($word);
+
+            else $word = ucfirst(strtolower($word));
+        }
+        $subject = implode('', $subject);
+
+        if ($lcfirst) {
+            return function_exists('lcfirst') ? lcfirst($subject)
+                :
+                strtolower($subject[0]) . substr($subject, 1);
+        }
+        return $subject;
     }
 
     /**
@@ -680,7 +721,8 @@ class YiiUtil
      * @static
      * @return string
      */
-    public static function getCurrentRoute(){
+    public static function getCurrentRoute()
+    {
         return Yii::app()->getController()->getRoute();
     }
 
@@ -694,23 +736,23 @@ class YiiUtil
      *    not use this function !
      * if the sql not contain "UNION" it will work well !
      */
-    static public   function countBySql($sql,$params=array(),CDbConnection $db = null)
+    static public function countBySql($sql, $params = array(), CDbConnection $db = null)
     {
-        $parts = explode('UNION',$sql);
-        if(count($parts)>1){
+        $parts = explode('UNION', $sql);
+        if (count($parts) > 1) {
             $count = 0;
-            foreach($parts as $selectSql){
-                $count += self::countBySql($selectSql,$params);
+            foreach ($parts as $selectSql) {
+                $count += self::countBySql($selectSql, $params);
             }
             return $count;
-        }else{
+        } else {
             $selectStr = trim($sql); //紧身以下
             $selectStr = substr_replace($selectStr, ' COUNT(*) ', 6, stripos($selectStr,
                 'FROM') - 6);
             $selectStr = preg_replace('~ORDER\s+BY.*?$~sDi', '', $selectStr);
 
-            $db = ($db == null) ? Yii::app()->db : $db ;
-            return   $db->createCommand($selectStr)->queryScalar($params);
+            $db = ($db == null) ? Yii::app()->db : $db;
+            return $db->createCommand($selectStr)->queryScalar($params);
         }
     }
 
@@ -722,28 +764,29 @@ class YiiUtil
      * 用一个sqlDataProvider 来审查视图
      * ---------------------------------------------
      */
-    static   public function listView4sqlDataProvider(CSqlDataProvider $dp){
+    static public function listView4sqlDataProvider(CSqlDataProvider $dp)
+    {
 
-        $viewStr = CHtml::openTag('div',array());
+        $viewStr = CHtml::openTag('div', array());
         $idItem = <<<KEY_ITEM
     <b> id:</b>
 	<?php echo CHtml::link(CHtml::encode(\$data['id']),array('view','id'=>\$data['id'])); ?>
 	<br />
 KEY_ITEM;
-        $viewStr .= "\n".$idItem;
+        $viewStr .= "\n" . $idItem;
 
         $rowSet = $dp->getData();
         $firstRow = array();
-        if(!empty($rowSet)){
+        if (!empty($rowSet)) {
             $firstRow = current($rowSet);
         }
-        foreach(array_keys($firstRow) as $column){
+        foreach (array_keys($firstRow) as $column) {
             $columnItem = <<<COL_ITEM
     <b>{$column}:</b>
 	<?php echo CHtml::encode(\$data['{$column}']); ?>
 	<br />
 COL_ITEM;
-            $viewStr .= ("\n".$columnItem);
+            $viewStr .= ("\n" . $columnItem);
         }
         $viewStr .= CHtml::closeTag('div');
 
@@ -757,7 +800,44 @@ COL_ITEM;
         ));
     }
 
-
+    /**
+     * @static
+     * @param $tableName
+     * @param bool $camelCase
+     * @return string
+     */
+    public static function insertMethodForTable($tableName, $camelCase = false)
+    {
+        $tableSchema = Yii::app()->db->getSchema()->getTable($tableName);
+        $columns = $tableSchema->columns;
+        $methodComments = "/** \n";
+        foreach ($columns as $column) {
+            $columnVar = $camelCase ? self::class2var(self::tableName2className($column->name)) : $column->name;
+            $methodComments .= ("* @param {$column->type} \${$columnVar} \n ");
+        }
+        $methodComments .= "/* @return mixed \n */";
+        $methodString = "public  function insert" . self::tableName2className($tableName) . "(";
+        foreach ($columns as $column) {
+            $columnVar = $camelCase ? self::camelCase($column->name) : $column->name;
+            $methodString .= (" {$column->type} \${$columnVar},");
+        }
+        $methodString = rtrim($methodString, ',');
+        $methodString .= ")\n{\n";
+        //.......................................................................
+        // here pass var to ar
+        $arObjectName = self::class2var(self::tableName2className($tableName));
+        $arClassName = self::tableName2className($tableName);
+        $methodString .= "  \${$arObjectName} = new {$arClassName}();\n ";
+        foreach ($columns as $column) {
+            $columnVar = $camelCase ? self::camelCase($column->name) : $column->name;
+            $methodString .= "\t\t \${$arObjectName}->{$column->name} = \${$columnVar};\n";
+        }
+        $methodString .= "\t \${$arObjectName}->save();";
+        //.......................................................................
+        $methodString .= "\n}";
+        return $methodComments . "\n" . $methodString;
+        //  * @property <?php echo $column->type.' $'.$column->name."\n";
+    }
 }
 
 if (!class_exists('KErrorException', false)) {

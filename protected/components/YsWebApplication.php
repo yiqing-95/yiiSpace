@@ -58,18 +58,19 @@ class YsWebApplication extends CWebApplication
     {
 
         $controller = $this->getController();
-        $action = $controller->getAction();
-        if ($action->getId() == 'login') {
-            if ($this->request->getIsPostRequest()) {
-                /*
-                EasyQuery::instance('action_feed')->insert(array(
-                    'uid' => user()->getId(),
-                    'action_type' => 3,
-                    'action_time' => time(),
-                    'data' => CJSON::encode(array('user' => 'xxx')),
-                    //'passive_user',
-                    //'passive_user_var'
-                ));*/
+        if(!empty($controller) && ( $action = $controller->getAction()) !==null){
+            if ($action->getId() == 'login') {
+                if ($this->request->getIsPostRequest()) {
+                    /*
+                    EasyQuery::instance('action_feed')->insert(array(
+                        'uid' => user()->getId(),
+                        'action_type' => 3,
+                        'action_time' => time(),
+                        'data' => CJSON::encode(array('user' => 'xxx')),
+                        //'passive_user',
+                        //'passive_user_var'
+                    ));*/
+                }
             }
         }
         parent::end($status, $exit);

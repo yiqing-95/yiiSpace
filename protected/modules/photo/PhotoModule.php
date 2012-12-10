@@ -57,7 +57,11 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
     public static function getUrlRules()
     {
         return array(
+            'photo/<controller:home>/<action:\w+>'=>'photo/home/<action>',
+
             'photo/install'=>'photo/install',
+
+            'photo/<controller:home>/*'=>'photo/home/block',
 
             'photo/<action:\w+>'=>'photo/photo/<action>',
             'photo/<action:\w+>/*'=>'photo/photo/<action>',

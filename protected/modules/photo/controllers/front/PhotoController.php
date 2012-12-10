@@ -65,6 +65,8 @@ class PhotoController extends BasePhotoController
 	 */
 	public function actionView($id)
 	{
+        $this->layout = YsHelper::getUserSpaceLayout(true);
+
         $spaceOwnerId = $_GET['u'];
         $albumId = $_GET['aid'];
 
@@ -227,7 +229,7 @@ class PhotoController extends BasePhotoController
      */
     public function actionMember()
     {
-        $this->layout = YsHelper::getUserSpaceLayout();
+        $this->layout = YsHelper::getUserSpaceLayout(true);
         $dataProvider=new CActiveDataProvider('Photo');
 
         $criteria = $dataProvider->getCriteria();

@@ -13,7 +13,15 @@ $this->menu = array(
 );
 ?>
 
-<h1>View Photo #<?php echo $model->id; ?></h1>
+<h1>View Photo #<?php echo $model->id; ?>
+<?php
+    $this->widget('application.components.sysVoting.YsStarRating', array(
+        'name' => 'ratingAjaxDynamicTarget',
+        'objectName'=>'photo',
+        'objectId' => new CJavaScriptExpression('$(".caption",$(".image-caption.current")).attr("photo_id")'),
+    ));
+?>
+</h1>
 <?php
 $this->widget('photo.extensions.galleriffic.JGalleriffic', array(
     'debug' => true
@@ -28,7 +36,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 </script>
 <div class="fluid-row">
 
-    <div class="span8">
+    <div class="span9">
         <div class="content">
             <div class="slideshow-container">
                 <div id="controls" class="controls"></div>
@@ -41,7 +49,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
         </div>
     </div>
 
-    <div class="span3">
+    <div class="span2">
         <div class="navigation-container">
             <div id="thumbs" class="navigation">
                 <div class="span2">
@@ -65,9 +73,14 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                             <img src="<?php echo $photo->getThumbUrl(); ?>" alt="Title #0"/>
                         </a>
 
-                        <div class="caption">
+                        <div class="caption" photo_id="<?php echo  $photo->id; ?>">
                             <div class="image-title"><?php echo  $photo->title; ?></div>
                             <div class="image-desc">views<?php echo $photo->views ; ?></div>
+                            <div class="image-rating">
+                                得票：
+                                <span class="rate badge badge-info"><?php echo $photo->rate ; ?></span>
+                                |投票人数：<span class="rate-count badge badge-info"><?php echo $photo->rate_count ; ?></span>
+                            </div>
                             <div class="download">
                                 <a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download
                                     Original</a>
@@ -92,7 +105,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
 <!-- End Gallery Html Containers -->
 <div style="clear: both;"></div>
-<?php echo $this->layout = '//layouts/column1'; ?>
+
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         // We only want these styles applied when javascript is enabled
@@ -140,6 +153,13 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                 // Update the photo index display
                 this.$captionContainer.find('div.photo-index')
                     .html('Photo ' + (nextIndex + 1) + ' of ' + this.data.length);
+
+               //  注意图片尺寸不符合时 布局会乱 所以这里要检查下
+                if($("img",this.$imageContainer).size()>0){
+                   //  $("img",this.$imageContainer).fitToParent();
+                    $("img",this.$imageContainer).attr("test",'jj');
+                }
+
             },
             onPageTransitionOut:function (callback) {
                 this.fadeTo('fast', 0.0, callback);
@@ -157,6 +177,8 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                     nextPageLink.css('visibility', 'visible');
 
                 this.fadeTo('fast', 1.0);
+
+
             }
         });
 
