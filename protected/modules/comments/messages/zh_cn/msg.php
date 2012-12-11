@@ -14,7 +14,7 @@ return array(
     'Please enter the letters as they are shown in the image above.<br/>Letters are not case-sensitive.'=>'Por favor ingrese los caracteres que aparecen en la imagen.<br/>No se diferencian mayúsculas y minúsculas',
     'User Name'=>'用户名',
     'User Email'=>'用户email',
-    'Comment Text'=>'内如',
+    'Comment Text'=>'内容',
     'Create Time'=>'评论时间',
     'Update Time'=>'更新时间',
     'Status'=>'状态',

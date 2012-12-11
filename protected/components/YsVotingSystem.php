@@ -29,6 +29,10 @@ class YsVotingSystem
         $sysObjVote->doRating($sysName,$id);
     }
 
+    /**
+     * @static
+     * @return array|mixed
+     */
     public static function getAllSystems()
     {
         $cacheKey = __METHOD__;

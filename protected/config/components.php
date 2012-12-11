@@ -1,5 +1,8 @@
 <?php
 
+// set the smtp config for swiftMailer
+$smtpConfig = getSmtpConfig();
+
 // application components
 return array(
 
@@ -149,6 +152,21 @@ return array(
         'class' => 'application.extensions.EMutex',
     ),
 
+    //yii-mail
+    'mail' => array(
+        'class' => 'ext.yii-mail.YiiMail',
+        'transportType' => 'smtp',
+        'transportOptions'=>array(
+            'host'=>$smtpConfig['host'],
+            'username'=>$smtpConfig['username'], //yii_qing@163.com
+            'password'=>$smtpConfig['password'],         //yiqing
+            'port'=>$smtpConfig['port'],
+        ),
+        'viewPath' => 'application.views.mail',
+        'logging' => true,
+        'dryRun' => false
+    ),
+
     'image'=>array(
         'class'=>'application.extensions.image.CImageComponent',
         // GD or ImageMagick
@@ -160,3 +178,26 @@ return array(
 
     //............{extension from yii repo /}................................................................
 );
+
+/**
+ * @return array
+ */
+function getSmtpConfig(){
+    $options = array(
+        array(
+            'host'=>'smtp.163.com',
+            'username'=>'yii_qing@163.com', // notice $msg->from must be this too!
+            'password'=>'yiqing',
+            'port'=>25
+        ),
+        /*
+        array(
+            'host'=>'smtp.163.com',
+            'username'=>'xxx@163.com',
+            'password'=>'xxx',
+            'port'=>25
+        ),*/
+    );
+    //shuffle($options);
+    return $options[array_rand($options)];
+}
