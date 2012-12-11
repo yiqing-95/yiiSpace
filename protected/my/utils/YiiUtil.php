@@ -844,11 +844,13 @@ COL_ITEM;
         $tableSchema = Yii::app()->db->getSchema()->getTable($tableName);
         $columns = $tableSchema->columns;
         $methodComments = "/** \n";
-        $methodComments .= " * @param array \$attributes list of attributes that need to be saved.";
+        $methodComments .= " * @param array \$attributes list of attributes that need to be saved.\n ";
+        $methodComments .= "-----------------------------------------------------------------\n ";
         foreach ($columns as $column) {
             $columnVar = $camelCase ? self::class2var(self::tableName2className($column->name)) : $column->name;
             $methodComments .= ("* @param {$column->type} \${$columnVar} \n ");
         }
+        $methodComments .= "\n-----------------------------------------------------------------\n ";
         $methodComments .= "* @return mixed \n */";
         $methodString = "public  function insert" . self::tableName2className($tableName) . "(";
         foreach ($columns as $column) {
