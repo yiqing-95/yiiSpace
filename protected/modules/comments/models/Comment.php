@@ -405,6 +405,22 @@ class Comment extends CActiveRecord {
      * 后台管理 评论时可以直接跳转到评论目标上 这时候需要
      * 一个链接 但评论作为独立模块 不应该依赖其他model（User除外）
      * 所以 每个objectName 的配置中需要一个能够跳到自己view页面的构造
+     * -----------------------------------------------
+     * 另一种方法是 仿照gridView中的CButtonColumn $xxxButtonUrl 做法。
+     *
+     * 已经注意到 嵌套性资源的访问 url会携带所有顶级路径上面的节点信息：
+     * 如 yiiSpace/photo/view/id/22/aid/20/u/2#cmt-4
+     *    但这些信息提前无法预知 通过某种静态方法或者callback也是可以算到 但仍旧麻烦。
+     * 一种妥协做法： 每个可被评论的节点均提供简单访问URL形式：  yiiSpace/photo/view/$entityId
+     * 这样就可以构造url表达式  使用 viewUrlExpression
+     * 如: "/photo/view/$entityId"
+     * 默认可用的 ：$objectName ,$objectId 就和你注册评论配置时的情况一致！这样可以使用yii的evaluateExpression
+     * 来计算viewUrl的地址了！
+     * --------------------------------------------------
+     * 关于anchor 直接跳转到评论位置 基本上不大可能 ，由于使用了分页 所以跳到评论目标对象浏览页面
+     * 就可以了  如果非要这么搞 那么可能用js方式 传递anchor 到客户端  比如 #cmt-40  这样评论id是40
+     * 评论模块要完成这个工作：  先算出大于40评论总数 然后算这个页数  接着跳到这个页数去！！ 呵呵
+     * ajax加载评论才有可能实现的
      */
     public function getPageUrl()
     {
