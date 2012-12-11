@@ -46,6 +46,17 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
             <div id="caption" class="caption-container">
                 <div class="photo-index"></div>
             </div>
+
+            <div class="fluid-row span12">
+                <?php
+                $this->widget('comments.widgets.ECommentsListWidget', array(
+                    'model' => $model,
+                    'dialogOptions'=>array(
+                        'width'=>'500',
+                    )
+                ));
+                ?>
+            </div>
         </div>
     </div>
 

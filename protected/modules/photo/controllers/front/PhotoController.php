@@ -9,7 +9,7 @@ class PhotoController extends BasePhotoController
 	public $layout='//layouts/column2';
 
 
-    public function beforeAction(CAction $action){
+    protected  function beforeAction( $action){
 
         switch ($action->id) {
             case 'create':

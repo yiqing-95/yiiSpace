@@ -112,19 +112,16 @@ return array(
         ),
         //the models for commenting
         'commentableModels' => array(
+            /*
             //model with individual settings
             'User' => array(
                 'registeredOnly' => true,
                 'useCaptcha' => false,
                 'allowSubcommenting' => true,
-                //config for create link to view model page(page with comments)
-                'pageUrl' => array(
-                    'route' => 'admin/citys/view',
-                    'data' => array('id' => 'city_id'),
-                ),
             ),
             //model with default settings
             'Photo',
+            */
         ),
         //config for user models, which is used in application
         'userConfig' => array(

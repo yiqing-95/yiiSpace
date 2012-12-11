@@ -66,7 +66,9 @@ class CommentsModule extends CWebModule
             //settings for comments page url
             'pageUrl'=>null
         );
-    
+
+
+
 	public function init()
 	{
 		// import the module-level models and components
@@ -92,16 +94,27 @@ class CommentsModule extends CWebModule
                 $this->outCommentsList($model, $controller);
             }
         }
-        
+
+    /**
+     * @param $model
+     * @return array
+     */
+    public function getModelConfig($model)
+    {
+        $modelName = is_object($model) ? get_class($model) : $model;
+        $modelConfig = YsCommentSystem::getObjectCmtConfig($modelName);
+        return $modelConfig;
+    }
+
         /*
          * Returns settings for model. Model can be CActiveRecord instance or string. 
          * If there is no model settings, then return null
          * @param mixed $model 
          * @return mixed
          */
-        public function getModelConfig($model)
+        public function getModelConfig0($model)
         {
-            $modelName = is_object($model) ? get_class($model) : $model; 
+            $modelName = is_object($model) ? get_class($model) : $model;
             $modelConfig = array();
             if(in_array($modelName, $this->commentableModels) || isset($this->commentableModels[$modelName]))
             {

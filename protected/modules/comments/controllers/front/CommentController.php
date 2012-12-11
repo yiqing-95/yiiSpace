@@ -6,6 +6,8 @@
  * @link https://github.com/segoddnja/ECommentable
  * @version 1.0
  * @package Comments module
+ * =====================================================
+ * @author yiqing-95<yiqing_95@qq.com>
  *
  */
 class CommentController extends Controller
@@ -120,7 +122,8 @@ class CommentController extends Controller
                 $result['code'] = 'success';
 
                 $cmtForm = $this->widget('comments.widgets.ECommentsFormWidget', array(
-                    'model' => $comment->ownerModel,
+                    'objectName'=>$comment->object_name,
+                    'objectId'=>$comment->object_id,
                     'isReplyForm' => !empty($comment->cmt_parent_id)
                 ), true);
 
@@ -128,7 +131,8 @@ class CommentController extends Controller
                 $result['code'] = 'fail';
 
                 $cmtForm = $this->widget('comments.widgets.ECommentsFormWidget', array(
-                    'model' => $comment->ownerModel,
+                    'objectName'=>$comment->object_name,
+                    'objectId'=>$comment->object_id,
                     'validatedComment' => $comment,
                     'isReplyForm' => !empty($comment->cmt_parent_id)
                 ), true);
@@ -140,44 +144,6 @@ class CommentController extends Controller
         }
     }
 
-    public function actionPostComment0()
-    {
-        if (isset($_POST['Comment']) && Yii::app()->request->isAjaxRequest) {
-            $comment = new Comment();
-            $comment->attributes = $_POST['Comment'];
-            $result = array();
-            if ($comment->save()) {
-                $result['code'] = 'success';
-                $this->beginClip("list");
-                $this->widget('comments.widgets.ECommentsListWidget', array(
-                    'model' => $comment->ownerModel,
-                    'showPopupForm' => false,
-                ));
-                $this->endClip();
-                $this->beginClip('form');
-                $this->widget('comments.widgets.ECommentsFormWidget', array(
-                    'model' => $comment->ownerModel,
-                ));
-                $this->endClip();
-                $result['list'] = $this->clips['list'];
-            } else {
-                $result['code'] = 'fail';
-                $this->beginClip('form');
-                $this->widget('comments.widgets.ECommentsFormWidget', array(
-                    'model' => $comment->ownerModel,
-                    'validatedComment' => $comment,
-                ));
-                $this->endClip();
-            }
-            $result['form'] = $this->clips['form'];
-            //unset($result['list']);
-            //
-            unset($result['form']);
-            //echo CJSON::encode($result);
-            echo json_encode($result);
-            die();
-        }
-    }
 
     /**
      * Returns the data model based on the primary key given in the GET variable.
