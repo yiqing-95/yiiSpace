@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<!-- saved from url=(0014)about:internet -->
+	<head>
+		<title>Exposure - Demo 8</title>
+		<link href="demo8.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="../jquery.exposure.js?v=1.0.1" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				var gallery = $('#images');
+				gallery.exposure({controlsTarget : '#controls',
+					fixedContainerSize : true, 
+					showThumbs : false,
+					showCaptions : false,
+					showExtraData : false,
+					onImage : function(image, imageData, thumb) {
+						gallery.wrapper.find('.exposureLastImage').stop().fadeOut(500, function() {
+							$(this).remove();
+						});
+						image.hide().stop().fadeIn(1000);
+						
+						var resizeAndCenter = function() {
+							// The wrapper should have the same size as the image.
+							$('.exposureWrapper').width(image.width()).height(image.height());
+						
+							// Use margins to center the wrapper inside the target element.
+							var hCenteringMargin = ($('.exposureTarget').width()-image.width())/2;
+							var vCenteringMargin = ($('.exposureTarget').height()-image.height())/2;
+							image.css("marginLeft", hCenteringMargin + "px");
+							image.css("marginTop", vCenteringMargin + "px");
+						};
+						// This weird part of the code is needed due to a bug in webkit browsers (Chrome and Safari) that shows if users are using content altering plugins like AdBlock.
+						if (!image.width() || !image.height()){
+							var delay = setInterval(function(){
+								resizeAndCenter();
+								clearInterval(delay);
+							}, 2);
+						} else {
+							resizeAndCenter();
+						}
+					}
+				});	
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<h1>Exposure - Demo 8</h1>
+			<ul id="images">
+				<li><a href="slides/IMG_2198.jpg" title="Home made"></a></li>
+				<li><a href="slides/IMG_2339.jpg" title="Chocolate"></a></li>
+				<li><a href="slides/IMG_2446.jpg" title="Love birds"></a></li>
+				<li><a href="slides/IMG_2623.jpg" title="Blue"></a></li>
+				<li><a href="slides/IMG_5077.jpeg" title="White"></a></li>
+				<li><a href="slides/IMG_5177.jpeg" title="Yellow on blue"></a></li>			
+				<li><a href="slides/IMG_5278.jpeg" title="Heat"></a></li>
+				<li><a href="slides/IMG_5324.jpeg" title="Cold"></a></li>
+				<li><a href="slides/IMG_5650.jpeg" title="Homes"></a></li>
+				<li><a href="slides/IMG_9006.jpg" title="Ace"></a></li>
+			</ul>
+			<div id="exposure"></div>			
+			<div class="clear"></div>
+			<div id="controls"></div>
+			<div class="clear"></div>
+		</div>
+		<p class="info"><a href="demo7.html?v=1.0.1">View previous demo</a></p>
+		<p class="info">This is a demo showing the <a href="http://exposure.blogocracy.org/">Exposure plugin for jQuery</a>. With Exposure you can give your gallery any look you want, this is just an example. <a href="http://exposureforjquery.wordpress.com/download/">Download Exposure</a> or <a href="http://exposure.blogocracy.org/">learn more</a>.</p>
+	</body>
+</html>

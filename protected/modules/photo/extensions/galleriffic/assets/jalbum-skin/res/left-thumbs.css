@@ -1,0 +1,30 @@
+div.pagination {
+	clear: left;
+	height: 24px;
+}
+ul.thumbs {
+	clear: left;
+}
+div.download {
+	float:right;
+}
+div.navigation-container {
+	float: left;
+}
+div.caption-container {
+	height: 150px;
+}
+ul.meta li {
+	float:left;
+}
+div.photo-index {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 12px;
+}
+div.slideshow-container,
+div.caption-container {
+	clear: right;
+	float: right;
+}
