@@ -1,0 +1,47 @@
+.showcase-content-container
+{
+	padding-top: 10px;
+}
+
+.showcase-content
+{
+	background-color: inherit;
+}
+
+.showcase-onepage .static-caption
+{
+	background-color: #dfdfdf;
+	color: #333;
+}
+
+/* Navigation arrows */
+.showcase-arrow-previous, .showcase-arrow-next
+{
+	z-index: 20;
+}
+
+.showcase-arrow-previous
+{
+	left: 30px;
+}
+.showcase-arrow-next
+{
+	right: 30px;
+}
+
+/* Thumbnails */
+.showcase-thumbnail-wrapper
+{
+	overflow: hidden;
+	margin: auto;
+}
+
+/* Caption */
+.static-caption
+{
+	text-align: left;
+	font-size: 11px;
+	color: #e0e0e0;
+	padding: 10px 0;
+	margin: 0;
+}

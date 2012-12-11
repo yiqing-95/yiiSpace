@@ -1,0 +1,156 @@
+body {
+	background:#333;
+	padding:20px;
+	color:#fff;
+	font-size:12px;	
+	font-family:'helvetica neue',helvetica,sans-serif;
+}
+
+h1 {
+	letter-spacing:3px;
+	text-transform:uppercase;
+	font-size:1.2em;
+	margin:10px 0;
+}
+
+#main {
+	width:986px;
+	margin:0 auto;
+}
+
+#images {
+	display:none;	
+}
+
+.panel {
+	float:left;	
+}
+
+ul.exposureThumbs {
+	background:#111;
+	border:12px solid #111;
+	border-right:none;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+ul.exposureThumbs li {
+	margin:0 0 12px 0;
+	padding:0;
+	text-align:center;
+	display:none;
+}
+
+ul.exposureThumbs li img {
+	cursor:pointer;
+}
+
+ul.exposureThumbs li.last {
+	margin:0;	
+}
+
+.exposureTarget {
+	width:800px;
+	height:600px;
+	background-color:#111;	
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	float:left;	
+	padding:0;
+	margin:0;
+	border:12px solid #111;
+	position:relative;
+	overflow:hidden; 
+}
+
+.exposureWrapper {
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;	
+}
+
+.exposureData {
+	position:absolute;
+ 	left:0;
+ 	right:0;
+ 	bottom:0;
+	height:60px;
+	padding:7px;
+	background-image:url(res/veil.png);
+	color:#fff;
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+}
+
+/* In this demo we are using thumbs with fixed size */
+ul.exposureThumbs li {
+	width:150px;
+	height:79px;
+}
+
+.exposureSlideshowControls a,
+.exposureControls span,
+.exposureControls a {
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:11px;
+	padding:8px;
+	background-color:#555;
+	display:block;
+	float:left;
+}
+
+.exposureSlideshowControls a {
+	float:right;	
+}
+
+.exposureSlideshowControls a,
+.exposureControls a {
+	color:#ccc;
+	text-decoration:none;
+	outline:none;
+}
+
+.exposureSlideshowControls a:active,
+.exposureSlideshowControls a:hover,
+.exposureControls a:active,
+.exposureControls a:hover {
+	background-color:#444;
+	color:#ddd;
+}
+
+.exposurePaging .active {
+	color:#fff;
+	background-color:#111;	
+}
+
+.clear {
+	clear:both;	
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;	
+	width:600px;
+}
+
+p.info a {
+	color:#006fc0;	
+}
+
+p.info a:hover, p.info a:active {
+	color:#0084e7;	
+}

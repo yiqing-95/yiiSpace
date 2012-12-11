@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<!-- saved from url=(0014)about:internet -->
+	<head>
+		<title>Exposure - Demo 3</title>
+		<link href="demo3.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="../jquery.exposure.js?v=1.0.1" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				var gallery = $('#images');
+				gallery.exposure({controlsTarget : '#controls',
+					imageControls : true,
+					controls : { prevNext : true, pageNumbers : true, firstLast : false },
+					pageSize : 5,
+					slideshowControlsTarget : '#slideshow',
+					onThumb : function(thumb) {
+						var li = thumb.parents('li');				
+						var fadeTo = li.hasClass($.exposure.activeThumbClass) ? 1 : 0.3;
+						
+						thumb.css({display : 'none', opacity : fadeTo}).stop().fadeIn(200);
+						
+						thumb.hover(function() { 
+							thumb.fadeTo('fast',1); 
+						}, function() { 
+							li.not('.' + $.exposure.activeThumbClass).children('img').fadeTo('fast', 0.3); 
+						});
+					},
+					onImageHoverOver : function() {
+						if (gallery.imageHasData()) {						
+							// Show image data as an overlay when image is hovered.
+							gallery.dataElement.stop().show().animate({bottom:0+'px'},{queue:false,duration:160});
+						}
+					},
+					onImageHoverOut : function() {
+						// Slide down the image data.
+						var imageDataBottom = -gallery.dataElement.outerHeight();
+						gallery.dataElement.stop().show().animate({bottom:imageDataBottom+'px'},{queue:false,duration:160});
+					},
+					onImage : function(image, imageData, thumb) {
+						var w = gallery.wrapper;
+						
+						// Fade out the previous image.
+						image.siblings('.' + $.exposure.lastImageClass).stop().fadeOut(500, function() {
+							$(this).remove();
+						});
+						
+						// Fade in the current image.
+						image.hide().stop().fadeIn(1000);
+						
+						// Setup hovering for the image data container.
+						imageData.hover(function() {
+							// Trigger mouse enter event for wrapper element.
+							w.trigger('mouseenter');
+						}, function() {
+							// Trigger mouse leave event for wrapper element.
+							w.trigger('mouseleave');
+						});
+						
+						// Check if wrapper is hovered.
+						var hovered = w.hasClass($.exposure.imageHoverClass);						
+						if (hovered) {
+							if (gallery.imageHasData()) {
+								gallery.onImageHoverOver();
+							} else {
+								gallery.onImageHoverOut();
+							}	
+						}
+		
+						if (gallery.showThumbs && thumb && thumb.length) {
+							thumb.parents('li').siblings().children('img.' + $.exposure.selectedImageClass).stop().fadeTo(200, 0.3, function() { $(this).removeClass($.exposure.selectedImageClass); });			
+							thumb.fadeTo('fast', 1).addClass($.exposure.selectedImageClass);
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<h1>Exposure - Demo 3</h1>
+			<div class="panel">	
+				<div id="controls"></div>				
+				<div id="slideshow"></div>
+				<div class="clear"></div>
+				<ul id="images">
+					<li><a href="slides/IMG_2198.jpg"><img src="thumbs/IMG_2198.jpg" title="Home made" /></a></li>
+					<li><a href="slides/IMG_2339.jpg"><img src="thumbs/IMG_2339.jpg" title="Chocolate" /></a></li>
+					<li><a href="slides/IMG_2446.jpg"><img src="thumbs/IMG_2446.jpg" title="Love birds" /></a></li>
+					<li><a href="slides/IMG_2623.jpg"><img src="thumbs/IMG_2623.jpg" title="Blue" /></a></li>
+					<li><a href="slides/IMG_5077.jpeg"><img src="thumbs/IMG_5077.jpeg" title="White" /></a></li>
+					<li><a href="slides/IMG_5177.jpeg"><img src="thumbs/IMG_5177.jpeg" title="Yellow on blue" /></a></li>			
+					<li><a href="slides/IMG_5278.jpeg"><img src="thumbs/IMG_5278.jpeg" title="Heat" /></a></li>
+					<li><a href="slides/IMG_5324.jpeg"><img src="thumbs/IMG_5324.jpeg" title="Cold" /></a></li>
+					<li><a href="slides/IMG_5650.jpeg"><img src="thumbs/IMG_5650.jpeg" title="Homes" /></a></li>
+					<li><a href="slides/IMG_9006.jpg"><img src="thumbs/IMG_9006.jpg" title="Ace" /></a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>			
+			<div id="exposure"></div>			
+			<div class="clear"></div>
+		</div>
+		<p class="info"><a href="demo2.html?v=1.0.1">View previous demo</a> | <a href="demo4.html?v=1.0.1">View next demo</a></p>
+		<p class="info">This is a demo showing the <a href="http://exposure.blogocracy.org/">Exposure plugin for jQuery</a>. With Exposure you can give your gallery any look you want, this is just an example. <a href="http://exposureforjquery.wordpress.com/download/">Download Exposure</a> or <a href="http://exposure.blogocracy.org/">learn more</a>.</p>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+		<!-- Google Ads -->
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-4720581481756902";
+		/* 728x90, created 9/19/08 */
+		google_ad_slot = "7729547492";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+
+
+<!-- Start of Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1812771-1");
+pageTracker._trackPageview();
+</script>
+<!-- End of Google Analytics -->

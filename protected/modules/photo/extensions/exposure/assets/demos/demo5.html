@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<!-- saved from url=(0014)about:internet -->
+	<head>
+		<title>Exposure - Demo 5</title>
+		<link href="demo5.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="../jquery.exposure.js?v=1.0.1" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				var gallery = $('#images');
+				gallery.exposure({showControls : false,
+					dataTarget : '#captionContainer',
+					showThumbs : false,
+					loop : false,
+					onImage : function(image, imageData, thumb) {
+						// Fade out the previous image.
+						image.siblings('.' + $.exposure.lastImageClass).stop().fadeOut(500, function() {
+							$(this).remove();
+						});
+						
+						// Fade in the current image.
+						image.hide().stop().fadeIn(1000);
+		
+						if ($.exposure.showThumbs && thumb && thumb.length) {
+							thumb.parents('li').siblings().children('img.' + $.exposure.selectedImageClass).stop().fadeTo(200, 0.3, function() { $(this).removeClass($.exposure.selectedImageClass); });			
+							thumb.fadeTo('fast', 1).addClass($.exposure.selectedImageClass);
+						}
+						
+						// Update custom navigation thumbnail images.
+						updateThumbnail(gallery.getNextImage(), '.next', 'Next image');
+						updateThumbnail(gallery.getPrevImage(), '.prev', 'Previous image');
+						
+						// Update image counter.
+						var imageSrc = image.attr('src');
+						var imageNumber = gallery.indexOfImage(imageSrc)+1;
+						var counterText = imageNumber + '/' + gallery.numberOfImages();
+						var counter = $('#counter').text(counterText);
+					}
+				});
+				
+				function updateThumbnail(imageIndex, selector, toolTip) {
+					var image = gallery.getImage(imageIndex);
+					if (image && image.thumb) {
+						// Remove previous thumbnail image.
+						$(selector + ' img').remove();
+						
+						// Insert new thumbnail image.
+						var img = $('<img src="' + image.thumb + '" alt="' + toolTip + '" title="' + toolTip + '" rel="' + imageIndex + '" />').click(function() {
+							gallery.viewImage(Number($(this).attr('rel')));
+						});
+						$(selector).append(img);
+						$(selector).show();
+					} else {
+						$(selector).hide();	
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<h1>Exposure - Demo 5</h1>
+			<ul id="images">
+				<li><a href="slides/IMG_2198.jpg"><img src="thumbs/IMG_2198.jpg" title="Home made" /></a><a target="_top" href="http://allrecipes.com/Recipe/ooey-gooey-cinnamon-buns/detail.aspx">View cinnamon bun recipe</a></li>
+				<li><a href="slides/IMG_2339.jpg"><img src="thumbs/IMG_2339.jpg" title="Chocolate" /></a><a target="_top" href="http://en.wikipedia.org/wiki/Mint_chocolate">Learn more about mint chocolate</a></li>
+				<li><a href="slides/IMG_2446.jpg"><img src="thumbs/IMG_2446.jpg" title="Love birds" /></a><p style="font-style:italic">Aren't they cute?</p></li>
+				<li><a href="slides/IMG_2623.jpg"><img src="thumbs/IMG_2623.jpg" title="Blue" /></a></li>
+				<li><a href="slides/IMG_5077.jpeg"><img src="thumbs/IMG_5077.jpeg" title="White" /></a>This a wood anemone.</li>
+				<li><a href="slides/IMG_5177.jpeg"><img src="thumbs/IMG_5177.jpeg" title="Yellow on blue" /></a></li>			
+				<li><a href="slides/IMG_5278.jpeg"><img src="thumbs/IMG_5278.jpeg" title="Heat" /></a></li>
+				<li><a href="slides/IMG_5324.jpeg"><img src="thumbs/IMG_5324.jpeg" title="Cold" /></a></li>
+				<li><a href="slides/IMG_5650.jpeg"><img src="thumbs/IMG_5650.jpeg" title="Homes" /></a>Find more snail shells <a target="_top" href="http://www.google.se/search?q=snail+shells&tbm=isch">here</a>.</li>
+				<li><a href="slides/IMG_9006.jpg"><img src="thumbs/IMG_9006.jpg" title="Ace" /></a></li>
+			</ul>
+			<div class="main">
+				<div id="exposure"></div>
+				<div id="captionContainer"></div>
+				<p class="info"><a href="demo4.html?v=1.0.1">View previous demo</a> | <a href="demo6.html?v=1.0.1">View next demo</a></p>
+				<p class="info">This is a demo showing the <a href="http://exposure.blogocracy.org/">Exposure plugin for jQuery</a>. With Exposure you can give your gallery any look you want, this is just an example. <a href="http://exposureforjquery.wordpress.com/download/">Download Exposure</a> or <a href="http://exposure.blogocracy.org/">learn more</a>.</p>
+			</div>
+			<div class="panel">
+				<div class="next"><span class="label">Next</span></div>
+				<div class="prev"><span class="label">Previous</span></div>				
+				<p>Showing image: <span id="counter"></span></p>
+			</div>
+			<div class="clear"></div>	
+		</div>
+	</body>
+</html>
