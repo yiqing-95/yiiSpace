@@ -1,0 +1,41 @@
+<ja:if test="<%= totalImages > 0 %>">
+	<div class="navigation-container">
+		<div id="thumbs" class="navigation">
+			<ja:if test="<%= thumbsLocation == "top" || thumbsLocation == "bottom" %>">
+			<a class="pageLink prev" style="visibility: hidden;" href="#" title="${prevPageLinkText}"></a>
+			</ja:if>
+			<ul class="thumbs noscript"><ja:fileiterator nodirs="true">
+				<li>
+					<a class="thumb" href="${imagePath}" title="${title}">
+						<img src="${thumbPath}" alt="${title}" width="${maxThumbWidth}" height="${maxThumbHeight}" />
+					</a>
+					<div class="caption">
+						<div class="image-title">${title}</div>
+						<ja:if test="${enableDownload}"><ja:if exists="originalPath"><div class="download">
+							<a href="${originalPath}">Download Original</a>
+						</div></ja:if></ja:if>
+						<div class="image-desc">
+							<strong>${originalDate}</strong>
+							<ja:if exists="comment"><p>${comment}</p></ja:if>
+							<ja:if test="${showExif}"><ul class="meta">
+								<ja:if test="${showExifMakeModel}"><ja:if exists="cameraModel"><li>Camera: ${cameraModel}</li></ja:if></ja:if>
+								<ja:if test="${showExifResolution}"><ja:if exists="resolution"><li>Resolution: ${resolution}</li></ja:if></ja:if>
+								<ja:if test="${showExifSensorType}"><ja:if exists="sensorType"><li>Sensor Type: ${sensorType}</li></ja:if></ja:if>
+								<ja:if test="${showExifFocalLength}"><ja:if exists="focalLength"><li>Focal Length: ${focalLength}</li></ja:if></ja:if>
+								<ja:if test="${showExifResolution}"><ja:if exists="exposureTime"><li>Exposure Time: ${exposureTime}</li></ja:if></ja:if>
+								<ja:if test="${showExifISO}"><ja:if exists="isoEquivalent"><li>ISO: ${isoEquivalent}</li></ja:if></ja:if>
+								<ja:if test="${showExifAperture}"><ja:if exists="aperture"><li>Aperture: ${aperture}</li></ja:if></ja:if>
+								<ja:if test="${showExifFocalDistance}"><ja:if exists="focusDistance"><li>Focus Distance: ${focusDistance}</li></ja:if></ja:if>
+								<ja:if test="${showExifMeterMode}"><ja:if exists="meteringMode"><li>Metering Mode: ${meteringMode}</li></ja:if></ja:if>
+								<ja:if test="${showExifFlash}"><ja:if exists="flash"><li>Flash: ${flash}</li></ja:if></ja:if>
+							</ul></ja:if>
+						</div>
+					</div>
+				</li></ja:fileiterator>
+			</ul>
+			<ja:if test="<%= thumbsLocation == "top" || thumbsLocation == "bottom" %>">
+			<a class="pageLink next" style="visibility: hidden;" href="#" title="${nextPageLinkText}"></a>
+			</ja:if>
+		</div>
+	</div>
+</ja:if>

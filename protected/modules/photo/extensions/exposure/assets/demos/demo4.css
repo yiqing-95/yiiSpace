@@ -1,0 +1,174 @@
+body {
+	background:#000;
+	padding:20px;
+	color:#bba;
+	font-size:14px;
+	font-family:Georgia,serif;
+}
+
+h1 {
+	letter-spacing:3px;
+	font-size:1.2em;
+	margin:10px 0;
+	text-align:center;
+}
+
+#top {
+	width:856px;
+	margin:0 auto;
+}
+
+#main {
+	width:824px;
+	margin:0 auto;
+}
+
+#images {
+	display:none;
+	margin:0 24px;
+	float:left;	
+	width:765px;
+}
+
+#right,
+#left {
+	display:inline;
+	float:left;
+	padding-top:23px;
+}
+
+#right a img,
+#left a img {
+	height:40px;
+	width:20px;
+	border:none;
+	opacity:0.5;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter:alpha(opacity=50);
+}
+
+#right a:hover img,
+#left a:hover img {
+	opacity:1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:alpha(opacity=100);
+}
+
+#right a,
+#left a {
+	outline:none;
+}
+
+.panel {
+	margin:0 0 12px 0;
+}
+
+ul.exposureThumbs {
+	background:#333;
+	border:3px solid #333;
+	border-right:none;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+	height:79px;
+}
+
+ul.exposureThumbs li {
+	background:#111;
+	margin:0 3px 0 0;
+	padding:0;
+	text-align:center;
+	display:none;
+	float:left;
+}
+
+ul.exposureThumbs li img {
+	cursor:pointer;
+}
+
+ul.exposureThumbs li.last {
+	margin:0;
+}
+
+.exposureTarget {
+	width:800px;
+	height:600px;
+	background-color:#111;	
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	padding:0;
+	margin:0 auto;
+	border:3px solid #333;
+	position:relative;
+	overflow:hidden; 
+}
+
+.exposureWrapper {
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;	
+}
+
+.exposureData {
+	position:absolute;
+ 	left:0;
+ 	right:0;
+ 	bottom:0;
+	height:60px;
+	padding:7px;
+	background-image:url(res/veil.png);
+	color:#fff;
+	font-size:16px;
+	font-weight:bold;
+}
+
+/* In this demo we are using thumbs with fixed size */
+ul.exposureThumbs li {
+	width:150px;
+	height:79px;
+}
+
+.exposureSlideshowControls a {
+	font-size:11px;
+	color:#bba;
+	text-decoration:none;
+	outline:none;
+	padding:2px 6px;
+	display:inline;
+}
+
+.exposureSlideshowControls a:active,
+.exposureSlideshowControls a:hover {
+	background-color:#999;
+	color:#444;
+}
+
+.clear {
+	clear:both;	
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;	
+	width:600px;
+}
+
+p.info a {
+	color:#006fc0;	
+}
+
+p.info a:hover, p.info a:active {
+	color:#0084e7;	
+}
