@@ -121,13 +121,15 @@ class CommentController extends Controller
                     $result['code'] = 'success';
                     $this->beginClip("list");
                         $this->widget('comments.widgets.ECommentsListWidget', array(
-                            'model' => $comment->ownerModel,
+                           'objectName'=>$comment->object_name,
+                            'objectId'=>$comment->object_id,
                             'showPopupForm' => false,
                         ));
                     $this->endClip();
                     $this->beginClip('form');
                         $this->widget('comments.widgets.ECommentsFormWidget', array(
-                            'model' => $comment->ownerModel,
+                            'objectName'=>$comment->object_name,
+                            'objectId'=>$comment->object_id,
                         ));
                     $this->endClip();
                     $result['list'] = $this->clips['list'];
@@ -137,7 +139,8 @@ class CommentController extends Controller
                     $result['code'] = 'fail';
                     $this->beginClip('form');
                         $this->widget('comments.widgets.ECommentsFormWidget', array(
-                            'model' => $comment->ownerModel,
+                            'objectName'=>$comment->object_name,
+                            'objectId'=>$comment->object_id,
                             'validatedComment' => $comment,
                         ));
                     $this->endClip();

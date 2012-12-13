@@ -19,6 +19,29 @@ class PhotoInstaller extends BaseModuleInstaller
         YsViewSystem::registerObjectViewConfig('photo','photo_view_track','photo');
 
         YsVotingSystem::registerSysObjectVoteConfig('photo','photo_rating','photo_vote_track','pt_',5,0,'photo','rate','rate_count','id');
+
+        /**
+         *  array(
+        'object_name' => $object_name, //string
+        'table_cmt' => $table_cmt, //string
+        'table_track' => $table_track, //string
+        'per_view' => $per_view, //integer
+        'is_ratable' => $is_ratable, //integer
+        'is_on' => $is_on, //integer
+        'is_mood' => $is_mood, //integer
+        'trigger_table' => $trigger_table, //string
+        'trigger_field_id' => $trigger_field_id, //string
+        'trigger_field_cmts' => $trigger_field_cmts, //string
+        'class' => $class, //string
+        'extra_config' => $extra_config,
+         */
+        YsCommentSystem::registerSysObjectCmtConfig(
+            array('object_name'=>'photo',
+           'table_cmt'=>'photo_cmt',
+            'trigger_table'=>'photo',
+            'trigger_field_id'=>'id',
+            'trigger_field_cmts'=>'cmt_count'
+        ));
         echo __METHOD__ ;
 
     }
@@ -28,6 +51,8 @@ class PhotoInstaller extends BaseModuleInstaller
 
         YsViewSystem::unRegisterObjectViewConfig('photo');
         YsVotingSystem::unRegisterObjectVotingConfig('photo');
+
+        YsCommentSystem::unRegisterObjectCommentConfig('photo');
         echo __METHOD__ ;
     }
 
