@@ -1,5 +1,6 @@
 <div class="comment-widget" id="<?php echo $this->id; ?>">
     <h3><?php echo Yii::t('CommentsModule.msg', 'Comments');?></h3>
+
     <?php
 
     //$this->render('cmtTopLevelList', array('comments' => $dataProvider->getData()));
@@ -18,30 +19,23 @@
         if ($this->registeredOnly === false || Yii::app()->user->isGuest === false) {
             echo "<div id=\"addCommentDialog-$this->id\">";
             $this->widget('comments.widgets.ECommentsFormWidget', array(
-                'model' => $this->model,
+                'objectName'=>$this->objectName,
+                'objectId'=>$this->objectId,
                 'isReplyForm'=>true,
+                'isPopupForm'=>$this->showPopupForm,
             ));
             echo "</div>";
         }
     }
+
     if ($this->registeredOnly === false || Yii::app()->user->isGuest === false) {
-        // echo CHtml::link(Yii::t('CommentsModule.msg', 'Add comment'), '#', array('rel'=>0, 'class'=>'add-comment'));
+         echo CHtml::link(Yii::t('CommentsModule.msg', 'Add comment'), '#', array('rel'=>0, 'class'=>'add-comment'));
     } else {
         echo '<strong>' . Yii::t('CommentsModule.msg', 'You cannot add a new comment') . '</strong>';
     }
     ?>
-    <div class="cmt-form">
-        <?php
-        if ($this->registeredOnly === false || Yii::app()->user->isGuest === false) {
-            // echo CHtml::link(Yii::t('CommentsModule.msg', 'Add comment'), '#', array('rel'=>0, 'class'=>'add-comment'));
-            $this->widget('comments.widgets.ECommentsFormWidget', array(
-                'model' => $this->model,
-                'isReplyForm' => false,
-            ));
-        }
-        ?>
     </div>
-</div>
+
 
 <script type="text/javascript">
     var firstPageUrl = "<?php echo $dataProvider->getPagination()->createPageUrl(Yii::app()->getController(), 0); ?>";
@@ -84,4 +78,6 @@
         return false;
 
     }
+
+
 </script>

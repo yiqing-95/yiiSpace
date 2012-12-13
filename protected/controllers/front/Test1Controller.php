@@ -5,15 +5,29 @@
 class Test1Controller extends Controller
 {
 
+
+    /**
+     * @Desc('测试评论配置 ')
+     */
+    public function actionCmtConfig(){
+        WebUtil::printCharsetMeta();
+        $system = YsCommentSystem::getAllSystems();
+
+        //print_r($system);
+        print_r(YsCommentSystem::getObjectCmtConfig('Photo'));
+    }
+
+
     /**
      * @Desc('创建评论相关的表')
      */
     public function actionCreateCommentTable(){
         WebUtil::printCharsetMeta();
-       Yii::import('application.components.sysComment.CommentMigration');
+        Yii::import('application.components.sysComment.CommentMigration');
         $mig = new CommentMigration();
         $mig->up();
     }
+
 
     /**
      * @Desc('测试评论功能')

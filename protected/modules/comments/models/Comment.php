@@ -187,15 +187,16 @@ class Comment extends CActiveRecord {
      */
     public function checkConfig($attribute,$params)
     {
+        $config = $this->getConfig();
         //if object_name class exists in configuration
-        if(count($this->config) === 0)
+        if(count($config) === 0)
         {
             if($attribute === 'object_name')
                 $this->addError ($attribute, Yii::t('CommentsModule.msg', 'This item cann\'t be commentable'));
                 return;
         }
         //if only registered users can post comments
-        if ($attribute === 'author_id' && ($this->config['registeredOnly'] === true || Yii::app()->user->isGuest === false))
+        if ($attribute === 'author_id' && ($config['registeredOnly'] === true || Yii::app()->user->isGuest === false))
         {
             unset($this->user_email, $this->user_name);
             $numberValidator = new CNumberValidator();
@@ -206,7 +207,7 @@ class Comment extends CActiveRecord {
         }
 
         //if se captcha validation on posting
-        if ($attribute === 'verifyCode' && $this->config['useCaptcha'] === true)
+        if ($attribute === 'verifyCode' && $config['useCaptcha'] === true)
         {
             $captchaValidator = new CCaptchaValidator();
             $captchaValidator->caseSensitive = false;
@@ -217,7 +218,7 @@ class Comment extends CActiveRecord {
         }
 
         //if not only registered users can post comments and current user is guest
-        if (($attribute === 'user_name' || $attribute === 'user_email') && ($this->config['registeredOnly'] === false && Yii::app()->user->isGuest === true))
+        if (($attribute === 'user_name' || $attribute === 'user_email') && ($config['registeredOnly'] === false && Yii::app()->user->isGuest === true))
         {
             unset($this->author_id);
             $requiredValidator = new CRequiredValidator();
@@ -242,15 +243,17 @@ class Comment extends CActiveRecord {
      */
 
     public function getCommentsTree() {
+        $config = $this->getConfig();
+
         $criteria = new CDbCriteria;
         $criteria->compare('object_name', $this->object_name);
         $criteria->compare('object_id', $this->object_id);
         $criteria->compare('t.status', '<>'.self::STATUS_DELETED);
         $criteria->order = 't.cmt_parent_id, t.create_time ';
-        if($this->config['orderComments'] === 'ASC' || $this->config['orderComments'] === 'DESC')
-            $criteria->order .= $this->config['orderComments'];
+        if($config['orderComments'] === 'ASC' || $config['orderComments'] === 'DESC')
+            $criteria->order .= $config['orderComments'];
         //if premoderation is seted and current user isn't superuser
-        if($this->config['premoderate'] === true && $this->evaluateExpression($this->config['isSuperuser']) === false)
+        if($config['premoderate'] === true && $this->evaluateExpression($config['isSuperuser']) === false)
             $criteria->compare('t.status', self::STATUS_APPROVED);
         $relations = $this->relations();
         //if User model has been configured
@@ -264,16 +267,19 @@ class Comment extends CActiveRecord {
      * @return CActiveDataProvider
      */
     public function  getTopLevelCmtDataProvider(){
+        $config = $this->getConfig();
+
+       // print_r($config) ; die(__METHOD__);
         $criteria = new CDbCriteria;
         $criteria->compare('object_name', $this->object_name);
         $criteria->compare('object_id', $this->object_id);
         $criteria->compare('t.status', '<>'.self::STATUS_DELETED);
         //$criteria->order = 't.cmt_parent_id, t.create_time ';
         $criteria->order = 't.create_time ';
-        if($this->config['orderComments'] === 'ASC' || $this->config['orderComments'] === 'DESC')
-            $criteria->order .= $this->config['orderComments'];
+        if($config['orderComments'] === 'ASC' || $config['orderComments'] === 'DESC')
+            $criteria->order .= $config['orderComments'];
         //if premoderation is seted and current user isn't superuser
-        if($this->config['premoderate'] === true && $this->evaluateExpression($this->config['isSuperuser']) === false)
+        if($config['premoderate'] === true && $this->evaluateExpression($config['isSuperuser']) === false)
             $criteria->compare('t.status', self::STATUS_APPROVED);
         $relations = $this->relations();
         //if User model has been configured
@@ -350,28 +356,7 @@ class Comment extends CActiveRecord {
         return $this->_config;
     }
     
-    /*
-     * Returns comments owner model
-     * @return CActiveRecord $model
-     */
-    public function getOwnerModel()
-    {
-        if($this->_ownerModel === false)
-        {
-            if(is_array($primaryKey = $this->primaryKey()) === false)
-                $key = $this->object_id;
-            else
-                $key = array_combine($primaryKey, explode('.', $this->object_id));
-            $ownerModel = $this->object_name;
 
-            if(class_exists($ownerModel))
-		$this->_ownerModel = CActiveRecord::model($ownerModel)->findByPk($key);
-            else 
-                $this->_ownerModel = null;
-        }
-        return $this->_ownerModel;
-    }
-    
     /*
      * Set comment and all his childs as deleted
      * @return boolean
@@ -417,18 +402,40 @@ class Comment extends CActiveRecord {
     /**
      * Get the link to page with this comment
      * @return string
+     * 后台管理 评论时可以直接跳转到评论目标上 这时候需要
+     * 一个链接 但评论作为独立模块 不应该依赖其他model（User除外）
+     * 所以 每个objectName 的配置中需要一个能够跳到自己view页面的构造
+     * -----------------------------------------------
+     * 另一种方法是 仿照gridView中的CButtonColumn $xxxButtonUrl 做法。
+     *
+     * 已经注意到 嵌套性资源的访问 url会携带所有顶级路径上面的节点信息：
+     * 如 yiiSpace/photo/view/id/22/aid/20/u/2#cmt-4
+     *    但这些信息提前无法预知 通过某种静态方法或者callback也是可以算到 但仍旧麻烦。
+     * 一种妥协做法： 每个可被评论的节点均提供简单访问URL形式：  yiiSpace/photo/view/$entityId
+     * 这样就可以构造url表达式  使用 viewUrlExpression
+     * 如: "/photo/view/$entityId"
+     * 默认可用的 ：$objectName ,$objectId 就和你注册评论配置时的情况一致！这样可以使用yii的evaluateExpression
+     * 来计算viewUrl的地址了！
+     * --------------------------------------------------
+     * 关于anchor 直接跳转到评论位置 基本上不大可能 ，由于使用了分页 所以跳到评论目标对象浏览页面
+     * 就可以了  如果非要这么搞 那么可能用js方式 传递anchor 到客户端  比如 #cmt-40  这样评论id是40
+     * 评论模块要完成这个工作：  先算出大于40评论总数 然后算这个页数  接着跳到这个页数去！！ 呵呵
+     * ajax加载评论才有可能实现的
      */
     public function getPageUrl()
     {
-        $config = $this->config;
+        $config = $this->getConfig();
         //if isset settings for comments page url
         if(isset($config['pageUrl']) === true && is_array($config['pageUrl']) === true)
         {
+
+            /**
             $ownerModel = $this->getOwnerModel();
             $routeData = array();
             foreach($config['pageUrl']['data'] as $routeVar=>$modelProperty)
                 $routeData[$routeVar] = $ownerModel->$modelProperty;
             return Yii::app()->urlManager->createUrl($config['pageUrl']['route'], $routeData)."#comment-$this->cmt_id";
+             * */
         }
         return null;
     }
@@ -437,8 +444,9 @@ class Comment extends CActiveRecord {
      * Set comment status base on owner model configuration
      */
     public function beforeSave() {
+        $config = $this->getConfig();
         //if current user is superuser, then automoderate comment and it's new comment
-        if($this->isNewRecord === true && $this->evaluateExpression($this->config['isSuperuser']) === true)
+        if($this->isNewRecord === true && $this->evaluateExpression($config['isSuperuser']) === true)
             $this->status = self::STATUS_APPROVED;
         return parent::beforeSave();
     }

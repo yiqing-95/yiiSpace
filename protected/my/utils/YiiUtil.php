@@ -835,39 +835,36 @@ COL_ITEM;
         $methodString .= "\t \${$arObjectName}->save();";
         //.......................................................................
         $methodString .= "\n}";
-        return $methodComments . "\n" . $methodString;
+
+        $methodStyle2 = "//================================================\n ";
+        $methodStyle2 .= "//below is the style two \n ";
+        $methodStyle2 .= self::insertMethodForTable2($tableName,false);
+
+        return $methodComments . "\n" . $methodString ."\n ".$methodStyle2;
         //  * @property <?php echo $column->type.' $'.$column->name."\n";
     }
 
-    public static function insertMethodForTable2($tableName, $camelCase = false)
+    public static function insertMethodForTable2($tableName, $camelCase = true)
     {
         $tableSchema = Yii::app()->db->getSchema()->getTable($tableName);
         $columns = $tableSchema->columns;
         $methodComments = "/** \n";
         $methodComments .= " * @param array \$attributes list of attributes that need to be saved.\n ";
-        $methodComments .= "-----------------------------------------------------------------\n ";
+        $methodComments .= "-----------------------------------------------------------------\n array( ";
         foreach ($columns as $column) {
             $columnVar = $camelCase ? self::class2var(self::tableName2className($column->name)) : $column->name;
-            $methodComments .= ("* @param {$column->type} \${$columnVar} \n ");
+            $methodComments .= (" '{$columnVar}' => \${$columnVar}, //{$column->type} \n ");
         }
-        $methodComments .= "\n-----------------------------------------------------------------\n ";
+        $methodComments .= ") \n-----------------------------------------------------------------\n ";
         $methodComments .= "* @return mixed \n */";
-        $methodString = "public  function insert" . self::tableName2className($tableName) . "(";
-        foreach ($columns as $column) {
-            $columnVar = $camelCase ? self::camelCase($column->name) : $column->name;
-            $methodString .= (" {$column->type} \${$columnVar},");
-        }
-        $methodString = rtrim($methodString, ',');
-        $methodString .= ")\n{\n";
+        $methodString = "public  function insert" . self::tableName2className($tableName) . "( \$attributes )\n{\n";
         //.......................................................................
         // here pass var to ar
         $arObjectName = self::class2var(self::tableName2className($tableName));
         $arClassName = self::tableName2className($tableName);
-        $methodString .= "  \${$arObjectName} = new {$arClassName}();\n ";
-        foreach ($columns as $column) {
-            $columnVar = $camelCase ? self::camelCase($column->name) : $column->name;
-            $methodString .= "\t\t \${$arObjectName}->{$column->name} = \${$columnVar};\n";
-        }
+        $methodString .= " \t \${$arObjectName} = new {$arClassName}();\n ";
+        $methodString .= "\t \${$arObjectName}->attributes = \$attributes; \n ";
+
         $methodString .= "\t \${$arObjectName}->save();";
         //.......................................................................
         $methodString .= "\n}";

@@ -40,7 +40,7 @@ return 'object_name';
 
 public function rules() {
 return array(
-array('object_name, table_cmt, table_track, per_view, is_ratable, is_on, is_mood, trigger_table, trigger_field_id, trigger_field_cmts', 'required'),
+array('object_name, table_cmt,  per_view, is_ratable, is_on, is_mood, trigger_table, trigger_field_id, trigger_field_cmts', 'required'),
 array('per_view, is_ratable, is_on, is_mood', 'numerical', 'integerOnly'=>true),
 array('object_name, table_cmt, table_track', 'length', 'max'=>50),
 array('trigger_table, trigger_field_id, trigger_field_cmts, class', 'length', 'max'=>32),

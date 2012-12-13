@@ -28,4 +28,28 @@ class SysController extends YsController
         }
    }
 
+    public function actionComment(){
+
+        $request = Yii::app()->request;
+        if($request->getIsAjaxRequest()){
+           $this->layout = false;
+            $objectName = $request->getParam('objectName');
+            $objectId = $request->getParam('objectId');
+            ob_start();
+            $this->widget('comments.widgets.ECommentsListWidget', array(
+               'objectName'=>$objectName,
+                'objectId'=>$objectId,
+                'dialogOptions'=>array(
+                    'width'=>'500',
+                )
+            ));
+            $this->renderText(ob_get_clean());
+        }else{
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+        }
+
+
+    }
+
+
 }
