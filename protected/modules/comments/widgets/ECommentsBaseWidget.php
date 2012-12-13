@@ -26,12 +26,12 @@ class ECommentsBaseWidget extends CJuiWidget
     /**
      * @var string
      */
-    public $objectName = '';
+    public $objectName ;
 
     /**
      * @var int
      */
-    public $objectId = 0;
+    public $objectId ;
 //.................................................................................
 
     /**
@@ -50,7 +50,7 @@ class ECommentsBaseWidget extends CJuiWidget
      * Action for posting comments, where add comment form is submited
      * @var postCommentAction
      */
-    public $postCommentAction = 'comments/comment/postComment';
+    public $postCommentAction = '/comments/comment/postComment';
 
     /**
      * @var array
@@ -89,8 +89,15 @@ class ECommentsBaseWidget extends CJuiWidget
     {
         $assets = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('comments') . '/assets');
         $cs = Yii::app()->getClientScript();
-        $cs->registerCssFile($assets . '/comments.css?' . time());
-        $cs->registerScriptFile($assets . '/comments.js?' . time());
+
+        $request = Yii::app()->request;
+        if($request->getIsAjaxRequest()){
+            $cs->registerCssFile($assets . '/comments.css');
+            $cs->registerScriptFile($assets . '/comments.js');
+        }else{
+            $cs->registerCssFile($assets . '/comments.css?' . time());
+            $cs->registerScriptFile($assets . '/comments.js?' . time());
+        }
     }
 
     /*
@@ -99,6 +106,7 @@ class ECommentsBaseWidget extends CJuiWidget
     */
     protected function createNewComment()
     {
+
         $comment = new Comment();
         $comment->object_name = $this->objectName;
         $comment->object_id = $this->objectId;

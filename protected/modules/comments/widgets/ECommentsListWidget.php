@@ -48,15 +48,28 @@ class ECommentsListWidget extends ECommentsBaseWidget
                 if($this->_config['isSuperuser'] !== '')
                     $this->adminMode = $this->evaluateExpression($this->_config['isSuperuser']);
             }
+            if(Yii::app()->request->getIsAjaxRequest()){
+                $this->showPopupForm = false ;
+            }
         }
         
 	public function run()
 	{
             $newComment = $this->createNewComment();
-            $this->render('cmtList', array(
-                'dataProvider' => $newComment->getTopLevelCmtDataProvider(),
-                'newComment' => $newComment,
-            ));
+
+           if(Yii::app()->request->getIsAjaxRequest() || $this->showPopupForm == false){
+               $this->render('cmtListNoPopup', array(
+                   'dataProvider' => $newComment->getTopLevelCmtDataProvider(),
+                   'newComment' => $newComment,
+               ));
+
+           }else{
+               $this->render('cmtList', array(
+                   'dataProvider' => $newComment->getTopLevelCmtDataProvider(),
+                   'newComment' => $newComment,
+               ));
+
+           }
             $options = CJavaScript::encode(array(
                 'dialogTitle' => Yii::t('CommentsModule.msg', 'Add comment'),
                 'deleteConfirmString' => Yii::t('CommentsModule.msg', 'Delete this comment?'),
@@ -66,6 +79,7 @@ class ECommentsListWidget extends ECommentsBaseWidget
                 'dialogOptions' => $this->dialogOptions,
             ));
             $js = "jQuery('#{$this->id}').commentsList($options);";
-            Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$this->id, $js);
+
+           Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$this->id, $js,CClientScript::POS_END);
 	}
 }

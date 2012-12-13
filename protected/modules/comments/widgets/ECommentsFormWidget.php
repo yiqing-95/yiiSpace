@@ -25,21 +25,22 @@ class ECommentsFormWidget extends ECommentsBaseWidget
      * @var bool
      */
     public $isReplyForm = false;
-        
+
+    /**
+     * @var bool
+     */
+    public $isPopupForm = false;
+
 	public function run()
 	{
+
             if($this->registeredOnly === false || Yii::app()->user->isGuest === false)
             {
                  $cmtModel =  empty($this->validatedComment) ? $this->createNewComment() : $this->validatedComment ;
-                if($this->isReplyForm == true){
-                    $this->render('cmtReplyForm', array(
-                        'newComment' => $cmtModel,
-                    ));
-                }else{
+
                     $this->render('cmtForm', array(
                         'newComment' => $cmtModel,
                     ));
-                }
                }
             else 
             {

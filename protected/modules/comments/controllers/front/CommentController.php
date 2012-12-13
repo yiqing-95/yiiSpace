@@ -124,7 +124,8 @@ class CommentController extends Controller
                 $cmtForm = $this->widget('comments.widgets.ECommentsFormWidget', array(
                     'objectName'=>$comment->object_name,
                     'objectId'=>$comment->object_id,
-                    'isReplyForm' => !empty($comment->cmt_parent_id)
+                    'isReplyForm' => !empty($comment->cmt_parent_id),
+                    'isPopupForm'=> $_POST['isPopupForm']=='1'
                 ), true);
 
             } else {
@@ -134,7 +135,8 @@ class CommentController extends Controller
                     'objectName'=>$comment->object_name,
                     'objectId'=>$comment->object_id,
                     'validatedComment' => $comment,
-                    'isReplyForm' => !empty($comment->cmt_parent_id)
+                    'isReplyForm' => !empty($comment->cmt_parent_id),
+                    'isPopupForm'=> $_POST['isPopupForm']=='1'
                 ), true);
             }
             $result['form'] = $cmtForm;

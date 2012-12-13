@@ -14,13 +14,13 @@ $this->menu = array(
 ?>
 
 <h1>View Photo #<?php echo $model->id; ?>
-<?php
+    <?php
     $this->widget('application.components.sysVoting.YsStarRating', array(
         'name' => 'ratingAjaxDynamicTarget',
-        'objectName'=>'photo',
+        'objectName' => 'photo',
         'objectId' => new CJavaScriptExpression('$(".caption",$(".image-caption.current")).attr("photo_id")'),
     ));
-?>
+    ?>
 </h1>
 <?php
 $this->widget('photo.extensions.galleriffic.JGalleriffic', array(
@@ -47,20 +47,11 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                 <div class="photo-index"></div>
             </div>
 
-            <div class="fluid-row span12">
-                <?php
-                $this->widget('comments.widgets.ECommentsListWidget', array(
-                    'model' => $model,
-                    'dialogOptions'=>array(
-                        'width'=>'500',
-                    )
-                ));
-                ?>
-            </div>
         </div>
+
     </div>
 
-    <div class="span2">
+    <div class="span2 ">
         <div class="navigation-container">
             <div id="thumbs" class="navigation">
                 <div class="span2">
@@ -70,14 +61,15 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
 
                 <ul class="thumbs noscript">
-<!--                    开始同相册的迭代-->
-                    <?php  $i = $idxInAlbum = 1 ; ?>
-                    <?php foreach($photos as $photo): ?>
-                    <?php  if($photo->id == $model->id){
-                            $idxInAlbum = $i;
-                    }else{
-                        $i++ ;
-                    } ;?>
+                    <!--                    开始同相册的迭代-->
+                    <?php  $i = $idxInAlbum = 1; ?>
+                    <?php foreach ($photos as $photo): ?>
+                    <?php  if ($photo->id == $model->id) {
+                        $idxInAlbum = $i;
+                    } else {
+                        $i++;
+                    }
+                    ;?>
                     <li>
                         <a class="thumb" name="leaf"
                            href="<?php echo $photo->getViewUrl(); ?>" title="Title #0">
@@ -86,11 +78,11 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
                         <div class="caption" photo_id="<?php echo  $photo->id; ?>">
                             <div class="image-title"><?php echo  $photo->title; ?></div>
-                            <div class="image-desc">views<?php echo $photo->views ; ?></div>
+                            <div class="image-desc">views<?php echo $photo->views; ?></div>
                             <div class="image-rating">
                                 得票：
-                                <span class="rate badge badge-info"><?php echo $photo->rate ; ?></span>
-                                |投票人数：<span class="rate-count badge badge-info"><?php echo $photo->rate_count ; ?></span>
+                                <span class="rate badge badge-info"><?php echo $photo->rate; ?></span>
+                                |投票人数：<span class="rate-count badge badge-info"><?php echo $photo->rate_count; ?></span>
                             </div>
                             <div class="download">
                                 <a href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_b.jpg">Download
@@ -99,16 +91,26 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                         </div>
                     </li>
                     <?php endforeach; ?>
-<!--                    结束同相册的迭代-->
+                    <!--                    结束同相册的迭代-->
                 </ul>
             </div>
         </div>
 
     </div>
+    <!--            here is  comment list and comment form  start -->
+    <div class="span9">
+        <?php
+        $this->widget('comments.widgets.ECommentsListWidget', array(
+            'model' => $model,
+            'dialogOptions' => array(
+                'width' => '500',
+            )
+        ));
+        ?>
+    </div>
+    <!--            here is  comment list and comment form end -->
+</div>
 
-</div>
-</div>
-</div>
 <!-- Start Advanced Gallery Html Containers -->
 
 
@@ -165,10 +167,10 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
                 this.$captionContainer.find('div.photo-index')
                     .html('Photo ' + (nextIndex + 1) + ' of ' + this.data.length);
 
-               //  注意图片尺寸不符合时 布局会乱 所以这里要检查下
-                if($("img",this.$imageContainer).size()>0){
-                   //  $("img",this.$imageContainer).fitToParent();
-                    $("img",this.$imageContainer).attr("test",'jj');
+                //  注意图片尺寸不符合时 布局会乱 所以这里要检查下
+                if ($("img", this.$imageContainer).size() > 0) {
+                    //  $("img",this.$imageContainer).fitToParent();
+                    $("img", this.$imageContainer).attr("test", 'jj');
                 }
 
             },
@@ -248,7 +250,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
          * @see http://stackoverflow.com/questions/9253036/set-first-selected-image-in-galleriffic-jquery-plugin
          * 加载当前相片
          */
-        $("img","a[href='#<?php echo $idxInAlbum ;?>']").trigger('click');
+        $("img", "a[href='#<?php echo $idxInAlbum;?>']").trigger('click');
 
     });
     /****************************************************************************************/
