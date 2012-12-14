@@ -42,6 +42,9 @@ class PhotoInstaller extends BaseModuleInstaller
             'trigger_field_id'=>'id',
             'trigger_field_cmts'=>'cmt_count'
         ));
+
+        YsThumbVotingSystem::addUpDownCounterColumns('photo');
+        YsThumbVotingSystem::registerConfig('photo','photo_thumb_vote','photo');
         echo __METHOD__ ;
 
     }
@@ -53,6 +56,9 @@ class PhotoInstaller extends BaseModuleInstaller
         YsVotingSystem::unRegisterObjectVotingConfig('photo');
 
         YsCommentSystem::unRegisterObjectCommentConfig('photo');
+
+        YsThumbVotingSystem::dropUpDownCounterColumns('photo');
+        YsThumbVotingSystem::unRegisterConfig('photo');
         echo __METHOD__ ;
     }
 

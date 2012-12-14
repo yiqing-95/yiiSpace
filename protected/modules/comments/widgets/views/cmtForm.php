@@ -16,10 +16,15 @@
     <?php if ($this->isPopupForm != true): ?>
     <h3 id="reply-title">发表评论
         <small>
+            <?php if (($this->isReplyForm == true) && count($newComment->getErrors()) > 0) : ?>
+            <a rel="nofollow" id="cancel-comment-reply-link" href="#" style=" "
+               onclick="<?php echo  "Comment.moveForm('comment-{$newComment->cmt_parent_id}','{$newComment->cmt_parent_id}');$(this).click().attr('onclick','');"; ?>">取消回复</a>
+            <?php else: ?>
             <a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none; ">取消回复</a>
+            <?php endif; ?>
         </small>
     </h3>
-    <?php endif;?>
+    <?php endif; ?>
 
     <?php // echo $form->errorSummary($newComment); ?>
     <?php
