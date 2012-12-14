@@ -21,6 +21,15 @@ $this->menu = array(
         'objectId' => new CJavaScriptExpression('$(".caption",$(".image-caption.current")).attr("photo_id")'),
     ));
     ?>
+    <?php
+    $this->widget('voting.widgets.ThumbVotingWidget', array(
+        'mode' => 'updown1',
+        'objectName' => 'photo',
+        'objectId' => $model->id,
+        'upValue'=>$model->up_votes,
+        'downValue'=>$model->down_votes,
+    ));
+    ?>
 </h1>
 <?php
 $this->widget('photo.extensions.galleriffic.JGalleriffic', array(

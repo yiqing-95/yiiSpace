@@ -68,7 +68,7 @@ Session.vim
 #yiiSpace ignore:
 public/thumbs/
 protected/runtime/
-assets/
+#assets/
 #  qq 纯真ip库
 
-protected/vendors/ip/
+#protected/vendors/ip/

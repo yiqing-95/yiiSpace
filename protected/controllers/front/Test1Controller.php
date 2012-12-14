@@ -5,6 +5,13 @@
 class Test1Controller extends Controller
 {
 
+    /**
+     * @Desc('大拇指投票')
+     */
+    public function actionThumbVoting(){
+        $this->render('thumbVoting');
+    }
+
 
     /**
      * @Desc('测试评论配置 ')
