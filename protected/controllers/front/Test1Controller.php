@@ -5,6 +5,15 @@
 class Test1Controller extends Controller
 {
 
+    public function actionIsFriend(){
+        if(UserHelper::isFriend(1,6)){
+            echo "is friend";
+        }else{
+            echo "no  not friend ";
+        }
+    }
+
+
     /**
      * @Desc('大拇指投票')
      */
