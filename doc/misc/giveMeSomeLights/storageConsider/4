@@ -1,0 +1,5 @@
+I use redis for store notification, message of user,
+cassandra for feed wall of user. Redis faster and smaller ...cassandra.
+ I use multipe caching and database: apc, memcache, page cache, ... redis, mysql, cassandra,...
+I think my project is good with all technology i use.
+Thanks.
