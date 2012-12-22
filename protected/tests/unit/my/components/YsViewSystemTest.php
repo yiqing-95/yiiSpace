@@ -9,5 +9,9 @@
 class YsViewSystemTest extends CDbTestCase
 {
 
+    public function testHelloWord(){
+        $str = 'hello2';
+        $this->assertNotEquals('hello',$str);
+    }
 
 }
