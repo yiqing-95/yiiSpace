@@ -15,10 +15,12 @@ $this->breadcrumbs = array(
     ),
 )); ?>
     <fieldset>
-        <legend>
-            <i class="icon-user"></i>
-            欢迎登陆 <strong><?php echo Yii::app()->name ; ?></strong> &nbsp;
-        </legend>
+<p>
+    <i class="icon-user"></i>
+     <strong><?php echo Yii::app()->name ; ?></strong> &nbsp;
+    后台管理系统
+
+</p>
 
 
         <div class="row">
