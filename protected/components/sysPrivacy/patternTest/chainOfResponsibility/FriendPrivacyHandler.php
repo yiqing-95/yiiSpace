@@ -19,5 +19,6 @@ class FriendPrivacyHandler extends PrivacyHandler
             }
 
         }
+        $this->isHandled = true ;
     }
 }

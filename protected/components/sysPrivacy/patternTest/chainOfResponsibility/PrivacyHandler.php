@@ -8,6 +8,22 @@
  */
 abstract class PrivacyHandler
 {
+    //--------------------------------------
+    /**
+     * added in  version 1.1
+     */
+    /**
+     * @var bool whether the task is handled
+     * if true the handle will be stopped
+     * @since version 1.1 ;
+     */
+    protected  $isHandled = false ;
+
+    public function getIsHandled(){
+        return $this->isHandled;
+    }
+    //--------------------------------------
+
     /**
      * @var PrivacyHandler
      */
