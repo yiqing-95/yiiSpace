@@ -107,9 +107,10 @@
                     <?php $this->renderPartial('_leftSide', array('descendants' => $descendants)); ?>
                 </div>
                 <?php
+                $themes = explode('/','black/blue/clean/demo/graphite/grey');
                 $this->widget('my.widgets.jvaMenu.JVaMenu', array(
                     'selector' => '#left_side_nav',
-                    'skin' => 'blue', //black/blue/clean/demo/graphite/grey
+                    'skin' => $themes[array_rand($themes)] ,// 'demo', //black/blue/clean/demo/graphite/grey
                     'options' => array(
                         'debug' => true,
 

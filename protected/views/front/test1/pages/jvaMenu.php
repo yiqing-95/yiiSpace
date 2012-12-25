@@ -137,3 +137,8 @@ $this->widget('my.widgets.jvaMenu.JVaMenu', array(
         <li><a href="#"><i class="icon-flag"></i> Help</a></li>
     </ul>
 </div>
+  <script type="text/javascript">
+      $(function(){
+
+      });
+  </script>

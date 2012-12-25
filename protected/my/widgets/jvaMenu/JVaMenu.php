@@ -132,6 +132,7 @@ class JVaMenu extends CWidget
 
         //>  the js code for setup
         $jsCode .= <<<SETUP
+       jQuery("{$this->selector}").addClass('dcjq-accordion');
        jQuery('{$this->selector}').dcAccordion({$options});
 SETUP;
         //> register jsCode
