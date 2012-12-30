@@ -9,10 +9,11 @@
     </title>
 </head>
 <body>
-<div class="row">
+<div class="fluid-container">
 
     <div class="row">
         <?php
+        /*
         $this->beginWidget('zii.widgets.CPortlet', array(
             'id' => 'menuItems',
             'htmlOptions' => array(
@@ -24,11 +25,13 @@
         ));
 
         $this->endWidget();
+        */
         ?>
     </div>
 
 </div>
-<div class="row" id="page">
+<div class="fluid-row" id="page">
+
     <?php echo $content; ?>
 </div>
 

@@ -871,6 +871,10 @@ COL_ITEM;
         return $methodComments . "\n" . $methodString;
         //  * @property <?php echo $column->type.' $'.$column->name."\n";
     }
+
+    public static function refreshListGridView(){
+
+    }
 }
 
 if (!class_exists('KErrorException', false)) {

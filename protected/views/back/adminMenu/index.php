@@ -5,14 +5,13 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create AdminMenu','url'=>array('create')),
-    array('label'=>'Manage AdminMenu(advance mode) ','url'=>array('adminAdv')),
+	array('label'=>'Manage AdminMenu','url'=>array('admin')),
 );
 ?>
 
 <h1>Admin Menus</h1>
 
-<?php $this->widget('zii.widgets.CListView',array(
-     'id'=>'admin-menu-list',
+<?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>

@@ -1,4 +1,4 @@
-<div class="comment-widget" id="<?php echo $this->id; ?>">
+<div class="comment-widget" id="<?php echo $this->id; ?>" object_id="<?php echo $this->objectId ;?>">
     <h3><?php echo Yii::t('CommentsModule.msg', 'Comments');?></h3>
 
     <?php

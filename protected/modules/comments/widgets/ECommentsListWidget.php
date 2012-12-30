@@ -18,7 +18,7 @@ class ECommentsListWidget extends ECommentsBaseWidget
         /**
          * @var boolean showPopupForm
          */
-        public $showPopupForm = true;
+        public $showPopupForm = false;
         
         /**
          * @var boolean allowSubcommenting

@@ -7,6 +7,17 @@
                 '_input').show();
         });
     });
+
+    function refreshListOrGridView(){
+        var listViewClass = 'list-view';
+        var gridViewClass = 'grid-view';
+        if($("."+listViewClass).size()>0){
+            $.fn.yiiListView.update($("."+listViewClass).attr("id"));
+        }else{
+            $.fn.yiiGridView.update($("."+gridViewClass).attr("id"));
+        }
+
+    }
 </script>
 
 
@@ -14,10 +25,18 @@
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'status-form',
     'enableAjaxValidation' => false,
+    'enableClientValidation'=>true,
     'method' => 'post',
     'htmlOptions' => array(
-        'enctype' => 'multipart/form-data'
-    )
+        'enctype' => 'multipart/form-data',
+        'target'=>'helperFrame',
+
+    ),
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+       // 'validateOnChange' => true,
+        'validateOnType' => false,
+    ),
 )); ?>
     <div class="row-fluid">
         <div class="span11">
@@ -72,14 +91,12 @@
     </div>
 
 
+    <div class="form-actions">
 
-
-
-        <div class="form-actions">
-
-        </div>
+    </div>
 
     <?php $this->endWidget(); ?>
 
 </div>
-    <div class="row"></div>
+<div class="row"></div>
+<iframe name="helperFrame"  style="display: none;"></iframe>

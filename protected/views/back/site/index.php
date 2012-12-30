@@ -65,7 +65,9 @@
         <div class="span11">
             <div class="row-fluid">
                 <div class="span4 pull-right">
-                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" class="cWhite">menuBuilder</a>
+
+                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" target="_blank">menuBuilder</a>
+
                       |
                     <a title="frontend" href="<?php echo abu('index.php'); ?>" target="_blank"
                        class="cWhite">frontEnd</a> |
