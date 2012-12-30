@@ -5,7 +5,7 @@
                 <?php echo CHtml::link(CHtml::image($data->getAlbumCoverUrl(), $data->name, array()),$data->getUrl()); ?>
             </div>
             <div >
-            <span class="pull-left"><?php echo $data->name; ?> </span>
+            <span class="pull-left"><?php echo $data->name,'(',$data->mbr_count,')'; ?> </span>
             <?php if (UserHelper::getIsOwnSpace()): ?>
                 <?php
                 $this->widget('bootstrap.widgets.TbButtonGroup', array(

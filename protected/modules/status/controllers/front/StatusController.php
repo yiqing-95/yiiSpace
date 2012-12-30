@@ -87,8 +87,12 @@ class StatusController extends BaseStatusController
             $model->generateType();
 
             //echo   YiiUtil::getPathOfClass($model) ;  die(__METHOD__);
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()){
+                //$this->redirect(array('view', 'id' => $model->id));
+                echo CHtml::script('parent.refreshListOrGridView();');
+                exit;
+            }
+
         }
 
         $loggedInUser = Yii::app()->user->id;

@@ -204,7 +204,7 @@ $this->widget('application.my.widgets.jnotify.JNotify',
 ?>
 <script type="text/javascript">
     $(function(){
-        jSuccess('welcome to yiiSpace!');
+       // jSuccess('welcome to yiiSpace!');
     });
 </script>
 

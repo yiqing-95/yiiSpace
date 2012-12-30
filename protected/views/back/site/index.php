@@ -20,6 +20,7 @@
     <?php
     cs()->registerCoreScript('jquery');
     PublicAssets::registerScriptFile('js/currentActive.js');
+    WebUtil::registerRandomBootstrapTheme();
     ?>
 
     <script type="text/javascript">
@@ -61,10 +62,12 @@
         <div class="span1">
             <?php echo CHtml::image(bu('public/images/yii.png')); ?>
         </div>
-        <div class="span10">
+        <div class="span11">
             <div class="row-fluid">
                 <div class="span4 pull-right">
-                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" class="cWhite">menuBuilder</a>
+
+                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" target="_blank">menuBuilder</a>
+
                       |
                     <a title="frontend" href="<?php echo abu('index.php'); ?>" target="_blank"
                        class="cWhite">frontEnd</a> |
@@ -72,7 +75,7 @@
                     <?php echo CHtml::link("logout(" . Yii::app()->user->name . ')', array('site/logout')); ?>
                 </div>
             </div>
-            <div class="row-fluid span12">
+            <div class="row-fluid span11">
                 <?php
                 $topMenuItems = array();
                 foreach ($roots as $menuNode) {
@@ -84,7 +87,7 @@
                 }
 
                 $this->widget('bootstrap.widgets.TbMenu', array(
-                    'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+                    'type' => 'pills', // '', 'tabs', 'pills' (or 'list')
                     'stacked' => false, // whether this is a stacked menu
                     'items' => $topMenuItems,
                     'htmlOptions' => array(
@@ -102,10 +105,20 @@
     <div class="row-fluid">
         <div class="span2">
             <div class="leftmenu">
-                <div id='left_side_nav'>
+                <div id='left_side_nav' class="dcjq-accordion">
                     <?php $this->renderPartial('_leftSide', array('descendants' => $descendants)); ?>
                 </div>
+                <?php
+                $themes = explode('/','black/blue/clean/demo/graphite/grey');
+                $this->widget('my.widgets.jvaMenu.JVaMenu', array(
+                    'selector' => '#left_side_nav',
+                    'skin' => $themes[array_rand($themes)] ,// 'demo', //black/blue/clean/demo/graphite/grey
+                    'options' => array(
+                        'debug' => true,
 
+                    )
+                ));
+                ?>
             </div>
         </div>
         <div class="span10">
@@ -115,7 +128,7 @@
                 )
             );
             ?>
-            <iframe src="http://www.g.cn/" name="contentFrame" id="contentFrame" frameborder="0"
+            <iframe src="http://www.g.cn/" name="contentFrame" id="contentFrame" frameborder="false"
                     width="100%"
                     height="900px"/>
             <!--Body content-->

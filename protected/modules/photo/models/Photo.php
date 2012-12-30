@@ -8,6 +8,11 @@ class Photo extends BasePhoto
 		return parent::model($className);
 	}
 
+    protected function afterSave(){
+        parent::afterSave();
+        PhotoAlbum::model()->updateCounters(array('mbr_count'=>1),'id=:id',array(':id'=>$this->album_id));
+    }
+
     protected function beforeSave(){
         if($this->getIsNewRecord()){
             if(empty($this->hash)){

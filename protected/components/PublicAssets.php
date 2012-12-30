@@ -205,6 +205,24 @@ class PublicAssets extends CApplicationComponent
         }
     }
 
+    /**
+     * @static
+     * @param $relativeUrl
+     * @throws CException
+     */
+    static public function cssFile($relativeUrl){
+        if(is_string($relativeUrl)){
+            $relativeUrl = explode(',',$relativeUrl);
+        }
+        if(is_array($relativeUrl)){
+            foreach($relativeUrl as $relUrl){
+                $url = self::url($relUrl);
+                echo  CHtml::cssFile($url);
+            }
+        }else{
+            throw new  CException('param 1 must be an string or array ,but you give ' . var_export($$relativeUrl,true));
+        }
+    }
    /**
     * @param $relativeUrl 相对url 相对于public目录
     * @param string $media

@@ -1,4 +1,4 @@
-<div class="comment-widget" id="<?php echo $this->id; ?>">
+<div class="comment-widget" id="<?php echo $this->id; ?>" object_id="<?php echo $this->objectId;?>">
     <h3><?php echo Yii::t('CommentsModule.msg', 'Comments');?></h3>
     <?php
 
@@ -30,7 +30,7 @@
                 'objectName' => $this->objectName,
                 'objectId' => $this->objectId,
                 'isReplyForm' => false,
-                'isPopupForm'=>$this->showPopupForm,
+                'isPopupForm' => $this->showPopupForm,
             ));
         }
         ?>
@@ -109,8 +109,8 @@
                 $cmtBlock.append($cmtFormDiv);
                 // 高亮评论框
                 try {
-                    $('.comment-content',$cmtFormDiv).get(0).focus();
-                }catch(e) {
+                    $('.comment-content', $cmtFormDiv).get(0).focus();
+                } catch (e) {
                 }
                 this.style.display = 'none';
                 this.onclick = null;
@@ -118,8 +118,8 @@
             }
 
             try {
-                $('.comment-content',$cmtFormDiv).get(0).focus();
-            }catch(e) {
+                $('.comment-content', $cmtFormDiv).get(0).focus();
+            } catch (e) {
 
             }
             // $cmtBlock.find('.comment-content').focus();
@@ -135,26 +135,25 @@
             return document.getElementById(e);
         }
     }
-    $(function(){
-        $(".comment-widget").delegate('.delete', 'click', function(){
+    $(function () {
+        $(".comment-widget").undelegate('.delete','click');
+        $(".comment-widget").delegate('.delete', 'click',function () {
             var id = $($(this).parents('.comment-widget')[0]).attr("id");
-            if(confirm($.fn.commentsList.settings[id]['deleteConfirmString']))
-            {
+            if (confirm($.fn.commentsList.settings[id]['deleteConfirmString'])) {
                 Comment.restoreForm();
                 $.post($(this).attr('href'))
-                    .success(function(data){
+                    .success(function (data) {
                         data = $.parseJSON(data);
-                        if(data["code"] === "success")
-                        {
-                            $("#comment-"+data["deletedID"]).remove();
+                        if (data["code"] === "success") {
+                            $("#comment-" + data["deletedID"]).remove();
                         }
                     });
             }
             return false;
-        })
-    }).delegate('.add-comment', 'click', function(){
-       var commentID = $(this).attr('rel');
-            Comment.moveForm("comment-"+commentID, commentID);
-        return false;
+        }).delegate('.add-comment', 'click', function () {
+                var commentID = $(this).attr('rel');
+                Comment.moveForm("comment-" + commentID, commentID);
+                return false;
+            });
     });
 </script>
