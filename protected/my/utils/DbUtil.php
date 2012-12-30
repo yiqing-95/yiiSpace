@@ -163,23 +163,64 @@ class DbUtil
      */
     public static function executeSqlFile($file)
     {
-       // ini_set('memory_limit', '5120M');
-       // set_time_limit(0);
+        // ini_set('memory_limit', '5120M');
+        // set_time_limit(0);
         $dbms_schema = $file;
 
         $sql_query = @fread(@fopen($dbms_schema, 'r'), @filesize($dbms_schema)) or die('problem ');
         $sql_query = self::removeRemarks($sql_query);
         $sql_query = self::splitSqlFile($sql_query, ';');
-       //print_r($sql_query);
+        //print_r($sql_query);
         $i = 1;
         foreach ($sql_query as $sql) {
             echo $i++;
-           echo "
+            echo "
 ";
             Yii::app()->db->createCommand($sql)->execute() or die('error in query');
         }
 
     }
+
+    public static function execSqlFile($sqlFile)
+    {
+
+        // Fetch the schema.
+        $schema = file_get_contents($sqlFile);
+
+        // Convert the schema into an array of sql queries.
+        $schema = preg_split("/;\s*/", trim($schema, ';'));
+
+        $db = Yii::app()->db;
+        // Start transaction
+        $txn = $db->beginTransaction();
+
+        try {
+            // Execute each query in the schema.
+            foreach ($schema as $sql) {
+                $command = $db->createCommand($sql);
+                $command->execute();
+            }
+
+            // All commands executed successfully, commit.
+            $txn->commit();
+            return true;
+        } catch (CDbException $e) {
+            // Something went wrong, rollback.
+            $txn->rollback();
+            return false;
+        }
+
+        /*
+        $sqls=file_get_contents($sqlFile);
+        foreach(explode(';',$sqls) as $sql)
+        {
+            if(trim($sql)!=='')
+                Yii::app()->db->createCommand($sql)->execute();
+        }
+        */
+
+    }
+
 }
 
 

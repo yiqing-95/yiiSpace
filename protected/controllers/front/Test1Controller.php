@@ -5,6 +5,15 @@
 class Test1Controller extends Controller
 {
 
+    public function actionJVaMenu(){
+        $this->render('jvaMenu');
+    }
+    public function actionPrivacyMan(){
+        Yii::import('application.components.sysPrivacy.patternTest.chainOfResponsibility.*');
+        $privacyMan = new PrivacyMan();
+        $privacyMan->check(1,1,1);
+    }
+
     public function actionIsFriend(){
         if(UserHelper::isFriend(1,6)){
             echo "is friend";

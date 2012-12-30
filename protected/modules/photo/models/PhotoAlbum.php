@@ -39,4 +39,30 @@ class PhotoAlbum extends BasePhotoAlbum
             'uid'=>$uid
         ),$criteria);
     }
+
+    /**
+     * @static
+     * @param string $action
+     * @return array|bool
+     */
+    public static function privacyGroup($action='view')
+    {
+        $allGroups = self::availablePrivacyGroups();
+        return isset($allGroups[$action]) ? $allGroups[$action] : false;
+    }
+
+    /**
+     * @static
+     * @return array
+     */
+    private static function availablePrivacyGroups()
+    {
+        return array(
+            'view'=>array(
+                1 => 'public',
+                2 => 'friend',
+                3 => 'self',
+            ),
+        );
+    }
 }

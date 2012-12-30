@@ -26,8 +26,8 @@ $this->menu = array(
         'mode' => 'updown1',
         'objectName' => 'photo',
         'objectId' => $model->id,
-        'upValue'=>$model->up_votes,
-        'downValue'=>$model->down_votes,
+        'upValue' => $model->up_votes,
+        'downValue' => $model->down_votes,
     ));
     ?>
 </h1>
@@ -45,7 +45,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 </script>
 <div class="fluid-row">
 
-    <div class="span9">
+    <div class="span9 img-viewer">
         <div class="content">
             <div class="slideshow-container">
                 <div id="controls" class="controls"></div>
@@ -107,7 +107,7 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
     </div>
     <!--            here is  comment list and comment form  start -->
-    <div class="span9">
+    <div class="span9" id="commentContainer">
         <?php
         $this->widget('comments.widgets.ECommentsListWidget', array(
             'model' => $model,
@@ -263,5 +263,69 @@ cs()->registerCssFile(JGalleriffic::getAssetsUrl() . '/css/galleriffic-yiispace.
 
     });
     /****************************************************************************************/
+
+    /**
+     * @see http://stackoverflow.com/questions/7392058/more-efficient-way-to-handle-window-scroll-functions-in-jquery
+     * @param waitTime
+     * @param fn
+     * can be used for fixing some element showing   when scroll the window
+     */
+    $.fn.scrolled = function (waitTime, fn) {
+        var tag = "scrollTimer";
+        this.scroll(function () {
+            var self = $(this);
+            var timer = self.data(tag);
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function () {
+                self.data(tag, null);
+                fn();
+            }, waitTime);
+            self.data(tag, timer);
+        });
+    }
+
+    /**
+     *
+     * @type {Boolean}
+     */
+    var ajaxLoadingFlag = false;
+    $(window).scrolled(500, function () {
+        var headerBottom = $(".img-viewer").height();
+
+        var ScrollTop = $(window).scrollTop();
+
+
+        var loadPhotoComments = function(photoId){
+            // loading .....
+            if(ajaxLoadingFlag == true ) {
+                return ;
+            }
+            var url = "<?php echo  $this->createUrl('/sys/comment',array('objectName'=>'photo','objectId'=>'{objectId}'));?>";
+           // alert(url);
+            url = url.replace(encodeURIComponent('{objectId}'),photoId);
+            ajaxLoadingFlag = true ;
+            $("#commentContainer").load(url,function(){
+                ajaxLoadingFlag = false;
+            });
+        };
+
+        if (ScrollTop > headerBottom) {
+            // check if the current image id is equal to the comment objectid ;
+            //alert('yeeee!');
+            var cmtObjectId = $(".comment-widget").attr("object_id");
+            var imgId = $(".caption",$(".image-caption.current")).attr("photo_id");
+            if(cmtObjectId === imgId){
+                //alert("yes it is!");
+            }else{
+               // alert('not');
+                loadPhotoComments(imgId);
+            }
+        } else {
+            //alert("ok!");
+        }
+
+    });
 
 </script>

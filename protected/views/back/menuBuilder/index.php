@@ -101,8 +101,8 @@
     </div>
 
 
-<div class="row">
-        <div class="">
+<div class="fluid-row">
+        <div class="span4">
             <p>
                 <a href="javascript:  $.ui.dynatree.getTree().reload() ;" accesskey="">刷新树</a>
             </p>
@@ -110,16 +110,17 @@
             <div id="tree" class="two column offset-by-one">
 
             </div>
-            <div class="nine column">
-                <?php
-                $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
-                        'debug' => false
-                    )
-                );
-                ?>
-                <iframe src="http://localhost/my/yiiSpace/" width="100%" height="400px" id="helperFrame"></iframe>
-            </div>
+
         </div>
+    <div class="span12">
+        <?php
+        $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
+                'debug' => false
+            )
+        );
+        ?>
+        <iframe src="http://localhost/my/yiiSpace/" width="100%" height="400px" id="helperFrame"></iframe>
+    </div>
 </div>
 
 <p style="clear: both;"></p>

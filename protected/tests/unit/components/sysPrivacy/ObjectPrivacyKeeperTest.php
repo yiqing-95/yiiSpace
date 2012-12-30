@@ -18,11 +18,14 @@ class ObjectPrivacyKeeperTest extends CTestCase
     public function testIsFriend(){
         $privacyKeeper = new ObjectPrivacyKeeper();
         $this->assertTrue($privacyKeeper->check(2,1,2)==true);
+
     }
 
     public function testIsSelf(){
         $privacyKeeper = new ObjectPrivacyKeeper();
         $this->assertTrue($privacyKeeper->check(3,1,1)==true);
+        $this->assertTrue($privacyKeeper->check(3,1,2)==false);
+        $this->assertTrue($privacyKeeper->check(3,100,100)==true);
     }
 
 

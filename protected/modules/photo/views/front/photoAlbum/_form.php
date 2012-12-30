@@ -41,7 +41,7 @@
 
 	<?php //echo $form->textFieldRow($model,'is_hot',array('class'=>'span5','maxlength'=>1)); ?>
 
-	<?php //echo $form->textFieldRow($model,'privacy',array('class'=>'span5')); ?>
+	<?php echo $form->dropdownListRow($model,'privacy',PhotoAlbum::privacyGroup()); ?>
 
 	<?php //echo $form->textAreaRow($model,'privacy_data',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 

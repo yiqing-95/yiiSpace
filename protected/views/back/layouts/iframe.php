@@ -45,7 +45,7 @@
     </div>
 
 </div>
-    <div class="container">
+    <div class="fluid-container">
         <?php echo $content; ?>
     </div>
 

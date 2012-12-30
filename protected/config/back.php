@@ -9,6 +9,7 @@
 return CMap::mergeArray(
     require(dirname(__FILE__).'/main.php'),
     array(
+        //  'theme'=>'abound',
         // Put back-end settings there.
         'components'=>array(
             // uncomment the following to enable URLs in path-format
