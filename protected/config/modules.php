@@ -75,6 +75,16 @@ return array(
         ),
     ),
 
+    /**
+     *
+     */
+    'backup'=>array(
+
+        'path'=>  dirname(__FILE__) .'/../data/backup/',
+    ),
+
+    'blog',
+
     //dashboard module
     'sdashboard' => array(),
 
@@ -89,7 +99,7 @@ return array(
 
     'group',
 
-    'test',
+    //'test',
 
     'photo',
     //-----------------------<for comments >-----------------------------------------------------------------
