@@ -14,7 +14,7 @@ foreach ($descendants as $n => $node)
     if ($node->level == $level) {
         echo CHtml::closeTag('li') . "\n";
     } else if ($node->level > $level) {
-        echo CHtml::openTag('ul') . "\n";
+        echo CHtml::openTag('ul',array('level'=>$node->level)) . "\n";
     } else {
         echo CHtml::closeTag('li') . "\n";
         for ($i = $level - $node->level; $i; $i--)
@@ -24,7 +24,7 @@ foreach ($descendants as $n => $node)
         }
     }
 
-    echo CHtml::openTag('li',array('id'=>'_menu'.$node->id));
+    echo CHtml::openTag('li',array('id'=>'_menu'.$node->id,'level'=>$node->level));
 
     if($node->level != 2){
         //顶级菜单不显示

@@ -6,8 +6,10 @@
  * Time: 下午7:02
  * To change this template use File | Settings | File Templates.
  */
+$mainConfig = require(dirname(__FILE__).'/main.php');
+//unset($mainConfig['modules']['test']);
 return CMap::mergeArray(
-    require(dirname(__FILE__).'/main.php'),
+    $mainConfig,
     array(
         //  'theme'=>'abound',
         // Put back-end settings there.
