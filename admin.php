@@ -16,7 +16,9 @@ include_once(dirname(__FILE__) . '/protected/my/global.php');
 
 Yii::$classMap = require(dirname(__FILE__) . '/protected/config/classMap.php');
 
-$app = Yii::createWebApplication($config);
+include_once(dirname(__FILE__) . '/protected/components/YsAdminWebApplication.php');
+
+$app = Yii::createApplication('YsAdminWebApplication', $config);
 
 Yii::setPathOfAlias('my', Yii::getPathOfAlias('application.my'));
 Yii::setPathOfAlias('widgets', Yii::getPathOfAlias('application.my.widgets'));
