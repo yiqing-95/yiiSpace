@@ -24,7 +24,7 @@ class YsAdminWebApplication extends CWebApplication
 
         if(!empty($controller)){
             if($controller instanceof BackendController){
-                $controller->layout =  '//adminLayouts/main';
+               // $controller->layout =  '//adminLayouts/main';
             }
         }
 
