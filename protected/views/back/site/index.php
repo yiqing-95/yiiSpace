@@ -32,25 +32,18 @@
         .sidebar-nav {
             padding: 9px 0;
         }
+
+        .activeTreeMenu{
+            list-style-type: none;
+        }
     </style>
 
 
     <link href="<?php echo $assetsUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="<?php echo $assetsUrl; ?>/css/charisma-app.css" rel="stylesheet">
     <link href="<?php echo $assetsUrl; ?>/css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
-    <link href='<?php echo $assetsUrl; ?>/css/fullcalendar.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/fullcalendar.print.css' rel='stylesheet' media='print'>
-    <link href='<?php echo $assetsUrl; ?>/css/chosen.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/uniform.default.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/colorbox.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/jquery.cleditor.css' rel='stylesheet'>
     <link href='<?php echo $assetsUrl; ?>/css/jquery.noty.css' rel='stylesheet'>
     <link href='<?php echo $assetsUrl; ?>/css/noty_theme_default.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/elfinder.min.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/elfinder.theme.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/opa-icons.css' rel='stylesheet'>
-    <link href='<?php echo $assetsUrl; ?>/css/uploadify.css' rel='stylesheet'>
 
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -246,11 +239,6 @@
 <div class="container-fluid">
 
     <!--    这里渲染顶级菜单：-->
-    <?php
-    $topRoot = AdminMenu::model()->find('group_code=:group_code', array(':group_code' => 'sys_admin_menu_root'));
-    $roots = $topRoot->children()->findAll();
-    $descendants = $topRoot->descendants()->findAll();
-    ?>
 
     <div class="row-fluid ">
         <div class="span2">
@@ -295,42 +283,7 @@
             <!--/.well -->
 
             <div id='left_side_nav' style="display: none;">
-                <?php
-                $level = 0;
 
-                foreach ($descendants as $n => $node) {
-                    if ($node->level == $level) {
-                        echo CHtml::closeTag('li') . "\n";
-                    } else if ($node->level > $level) {
-                        if ($node->level == 3) {
-                            echo CHtml::openTag('ul', array('class' => 'nav nav-tabs nav-stacked main-menu')) . "\n";
-                        } else {
-                            echo CHtml::openTag('ul', array('level' => $node->level)) . "\n";
-                        }
-
-                    } else {
-                        echo CHtml::closeTag('li') . "\n";
-                        for ($i = $level - $node->level; $i; $i--) {
-                            echo CHtml::closeTag('ul') . "\n";
-                            echo CHtml::closeTag('li') . "\n";
-                        }
-                    }
-
-                    echo CHtml::openTag('li', array('id' => '_menu' . $node->id, 'level' => $node->level));
-
-                    if ($node->level != 2) {
-                        //顶级菜单不显示
-                        echo CHtml::link(CHtml::encode($node->label), $node->calcUrl(), array('id' => $node->id));
-                    }
-
-                    $level = $node->level;
-                }
-
-                for ($i = $level; $i; $i--) {
-                    echo CHtml::closeTag('li') . "\n";
-                    echo CHtml::closeTag('ul') . "\n";
-                }
-                ?>
             </div>
         </div><!--/span-->
         <!-- left menu ends -->
@@ -399,68 +352,20 @@
 <!-- transition / effect library -->
 <script src="<?php echo $assetsUrl; ?>/js/bootstrap-transition.js"></script>
 <!-- alert enhancer library -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-alert.js"></script>
-<!-- modal / dialog library -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-modal.js"></script>
 <!-- custom dropdown library -->
 <script src="<?php echo $assetsUrl; ?>/js/bootstrap-dropdown.js"></script>
 <!-- scrolspy library -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-scrollspy.js"></script>
-<!-- library for creating tabs -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-tab.js"></script>
-<!-- library for advanced tooltip -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-tooltip.js"></script>
-<!-- popover effect library -->
 <script src="<?php echo $assetsUrl; ?>/js/bootstrap-popover.js"></script>
-<!-- button enhancer library -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-button.js"></script>
-<!-- accordion library (optional, not used in demo) -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-collapse.js"></script>
-<!-- carousel slideshow library (optional, not used in demo) -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-carousel.js"></script>
 <!-- autocomplete library -->
 <script src="<?php echo $assetsUrl; ?>/js/bootstrap-typeahead.js"></script>
-<!-- tour library -->
-<script src="<?php echo $assetsUrl; ?>/js/bootstrap-tour.js"></script>
 <!-- library for cookie management -->
 <script src="<?php echo $assetsUrl; ?>/js/jquery.cookie.js"></script>
-<!-- calander plugin -->
-<script src='<?php echo $assetsUrl; ?>/js/fullcalendar.min.js'></script>
-<!-- data table plugin -->
-<script src='<?php echo $assetsUrl; ?>/js/jquery.dataTables.min.js'></script>
-
-<!-- chart libraries start -->
-<script src="<?php echo $assetsUrl; ?>/js/excanvas.js"></script>
-<script src="<?php echo $assetsUrl; ?>/js/jquery.flot.min.js"></script>
-<script src="<?php echo $assetsUrl; ?>/js/jquery.flot.pie.min.js"></script>
-<script src="<?php echo $assetsUrl; ?>/js/jquery.flot.stack.js"></script>
-<script src="<?php echo $assetsUrl; ?>/js/jquery.flot.resize.min.js"></script>
-<!-- chart libraries end -->
-
-<!-- select or dropdown enhancer -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.chosen.min.js"></script>
-<!-- checkbox, radio, and file input styler -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.uniform.min.js"></script>
-<!-- plugin for gallery image view -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.colorbox.min.js"></script>
-<!-- rich text editor library -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.cleditor.min.js"></script>
-<!-- notification plugin -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.noty.js"></script>
-<!-- file manager library -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.elfinder.min.js"></script>
-<!-- star rating plugin -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.raty.min.js"></script>
 <!-- for iOS style toggle switch -->
 <script src="<?php echo $assetsUrl; ?>/js/jquery.iphone.toggle.js"></script>
-<!-- autogrowing textarea plugin -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.autogrow-textarea.js"></script>
-<!-- multiple file upload plugin -->
-<script src="<?php echo $assetsUrl; ?>/js/jquery.uploadify-3.1.min.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="<?php echo $assetsUrl; ?>/js/jquery.history.js"></script>
 <!-- application script for Charisma demo -->
-<script src="<?php echo $assetsUrl; ?>/js/charisma.js"></script>
+<script src="<?php echo $assetsUrl; ?>/js/siteIndex.js"></script>
 
 <?php //Google Analytics code for tracking my demo site, you can remove this.
 if ($_SERVER['HTTP_HOST'] == 'usman.it') {
