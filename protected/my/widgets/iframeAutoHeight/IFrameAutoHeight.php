@@ -57,9 +57,14 @@ class IFrameAutoHeight extends CWidget
     /**
      * @var string
      */
+    public $jsVersion = '1.9.0';
+
+    /**
+     * @var string
+     */
     public $callback = 'js: function(callbackObject) {
             //var m = "new size is " + callbackObject.newFrameHeight;
-            window.console && console.log(m) || alert(m);
+            // window.console && console.log(m) || alert(m);
         }';
 
 
@@ -111,22 +116,12 @@ class IFrameAutoHeight extends CWidget
         }
 
         if ($this->debug == true) {
-            $this->scriptFile = $this->baseUrl . '/jquery.iframe-auto-height.plugin.1.7.0.js';
+            $this->scriptFile = $this->baseUrl . "/jquery.iframe-auto-height.plugin.{$this->jsVersion}.js";
         } else {
-            $this->scriptFile = $this->baseUrl . '/jquery.iframe-auto-height.plugin.1.7.0.min.js';
+            $this->scriptFile = $this->baseUrl . "/jquery.iframe-auto-height.plugin.{$this->jsVersion}.min.js";
         }
 
         $this->registerClientScripts();
-    }
-
-
-    /**
-     * @return void
-     * this method is usually for you to render html mark up
-     */
-    public function  run()
-    {
-
     }
 
 
@@ -215,10 +210,4 @@ SETUP;
         return $this;
     }
 
-    protected function registerCssFiles()
-    {
-
-    }
-
 }
-

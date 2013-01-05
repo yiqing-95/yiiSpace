@@ -33,5 +33,8 @@ return CMap::mergeArray(
                 'stateKeyPrefix'=>'admin',
             ),
         ),
+        'params'=>array(
+            'layout'=>'//adminLayouts/main',
+        )
     )
 );

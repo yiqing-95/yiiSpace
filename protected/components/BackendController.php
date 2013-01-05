@@ -8,9 +8,9 @@
  */
 class BackendController extends Controller
 {
-   // public $layout = '//layouts/iframe';
+    public $layout = '//layouts/iframe';
 
-   public $layout = '//adminLayouts/main';
+   // public $layout = '//adminLayouts/main';
 
     public $menu = array();
 
