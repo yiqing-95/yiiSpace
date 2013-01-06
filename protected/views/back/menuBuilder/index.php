@@ -119,7 +119,8 @@
             )
         );
         ?>
-        <iframe src="http://localhost/my/yiiSpace/" width="100%" height="400px" id="helperFrame"></iframe>
+        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>" class="auto-height span12" scrolling="no" frameborder="0" name="helperFrame" id="helperFrame"></iframe>
+
     </div>
 </div>
 

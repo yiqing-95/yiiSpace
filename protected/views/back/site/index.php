@@ -157,6 +157,11 @@
         function risizeIframe(){
             $('#dummyLink').click();
         }
+
+        function setCurrentTheme2session(themeName){
+            var url = "<?php echo $this->createUrl('/site/setTheme');?>";
+            $.get(url,{"currentTheme":themeName});
+        }
     </script>
     <?php
     $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
@@ -183,8 +188,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.html"> <img alt="Charisma Logo" src="img/logo20.png"/>
-                <span>Charisma</span></a>
+            <a class="brand" href="">
+                <img alt="app Logo" src="<?php echo bu('public/images/yii.png');?>"/>
+                <span><?php echo Yii::app()->name; ?></span>
+            </a>
 
             <!-- theme selector starts -->
             <div class="btn-group pull-right theme-container">
@@ -238,38 +245,55 @@
     <?php } ?>
 <div class="container-fluid">
 
-    <!--    这里渲染顶级菜单：-->
+    <div class="row-fluid">
+        <div class="span1">
+            <?php // echo CHtml::image(bu('public/images/yii.png')); ?>
+        </div>
+        <div class="span11">
+            <div class="row-fluid">
+                <div class="span4 pull-right">
+                    <a href="<?php echo $this->createUrl('/menuBuilder'); ?>" target="_blank" >menuBuilder</a>
+                      |
+                    <a title="frontend" href="<?php echo abu('index.php'); ?>" target="_blank">frontEnd</a> |
+                    <a title="refresh" href="javascript:;" onclick='refresh()'>refresh</a> |
+                    <?php echo CHtml::link("logout(" . Yii::app()->user->name . ')', array('site/logout')); ?>
+                </div>
+            </div>
+            <!--    这里渲染顶级菜单：-->
 
-    <div class="row-fluid ">
-        <div class="span2">
+            <div class="row-fluid ">
+                <div class="span2">
+
+                </div>
+                <div class="span9">
+                    <?php
+                    $topMenuItems = array();
+                    foreach ($roots as $menuNode) {
+                        $topMenuItems[] = array('label' => $menuNode->label,
+                            'url' => 'javascript:;',
+                            // 'active'=>true,
+                            'linkOptions' => array('id' => 'menu' . $menuNode->id, 'www' => 'jjj')
+                        );
+                    }
+
+                    $this->widget('bootstrap.widgets.TbMenu', array(
+                        'type' => 'pills', // '', 'tabs', 'pills' (or 'list')
+                        'stacked' => false, // whether this is a stacked menu
+                        'items' => $topMenuItems,
+                        'htmlOptions' => array(
+                            'id' => 'topNav', //  这个竟然不管用
+                            'class' => 'pull-left',
+                        ),
+                        'id' => 'topNav'
+                    )); ?>
+                </div>
+
+            </div>
+
+            <!--    渲染顶级菜单 end !-->
 
         </div>
-        <div class="span9">
-            <?php
-            $topMenuItems = array();
-            foreach ($roots as $menuNode) {
-                $topMenuItems[] = array('label' => $menuNode->label,
-                    'url' => 'javascript:;',
-                    // 'active'=>true,
-                    'linkOptions' => array('id' => 'menu' . $menuNode->id, 'www' => 'jjj')
-                );
-            }
-
-            $this->widget('bootstrap.widgets.TbMenu', array(
-                'type' => 'pills', // '', 'tabs', 'pills' (or 'list')
-                'stacked' => false, // whether this is a stacked menu
-                'items' => $topMenuItems,
-                'htmlOptions' => array(
-                    'id' => 'topNav', //  这个竟然不管用
-                    'class' => 'pull-left',
-                ),
-                'id' => 'topNav'
-            )); ?>
-        </div>
-
     </div>
-
-    <!--    渲染顶级菜单 end !-->
 
 
     <div class="row-fluid">
@@ -283,7 +307,7 @@
             <!--/.well -->
 
             <div id='left_side_nav' style="display: none;">
-
+                <?php $this->renderPartial('_leftSide', array('descendants' => $descendants)); ?>
             </div>
         </div><!--/span-->
         <!-- left menu ends -->
@@ -301,7 +325,7 @@
 			<div id="content" class="span10">
 			<!-- content starts -->
         <?php } ?>
-        <iframe src="http://www.g.cn/" class="auto-height span12" scrolling="no" frameborder="0" name="contentFrame" id="contentFrame"></iframe>
+        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>" class="auto-height span12" scrolling="no" frameborder="0" name="contentFrame" id="contentFrame"></iframe>
 
         <?php if (!isset($no_visible_elements) || !$no_visible_elements) { ?>
         <!-- content ends -->
@@ -364,8 +388,8 @@
 <script src="<?php echo $assetsUrl; ?>/js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="<?php echo $assetsUrl; ?>/js/jquery.history.js"></script>
-<!-- application script for Charisma demo -->
-<script src="<?php echo $assetsUrl; ?>/js/siteIndex.js"></script>
+<!-- application script for siteIndex -->
+<script src="<?php echo PublicAssets::url(); ?>/js/backend/siteIndex.js"></script>
 
 <?php //Google Analytics code for tracking my demo site, you can remove this.
 if ($_SERVER['HTTP_HOST'] == 'usman.it') {
