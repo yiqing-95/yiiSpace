@@ -8,6 +8,8 @@
  * -----------------------------------------------------------------
  * promotion : use a hidden input field to holds the selected values
  * ------------------------------------------------------------------
+ * modified : 2013-1-7
+ * ----------------------------------
  */
 class ECheckAllWidget extends CWidget
 {
@@ -116,7 +118,8 @@ JS_INIT;
         methods = {
             init:function (options) {
                 var settings = $.extend({
-                    'childrenSelector':':checkbox'
+                    'childrenSelector':':checkbox',
+                     triggerFunctions: []
                 }, options || {});
 
                 return this.each(function () {
@@ -133,18 +136,31 @@ JS_INIT;
 
                          if (settings.callback !== undefined) {
                             var selectedValues = $("#" + id).echeckAll("getChecked");
-                            settings.callback.apply(\$this, [selectedValues]);
+                            var childrenCount = $("#" + id).echeckAll("getChildrenCount");
+                            settings.callback.apply(\$this, [selectedValues,childrenCount]);
                         }
                     });
-                    //when  children checkBox checked or unChecked
-                    $(settings.childrenSelector).live('click', function () {
-                      var selectedValues = $("#" + id).echeckAll("getChecked");
-                        if (settings.callback !== undefined) {
-                            settings.callback.apply(\$this, [selectedValues]);
+
+                   var handleChildrenStateChanged = function(){
+                           var selectedValues = $("#" + id).echeckAll("getChecked");
+                           if (settings.callback !== undefined) {
+                               settings.callback.apply(\$this, [selectedValues,$("#" + id).echeckAll("getChildrenCount")]);
+                           }
+                           //only  all children checked the parent one will be checked ($(settings.childrenSelector + "[checked]"))
+                           \$this.prop('checked', $(settings.childrenSelector).length==selectedValues.length);
+                       }
+                        //when  children checkBox checked or unChecked
+                        $(settings.childrenSelector).live('click', function () {
+                            //alert('yy');
+                            handleChildrenStateChanged();
+                        });
+
+                        // if trigger functions are registered, invoke them
+                        if (settings.triggerFunctions.length > 0) {
+                            for (var i = 0; i < settings.triggerFunctions.length; i++) {
+                                settings.triggerFunctions[i](handleChildrenStateChanged);
+                            }
                         }
-                         //only  all children checked the parent one will be checked ($(settings.childrenSelector + "[checked]"))
-                        \$this.prop('checked', $(settings.childrenSelector).length==selectedValues.length);
-                    });
                 });
             },
             getChecked:function () {
@@ -162,6 +178,10 @@ JS_INIT;
                     }
                 });
                 return checked;
+            },
+            getChildrenCount:function () {
+                var settings = checkAllSettings[this.attr('id')];
+                return $(settings.childrenSelector).size();
             }
         };
 
@@ -183,6 +203,13 @@ JS_INIT;
          */
         $.fn.echeckAll.getChecked = function (id) {
             return $('#' + id).echeckAll('getChecked');
+        };
+        /**
+         *Returns the count of the  children.
+         * @param id
+         */
+        $.fn.echeckAll.getChildrenCount = function (id) {
+            return $('#' + id).echeckAll('getChildrenCount');
         };
     })(jQuery);
 PLUGIN;

@@ -38,7 +38,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -181,7 +181,15 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		}
 	}
 
-
+    /**
+     * 批量删除动作 其他批处理 可以仿此
+     *---------------------------------------------
+     *  基本ajax返回结构定为： {status:"success/failure",
+     *                           msg   :  "the operate result text",
+     *                           data  :  "response to client"
+     *                          }
+     *---------------------------------------------
+     */
     public function actionBatchDelete()
     {
         //  print_r($_POST);
@@ -189,20 +197,21 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
         if($request->getIsPostRequest()){
             if(isset($_POST['ids'])){
                 $ids = $_POST['ids'];
-            }elseif(! empty($_POST['items'])){
-                $ids = $_POST['items'];
             }
             if (empty($ids)) {
-                echo CJSON::encode(array('success' => false, 'msg' => '至少选择一项'));
+                echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
                 die();
             }
             //print_r($ids);
+            if(is_string($ids)){
+                $ids = explode(',',$ids);
+            }
             $successCount = $failureCount = 0;
             foreach ($ids as $id) {
                 $model = $this->loadModel($id);
                 ($model->delete() == true) ? $successCount++ : $failureCount++;
             }
-            echo CJSON::encode(array('success' => true,
+            echo CJSON::encode(array('status' => 'success',
                 'data' => array(
                     'successCount' => $successCount,
                     'failureCount' => $failureCount,

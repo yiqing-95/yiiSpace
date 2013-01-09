@@ -1,75 +1,162 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('CommentsModule.msg', 'Comments')=>array('index'),
-	Yii::t('CommentsModule.msg', 'Manage'),
+	'Comments'=>array('index'),
+	'Manage',
 );
+
+$this->menu=array(
+array('label'=>'List Comment','url'=>array('index')),
+array('label'=>'Create Comment','url'=>array('create')),
+);
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+$('.search-form').toggle();
+return false;
+});
+$('.search-form form').submit(function(){
+$.fn.yiiGridView.update('comment-grid', {
+data: $(this).serialize()
+});
+return false;
+});
+");
 ?>
 
-<h1><?php echo Yii::t('CommentsModule.msg', 'Manage Comments');?></h1>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'comment-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-                array(
-                    'name'=>'object_name',
-                    'htmlOptions'=>array('width'=>50),
-                ),
-                array(
-                    'name'=>'object_id',
-                    'htmlOptions'=>array('width'=>50),
-                ),
-                array(
-                    'header'=>Yii::t('CommentsModule.msg', 'User Name'),
-                    'value'=>'$data->userName',
-                    'htmlOptions'=>array('width'=>80),
-                ),
-                array(
-                    'header'=>Yii::t('CommentsModule.msg', 'Link'),
-                    'value'=>'CHtml::link(CHtml::link(Yii::t("CommentsModule.msg", "Link"), $data->pageUrl, array("target"=>"_blank")))',
-                    'type'=>'raw',
-                    'htmlOptions'=>array('width'=>50),
-		),
-		'cmt_text',
-                array(
-                    'name'=>'create_time',
-                    'type'=>'datetime',
-                    'htmlOptions'=>array('width'=>70),
-                    'filter'=>false,
-                ),
-		/*'update_time',*/
-		array(
-                    'name'=>'status',
-                    'value'=>'$data->textStatus',
-                    'htmlOptions'=>array('width'=>50),
-                    'filter'=>Comment::model()->getStatuses(),
-                ),
-		array(
-			'class'=>'CButtonColumn',
-                        'deleteButtonImageUrl'=>false,
-                        'buttons'=>array(
-                            'approve' => array(
-                                'label'=>Yii::t('CommentsModule.msg', 'Approve'),
-                                'url'=>'Yii::app()->urlManager->createUrl(CommentsModule::APPROVE_ACTION_ROUTE, array("id"=>$data->cmt_id))',
-                                'options'=>array('style'=>'margin-right: 5px;'),
-                                'click'=>'function(){
-                                    if(confirm("'.Yii::t('CommentsModule.msg', 'Approve this comment?').'"))
-                                    {
-                                        $.post($(this).attr("href")).success(function(data){
-                                            data = $.parseJSON(data);
-                                            if(data["code"] === "success")
-                                            {
-                                                $.fn.yiiGridView.update("comment-grid");
-                                            }
-                                        });
-                                    }
-                                    return false;
-                                }',
-				'visible'=>'$data->status == Comment::STATUS_NOT_APPROVED',
-                            ),
-                        ),
-                        'template'=>'{approve}{delete}',
-		),
-	),
+<?php $this->beginClip('searchForm'); ?>
+
+<h1>Manage Comments</h1>
+
+<p>
+    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
+    &lt;&gt;</b>
+    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
+
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
+<div class="search-form" style="display:none">
+    <?php $this->renderPartial('_search',array(
+	'model'=>$model,
 )); ?>
+</div><!-- search-form -->
+<?php $this->endClip(); ?>
+
+<?php $this->widget('bootstrap.widgets.TbTabs', array(
+    'htmlOptions' => array(
+        'class' => 'controls',
+    ),
+    'type'=>'tabs', // 'tabs' or 'pills'
+    'placement' => 'right', // 'above', 'right', 'below' or 'left'
+    'tabs' => array(
+        array('label' => 'search', 'content' => $this->clips['searchForm'], 'active' => true),
+        array('label' => 'quickLinks', 'content' => '<p>all quick links for searching the different status (such as :active ,deleted,...)</p>'),
+//array('label'=>'Tags', 'content'=>'<p>search with tags , here you prepare the available tags</p>'),
+    ),
+)); ?><!-- search-form -->
+
+
+<?php $this->beginWidget('my.widgets.ETbBox', array(
+    'title' => 'Comments',
+    'headerIcon' => 'icon-list',
+    'htmlOptions' => array('class'=>'bootstrap-widget-table'),
+    'headerButtons' => array(
+        array(
+            'class' => 'ext.PageSize.TbButtonGroupPageSize',
+            'type' => 'info', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+            'pageSize' => Yii::app()->request->getParam('pageSize',null),
+            'defaultPageSize' =>  10 ,   // may use this :  Yii::app()->params['defaultPageSize'],
+            'pageSizeOptions'=> array(5=>5, 10=>10, 25=>25, 50=>50, 75=>75, 100=>100), // you can config it in main.php under the config dir . Yii::app()->params['pageSizeOptions'],// Optional, you can use with the widget default
+        ),
+        array(
+            'class' => 'bootstrap.widgets.TbButtonGroup',
+            'type' => 'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+            'buttons' => array(
+                array('label' => 'Action', 'url' => '#'), // this makes it split :)
+                array('items' => array(
+                    array('label' => 'Action', 'url' => '#'),
+                    array('label' => 'Another action', 'url' => '#'),
+                    array('label' => 'Something else', 'url' => '#'),
+                    '---',
+                    array('label' => 'Separate link', 'url' => '#'),
+                )),
+            )
+        ),
+    )));  ?>
+
+<?php  $dataProvider = $model->search();
+        $pageSize = Yii::app()->user->getState('pageSize',10/*Yii::app()->params['defaultPageSize']*/);
+        $pagination = $dataProvider->getPagination();
+        $pagination->setPageSize($pageSize);
+
+
+        $gridView  =  $this->widget('bootstrap.widgets.TbGridView',array(
+        'id'=>'comment-grid',
+         'summaryCssClass'=>'pull-right',
+        'pager'=> array('class'=>'my.widgets.TbMixPager'),
+        'template'=>"{summary}{pager}\n{items}\n{pager}\n",
+        'dataProvider'=>$dataProvider, // do not use $model->search() if you want use pageSize widget
+        'filter'=>$model,
+        'columns'=>array(
+        array(
+        'class'=>'CCheckBoxColumn',
+        'headerTemplate'=>'',// do not render the default checkAll checkBox
+        'id'=>'ids',
+        'selectableRows'=>2, // must be greater than 2 to allow multiple row can be checked
+        ),
+		'object_name',
+		'object_id',
+		'cmt_id',
+		'cmt_parent_id',
+		'author_id',
+		'user_name',
+		/*
+		'user_email',
+		'cmt_text',
+		'create_time',
+		'update_time',
+		'status',
+		'replies',
+		'mood',
+		*/
+    array(
+         'class'=>'bootstrap.widgets.TbButtonColumn',
+        ),
+    ),
+));
+?>
+
+<?php $this->endWidget();?>
+
+<div class="alert alert-info">
+    <div class="row-fluid">
+        <div class="span2">
+            <?php echo CHtml::hiddenField('items', '', array('class' => 'batch-op-targets')); ?>
+            <?php            $this->widget('my.widgets.ECheckAllWidget', array(
+            'id' => 'parent',
+            'label' => '全选',
+            'labelPosition' => 'before',
+            'childrenSelector' => '.checkbox-column :checkbox[name]:not([name$="_all"]),.batch-op-item',
+            'callback' => 'js:function (checkedValues) {
+            $(".batch-op-targets").val(checkedValues.toString());
+            $("#msg").html("您共选中了 "+checkedValues.length+" 项");
+            /*checkedValues.forEach(function (val) {
+            // $("#msg").html($("#msg").html() + "|" + val);
+            });
+            checkedValues.toString();*/
+            }'
+            ));
+            ?>
+        </div>
+        <div class="span10">
+            <?php echo CHtml::ajaxSubmitButton('删除', array('batchDelete'), array(
+            'success' => 'js:batchOpSuccess',
+            'dataType' => 'json',
+            ), array(
+            'class' => 'btn btn-danger', // btn-primary| btn-success |btn-warning| btn-danger| btn-inverse|btn-info
+            )
+            ); ?>
+
+        </div>
+    </div>
+</div>

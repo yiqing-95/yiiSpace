@@ -166,7 +166,10 @@
     <?php
     $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
             'debug' => false,
-            'options'=>array('animate'=>false,
+            'options'=>array(
+                'animate'=>false,
+                'minHeight'=>400,
+                'heightOffset'=>20,
                 'triggerFunctions'=>array('js:windowResizeFunction',
                     'js:clickResizeFunction',
                 )

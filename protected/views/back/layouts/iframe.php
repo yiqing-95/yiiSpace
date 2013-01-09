@@ -25,8 +25,11 @@
     /**
      * @see http://www.yiiframework.com/wiki/152/cookie-management-in-yii
      */
+    /*
     $currentTheme = isset(Yii::app()->request->cookies['current_theme']) ?
         Yii::app()->request->cookies['current_theme']->value : user()->getState('currentTheme','cerulean');
+    */
+    $currentTheme =  user()->getState('currentTheme','cerulean');
     ?>
     <!-- The styles -->
     <link id="bs-css" href="<?php echo "{$assetsUrl}/css/bootstrap-{$currentTheme}.css"; ?>" rel="stylesheet"
@@ -101,14 +104,21 @@ if ($_SERVER['HTTP_HOST'] == 'usman.it') {
 </script>
     <?php } ?>
 
+<?php
+/**
+ *  // jSuccess('welcome to yiiSpace!');
+ * // jError('some thing wrong happened !');
+ */
+$this->widget('my.widgets.jnotify.JNotify',  array( )); ?>
+
 <script type="text/javascript">
     $(function(){
         // set the current theme url same as the parent's
         if($('#bs-css').attr('href') !== parent.getCurrentThemeUrl()){
-            // $('#bs-css').attr('href',parent.getCurrentThemeUrl());
+             $('#bs-css').attr('href',parent.getCurrentThemeUrl());
         }
-        $(document).resize(function(){
-            parent.risizeIframe();
+        $('body',$(document)).resize(function(){
+           parent.risizeIframe();
         });
     });
     function switch_theme(theme_name)

@@ -4,6 +4,14 @@
  */
 class Test1Controller extends Controller
 {
+    /**
+     * @Desc('测试 Reuze css框架！')
+     */
+    public function actionReuze(){
+        $this->layout = '//test1/reuze/layout';
+        $this->render('reuze/content');
+
+    }
 
     public function actionJVaMenu(){
         $this->render('jvaMenu');
