@@ -141,20 +141,16 @@ if ($count >= 7)
             <?php echo "<?php"; ?>
             $this->widget('my.widgets.ECheckAllWidget', array(
             'id' => 'parent',
-            'label' => '全选',
-            'labelPosition' => 'before',
+            'label' => '全选<span id="msg"></span>',
+            'labelPosition' => 'after',
             'childrenSelector' => '.checkbox-column :checkbox[name]:not([name$="_all"]),.batch-op-item',
-            'callback' => 'js:function (checkedValues) {
-            $(".batch-op-targets").val(checkedValues.toString());
-            $("#msg").html("您共选中了 "+checkedValues.length+" 项");
-            /*checkedValues.forEach(function (val) {
-            // $("#msg").html($("#msg").html() + "|" + val);
-            });
-            checkedValues.toString();*/
-            }'
+            'triggerFunctions'=>'js:[function(recalculateState){checkAllReCalculateFunction=recalculateState}]',
+            'callback' => 'js:function (checkedValues,childrenCount) {
+                        $(".batch-op-targets").val(checkedValues.toString());
+                        $("#msg").html("("+checkedValues.length+"/"+childrenCount+")");
+                    }'
             ));
             ?>
-            <span id="msg"></span>
         </div>
         <div class="span10">
             <?php echo "<?php"; ?>  echo CHtml::ajaxSubmitButton('删除', array('batchDelete'), array(
@@ -182,6 +178,16 @@ if ($count >= 7)
    */
 ?>
 <script type="text/javascript">
+    /**
+     * the checkAll plugin will pass a function object to this callBack var !
+     */
+    var checkAllReCalculateFunction ;
+    $("#msg").ajaxSuccess(function(evt, request, settings){
+        if(jQuery.isFunction(checkAllReCalculateFunction)){
+            checkAllReCalculateFunction();
+        }
+    });
+
     function batchOpSuccess(respnose, textStatus, jqXHR){
         if(respnose.status == 'success'){
             jSuccess('操作成功!',{HorizontalPosition:'center',VerticalPosition:'center'});

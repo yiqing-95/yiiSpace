@@ -6,18 +6,7 @@
 ?>
 <?php echo "<?php \$form=\$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
-	'type'=> 'horizontal', // TbActiveForm::TYPE_HORIZONTAL,
 	'enableAjaxValidation'=>false,
-	'enableClientValidation'=>true,
-    //'focus'=>array(\$model,''),
-	 'htmlOptions' => array(
-                    // 'class' => ' form-horizontal'
-                    'class'=>'well',
-                    ),
-     'clientOptions' => array(
-                    'validateOnSubmit'=>true
-                    ),
-
 )); ?>\n"; ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
@@ -30,7 +19,12 @@ foreach($this->tableSchema->columns as $column)
 	if($column->autoIncrement)
 		continue;
 ?>
-	<?php echo "<?php echo ".$this->generateActiveRow($this->modelClass,$column)."; ?>\n"; ?>
+
+<div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Warning!</strong> 如果不需要该字段 点击 "x" 删除掉该字段，不然会修改所有选中的行的！
+    <?php echo "<?php echo ".$this->generateActiveRow($this->modelClass,$column)."; ?>\n"; ?>
+</div>
 
 <?php
 }
@@ -42,5 +36,11 @@ foreach($this->tableSchema->columns as $column)
 			'label'=>\$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>\n"; ?>
 	</div>
-
+<?php echo "<?php"; ?> echo CHtml::hiddenField('ids','', array('class' => 'batch-update-targets')); ?>
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
+<script type="text/javascript">
+   $(function(){
+      // when ajax loaded this view  it will sync the ids to the hidden field :
+       $(".batch-update-targets").val(getSelectedIds());// if you use iframe then call : parent.getSelectedIds()
+   });
+</script>

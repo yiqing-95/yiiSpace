@@ -31,7 +31,7 @@ class YiisessionController extends BackendController
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update',$this->action->id),
+                'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -173,4 +173,42 @@ class YiisessionController extends BackendController
 			Yii::app()->end();
 		}
 	}
+
+    /**
+    * 批量删除动作 其他批处理 可以仿此
+    *---------------------------------------------
+    *  基本ajax返回结构定为： {status:"success/failure",
+    *                           msg   :  "the operate result text",
+    *                           data  :  "response to client"
+    *                          }
+    *---------------------------------------------
+    */
+    public function actionBatchDelete()
+    {
+        //  print_r($_POST);
+        $request = Yii::app()->getRequest();
+        if($request->getIsPostRequest()){
+            if(isset($_POST['ids'])){
+                $ids = $_POST['ids'];
+            }
+            if (empty($ids)) {
+                echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
+                die();
+            }
+            //print_r($ids);
+            $successCount = $failureCount = 0;
+            foreach ($ids as $id) {
+                $model = $this->loadModel($id);
+                ($model->delete() == true) ? $successCount++ : $failureCount++;
+            }
+            echo CJSON::encode(array('status' => 'success',
+                'data' => array(
+                    'successCount' => $successCount,
+                    'failureCount' => $failureCount,
+                )));
+            die();
+        }else{
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+        }
+    }
 }

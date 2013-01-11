@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'List Relationship','url'=>array('index')),
 	array('label'=>'Create Relationship','url'=>array('create')),
 	array('label'=>'View Relationship','url'=>array('view','id'=>$model->id)),
-    array('label'=>'Manage Relationship(advance mode) ','url'=>array('adminAdv')),
+	array('label'=>'Manage Relationship','url'=>array('admin')),
 );
 ?>
 

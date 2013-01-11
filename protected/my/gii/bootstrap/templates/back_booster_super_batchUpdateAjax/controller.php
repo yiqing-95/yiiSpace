@@ -38,7 +38,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -108,6 +108,45 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			'model'=>$model,
 		));
 	}
+
+
+    /**
+     * Updates a particular model. in ajax mode
+     * @param integer $id the ID of the model to be updated
+     *  --------------------------------------------------
+     *  use the application.extensions.formDialog2.FormDialog2 extension
+     *  ajaxCreate functionality is almost using the same code (just change the $this->loadModel($id) to new <?php echo $this->modelClass; ?>)
+     */
+    public function actionUpdateAjax($id)
+	{
+        $model=$this->loadModel($id);
+
+		if(isset($_POST['<?php echo $this->modelClass; ?>']))
+		{
+            $model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
+			if($model->save()){
+                if (Yii::app()->request->isAjaxRequest) {
+                    exit(CJSON::encode(array(
+                            'status' => 'success',
+                            'message' => "<?php echo $this->modelClass; ?> successfully saved"
+                        )
+                    ));
+
+                } else
+                      $this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+            }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+            exit(CJSON::encode(array(
+                    'status' => 'failure',
+                    'form' => $this->renderPartial('_form', array('model' => $model), true)
+                    )
+                  ));
+            } else
+            $this->render('update', array('model' => $model,));
+	}
+
 
 	/**
 	 * Deletes a particular model.
@@ -181,7 +220,15 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		}
 	}
 
-
+    /**
+     * 批量删除动作 其他批处理 可以仿此
+     *---------------------------------------------
+     *  基本ajax返回结构定为： {status:"success/failure",
+     *                           msg   :  "the operate result text",
+     *                           data  :  "response to client"
+     *                          }
+     *---------------------------------------------
+     */
     public function actionBatchDelete()
     {
         //  print_r($_POST);
@@ -189,20 +236,21 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
         if($request->getIsPostRequest()){
             if(isset($_POST['ids'])){
                 $ids = $_POST['ids'];
-            }elseif(! empty($_POST['items'])){
-                $ids = $_POST['items'];
             }
             if (empty($ids)) {
-                echo CJSON::encode(array('success' => false, 'msg' => '至少选择一项'));
+                echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
                 die();
             }
             //print_r($ids);
+            if(is_string($ids)){
+                $ids = explode(',',$ids);
+            }
             $successCount = $failureCount = 0;
             foreach ($ids as $id) {
                 $model = $this->loadModel($id);
                 ($model->delete() == true) ? $successCount++ : $failureCount++;
             }
-            echo CJSON::encode(array('success' => true,
+            echo CJSON::encode(array('status' => 'success',
                 'data' => array(
                     'successCount' => $successCount,
                     'failureCount' => $failureCount,
@@ -212,4 +260,66 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
         }
     }
+
+    //==============<batch update>===================================================================
+
+
+
+    public function actionBatchUpdateAjax()
+	{
+         // for use validation you 'd better to define a scenario for batchUpdate
+        $model = new <?php echo $this->modelClass; ?>;
+
+		if(isset($_POST['<?php echo $this->modelClass; ?>']))
+		{
+            $model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
+			//if($model->validate()){ // if you not use the batchUpdate scenario . don't need to validate
+                     $items=$this->getItemsToUpdate();
+                    foreach($items as $i=>$item)
+                    {
+                        $item->attributes = $_POST['<?php echo $this->modelClass; ?>'];
+                        $item->save();
+                    }
+                    exit(CJSON::encode(array(
+                            'status' => 'success',
+                            'message' => "<?php echo $this->modelClass; ?> successfully saved" // .print_r($_POST['Comment'],true),
+                        )
+                    ));
+           // }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+            exit(CJSON::encode(array(
+                    'status' => 'failure',
+                    'form' => $this->renderPartial('batchUpdate', array('model' => $model), true)
+                    )
+                  ));
+            } else
+            $this->render('batchUpdate', array('model' => $model,));
+	}
+
+    /**
+    * @see http://www.yiiframework.com/doc/guide/1.1/en/form.table
+    */
+    public  function getItemsToUpdate(){
+        if(isset($_POST['ids'])){
+            $ids = $_POST['ids'];
+        }
+        if (empty($ids)) {
+            echo CJSON::encode(array('status' => 'failure', 'form' => '至少选择一项'));
+            die();
+        }
+        //print_r($ids);
+        if(is_string($ids)){
+            $ids = explode(',',$ids);
+        }
+        $criteria = new CDbCriteria();
+        $criteria->index = '<?php echo $this->tableSchema->primaryKey; ?>';
+        $criteria->addInCondition('<?php echo $this->tableSchema->primaryKey; ?>',$ids);
+        $items = <?php echo $this->modelClass; ?>::model()->findAll($criteria);
+
+         return $items ;
+    }
+
+    //==============<batch update/>===================================================================
 }

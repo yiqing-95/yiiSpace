@@ -64,6 +64,12 @@
 <body>
 <div class="container-fluid">
     <?php // echo user()->getState('currentTheme','cerulean'); ?>
+    <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+           // 'links'=>$this->breadcrumbs,
+            'links'=>array_merge($this->menuLabelList, $this->breadcrumbs),
+            'separator'=>'>>' , // default is /
+            'homeLink'=>false ,
+    )); ?>
     <div class="row-fluid">
         <?php echo $content; ?>
     </div>

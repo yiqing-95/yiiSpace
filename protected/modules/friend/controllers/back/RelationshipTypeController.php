@@ -6,7 +6,7 @@ class RelationshipTypeController extends BackendController
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	//public $layout='//layouts/column2';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -173,4 +173,45 @@ class RelationshipTypeController extends BackendController
 			Yii::app()->end();
 		}
 	}
+
+    /**
+     * 批量删除动作 其他批处理 可以仿此
+     *---------------------------------------------
+     *  基本ajax返回结构定为： {status:"success/failure",
+     *                           msg   :  "the operate result text",
+     *                           data  :  "response to client"
+     *                          }
+     *---------------------------------------------
+     */
+    public function actionBatchDelete()
+    {
+        //  print_r($_POST);
+        $request = Yii::app()->getRequest();
+        if($request->getIsPostRequest()){
+            if(isset($_POST['ids'])){
+                $ids = $_POST['ids'];
+            }
+            if (empty($ids)) {
+                echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
+                die();
+            }
+            //print_r($ids);
+            if(is_string($ids)){
+                $ids = explode(',',$ids);
+            }
+            $successCount = $failureCount = 0;
+            foreach ($ids as $id) {
+                $model = $this->loadModel($id);
+                ($model->delete() == true) ? $successCount++ : $failureCount++;
+            }
+            echo CJSON::encode(array('status' => 'success',
+                'data' => array(
+                    'successCount' => $successCount,
+                    'failureCount' => $failureCount,
+                )));
+            die();
+        }else{
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+        }
+    }
 }
