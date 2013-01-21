@@ -63,7 +63,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                 'htmlOptions' => array(
                         'class'=>'bulk-action'
                 ),
-                    'click' => 'js:batchActions'
+                    'click' => 'js:batchDelete'
 				)
 			),
 			// if grid doesn't have a checkbox column type, it will attach
@@ -100,8 +100,8 @@ if($count>=7)
             return false;
         });
     });
-    function batchActions(values){
-        var url = $(this).attr('href');
+    function batchDelete(values){
+        var url = "<?php echo "<?php"; ?> echo $this->createUrl('batchDelete'); ?>";
         var ids = new Array();
         if(values.size()>0){
             values.each(function(idx){

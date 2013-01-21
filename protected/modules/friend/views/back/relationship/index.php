@@ -5,14 +5,13 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Relationship','url'=>array('create')),
-    array('label'=>'Manage Relationship(advance mode) ','url'=>array('adminAdv')),
+	array('label'=>'Manage Relationship','url'=>array('admin')),
 );
 ?>
 
 <h1>Relationships</h1>
 
-<?php $this->widget('zii.widgets.CListView',array(
-     'id'=>'relationship-list',
+<?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>

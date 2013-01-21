@@ -1,4 +1,7 @@
 <?php
+$alias = md5(__FILE__);
+Yii::setPathOfAlias($alias,dirname(__FILE__));
+Yii::import($alias.'.interfaces.ITestService');
 /**
  * Created by JetBrains PhpStorm.
  * User: yiqing

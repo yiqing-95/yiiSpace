@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Relationship','url'=>array('index')),
-    array('label'=>'Manage Relationship(advance mode) ','url'=>array('adminAdv')),
+	array('label'=>'Manage Relationship','url'=>array('admin')),
 );
 ?>
 

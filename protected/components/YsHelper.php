@@ -13,6 +13,14 @@ class YsHelper
      * @static
      * @return string
      */
+    static public function getTempIconUrl(){
+      return  bu('public/images/yii.png');
+    }
+
+    /**
+     * @static
+     * @return string
+     */
     static public function getUserCenterLayout(){
         return '//layouts/user/user_center';
     }

@@ -5,6 +5,9 @@
  * Date: 12-2-13
  * Time: 下午8:22
  * To change this template use File | Settings | File Templates.
+ * -------------------------------------------------------------------
+ * last modified:  2013-1-7
+ * -------------------------------------------------------------------
  */
 class EPageSize extends CWidget
 {
@@ -18,7 +21,7 @@ class EPageSize extends CWidget
      * @var array
      * the optional pageSize you can select
      */
-    public $pageSizeOptions = array(10 => 10, 25 => 25, 50 => 50, 75 => 75, 100 => 100);
+    public $pageSizeOptions = array(5=>5 ,10 => 10, 25 => 25, 50 => 50, 75 => 75, 100 => 100);
 
     /**
      * @var int

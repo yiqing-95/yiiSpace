@@ -2,6 +2,12 @@
 
 class SiteController extends Controller
 {
+    protected function beforeAction($action){
+        if($action->id == 'page'){
+            $this->layout =  '//layouts/iframe';
+        }
+        return parent::beforeAction($action);
+    }
     /**
      * Declares class-based actions.
      */
@@ -119,4 +125,14 @@ class SiteController extends Controller
         $this->redirect(Yii::app()->homeUrl);
     }
 
+    /**
+     *
+     */
+    public function actionSetTheme(){
+        $request = Yii::app()->request;
+        if($request->getIsAjaxRequest()){
+            user()->setState('currentTheme',$request->getParam('currentTheme'));
+           echo user()->getState('currentTheme','cerulean');
+        }
+    }
 }

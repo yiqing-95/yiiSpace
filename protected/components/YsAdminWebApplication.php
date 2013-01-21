@@ -5,6 +5,7 @@
  * Date: 12-8-20
  * Time: 下午12:11
  * To change this template use File | Settings | File Templates.
+ * http://www.yiiframework.com/wiki/33/
  */
 class YsAdminWebApplication extends CWebApplication
 {
@@ -24,7 +25,7 @@ class YsAdminWebApplication extends CWebApplication
 
         if(!empty($controller)){
             if($controller instanceof BackendController){
-               // $controller->layout =  '//adminLayouts/main';
+                $controller->layout =  '//layouts/iframe';
             }
         }
 

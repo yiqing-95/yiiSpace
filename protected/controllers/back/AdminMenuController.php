@@ -146,6 +146,7 @@ class AdminMenuController extends BackendController
      */
     public function actionIndex()
     {
+        $this->layout = '//layouts/empty';
         $dataProvider = new CActiveDataProvider('AdminMenu');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
