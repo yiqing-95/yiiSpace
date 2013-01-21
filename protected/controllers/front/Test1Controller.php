@@ -5,6 +5,17 @@
 class Test1Controller extends Controller
 {
     /**
+     * @Desc('测试下 模块通讯框架')
+     */
+    public function actionTestService2(){
+        Yii::app()->getModule('test');
+        Yii::import('test.services.TestServiceHolder');
+        $serviceHolder = TestServiceHolder::instance();
+
+        echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
+   }
+
+    /**
      * @Desc('测试 Reuze css框架！')
      */
     public function actionReuze(){

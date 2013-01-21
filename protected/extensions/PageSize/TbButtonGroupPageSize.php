@@ -73,7 +73,7 @@ class TbButtonGroupPageSize extends TbButtonGroup
         }
         $pageSizeOptions = array();
          foreach($this->pageSizeOptions as $pageSize=>$pageSizeLabel){
-             $pageSizeOptions[] = array('label'=>$pageSizeLabel,'url'=>'#', 'linkOptions'=>array('class'=>'mini','page-size'=>$pageSize));
+             $pageSizeOptions[] = array('label'=>$pageSizeLabel,'url'=>'#','icon'=>($pageSize == $this->pageSize)?'ok':'blank', 'linkOptions'=>array('class'=>'mini ','page-size'=>$pageSize));
          }
 
         $this->buttons = array(
@@ -114,7 +114,9 @@ class TbButtonGroupPageSize extends TbButtonGroup
                  url = url.replace(/pageSize=\d+/, "pageSize="+pageSize);
                  $.fn.yiiGridView.update(XViewId,{url:url,data:{pageSize:pageSize }} );
             }
-
+            //$('i.icon-ok',$(this).parents(".dropdown-menu")).removeClass('icon-ok').addClass('icon-blank');
+             $('i.icon-ok',$(this).parent().parent()).removeClass('icon-ok').addClass('icon-blank');
+            $(this).find('i').attr('class','').addClass('icon-ok');
          });
 ON_CHANGE;
        // if is ajax request should use CHtml::script  to output the css code !

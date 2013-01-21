@@ -57,16 +57,22 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('bootstrap.widgets.TbTabs', array(
     'htmlOptions' => array(
-        'class' => 'controls',
+        'class' => 'controls alert alert-info', //'controls',
     ),
     'type'=>'tabs', // 'tabs' or 'pills'
-    'placement' => 'right', // 'above', 'right', 'below' or 'left'
+    'placement' => 'above', // 'above', 'right', 'below' or 'left'
     'tabs' => array(
         array('label' => 'search', 'content' => $this->clips['searchForm'], 'active' => true),
         array('label' => 'quickLinks', 'content' => '<p>all quick links for searching the different status (such as :active ,deleted,...)</p>'),
 //array('label'=>'Tags', 'content'=>'<p>search with tags , here you prepare the available tags</p>'),
     ),
 )); ?><!-- search-form -->
+<script type="text/javascript">
+    $(function(){
+        //
+        $(".controls ul").find("li").addClass('pull-right');
+    });
+</script>
 
 <?php echo CHtml::beginForm(); ?>
 
@@ -74,6 +80,7 @@ $('.search-form form').submit(function(){
     'title' => 'Comments',
     'headerIcon' => 'icon-list',
    // 'htmlOptions' => array('class'=>'bootstrap-widget-table'),
+    'id'=>'tb_box_items_views', // this it will used for the tb_box content !
     'headerButtons' => array(
         array(
             'class' => 'ext.PageSize.TbButtonGroupPageSize',
@@ -84,14 +91,15 @@ $('.search-form form').submit(function(){
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonGroup',
-            'type' => 'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+            'type' => 'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse',
+            'htmlOptions'=>array('class'=>'style-switcher'),
             'buttons'=>array(
                     array('label' => CHtml::encode('切换显示风格'), 'url' => '#'), // this makes it split :)
                     array('items'=>array(
-                        array('label'=>'grid', 'url'=>array('','viewType'=>'_gridView'),'htmlOptions'=>array('class'=>'switchViewType')),
-                        array('label'=>'column', 'url'=>array('','viewType'=>'_columnView'),'htmlOptions'=>array('class'=>'switchViewType')),
-                        array('label'=>'thumbnails', 'url'=>array('','viewType'=>'_thumbnails'),'htmlOptions'=>array('class'=>'switchViewType')),
-                        array('label'=>'media', 'url'=>array('','viewType'=>'_mediaView'),'htmlOptions'=>array('class'=>'switchViewType'))
+                        array('label'=>'grid','icon'=>'blank', 'url'=>array('','viewType'=>'_gridView'),'linkOptions'=>array('class'=>'switchViewType','view-type'=>'_gridView')),
+                        array('label'=>'column','icon'=>'blank', 'url'=>array('','viewType'=>'_columnView'),'linkOptions'=>array('class'=>'switchViewType','view-type'=>'_columnView')),
+                        array('label'=>'thumbnails','icon'=>'blank', 'url'=>array('','viewType'=>'_thumbnails'),'linkOptions'=>array('class'=>'switchViewType','view-type'=>'_thumbnails')),
+                        array('label'=>'media','icon'=>'blank', 'url'=>array('','viewType'=>'_mediaView'),'linkOptions'=>array('class'=>'switchViewType','view-type'=>'_mediaView'))
                       )),
             ),
         ),
@@ -108,7 +116,15 @@ $('.search-form form').submit(function(){
         'model'=> $model,
         'dataProvider'=> $dataProvider,
         ));
-
+        // load a empty listView  just for register the nessesary js and css files:
+        $this->widget('my.widgets.TbColumnView', array(
+                'id'=>'comment-items-view', // same as grid view
+                'dataProvider' => $dataProvider,
+                'pager'=> array('class'=>'my.widgets.TbMixPager'),
+                'template'=>"", // use empty template
+                'itemView' => 'viewType_column',
+                //'cols' => 3
+            ));
 ?>
 
 <?php $this->endWidget();?>
@@ -138,6 +154,31 @@ $('.search-form form').submit(function(){
             array(
                 'class' => 'btn btn-danger', // btn-primary| btn-success |btn-warning| btn-danger| btn-inverse|btn-info
             )  );
+
+            $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType'=>'link', // link, button, submit, submitLink, reset, ajaxLink, ajaxButton and ajaxSubmit.
+            'label'=>CHtml::encode('批更新'),
+            'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+            'size'=>'small', // null, 'large', 'small' or 'mini'
+            'url'=>array('batchUpdateAjax'),
+            'htmlOptions'=>array('class'=>'batch-update'),
+            ));
+
+            $this->widget('application.extensions.formDialog2.FormDialog2', array(
+                    'link' => 'a.batch-update',
+                    'options' => array(
+                        'onSuccess' => 'js:function(data, e){alert(data.message);
+                           reloadItemsView("body");
+                }',
+                    ),
+                    'dialogOptions' => array(
+                        'title'=>'batch update',
+                        'width' => 600,
+                        'height' => 470,
+
+                    )
+                )
+            );
             ?>
 
         </div>
@@ -174,7 +215,7 @@ $('.search-form form').submit(function(){
      * gridView or listView
      * @param viewContainerSelector batchOpForm
      */
-    function reloadItemsView(viewContainerSelector) {
+    function reloadItemsView(viewContainerSelector,options) {
         //probe the gridView or listView id
         var listViewClass = '.list-view';
         var gridViewClass = '.grid-view';
@@ -182,10 +223,91 @@ $('.search-form form').submit(function(){
         var $viewContainer = $(viewContainerSelector);
         if ($(listViewClass, $viewContainer).size() > 0) {
             XViewId = $(listViewClass, $viewContainer).attr('id');
-            $.fn.yiiListView.update(XViewId);
+            $.fn.yiiListView.update(XViewId,options);
         } else if ($(gridViewClass, $viewContainer).size() > 0) {
             XViewId = $(gridViewClass, $viewContainer).attr('id');
-            $.fn.yiiGridView.update(XViewId);
+            $.fn.yiiGridView.update(XViewId,options);
         }
     }
+
+    /**
+     * return the current grid or list view url
+     * @param viewContainerSelector
+     */
+    function getItemsViewUrl(viewContainerSelector){
+        //probe the gridView or listView id
+        var listViewClass = '.list-view';
+        var gridViewClass = '.grid-view';
+        var XViewId,currentItemsViewUrl;
+        var $viewContainer = $(viewContainerSelector);
+        if ($(listViewClass, $viewContainer).size() > 0) {
+            XViewId = $(listViewClass, $viewContainer).attr('id');
+            currentItemsViewUrl = $.fn.yiiListView.getUrl(XViewId);
+        } else if ($(gridViewClass, $viewContainer).size() > 0) {
+            XViewId = $(gridViewClass, $viewContainer).attr('id');
+            currentItemsViewUrl = $.fn.yiiGridView.getUrl(XViewId);
+        }
+        return currentItemsViewUrl
+    }
+    function getItemsViewId(viewContainerSelector){
+        //probe the gridView or listView id
+        var listViewClass = '.list-view';
+        var gridViewClass = '.grid-view';
+        var XViewId,currentItemsViewUrl;
+        var $viewContainer = $(viewContainerSelector);
+        if ($(listViewClass, $viewContainer).size() > 0) {
+            XViewId = $(listViewClass, $viewContainer).attr('id');
+        } else if ($(gridViewClass, $viewContainer).size() > 0) {
+            XViewId = $(gridViewClass, $viewContainer).attr('id');
+        }
+        return XViewId;
+    }
+    function getIsGridView(viewContainerSelector){
+        //probe the gridView or listView id
+        var listViewClass = '.list-view';
+        var gridViewClass = '.grid-view';
+        var XViewId,currentItemsViewUrl;
+        var $viewContainer = $(viewContainerSelector);
+        return $(gridViewClass, $viewContainer).size() > 0 ;
+    }
+
+
+    /**
+     * used for ajax update
+     * @return {*}
+     */
+    function getSelectedIds(){
+        return  $(".batch-op-targets").val();
+    }
+
+    $(function(){
+        var $styleSwitcherMenus = $(".style-switcher .dropdown-menu");
+        // make the first one as the checked !
+        $('a',$styleSwitcherMenus).first().children('i').attr("class",'').addClass('icon-ok');
+         /**
+         *  切换状态 选中的下拉状态！
+         */
+        $('a',$styleSwitcherMenus).click(function (e) {
+            e.preventDefault();
+            $('i.icon-ok',$styleSwitcherMenus).removeClass('icon-ok').addClass('icon-blank');
+            $(this).find('i').attr('class','').addClass('icon-ok');
+            var itemsViewUrl = getItemsViewUrl('body');
+            var selectedViewType = $(this).attr('view-type');
+            if(itemsViewUrl.indexOf('viewType')>0){
+                itemsViewUrl = itemsViewUrl.replace(/viewType\/\w+/, "viewType/"+selectedViewType); // for pathInfo
+                itemsViewUrl = itemsViewUrl.replace(/viewType=\w+/, "viewType="+selectedViewType);  // for queryString url pattern
+            }else{
+                itemsViewUrl =  $.param.querystring(itemsViewUrl,{"viewType":selectedViewType});
+            }
+           // alert(itemsViewUrl);
+            $.get(itemsViewUrl,function(data){
+                var $data = $('<div>' + data + '</div>');
+                var updateId = "#tb_box_items_views";
+                $(updateId).replaceWith($(updateId,$data ));
+            });
+            /*
+
+            */
+        });
+    });
 </script>

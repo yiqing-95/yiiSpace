@@ -6,6 +6,7 @@
 ?>
 <?php echo "<?php \$form=\$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
+	'htmlOptions'=>array('class'=>'batch-update-form'),
 	'enableAjaxValidation'=>false,
 )); ?>\n"; ?>
 
@@ -16,9 +17,10 @@
 <?php
 foreach($this->tableSchema->columns as $column)
 {
-	if($column->autoIncrement)
-		continue;
-?>
+	if($column->autoIncrement){
+        continue;
+    }
+ ?>
 
 <div class="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -40,7 +42,14 @@ foreach($this->tableSchema->columns as $column)
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 <script type="text/javascript">
    $(function(){
-      // when ajax loaded this view  it will sync the ids to the hidden field :
-       $(".batch-update-targets").val(getSelectedIds());// if you use iframe then call : parent.getSelectedIds()
+       // if you use iframe then call : parent.getSelectedIds()
+       var selectedIds = getSelectedIds();
+       if(jQuery.trim(selectedIds).length == 0){
+          $(".batch-update-form").html('最少选择一项！');
+       }else{
+           // when ajax loaded this view  it will sync the ids to the hidden field :
+           $(".batch-update-targets").val(selectedIds);
+       }
+
    });
 </script>

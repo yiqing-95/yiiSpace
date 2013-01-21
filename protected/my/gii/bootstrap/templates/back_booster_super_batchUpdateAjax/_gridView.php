@@ -8,7 +8,7 @@
 <?php echo "<?php "; ?>
 
         $gridView  =  $this->widget('bootstrap.widgets.TbGridView',array(
-        'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
+        'id'=>'<?php echo $this->class2id($this->modelClass); ?>-items-view', // same as list view
          'summaryCssClass'=>'pull-right',
         'pager'=> array('class'=>'my.widgets.TbMixPager'),
         'template'=>"{summary}{pager}\n{items}\n{pager}\n",

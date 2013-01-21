@@ -102,6 +102,45 @@ class CommentController extends BackendController
 		));
 	}
 
+
+    /**
+     * Updates a particular model. in ajax mode
+     * @param integer $id the ID of the model to be updated
+     *  --------------------------------------------------
+     *  use the application.extensions.formDialog2.FormDialog2 extension
+     *  ajaxCreate functionality is almost using the same code (just change the $this->loadModel($id) to new Comment)
+     */
+    public function actionUpdateAjax($id)
+	{
+        $model=$this->loadModel($id);
+
+		if(isset($_POST['Comment']))
+		{
+            $model->attributes=$_POST['Comment'];
+			if($model->save()){
+                if (Yii::app()->request->isAjaxRequest) {
+                    exit(CJSON::encode(array(
+                            'status' => 'success',
+                            'message' => "Comment successfully saved"
+                        )
+                    ));
+
+                } else
+                      $this->redirect(array('view','id'=>$model->cmt_id));
+            }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+            exit(CJSON::encode(array(
+                    'status' => 'failure',
+                    'form' => $this->renderPartial('_form', array('model' => $model), true)
+                    )
+                  ));
+            } else
+            $this->render('update', array('model' => $model,));
+	}
+
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -214,4 +253,66 @@ class CommentController extends BackendController
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
         }
     }
+
+    //==============<batch update>===================================================================
+
+
+
+    public function actionBatchUpdateAjax()
+	{
+
+        $model = new Comment;
+
+		if(isset($_POST['Comment']))
+		{
+            $model->attributes=$_POST['Comment'];
+			if($model->validate(array_keys($_POST['Comment']))){
+                     $items=$this->getItemsToUpdate();
+                    foreach($items as $i=>$item)
+                    {
+                        $item->attributes = $_POST['Comment'];
+                        $item->save(false);// $item->save(); will run the validate function !
+                    }
+                    exit(CJSON::encode(array(
+                            'status' => 'success',
+                            'message' => "Comment successfully saved" // .print_r($_POST['Comment'],true),
+                        )
+                    ));
+            }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+            exit(CJSON::encode(array(
+                    'status' => 'failure',
+                    'form' => $this->renderPartial('batchUpdate', array('model' => $model), true)
+                    )
+                  ));
+            } else
+            $this->render('batchUpdate', array('model' => $model,));
+	}
+
+    /**
+    * @see http://www.yiiframework.com/doc/guide/1.1/en/form.table
+    */
+    public  function getItemsToUpdate(){
+        if(isset($_POST['ids'])){
+            $ids = $_POST['ids'];
+        }
+        if (empty($ids)) {
+            echo CJSON::encode(array('status' => 'failure', 'form' => '至少选择一项'));
+            die();
+        }
+        //print_r($ids);
+        if(is_string($ids)){
+            $ids = explode(',',$ids);
+        }
+        $criteria = new CDbCriteria();
+        $criteria->index = 'cmt_id';
+        $criteria->addInCondition('cmt_id',$ids);
+        $items = Comment::model()->findAll($criteria);
+
+         return $items ;
+    }
+
+    //==============<batch update/>===================================================================
 }

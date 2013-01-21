@@ -8,9 +8,10 @@
 <?php echo "<?php "; ?>
 
         $this->widget('bootstrap.widgets.TbListView',array(
-        'pager'=> array('class'=>'my.widgets.TbMixPager'),
-        'dataProvider'=>$dataProvider,
-        'itemView'=>'viewType_media',
+            'id'=>'<?php echo $this->class2id($this->modelClass); ?>-items-view', // same as grid view
+            'pager'=> array('class'=>'my.widgets.TbMixPager'),
+            'dataProvider'=>$dataProvider,
+            'itemView'=>'viewType_media',
         ));
 
 ?>

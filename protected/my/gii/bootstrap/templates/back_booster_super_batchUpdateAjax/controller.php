@@ -267,25 +267,25 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 
     public function actionBatchUpdateAjax()
 	{
-         // for use validation you 'd better to define a scenario for batchUpdate
+
         $model = new <?php echo $this->modelClass; ?>;
 
 		if(isset($_POST['<?php echo $this->modelClass; ?>']))
 		{
             $model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
-			//if($model->validate()){ // if you not use the batchUpdate scenario . don't need to validate
+			if($model->validate(array_keys($_POST['<?php echo $this->modelClass; ?>']))){
                      $items=$this->getItemsToUpdate();
                     foreach($items as $i=>$item)
                     {
                         $item->attributes = $_POST['<?php echo $this->modelClass; ?>'];
-                        $item->save();
+                        $item->save(false);// $item->save(); will run the validate function !
                     }
                     exit(CJSON::encode(array(
                             'status' => 'success',
                             'message' => "<?php echo $this->modelClass; ?> successfully saved" // .print_r($_POST['Comment'],true),
                         )
                     ));
-           // }
+            }
 		}
 
           if (Yii::app()->request->isAjaxRequest) {
