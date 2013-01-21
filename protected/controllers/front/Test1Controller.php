@@ -4,6 +4,19 @@
  */
 class Test1Controller extends Controller
 {
+
+    /**
+     * @Desc('测试下 模块通讯框架2')
+     */
+    public function actionTestRpcServiceCall()
+    {
+        $serviceProviderSdk = 'application.api_vendors.yiiSpace';
+        Yii::import($serviceProviderSdk. '.test.services.TestServiceHolder');
+        $serviceHolder = TestServiceHolder::instance();
+        //echo get_class($serviceHolder->getTest2Service()); die();
+        echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
+
+    }
     /**
      * @Desc('测试下 模块通讯框架')
      */

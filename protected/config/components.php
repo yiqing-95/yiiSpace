@@ -77,6 +77,7 @@ return array(
 
             array(
                 'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                'enabled'=>YII_DEBUG,
                 'ipFilters' => array('*'),
             ),
         ),
