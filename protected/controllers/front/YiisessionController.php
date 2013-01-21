@@ -1,6 +1,6 @@
 <?php
 
-class YiisessionController extends Controller
+class YiisessionController extends BackendController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -31,7 +31,7 @@ class YiisessionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update',$this->action->id),
+                'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions

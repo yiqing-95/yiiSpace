@@ -6,7 +6,7 @@ class RelationshipController extends BackendController
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='iframe';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -14,7 +14,7 @@ class RelationshipController extends BackendController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
 
@@ -31,7 +31,7 @@ class RelationshipController extends BackendController
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -148,61 +148,12 @@ class RelationshipController extends BackendController
 		));
 	}
 
-
-    /**
-    * Manages all models.
-    * advanced fuctionality ,batch operation are supportted
-    */
-    public function actionAdminAdv()
-    {
-        $model=new Relationship('search');
-        $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['Relationship']))
-             $model->attributes=$_GET['Relationship'];
-
-        $this->render('adminAdv',array(
-             'model'=>$model,
-        ));
-    }
-
-
-        public function actionBatchDelete()
-        {
-            //  print_r($_POST);
-             $request = Yii::app()->getRequest();
-            if($request->getIsPostRequest()){
-                if(isset($_POST['ids'])){
-                      $ids = $_POST['ids'];
-                }elseif(! empty($_POST['items'])){
-                      $ids = $_POST['items'];
-                }
-                if (empty($ids)) {
-                     echo CJSON::encode(array('success' => false, 'msg' => '至少选择一项'));
-                      die();
-                }
-                //print_r($ids);
-                $successCount = $failureCount = 0;
-                foreach ($ids as $id) {
-                $model = $this->loadModel($id);
-                        ($model->delete() == true) ? $successCount++ : $failureCount++;
-                }
-                 echo CJSON::encode(array('success' => true,
-                     'data' => array(
-                         'successCount' => $successCount,
-                         'failureCount' => $failureCount,
-                     )));
-                die();
-            }else{
-                     throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-            }
-        }
-
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
-     * @return Relationship	 */
-	public function loadModel($id,$modelClass='Relationship')
+	 */
+	public function loadModel($id)
 	{
 		$model=Relationship::model()->findByPk($id);
 		if($model===null)
@@ -214,12 +165,53 @@ class RelationshipController extends BackendController
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated
 	 */
-	protected function performAjaxValidation($model,$form='relationship-form')
+	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']===$form)
+		if(isset($_POST['ajax']) && $_POST['ajax']==='relationship-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
+
+    /**
+     * 批量删除动作 其他批处理 可以仿此
+     *---------------------------------------------
+     *  基本ajax返回结构定为： {status:"success/failure",
+     *                           msg   :  "the operate result text",
+     *                           data  :  "response to client"
+     *                          }
+     *---------------------------------------------
+     */
+    public function actionBatchDelete()
+    {
+        //  print_r($_POST);
+        $request = Yii::app()->getRequest();
+        if($request->getIsPostRequest()){
+            if(isset($_POST['ids'])){
+                $ids = $_POST['ids'];
+            }
+            if (empty($ids)) {
+                echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
+                die();
+            }
+            //print_r($ids);
+            if(is_string($ids)){
+                $ids = explode(',',$ids);
+            }
+            $successCount = $failureCount = 0;
+            foreach ($ids as $id) {
+                $model = $this->loadModel($id);
+                ($model->delete() == true) ? $successCount++ : $failureCount++;
+            }
+            echo CJSON::encode(array('status' => 'success',
+                'data' => array(
+                    'successCount' => $successCount,
+                    'failureCount' => $failureCount,
+                )));
+            die();
+        }else{
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+        }
+    }
 }
