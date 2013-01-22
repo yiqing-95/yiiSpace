@@ -35,22 +35,22 @@ class ApiController extends CController
         $moduleId = $request->getParam('module');
         $method = $request->getParam('method');
         // 下面将根据不同的moduleId 和 method 来绑定不同的服务类实例
-           // Yii::log("enter ". __METHOD__, CLogger::LEVEL_INFO);
-            Yii::import('application.vendors.json_rpc.jsonRPCServer');
+        // Yii::log("enter ". __METHOD__, CLogger::LEVEL_INFO);
+        Yii::import('application.vendors.json_rpc.jsonRPCServer');
 
-            $serviceFacadeObj = $this->findServiceFacade($moduleId);
-            if(!is_null($serviceFacadeObj)){
-                $serviceObj = call_user_func_array(array($serviceFacadeObj,$method),array());
-                jsonRPCServer::handle($serviceObj)
-                    or print 'no request';
-              //  Yii::log("end ". __METHOD__, CLogger::LEVEL_INFO);
-                //die();
-                Yii::app()->end(0);
-            }else{
-                // 不存在 服务对象
-                die("bad request ". print_r($_REQUEST));
-            }
-           exit();
+        $serviceFacadeObj = $this->findServiceFacade($moduleId);
+        if (!is_null($serviceFacadeObj)) {
+            $serviceObj = call_user_func_array(array($serviceFacadeObj, $method), array());
+            jsonRPCServer::handle($serviceObj)
+                or print 'no request';
+            //  Yii::log("end ". __METHOD__, CLogger::LEVEL_INFO);
+            //die();
+            Yii::app()->end(0);
+        } else {
+            // 不存在 服务对象
+            die("bad request " . print_r($_REQUEST));
+        }
+        exit();
 
     }
 
@@ -104,16 +104,6 @@ class ApiController extends CController
                             break;
                         }
                     }
-                    /*
-                    if($name[0]!=='.' && !is_dir($servicePath.'/'.$name))
-                    {
-                        $className = pathinfo($name,PATHINFO_FILENAME);
-
-                        if(is_file("$servicePath/$name/$className.php"))
-                        {
-
-                        }
-                    }*/
                 }
             }
         }

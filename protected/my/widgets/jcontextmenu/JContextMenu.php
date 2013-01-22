@@ -311,8 +311,9 @@ SETUP;
     }
 
     /**
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param mixed $value
+     * @return mixed|void
      */
     public function __set($name, $value)
     {

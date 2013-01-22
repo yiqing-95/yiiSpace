@@ -42,9 +42,10 @@ class TestServiceHolder
     public function getTest2Service(){
         Yii::import('application.vendors.json_rpc.jsonRPCClient');
 
-        echo Yii::app()->createAbsoluteUrl('/api/jsonRpc',array('module'=>'test','method'=>__FUNCTION__) );
+        //echo Yii::app()->createAbsoluteUrl('/api/jsonRpc',array('module'=>'test','method'=>__FUNCTION__) );
         // the url will be different ,here is just a example
-        $serviceRemoteProxy = new jsonRPCClient(Yii::app()->createAbsoluteUrl('/api/jsonRpc',array('module'=>'test','method'=>__FUNCTION__)), true);
+        //$serviceRemoteProxy = new jsonRPCClient(Yii::app()->createAbsoluteUrl('/api/jsonRpc',array('module'=>'test','method'=>__FUNCTION__)), true);
+        $serviceRemoteProxy = new jsonRPCClient(Yii::app()->createAbsoluteUrl('/api/jsonRpc',array('module'=>'test','method'=>__FUNCTION__)),false);
         //$serviceRemoteProxy = new jsonRPCClient($this->createAbsoluteUrl('/api/rpc'));
         return $serviceRemoteProxy ; // fake as a instance of ITestService then you can use Intelligent completion from the IDE
 
