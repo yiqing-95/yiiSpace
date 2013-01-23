@@ -6,50 +6,121 @@ class Test1Controller extends Controller
 {
 
     /**
+     * @Desc('测试 ztree扩展!')
+     */
+    public function actionZTree(){
+        $this->render('ztree');
+    }
+
+    public function actionTestEasyUi(){
+        $this->render('easyUi');
+    }
+
+    /**
+     * @Desc('创建easyUi插件集！')
+     */
+    public function actionCreateEasyUIWidgets()
+    {
+        $easyUIWidgetsDir = Yii::getPathOfAlias('my.ui.easyui.widgets');
+        $easyUIWidgetsClassPrefix = "EZui";
+
+        $classTemplate = <<<CLASS_TPL
+<?php
+      class {$easyUIWidgetsClassPrefix}{CamelNamePluginName} extends EasyUIBaseWidget
+     {
+
+         public \$pluginName = '{lowercasePluginName}';
+
+     }
+
+CLASS_TPL;
+
+        //$easyUIPluginsDir = Yii::getPathOfAlias('my.ui.easyui.assets.plugins');
+        $CamelCasePlugins = array(
+            'Menu',
+            'Draggable',
+            'Droppable',
+            'Pagination'
+        );
+        // 加载gii模块 要使用里面的一些东东啦！
+        Yii::app()->getModule('gii');
+
+        $successClasses = $failureClasses = array();
+        foreach ($CamelCasePlugins as $plugin) {
+            $pluginClassPath = $easyUIWidgetsDir . DIRECTORY_SEPARATOR . $easyUIWidgetsClassPrefix.$plugin . ".php";
+            $lowercasePluginName = strtolower($plugin);
+
+            $content = str_replace(
+                array('{CamelNamePluginName}', '{lowercasePluginName}'),
+                array($plugin, $lowercasePluginName), $classTemplate);
+
+            if (!is_file($pluginClassPath) && (@file_put_contents($pluginClassPath, $content) === false)) {
+                   $failureClasses[$plugin] = $pluginClassPath;
+            } else {
+                    $successClasses[$plugin] = CHtml::encode(file_get_contents($pluginClassPath));
+            }
+        }
+        if(count($failureClasses)>0) foreach($failureClasses as $pluginName => $pluginPath){
+            echo "<div> failure to create plugin {$pluginName} to path {$pluginPath} </div>";
+        }
+        if(count($successClasses)>0) foreach($successClasses as $pluginName => $pluginContent){
+            echo "<div> success create plugin {$pluginName} <br/> <code>{$pluginContent}</code> </div>";
+        }
+
+    }
+
+    /**
      * @Desc('测试下 模块通讯框架2')
      */
     public function actionTestRpcServiceCall()
     {
         $serviceProviderSdk = 'application.api_vendors.yiiSpace';
-        Yii::import($serviceProviderSdk. '.test.services.TestServiceHolder');
+        Yii::import($serviceProviderSdk . '.test.services.TestServiceHolder');
         $serviceHolder = TestServiceHolder::instance();
         //echo get_class($serviceHolder->getTest2Service()); die();
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
 
     }
+
     /**
      * @Desc('测试下 模块通讯框架')
      */
-    public function actionTestService2(){
+    public function actionTestService2()
+    {
         Yii::app()->getModule('test');
         Yii::import('test.services.TestServiceHolder');
         $serviceHolder = TestServiceHolder::instance();
 
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
-   }
+    }
 
     /**
      * @Desc('测试 Reuze css框架！')
      */
-    public function actionReuze(){
+    public function actionReuze()
+    {
         $this->layout = '//test1/reuze/layout';
         $this->render('reuze/content');
 
     }
 
-    public function actionJVaMenu(){
+    public function actionJVaMenu()
+    {
         $this->render('jvaMenu');
     }
-    public function actionPrivacyMan(){
+
+    public function actionPrivacyMan()
+    {
         Yii::import('application.components.sysPrivacy.patternTest.chainOfResponsibility.*');
         $privacyMan = new PrivacyMan();
-        $privacyMan->check(1,1,1);
+        $privacyMan->check(1, 1, 1);
     }
 
-    public function actionIsFriend(){
-        if(UserHelper::isFriend(1,6)){
+    public function actionIsFriend()
+    {
+        if (UserHelper::isFriend(1, 6)) {
             echo "is friend";
-        }else{
+        } else {
             echo "no  not friend ";
         }
     }
@@ -58,7 +129,8 @@ class Test1Controller extends Controller
     /**
      * @Desc('大拇指投票')
      */
-    public function actionThumbVoting(){
+    public function actionThumbVoting()
+    {
         $this->render('thumbVoting');
     }
 
@@ -66,7 +138,8 @@ class Test1Controller extends Controller
     /**
      * @Desc('测试评论配置 ')
      */
-    public function actionCmtConfig(){
+    public function actionCmtConfig()
+    {
         WebUtil::printCharsetMeta();
         $system = YsCommentSystem::getAllSystems();
 
@@ -78,7 +151,8 @@ class Test1Controller extends Controller
     /**
      * @Desc('创建评论相关的表')
      */
-    public function actionCreateCommentTable(){
+    public function actionCreateCommentTable()
+    {
         WebUtil::printCharsetMeta();
         Yii::import('application.components.sysComment.CommentMigration');
         $mig = new CommentMigration();
@@ -89,75 +163,80 @@ class Test1Controller extends Controller
     /**
      * @Desc('测试评论功能')
      */
-    public function actionDbSchema2Migration(){
-         YsHelper::dbSchema2migration();
-     }
+    public function actionDbSchema2Migration()
+    {
+        YsHelper::dbSchema2migration();
+    }
 
     /**
      * @Desc('测试评论功能')
      */
-    public function actionYsComment(){
+    public function actionYsComment()
+    {
         $this->render('comment');
     }
 
     /**
      * @Desc('测试投票功')
      */
-    public function actionYsVote(){
-       $this->render('ysrating');
+    public function actionYsVote()
+    {
+        $this->render('ysrating');
     }
 
 
-    public function actionVote2photo(){
-       //ob_start();
-       $_POST['rate']=3;
-       YsVotingSystem::doRating('photo',7);
+    public function actionVote2photo()
+    {
+        //ob_start();
+        $_POST['rate'] = 3;
+        YsVotingSystem::doRating('photo', 7);
 
-   }
+    }
 
     /**
      * @Desc(鉴于yiisolr不能用 所以测试这个古老的)
      */
-    public function actionSolr(){
+    public function actionSolr()
+    {
         Yii::import('ext.solr.*');
 
         $userSearchConf = array(
-            'class'=>'CSolrComponent',
-            'host'=>'localhost',
-            'port'=>8080,
-            'indexPath'=>'/solr/user'
+            'class' => 'CSolrComponent',
+            'host' => 'localhost',
+            'port' => 8080,
+            'indexPath' => '/solr/user'
         );
         Yii::app()->setComponent('userSearch', $userSearchConf);
 
         $commentSearchConfig = array(
-            'class'=>'CSolrComponent',
-            'host'=>'localhost',
-            'port'=>8080,
-            'indexPath'=>'/solr/comment'
+            'class' => 'CSolrComponent',
+            'host' => 'localhost',
+            'port' => 8080,
+            'indexPath' => '/solr/comment'
         );
         Yii::app()->setComponent('commentSearch', $commentSearchConfig);
 
         //-------------------------------------------------
         //To add or update an entry in your index
         Yii::app()->commentSearch->updateOne(array(
-                'id'=>1,
-                'name'=>'tom',
-                'age'=>22)
+                'id' => 1,
+                'name' => 'tom',
+                'age' => 22)
         );
         //To add or update many documents
 
         Yii::app()->userSearch->updateMany(array(
-            '1'=>array('id'=>1,
-            'name'=>'tom',
-            'age'=> 25),
-            '2'=>array('id'=>2,
-                'name'=>'pitt')
+            '1' => array('id' => 1,
+                'name' => 'tom',
+                'age' => 25),
+            '2' => array('id' => 2,
+                'name' => 'pitt')
         ));
 
         //To search in your index
-        $result= Yii::app()->userSearch->get('name:tom',0,20);
-        echo "Results number is ".$result->response->numFound;
-        foreach($result->response->docs as $doc){
+        $result = Yii::app()->userSearch->get('name:tom', 0, 20);
+        echo "Results number is " . $result->response->numFound;
+        foreach ($result->response->docs as $doc) {
             echo "{$doc->name} <br>";
         }
 
