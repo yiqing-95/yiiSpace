@@ -76,6 +76,7 @@ CLASS_TPL;
     {
         $serviceProviderSdk = 'application.api_vendors.yiiSpace';
         Yii::import($serviceProviderSdk . '.test.services.TestServiceHolder');
+
         $serviceHolder = TestServiceHolder::instance();
         //echo get_class($serviceHolder->getTest2Service()); die();
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
@@ -89,6 +90,7 @@ CLASS_TPL;
     {
         Yii::app()->getModule('test');
         Yii::import('test.services.TestServiceHolder');
+
         $serviceHolder = TestServiceHolder::instance();
 
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
