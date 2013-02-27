@@ -13,6 +13,7 @@ $this->menu=array(
 <?php
 $this->widget('zii.widgets.CListView',array(
 'id'=>'status-stream-list',
+'template'=>'{pager}{items}{pager}',
 'dataProvider'=>$dataProvider,
 'itemView'=>'_streamView',
 ));

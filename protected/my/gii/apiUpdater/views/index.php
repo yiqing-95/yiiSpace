@@ -15,9 +15,9 @@ $('#{$class}_model').bind('keyup change', function(){
 });
 ");
 ?>
-<h1>Bootstrap Generator</h1>
+<h1>api sdk Generator</h1>
 
-<p>This generator generates a controller and views that implement CRUD operations for the specified data model.</p>
+<p>此生成器根据给定的api provider 地址 在api_vendor 目录下生成最新的开发sdk  使用的是 jsonRpc </p>
 
 <?php $form=$this->beginWidget('CCodeForm', array('model'=>$model)); ?>
 

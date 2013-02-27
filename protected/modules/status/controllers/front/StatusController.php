@@ -295,6 +295,7 @@ class StatusController extends BaseStatusController
        // My::listView4sqlDataProvider($dp);
         $this->widget('zii.widgets.CListView',array(
             'id'=>'status-list',
+            'template'=>'{pager}{items}{pager}',
             'dataProvider'=>$dp,
             'itemView'=>'_statusView',
         ));
