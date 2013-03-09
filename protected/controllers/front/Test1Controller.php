@@ -5,6 +5,23 @@
 class Test1Controller extends Controller
 {
 
+    public function actionPathAlias(){
+        echo Yii::getPathOfAlias('application.hello');
+    }
+    /**
+     * @Desc('测试配置功能')
+     */
+    public function actionEConfig(){
+        WebUtil::printCharsetMeta();
+        Yii::import('application.components.sysConfig.*');
+        print_r(ESysConfig::instance()->getAll());
+        echo "<br/> 测试 下不存在情况下 ",
+        ESysConfig::instance()->get('none',__METHOD__),
+            "<br/> 测试 下不存在情况下 ",
+            ESysConfig::instance()->get('fax','defaultValue');
+         //Yii::t('cate','key');
+    }
+
     /**
      * @Desc('测试 ztree扩展!')
      */
@@ -820,6 +837,7 @@ JS;
         $itemValue = array('k' => 'v', 'k2' => 2);
         Yii::app()->settings->set($categoryName, $itemName, $itemValue, $toDatabase = true);
         var_dump(Yii::app()->settings->get($categoryName, $itemName));
+      // AppComponent::settings()->get()
     }
 
     public function actionIndex()
