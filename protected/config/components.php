@@ -77,6 +77,7 @@ return array(
 
             array(
                 'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                'enabled'=>YII_DEBUG,
                 'ipFilters' => array('*'),
             ),
         ),
@@ -125,6 +126,16 @@ return array(
 
     'uploadStorage'=>array(
       'class'=>'application.components.YsUploadStorage'
+    ),
+
+    // 系统配置管理器
+    'sysConfig'=>array(
+        'class'=>'application.components.sysConfig.ESysConfig',
+        'formConfigs'=>array(
+            'test'=>'application.config.sysParams.formConfig.test',
+            'test1'=>'application.config.sysParams.formConfig.test2',
+            'system'=>'application.config.sysParams.formConfig.test',
+        ),
     ),
 
     //................{ components  special for this app}....................................................................

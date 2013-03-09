@@ -53,8 +53,7 @@
                                     }'
                 ),
                 'reloadAll' => array('name' => '刷新整个树', 'callback' => 'js:function(key, options) {
-                                    var node =  $(this);
-                                        debug(""+node);
+                                       reloadTree();
                                     }'
                 ),
                 'sep1' => '---------',
@@ -102,9 +101,9 @@
 
 
 <div class="fluid-row">
-        <div class="span4">
+        <div class="span3">
             <p>
-                <a href="javascript:  $.ui.dynatree.getTree().reload() ;" accesskey="">刷新树</a>
+                <a href="javascript:reloadTree()" accesskey="">刷新树</a>
             </p>
 
             <div id="tree" class="two column offset-by-one">
@@ -112,7 +111,7 @@
             </div>
 
         </div>
-    <div class="span12">
+    <div class="span11">
         <?php
         $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
                 'debug' => false
@@ -205,6 +204,11 @@
         });
         */
     });
+        function reloadTree(){
+            var tree = $("#tree").dynatree("getTree");
+            tree.reload()
+            //var root  = tree.getRoot()
+        }
 </script>
 
 
