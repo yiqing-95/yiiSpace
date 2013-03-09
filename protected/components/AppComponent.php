@@ -60,6 +60,13 @@ class AppComponent extends CComponent
     }
 
     /**
+     * @return ESysConfig
+     */
+    static public function sysConfig(){
+        return Yii::app()->sysConfig ;
+    }
+
+    /**
      * @static
      * @return EPhpThumb
      */

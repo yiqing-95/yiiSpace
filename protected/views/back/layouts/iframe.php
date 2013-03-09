@@ -13,7 +13,9 @@
 
      -->
 
-    <?php $assetsUrl = PublicAssets::url('back'); ?>
+    <?php $assetsUrl = PublicAssets::url('back');
+      cs()->registerCoreScript('cookie');
+    ?>
 
     <meta charset="utf-8">
     <title>Free HTML5 Bootstrap Admin Template</title>

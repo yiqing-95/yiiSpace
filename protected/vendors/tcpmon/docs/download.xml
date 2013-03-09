@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+	<properties>
+		<title>Releases</title>
+	</properties>
+	
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+	</head>
+	
+	<body>
+		
+		<section>
+			<h2>Releases</h2>
+			<div align="left">
+				<p>Please select the TCPMon release you want to download. The only available version
+				for TCPMon is 1.0</p>
+			</div>
+			<div align="center">
+				
+				<table class="bodyTable">
+					<tbody>
+						<tr class="a">
+							<td align="center" width="45">Name</td>
+							<td align="center" width="80">Type</td>
+							<td align="center" width="300">Distribution</td>
+							<td align="center" width="100">Date</td>
+							<td align="center" width="200">Description</td>
+						</tr>
+						<tr class="b">
+							<td align="center" valign="middle">
+								<a name="10"></a>1.0</td>
+							<td align="center">Release</td>
+							<td>Source Distribution 
+								<a href="[preferred]/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip" title="[preferred]/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip">zip</a>
+								<a href="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip.md5" class="externalLink" title="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip.md5">MD5</a>
+								<a href="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip.asc" class="externalLink" title="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-src.zip.asc">PGP</a>
+								<br />
+								Binary Distribution 
+								<a href="[preferred]/ws/commons/tcpmon/1_0/tcpmon-1.0-bin.zip" title="[preferred]/ws/commons/tcpmon/1_0/tcpmon-1.0.zip">zip</a>
+								<a href="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-bin.zip.md5" class="externalLink" title="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-bin.zip.md5">MD5</a>
+								<a href="http://www.apache.org/dist/ws/commons/tcpmon/1_0/tcpmon-1.0-bin.zip.asc" class="externalLink" title="http://www.apache.org/dist/ws/ws/commons/tcpmon/1_0/tcpmon-1.0-bin.zip.asc">PGP</a>
+									
+								<br />
+							</td>
+							<td>27 - 03  - 2006</td>
+							<td>1.0 Release (Mirrored)</td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			<div align="left">
+				<p>[if-any logo] <a href="[link]"><img align="right" src="[logo]"
+								border="0" /></a>[end] The currently selected mirror is <b>[preferred]</b>.  If
+you encounter a problem with this mirror, please select another mirror.  If
+all mirrors are failing, there are <i>backup</i> mirrors (at the end of the
+mirrors list) that should be available.</p>
+
+					<form action="[location]" method="get" id="SelectMirror">
+  Other mirrors: 
+  <select name="Preferred">[if-any http][for http]
+    <option value="[http]"
+									selected="selected">[http]</option>[end][end][if-any ftp][for ftp]
+    <option value="[ftp]">[ftp]</option>[end][end][if-any backup][for backup]
+    <option value="[backup]">[backup] (backup)</option>[end][end]
+  </select>
+
+						<input type="submit" value="Change" /></form>
+
+						<p>You may also consult the <a href="http://www.apache.org/mirrors/">complete
+list of mirrors</a>.</p>
+
+						<p>
+							<strong>Note:</strong> when downloading from a mirror please check the <a
+									href="http://www.apache.org/dev/release-signing#md5">md5sum</a> and verify
+the <a href="http://www.apache.org/dev/release-signing#openpgp">OpenPGP</a>
+compatible signature from the main Apache site. These can be downloaded by
+following the links above. This <a
+									href="http://www.apache.org/dist/ws/commons/policy/KEYS">KEYS</a> file contains the
+public keys used for signing release. It is recommended that (when possible)
+a <a href="http://www.apache.org/dev/release-signing#web-of-trust">web of
+trust</a> is used to confirm the identity of these keys.</p>
+					</div>
+						
+				</section>
+			</body>
+		</document>
