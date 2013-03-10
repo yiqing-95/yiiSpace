@@ -147,5 +147,15 @@ return array(
     //
     'apiPublisher',
     'apiUpdater',
+
+    // yii rbac 的一个GUI实现
+    'auth' => array(
+        'strictMode' => true, // when enabled authorization items cannot be assigned children of the same type.
+        'userClass' => 'User', // the name of the user model class.
+        'userIdColumn' => 'id', // the name of the user id column.
+        'userNameColumn' => 'username', // the name of the user name column.
+        'appLayout' => '//layouts/iframe', // the layout used by the module.
+        'viewDir' => null, // the path to view files to use with this module.
+    ),
 );
 
