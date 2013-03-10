@@ -68,7 +68,7 @@
     <?php // echo user()->getState('currentTheme','cerulean'); ?>
     <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
            // 'links'=>$this->breadcrumbs,
-            'links'=>array_merge($this->menuLabelList, $this->breadcrumbs),
+            'links'=>array_merge(empty($this->menuLabelList)?array():$this->menuLabelList, $this->breadcrumbs),
             'separator'=>'>>' , // default is /
             'homeLink'=>false ,
     )); ?>
