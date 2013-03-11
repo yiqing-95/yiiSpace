@@ -61,6 +61,17 @@
     <!-- The fav icon -->
     <link rel="shortcut icon" href="<?php echo $assetsUrl; ?>/img/favicon.ico">
 
+    <script type="text/javascript">
+        $(function () {
+            if (window.self === window.top) {
+                //alert('not in a frame');
+               window.location = "<?php echo Yii::app()->createUrl('site/index');?>";
+            } else {
+
+            }
+        });
+    </script>
+
 </head>
 
 <body>

@@ -12,16 +12,19 @@
         html, body {
             background-color: #eee;
         }
+
         body {
             /*padding-top: 40px;*/
         }
-        .main-content{
+
+        .main-content {
             min-height: 410px;
         }
-         .form{
+
+        .form {
             width: 300px;
-            margin: auto ;
-             padding: 25px;
+            margin: auto;
+            padding: 25px;
         }
 
             /* The white background content wrapper */
@@ -32,9 +35,9 @@
             -webkit-border-radius: 10px 10px 10px 10px;
             -moz-border-radius: 10px 10px 10px 10px;
             border-radius: 10px 10px 10px 10px;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-            box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
         }
 
         .login-form {
@@ -47,22 +50,36 @@
             color: #404040;
         }
 
-        .footer{
+        .footer {
             min-height: 75px;
             margin-bottom: 0px;
             border-top: 3px solid #783c89;
         }
-        .header{
+
+        .header {
             min-height: 90px;
         }
     </style>
+    <script type="text/javascript">
+        $(function () {
+            if (window.self === window.top) {
+                //alert('not in a frame');
+
+            } else {
+               // alert('in a frame');
+              //  $(".hidden-if-in-IFrame").css("display","none")
+              // 在iframe时 隐藏页眉页脚！
+                $(".container").siblings().css("display","none");
+            }
+        });
+    </script>
 </head>
 <body>
-<?php $this->widget('ext.egradient.EGradient',array('target'=>'.header,.footer','color1'=>'#803c17','color2'=>'#d27031'));?>
+<?php $this->widget('ext.egradient.EGradient', array('target' => '.header,.footer', 'color1' => '#803c17', 'color2' => '#d27031'));?>
 
 <!--header 部分-->
 <div class="wrapper">
-    <div class="header">
+    <div class="header hidden-if-in-IFrame">
         <div class="container">
             <div class="row branding">
                 <div class="span6">
@@ -75,44 +92,47 @@
                 <div class="span6">
                     <p class="pull-right userInfo">
                         <i class="icon-user"></i>
-                        欢迎登陆： <strong><?php echo Yii::app()->name ; ?></strong> &nbsp;
+                        欢迎登陆： <strong><?php echo Yii::app()->name; ?></strong> &nbsp;
                     </p>
                 </div>
             </div>
-<!--            <div class="row navigation">-->
-<!--                <div class="span12">-->
-<!--                    <ul class="nav nav-tabs">-->
-<!--                        <li class="active"><a href="index.html">Home</a></li>-->
-<!--                        <li><a href="tour.html">Tour</a></li>-->
-<!--                        <li><a href="plans_pricing.html">Plans &amp; Pricing</a></li>-->
-<!--                        <li><a href="blog.html">Blog</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            <div class="row navigation">-->
+            <!--                <div class="span12">-->
+            <!--                    <ul class="nav nav-tabs">-->
+            <!--                        <li class="active"><a href="index.html">Home</a></li>-->
+            <!--                        <li><a href="tour.html">Tour</a></li>-->
+            <!--                        <li><a href="plans_pricing.html">Plans &amp; Pricing</a></li>-->
+            <!--                        <li><a href="blog.html">Blog</a></li>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </div>-->
         </div>
     </div>
-<!--header结束-->
-<div class="container main-content form">
-    <div class="content">
-        <div class="row">
-            <div class="login-form">
-                <h2></h2>
-                <?php echo $content ; ?>
+    <!--header结束-->
+    <div class="container main-content form">
+        <div class="content">
+            <div class="row">
+                <div class="login-form">
+                    <h2></h2>
+                    <?php echo $content; ?>
+                </div>
             </div>
         </div>
     </div>
-</div> <!-- /container -->
+    <!-- /container -->
 
-<!--    footer 开始-->
-    <div class="footer">
+    <!--    footer 开始-->
+    <div class="footer hidden-if-in-IFrame">
         <div class="row">
             <div class="span12">
-                <p class="pull-left">&copy; <?php echo date('Y'); ?> - <?php echo Yii::app()->name ; ?>, All rights reserved.</p>
+                <p class="pull-left">&copy; <?php echo date('Y'); ?> - <?php echo Yii::app()->name; ?>, All rights
+                    reserved.</p>
+
                 <p class="pull-right"><a href="#">Terms of Use</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
             </div>
         </div>
     </div>
-<!--    footer结束-->
-    </div>
+    <!--    footer结束-->
+</div>
 </body>
 </html>
