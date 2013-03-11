@@ -1,0 +1,3 @@
+[submodule "protected/modules/auth"]
+	path = protected/modules/auth
+	url = https://github.com/yiqing-95/yii-auth.git
