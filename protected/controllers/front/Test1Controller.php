@@ -5,6 +5,35 @@
 class Test1Controller extends Controller
 {
 
+    /**
+     * @Desc('测试右侧浮动菜单')
+     */
+    public function actionRightSideBar(){
+        $this->render('rightSideBar');
+    }
+
+    public function actionTest52Fr(){
+        $this->layout = '//layouts/test/52fr';
+        $this->render('52fr');
+    }
+
+    /**
+     * @Desc('测试下die方法跟exit方法的区别 exit 只是终止当前php段 ')
+     */
+    public function actionTestExit(){
+        $this->render('testExit');
+        echo "after exit";
+    }
+    /**
+     * @Desc('测试下die方法跟exit方法的区别 ')
+     */
+    public function actionTestDie(){
+       $this->render('testDie');
+        echo "after die";
+
+    }
+
+
     public function actionPathAlias(){
         echo Yii::getPathOfAlias('application.hello');
     }

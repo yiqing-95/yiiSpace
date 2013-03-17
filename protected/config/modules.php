@@ -157,5 +157,14 @@ return array(
         'appLayout' => '//layouts/iframe', // the layout used by the module.
         'viewDir' => null, // the path to view files to use with this module.
     ),
+
+    // oauth 服务器 先测试2.0
+    'oauth',
+    // oauth 1 服务端实现
+    'api'=>array(
+        'connectionString' => 'mysql:host=localhost;port=3306;dbname=yii_space',
+        'username' => 'root',
+        'password' => '',
+    ),
 );
 
