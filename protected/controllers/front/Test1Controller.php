@@ -5,6 +5,17 @@
 class Test1Controller extends Controller
 {
 
+    public function actionTestServiceX(){
+        WebUtil::printCharsetMeta();
+        Yii::app()->getModule('user');
+        Yii::import('user.services.UserService');
+
+          $us = new UserService();
+       $return =    $us->register('tewt','test');
+
+        print_r($return);
+    }
+
     /**
      * @Desc('测试右侧浮动菜单')
      */
