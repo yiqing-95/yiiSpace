@@ -166,5 +166,8 @@ return array(
         'username' => 'root',
         'password' => '',
     ),
+
+    // api 平台管理
+    'apiPlatform',
 );
 
