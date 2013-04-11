@@ -69,7 +69,7 @@ $bu = "http://lib.kindcent.com/smallslider/rs/";
 
     <div id="flashbox3" class="smallslider span3" >
         <ul>
-            <li><a href="#"><img src="<?phpecho $bu; ?>images/001.jpg" title="" alt="图片标题1" /></a></li>
+            <li><a href="#"><img src="<?php echo $bu; ?>images/001.jpg" title="" alt="图片标题1" /></a></li>
             <li><a href="#"><img src="<?php echo $bu; ?>images/002.jpg" title="" alt="图片标题2" /></a></li>
             <li><a href="#"><img src="<?php echo $bu; ?>images/003.jpg" title="" alt="图片标题3" /></a></li>
             <li><a href="#"><img src="<?php echo $bu; ?>images/004.jpg" title="" alt="图片标题4" /></a></li>

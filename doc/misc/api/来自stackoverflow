@@ -1,0 +1,18 @@
+
+
+Take a look at Eating your own Dogfood by Nick Jackson. These are slides from CICONF 2012 where he details how this all works.
+
+Building your API first is a great idea, then your application can use the API to fetch the data itself. This is of course a little slower as you're adding a HTTP request on data, but locally its not too bad and if you use HMVC to make the request it's even quicker.
+
+In the tutorial I didn't get into HMVC because it's an extra subject, but it can be awesome for adding modular API's. In some simple applications I just make a /api folder like the tutorial suggested but PyroCMS Professional has an API module and a sexy route to allow modular API stuff:
+
+$route['api/([a-zA-Z0-9_-]+)/(:any)']       = '$1/api/$2';
+$route['api/([a-zA-Z0-9_-]+)']              = '$1/api/index';
+This means I can have a "api.php" controller in every module and still use the /api/controller/method syntax or even /api/controller if you have function index_get().
+
+I would strongly suggest you grab PyroCMS Professional for this feature. Yep you gotta pay, but it handles user key generation, authorisation, logging, etc all out of the box and handles your website too.
+
+
+-------------------------------
+Open Source API-centric PHP Micro-framework — Read more
+http://www.waveframework.com

@@ -1,0 +1,24 @@
+
+api （http://www.slideshare.net/mugunthkumar/designing-your-api-server-for-mobile-apps）
+---------------
+>   top-level model 暴露api方法，文档  顶级模型调用dao 内部可能有多个相关的dao对象
+    理解：顶级模型是是用例级别（子系统）级别的对象
+    有点像门面设计模式，api的方法由 这些顶级模型暴露 提供doc 。
+> 应该de-normalize model  不然客户端会进行多次请求
+> 一个tweet模型包含如下信息
+    tweet 文本。
+    tweet的geo信息位置
+    tweet的作者
+    retweet和favorite数
+    转发 ， 喜欢此tweet的top10用户。
+
+    在关系型DB中存储：
+    tweets 表 存tweet
+    retweets 存转发信息  比如转发次数
+    favorites表同上类似
+    用户的profile信息 存储在users表中
+
+>Api server 应该反范式化这些信息至一个顶级模型中
+>范式化的数据是db设计和实现的组成部分。
+>反范式化他们是api设计和实现的组成部分。
+如果你不反范式化他们 那么客户端需要多次调用。一个twitter的详细信息可能至少需要四次api调用！！
