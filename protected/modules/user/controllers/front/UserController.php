@@ -2,6 +2,8 @@
 
 class UserController extends BaseUserController
 {
+
+
     /**
      * @var CActiveRecord the currently loaded data model instance.
      */

@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+
+
+<div id="container"><div class="container-wrap">
+
+
+<div id="header">
+
+
+    <div class="header-wrap">
+
+        <div id="branding">
+
+
+            <h1 id="site-title"><a href="http://sofish.de" title="幸福收藏夹">幸福收藏夹</a></h1>
+
+
+            <div id="site-description"><span>在这里存IT的理性，掺夹文学的浪漫...</span></div>
+        </div><!-- #branding -->
+
+
+
+
+    </div><!-- .wrap -->
+
+
+</div><!-- #header -->
+
+
+
+
+<div id="menu-secondary" class="menu-container">
+
+    <div class="wrap">
+
+        <div id="menu-secondary-title">
+            Menu			</div><!-- #menu-secondary-title -->
+
+
+        <div class="menu"><ul id="menu-secondary-items" class=""><li id="menu-item-2160" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-2160"><a href="http://sofish.de">首页</a></li>
+            <li id="menu-item-2156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2156"><a href="http://sofish.de/about-me">关于sofish</a></li>
+            <li id="menu-item-2157" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2157"><a href="http://sofish.de/category/internet">互联网小记</a></li>
+            <li id="menu-item-2158" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2158"><a href="http://sofish.de/category/javascript">JavaScript</a></li>
+            <li id="menu-item-2159" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2159"><a href="http://sofish.de/category/css-%e7%9b%b8%e5%85%b3">CSS 相关</a></li>
+        </ul></div>
+
+    </div>
+
+</div><!-- #menu-secondary .menu-container -->
+
+
+
+
+<div id="main">
+
+<div class="wrap">
+
+
+
+<div id="content">
+
+
+<div class="hfeed">
+
+<div class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><span class="trail-before">Browse:</span> <span class="trail-begin"><a href="http://sofish.de" title="幸福收藏夹" rel="home" class="trail-begin">Home</a></span> <span class="sep">&raquo;</span> <span class="trail-end">这样去写你的 HTML</span></div>
+
+
+
+<div id="post-1688" class="hentry post publish post-1 odd author-admin format-standard category-featured category-ueux post_tag-html post_tag-wcag post_tag-366">
+
+
+    <h1 class='post-title entry-title'><a href='http://sofish.de/1688'>这样去写你的 HTML</a></h1>
+
+    <div class="entry-content">
+
+        <p>昨天在 twitter 上说，怎么忍心把页面写得这么难用？是的，这个世界还有一群人等着我们创建出来的东西，可以让他们的生活能过得更容易呢。比如那些需要读屏软件的用户。作为一个前端，我们又怎么会忍心呢。之前就一直想写这样的一篇文章，分享一下如何去创造一个可访问性更好的页面。今天的计划里有一条把 HTML Tag 和 WCAG标准结合起来。我推荐你这样去写你的 HTML，让某些人的生活可以更容易。</p>
+        <p>今天想分享的是如何去使用我们的 HTML Tag, 把 WCAG 的标准和语义网的目标进行代码上的体现：</p>
+        <h3>1. 文档声明：&lt;!Doctype&gt;</h3>
+        <p>其实这跟 WCAG 根本上连不上什么直接关系，但为了一个兼容性更好，特别是向后兼容的页面，我推荐你这样写：</p>
+        <p><span id="more-1688"></span></p>
+<pre class="code_bg">
+&lt;!Doctype html&gt;</pre>
+        <h3>2. 链接：&lt;a&gt;</h3>
+        <p>互联网的联几乎可以说是用 &lt;a&gt; 来实现的，作为一个页面最常见的标签。我们应该如何对待呢？</p>
+        <ol>
+            <li>为关键链接添加 accesskey</li>
+            <li>除非万不得已，不要去掉 focus 时虚线框</li>
+        </ol>
+<pre class="code_bg">
+&lt;a href=&quot;&quot; title=&quot;&quot; accesskey=&quot;M&quot; rel=&quot;&quot; <del>hidefocus</del>&gt;Link&lt;/a&gt;</pre>
+        <h3>3. 缩写: &lt;abbr&gt;</h3>
+        <p>对于用 HTML Tag 的正确使用，也是非常重要的，这有利于读屏软件使用者对于页面结构的理解。特别是在 H1,H2,H3 等这些标签的使用，滥用非常容易造成结构费解。当然，使用一般的标签，再利用 CSS 来使视觉上形成对比这也是常人能辨识的。但读屏软件用户呢。当然，这里只是顺带提起需要注意页面标签的使用方法，而 abbr 最重要的应该是应该添加一个 title 属性对缩写进行描述。比如：</p>
+<pre class="code_bg">
+&lt;abbr title=&quot;Web Developer&quot; &gt;WD&lt;/abbr&gt;</pre>
+        <h3>4. 大段引用: &lt;blockquote&gt;，一般引用: &lt;cite&gt;</h3>
+        <p>&nbsp;有大段引用的时候，使用 &lt;blockquote&gt;，而行内引用则使用 &lt;cite&gt;，让你的结构更加易读：</p>
+<pre class="code_bg">
+&lt;blockquote&gt;
+    之前就一直想写这样的一篇文章，分享一下如何去创造一个可访问性更好的页面。今天的计划里有一条把 HTML Tag 和 WCAG标准结合起来。我推荐你这样去写你的 HTML，让某些人的生活可以更容易。
+&lt;/blockquote&gt;
+&lt;p&gt;某A给我印象最深刻的一句话是，&lt;cite&gt;&ldquo;做前端要有爱。不要动不动就有朩有地对各种人使用咆哮体&rdquo;&lt;/cite&gt;。&lt;/p&gt;
+</pre>
+        <h3>5. 删除：&lt;del&gt;</h3>
+        <p>在纸上写东西不能像在计算机上写东西一样，可以用撤销键可以按，但当我们想要强调某些东西是被删除的怎么办？那就是使用 &lt;del&gt; 标签了。比如这样：</p>
+<pre class="code_bg">
+&lt;del&gt;HTML上表示强调时，请使用 &amp;lt;b&amp;gt; 标签&lt;/del&gt;
+HTML上表示强调时，请使用 &amp;lt;strong&amp;gt; 标签
+</pre>
+        <p>效果是这样的：</p>
+        <blockquote><p><del>HTML上表示强调时，请使用 &lt;b&gt; 标签</del><br />
+            HTML上表示强调时，请使用 &lt;strong&gt; 标签 </p></blockquote>
+        <h3>6. 定义列表：&lt;dl&gt;</h3>
+        <p>去年带着新人做支付宝前端博客的时候，他们给我印象最深刻的是很喜欢用 &lt;dl&gt;。当时在想，这些同学挺不错的，对语义化的理解还不错。我们还是比较少用到定义列表的。而是使用一般的 &lt;ul&gt; &lt;ol&gt; 这两个。&lt;dl&gt; 也是应该慎用的，最好只使用在某些有&ldquo;定义&rdquo;意义的条目，如 w3school 的这个例子，对咖啡和牛奶的定义：</p>
+<pre class="code_bg">
+&lt;dl&gt;
+  &lt;dt&gt;Coffee&lt;/dt&gt;
+    &lt;dd&gt;- black hot drink&lt;/dd&gt;
+  &lt;dt&gt;Milk&lt;/dt&gt;
+    &lt;dd&gt;- white cold drink&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
+        <h3>7. 无序/有序列表 &lt;ul&gt;/&lt;ol&gt;</h3>
+        <p>列表，这个对于每个前端来说，都熟悉不过了。因为结构可以非常灵活地进行应用，在导航、列表、Tab 等，都经常要要用到。这个就无须多说了。但有一点还是需要明白的，不要相信什么 &lt;ul&gt;/&lt;ol&gt; 是 &lt;table&gt; 的替代品。在我们常用的 HTML Tags 中，每个标签都有自己的作用，谁都不是谁的替代品。</p>
+<pre class="code_bg">
+&lt;ol&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+        <h3>8. 表格: &lt;table&gt;</h3>
+        <p>如果是一个表格，那就，就不要用段落来替代，更不要用列表。除非万不得已，并且他们是可以转换的。另外，表格中还有一些需要注意的点：</p>
+        <ul>
+            <li>给 &lt;table&gt; 添加 summary 属性，有些表格非常大，并不需要去读完整个</li>
+            <li>添加 &lt;tbody&gt;，如果我没记错，如果没添加的话，浏览器会自动为你添加</li>
+            <li>必要时使用 &lt;col&gt; &lt;colgroup&gt; 来控制表示的栏</li>
+        </ul>
+<pre class="code_bg">
+&lt;table summary=&quot;sofish's blog status&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;DATE&lt;/th&gt;
+            &lt;th&gt;IP&lt;/th&gt;
+            &lt;th&gt;PV&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2011.3.11&lt;/td&gt;
+            &lt;td&gt;3000&lt;/td&gt;
+            &lt;td&gt;8000&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+        <h3>9. 格式化片段 &lt;code&gt;/&lt;pre&gt;</h3>
+        <p>&lt;code&gt; 是指 computer code text, 而 &lt;pre&gt; 是指 preformatted text。&lt;pre&gt; 的范围更广，并且是块状元素，可能被使用来格式化各种文本，特别是代码。使用没有需要特别注意的，主要是语义上的正确使用，比如不要用 &lt;pre&gt; 来代替一般的 &lt;p&gt;。</p>
+<pre class="code_bg">
+&lt;code&gt;text-align:center&lt;/code&gt;
+&lt;pre&gt;
+{ ( 1 * 10<sup>2 </sup>) + ( 9 * 10<sup>1 </sup>) + ( 3 * 10<sup>0 </sup>) }
+&lt;/pre&gt;
+</pre>
+        <h3>10. 换行: &lt;br&gt;</h3>
+        <p>在现代网页中，使用 &lt;br&gt; 的情况是非常少的。网页中的留白，一般都是使用 CSS 的 padding 和 margin 来实现。这样更精准，并用更容易控制。现在推荐的用法是，使用到一般的段落 &lt;p&gt; 中做简单的换行，而不是用来控制页面留白。</p>
+<pre class="code_bg">
+&lt;p&gt;我是一个段落。&lt;br /&gt;
+诗歌都会用换行的。
+&lt;/p&gt;</pre>
+        <h3>11. 分割线: &lt;hr&gt;</h3>
+        <p>&lt;hr&gt; 具有非常好的语义作用。但他的视觉效果很难控制。之前就写过这样的文章<a title="Permanent Links to 关于&lt;hr /&gt;在各浏览器中的问题" rel="bookmark" href="../../../../../1328">关于&lt;hr  /&gt;在各浏览器中的问题</a>。一般也都很少用。如果专门为读屏软件使用者提供单独页面的话，或许 &lt;hr&gt; 会大有用处。</p>
+<pre class="code_bg">
+&lt;h3&gt;标题一&lt;/h3&gt;
+&lt;p&gt;Lorem Ipsum is ...&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;标题二&lt;/h3&gt;
+&lt;p&gt;This is the entry of... &lt;/p&gt;
+</pre>
+        <h3>12. 无语义标签：&lt;div&gt;/&lt;span&gt;</h3>
+        <p>其实 &lt;div&gt;/&lt;span&gt; 这两个标签是有语义的，都是 defines a section in a document。是的，和 HTML5 中的 &lt;section&gt; 其实是一样的。只是，因为搜索引擎的的原因，搜索引擎认为它们是无语义标签，因此他们成了 &ldquo;无语义&rdquo; 标签。推荐用法是尽量使用其他来做为页面框架的容器，比如布局、添加额外的视觉效果，而不是段落等的替代品。</p>
+<pre class="code_bg">
+&lt;div id=&quot;container&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;sidebar&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;span&gt;God&lt;/span&gt;, oh my zsh&lt;/span&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h3>13. 段落/标题: &lt;p&gt;,&lt;h1&gt;/&lt;h2&gt;/&lt;h3&gt;&#8230;</h3>
+        <p>这几个标签几乎可以说是一个页面标签等级结构中最重要的标签。我们可以用一本书的结构来说明这几个标签，而我们构建一个页面的时候，也应该有这样的一种思想在脑中：</p>
+        <ul>
+            <li>书的名称：H1</li>
+            <li>书的每个章节标题: H2</li>
+            <li>章节内的文章标题: H3</li>
+            <li>章节的段落: P</li>
+            <li>小标题/副标题: H4/H5/H6</li>
+        </ul>
+        <p>是的，当然还有引用 &lt;blockquoute&gt;，技术类书中提供的代码 &lt;pre class=&quot;code&quot;&gt;，一些需要注意点的列表 &lt;ul&gt;，一些方便比较的表格 &lt;table&gt; 等。</p>
+<pre class="code_bg">
+&lt;h1&gt;LOGO&lt;/h1&gt;
+&lt;h2&gt;Title&lt;/h2&gt;
+&lt;div class=&quot;entry&quot;&gt;
+    &lt;h3&gt;Summary:&lt;/h3&gt;
+    &lt;p&gt;lorem ipsum is ...&lt;em&gt;emphasize&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+        <h3>14. 强调: &lt;em&gt;/&lt;strong&gt;</h3>
+        <p>&lt;em&gt; emphasize 的缩写。而 &lt;strong&gt; 是 strong emphasize。可能很多刚入门前端的同学会对 &lt;em&gt;、&lt;strong&gt;、&lt;cite&gt; 、&lt;i&gt;、&lt;b&gt; 这几个标签的使用拿捏不准。&lt;i&gt; 和 &lt;b&gt; 基本上是被废置的，相当于现在的 &lt;em&gt; 和 &lt;strong&gt;，一般情况下他们对于内容重要性的排序是这样的：strong &gt; em &asymp; cite。&nbsp;</p>
+<pre class="code_bg">
+&lt;strong&gt;注意：&lt;/strong&gt;别使用老掉牙的标签，比如&lt;cite&gt;FONT、CENTER&lt;/cite&gt;等，特别是 &lt;em&gt;FONT&lt;/em&gt;。
+</pre>
+        <h3>15. 表单项: &lt;input&gt;/&lt;textarea&gt;/&lt;select&gt;</h3>
+        <p>表单项是 HTML 中相对比较复杂的标签，需要注意的点也比较多：</p>
+        <ol>
+            <li>需要给每个表单项添加 &lt;label&gt; 对其进行描述，当不能使用 label 时，为表单项添加 title 属性</li>
+            <li><span style="background-color: rgb(255, 255, 0);">当表单项是必填项的时候，使用 &ldquo;<strong>*</strong>&ldquo; 符号来标记</span></li>
+            <li>Flash 创建表单项一般是不会生成 &lt;label&gt; 的，请勾上 auto label 那个选项</li>
+        </ol>
+<pre class="code_bg">
+&lt;form method=&quot;post&quot; action=&quot;http://sofish.de&quot;&gt;
+    &lt;fieldset&gt;&lt;legend&gt;My Form&lt;/legend&gt;
+      &lt;label for=&quot;firstname&quot;&gt;* First name:&lt;/label&gt; &lt;input type=&quot;text&quot; id=&quot;firstname&quot; /&gt;
+      &lt;label for=&quot;speech&quot;&gt;Say something:&lt;/label&gt;
+      &lt;textarea id=&quot;speech&quot; /&gt;
+      &lt;/textare&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;submit&quot; title=&quot;submit button&quot; /&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+</pre>
+        <h3>16. 图片: &lt;img&gt;</h3>
+        <p>对于图片，盲人看不到。提供 alt 来表示替代文本。告诉他们这是一张什么样的图。</p>
+<pre class="code_bg">
+&lt;img src=&quot;http://sofish.de/favicon.ico&quot; alt=&quot;幸福收藏夹的 favicon&quot; /&gt;</pre>
+        <h3>17. 框架: &lt;iframe&gt;</h3>
+        <p>尽量避免 &lt;iframe&gt;框架的使用，但当你需要使用的时候，最好提供一个 title 属性对其进行描述。</p>
+<pre class="code_bg">
+&lt;iframe src=&quot;http://sofish.de&quot; title=&quot;幸福收藏夹&quot; /&gt;&lt;/iframe&gt;</pre>
+        <h3>18. 流媒体：&lt;video&gt;/&lt;audio&gt;/&lt;object&gt;/&lt;embed&gt;</h3>
+        <p>媒体也是比较复杂的格式，处理起来比较麻烦。通常我们可以这样做：</p>
+        <ul>
+            <li>为视听媒体提供相应的文本，包括相应的场景，比如演讲中的鼓掌等有利有阅读者感知现在气氛的，都应该体现在演讲文本中。其他的依此类推。</li>
+            <li>如果像交响乐这种不能提供具体描述的，可以进行简单的说明</li>
+            <li>如果文本较长，不能在当前页面展示，可以在媒体后提供一个链接到相应替代文本的链接</li>
+            <li>如果媒体中有可能会引起癫痫发作的，应做相应的说明</li>
+        </ul>
+<pre class="code_bg">
+&lt;audio src=&quot;mozart.mp4&quot;&gt;莫扎特39号交响曲&lt;/audio&gt;
+</pre>
+        <h3>19. 网页标题：&lt;title&gt;</h3>
+        <p>网页中一定要包含标题，并且每个标签应该具有辨识性。比如支付宝中是这样体现的：</p>
+        <p><img alt="alipay web page title" src="http://sofish.de/mypics/alipay-title.jpg" /></p>
+<pre class="code_bg">
+&lt;title&gt;联系我 -- 幸福收藏夹&lt;/title&gt;
+</pre>
+        <h3>20. 总结</h3>
+        <p>好吧。就先写到这里了。WCAG 并不只是这些简单的 HTML Tags 的用法，语义化的网页也不是一两篇文章能够写完的。慢慢来吧。从最常见的做起，养成好的习惯。回到文章前面的那句话，难道你忍心把页面写得这么难用吗？</p>
+
+    </div><!-- .entry-content -->
+
+    <div class="entry-meta"><abbr class="published" title="Friday, March 11th, 2011, 4:03 pm">March 11, 2011</abbr> <span class="author vcard"><a class="url fn n" href="http://sofish.de/author/admin" title="sofish">sofish</a></span> <a href="http://sofish.de/1688" class="permalink">Permalink</a> <a class="comments-link" href="http://sofish.de/1688#comments" title="Comment on 这样去写你的 HTML">63 Responses</a> <span class="category"><a href="http://sofish.de/category/featured" rel="tag">Featured</a>, <a href="http://sofish.de/category/ueux" rel="tag">UE/UX</a><span class="after">, </span></span> <span class="post_tag"><a href="http://sofish.de/tag/html" rel="tag">HTML</a>, <a href="http://sofish.de/tag/wcag" rel="tag">WCAG</a>, <a href="http://sofish.de/tag/%e5%8f%af%e8%ae%bf%e9%97%ae" rel="tag">可访问</a></span> </div>
+
+</div><!-- .hentry -->
+
+
+
+
+
+<div id="comments-template">
+
+<div class="comments-wrap">
+
+<div id="comments">
+
+
+<h3 id="comments-number" class="comments-header">63 Comments</h3>
+
+
+
+<ol class="comment-list">
+
+<li id="comment-15413" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='Meesu' src='http://1.gravatar.com/avatar/52ba16a2543d800ffc05eb9dbc476e32?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Meesu</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:08 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:08 pm">5:08 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15413" title="Permalink to comment 15413">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15413#respond' onclick='return addComment.moveForm("comment-15413", "15413", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>我比较有点整洁控，哈哈，喜欢码的整整齐齐的，这样看起来舒服，修改也方便。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15414" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://@Larthas_liu" rel="external nofollow" title="larthas"><img alt='larthas' src='http://1.gravatar.com/avatar/58ddacc0f49dfd64212c60f09ea79d41?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://@Larthas_liu"><a href="http://@Larthas_liu" title="larthas" class="url" rel="external nofollow">larthas</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:14 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:14 pm">5:14 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15414" title="Permalink to comment 15414">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15414#respond' onclick='return addComment.moveForm("comment-15414", "15414", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>我们公司做项目每一个项目都必须过WCAG 2.1 AA的检测。。还有一份手动的WCAG文档自己测。。累啊- -</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15415" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://leeiio.me" rel="external nofollow" title="Leeiio"><img alt='Leeiio' src='http://1.gravatar.com/avatar/ffa60157af668384f5325116efd02385?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://leeiio.me"><a href="http://leeiio.me" title="Leeiio" class="url" rel="external nofollow">Leeiio</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:20 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:20 pm">5:20 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15415" title="Permalink to comment 15415">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15415#respond' onclick='return addComment.moveForm("comment-15415", "15415", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>黄色高亮处“当表单项是必填项的时间，使用 “*“ 符号来标记” ，错别字哈<br />
+                WCAG中我觉得对于残障人士还不是特别容易做到，看来得去买个专用的阅读器了，Doit.im也实现对这部分人士的特殊关怀</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15416" class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1 role-administrator user-admin entry-author has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.sofish.de" rel="external nofollow" title="sofish"><img alt='sofish' src='http://0.gravatar.com/avatar/e8fb37bb5570f1f8a349a5d248ede347?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.sofish.de"><a href="http://www.sofish.de" title="sofish" class="url" rel="external nofollow">sofish</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:24 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:24 pm">5:24 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15416" title="Permalink to comment 15416">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15416#respond' onclick='return addComment.moveForm("comment-15416", "15416", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@larthas: 真不错</p>
+            <p>@Leeiio: 改过来了。那个还是比较重要的。你现在做 doit 都很专心啊。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15417" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://wanz.im" rel="external nofollow" title="丸子"><img alt='丸子' src='http://1.gravatar.com/avatar/93305dc8495189139e38d407d5c1a563?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://wanz.im"><a href="http://wanz.im" title="丸子" class="url" rel="external nofollow">丸子</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:33 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:33 pm">5:33 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15417" title="Permalink to comment 15417">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15417#respond' onclick='return addComment.moveForm("comment-15417", "15417", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>那么q呢跟cite怎么分？</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+    <ol class='children'>
+
+        <li id="comment-15418" class="comment byuser comment-author-admin bypostauthor odd alt depth-2 role-administrator user-admin entry-author has-avatar">
+
+
+            <div class="comment-wrap">
+
+
+                <div class="comment-header">
+                    <a href="http://www.sofish.de" rel="external nofollow" title="sofish"><img alt='sofish' src='http://0.gravatar.com/avatar/e8fb37bb5570f1f8a349a5d248ede347?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+                    <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.sofish.de"><a href="http://www.sofish.de" title="sofish" class="url" rel="external nofollow">sofish</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:51 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:51 pm">5:51 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15418" title="Permalink to comment 15418">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15418#respond' onclick='return addComment.moveForm("comment-15418", "15418", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+                <div class="comment-content comment-text">
+
+                    <p>@丸子: 印象中 q 是 font 那一代的。已经很少被使用。至于 HTML5 那个所谓的 “有容乃大” 的做法，我再去瞄瞄是为啥。</p>
+                </div><!-- .comment-content .comment-text -->
+
+
+            </div><!-- .comment-wrap -->
+
+
+        </li><!-- .comment --></ol>
+</li><!-- .comment -->
+<li id="comment-15419" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.ediyang.com" rel="external nofollow" title="eddie"><img alt='eddie' src='http://0.gravatar.com/avatar/2d97157659f3775079148beedffa567a?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.ediyang.com"><a href="http://www.ediyang.com" title="eddie" class="url" rel="external nofollow">eddie</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 5:54 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 5:54 pm">5:54 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15419" title="Permalink to comment 15419">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15419#respond' onclick='return addComment.moveForm("comment-15419", "15419", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>支付宝在可用性方面还是需要加强的。耶</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15420" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://dovapour.info/" rel="external nofollow" title="vapour"><img alt='vapour' src='http://0.gravatar.com/avatar/8b74169ad630f159b885a46bcb958fc6?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://dovapour.info/"><a href="http://dovapour.info/" title="vapour" class="url" rel="external nofollow">vapour</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 6:42 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 6:42 pm">6:42 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15420" title="Permalink to comment 15420">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15420#respond' onclick='return addComment.moveForm("comment-15420", "15420", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>col标签有浏览器兼容性方面的问题</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15421" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='brnjah' src='http://1.gravatar.com/avatar/7e17f5e280b9fd4dd5a48f4bce405f93?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">brnjah</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 8:32 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 8:32 pm">8:32 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15421" title="Permalink to comment 15421">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15421#respond' onclick='return addComment.moveForm("comment-15421", "15421", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>博主这篇文章的错字漏字挺多的，有些地方影响阅读，建议修改一下</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15422" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://lync.in/" rel="external nofollow" title="Justice"><img alt='Justice' src='http://1.gravatar.com/avatar/1cfd6b67e61a959b431aa1bc3e4f6736?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://lync.in/"><a href="http://lync.in/" title="Justice" class="url" rel="external nofollow">Justice</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 11:32 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 11:32 pm">11:32 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15422" title="Permalink to comment 15422">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15422#respond' onclick='return addComment.moveForm("comment-15422", "15422", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@丸子:<br />
+                CITE 表示来源的，Q 表示行级引用内容，BLOCKQUOTE 是块级引用内容。HTML4.01规范里面的例子<br />
+                As &lt;CITE&gt;&lt;/cite&gt;Harry S. Truman&lt;/CITE&gt; said,<br />
+                &lt;Q lang=&#8221;en-us&#8221;&gt;The buck stops here.&lt;/Q&gt;<br />
+                More information can be found in &lt;CITE&gt;[ISO-0000]&lt;/CITE&gt;.<br />
+                如果引用的内容要单独成一段就用 BLOCKQUOTE。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15423" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://lync.in/" rel="external nofollow" title="Justice"><img alt='Justice' src='http://1.gravatar.com/avatar/1cfd6b67e61a959b431aa1bc3e4f6736?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://lync.in/"><a href="http://lync.in/" title="Justice" class="url" rel="external nofollow">Justice</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 12:14 am">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 12:14 am">12:14 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15423" title="Permalink to comment 15423">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15423#respond' onclick='return addComment.moveForm("comment-15423", "15423", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>表单必填项 WordPress 用的 ARIA 定的 aria-required=&#8221;true&#8221; 不过还没有标准化，如果要求通过 HTML 检查的就不行了..</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15424" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ethantw.net/" rel="external nofollow" title="ethan"><img alt='ethan' src='http://0.gravatar.com/avatar/c727762ca4e00019bdb29a48e7fa4c0e?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ethantw.net/"><a href="http://ethantw.net/" title="ethan" class="url" rel="external nofollow">ethan</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 7:31 am">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 7:31 am">7:31 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15424" title="Permalink to comment 15424">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15424#respond' onclick='return addComment.moveForm("comment-15424", "15424", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>&lt;strong&gt;已經不是「strongly emphasised」了，而是「重點」。&nbsp;&nbsp;</p>
+            <p>強調（emphasis）」用來標示可能造成誤會的地方，或是反諷、語氣的轉折等等；「重點(importance）」則是把文章中要傳達的想法、結論、重要之處用醒目的樣式突出。HTML 5中，W3C也不再有「strong &gt; em」的解釋，兩者的用途完全不一樣喔。&nbsp;</p>
+            <p>&lt;b&gt;用來當沒有層級的標題、表示不同但沒有「重點」意味的關鍵字（維基百科每則條目開頭就是用&lt;b&gt;）。&lt;i&gt;則可以表示一個想法、文字音調的變化、外語的夾雜等。所以不要以為全用&lt;strong&gt;和&lt;em&gt;取代&lt;b&gt;、&lt;i&gt;就可以解決所有的問題，要考慮到不同的語義。&nbsp; &lt;cite&gt;是用做標示來源、著作名用的。&lt;q&gt;（quote）才是「行內引用」。&nbsp;</p>
+            <p>有興趣的朋友可以參考我設計的「漢字標準格式・CSS Reset」（http://ethantw.net/projects/han），在搭配使用這些「語義化」標籤的同時，也能顧及到中文本身的「格式」。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15425" class="comment byuser comment-author-admin bypostauthor even thread-odd thread-alt depth-1 role-administrator user-admin entry-author has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.sofish.de" rel="external nofollow" title="sofish"><img alt='sofish' src='http://0.gravatar.com/avatar/e8fb37bb5570f1f8a349a5d248ede347?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.sofish.de"><a href="http://www.sofish.de" title="sofish" class="url" rel="external nofollow">sofish</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 10:00 am">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 10:00 am">10:00 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15425" title="Permalink to comment 15425">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15425#respond' onclick='return addComment.moveForm("comment-15425", "15425", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@Justice:<br />
+                @ethan:<br />
+                多谢两们提供的资料。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15426" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ethantw.net/" rel="external nofollow" title="ethan"><img alt='ethan' src='http://0.gravatar.com/avatar/c727762ca4e00019bdb29a48e7fa4c0e?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ethantw.net/"><a href="http://ethantw.net/" title="ethan" class="url" rel="external nofollow">ethan</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 1:23 pm">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 1:23 pm">1:23 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15426" title="Permalink to comment 15426">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15426#respond' onclick='return addComment.moveForm("comment-15426", "15426", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>不好意思，我那時回覆得太快，沒轉成正確的格式，可以麻煩幫我改一下嗎？謝謝！</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15427" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.cysun.net" rel="external nofollow" title="CY旸"><img alt='CY旸' src='http://0.gravatar.com/avatar/a051a345b676d952ce9f140b1bde3f93?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.cysun.net"><a href="http://www.cysun.net" title="CY旸" class="url" rel="external nofollow">CY旸</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 1:25 pm">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 1:25 pm">1:25 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15427" title="Permalink to comment 15427">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15427#respond' onclick='return addComment.moveForm("comment-15427", "15427", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>学习 了 呵呵！ 以后我要常来学习的。。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15428" class="comment byuser comment-author-admin bypostauthor odd alt thread-even depth-1 role-administrator user-admin entry-author has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.sofish.de" rel="external nofollow" title="sofish"><img alt='sofish' src='http://0.gravatar.com/avatar/e8fb37bb5570f1f8a349a5d248ede347?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.sofish.de"><a href="http://www.sofish.de" title="sofish" class="url" rel="external nofollow">sofish</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 1:48 pm">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 1:48 pm">1:48 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15428" title="Permalink to comment 15428">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15428#respond' onclick='return addComment.moveForm("comment-15428", "15428", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@ethan: done</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15429" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://weixing.me" rel="external nofollow" title="小星"><img alt='小星' src='http://1.gravatar.com/avatar/b57d617d50f1d3afd0eb0274622188e9?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://weixing.me"><a href="http://weixing.me" title="小星" class="url" rel="external nofollow">小星</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 12th, 2011, 6:34 pm">March 12, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 12th, 2011, 6:34 pm">6:34 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15429" title="Permalink to comment 15429">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15429#respond' onclick='return addComment.moveForm("comment-15429", "15429", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>看看学习下……</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15430" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.zhcexo.com/" rel="external nofollow" title="ZH CEXO"><img alt='ZH CEXO' src='http://0.gravatar.com/avatar/c1834913e0459af48c2bcb63a641b223?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.zhcexo.com/"><a href="http://www.zhcexo.com/" title="ZH CEXO" class="url" rel="external nofollow">ZH CEXO</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 13th, 2011, 5:19 pm">March 13, 2011</abbr> at <abbr class="comment-time" title="Sunday, March 13th, 2011, 5:19 pm">5:19 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15430" title="Permalink to comment 15430">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15430#respond' onclick='return addComment.moveForm("comment-15430", "15430", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>虽然这些东西心里明白，日常也在坚持着做，但是从来没有这么总结过，你总结得太好了。评论的前几位提供的资料也很实用，谢谢大家！</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15431" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://wanz.im" rel="external nofollow" title="丸子"><img alt='丸子' src='http://1.gravatar.com/avatar/93305dc8495189139e38d407d5c1a563?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://wanz.im"><a href="http://wanz.im" title="丸子" class="url" rel="external nofollow">丸子</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 13th, 2011, 8:34 pm">March 13, 2011</abbr> at <abbr class="comment-time" title="Sunday, March 13th, 2011, 8:34 pm">8:34 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15431" title="Permalink to comment 15431">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15431#respond' onclick='return addComment.moveForm("comment-15431", "15431", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@Justice: 和我的理解是一致的，我那是反问句</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15432" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ilepad.info" rel="external nofollow" title="乐pad"><img alt='乐pad' src='http://0.gravatar.com/avatar/04da95dacb2c38c2a68ee32837457ad2?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ilepad.info"><a href="http://ilepad.info" title="乐pad" class="url" rel="external nofollow">乐pad</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, March 14th, 2011, 10:13 am">March 14, 2011</abbr> at <abbr class="comment-time" title="Monday, March 14th, 2011, 10:13 am">10:13 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15432" title="Permalink to comment 15432">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15432#respond' onclick='return addComment.moveForm("comment-15432", "15432", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>大师，我现在逐渐能看懂你的文章了</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15433" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.fishinfish.com" rel="external nofollow" title="Yu"><img alt='Yu' src='http://1.gravatar.com/avatar/de75c888675c212a657dc6a5be595c12?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.fishinfish.com"><a href="http://www.fishinfish.com" title="Yu" class="url" rel="external nofollow">Yu</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, March 15th, 2011, 9:59 pm">March 15, 2011</abbr> at <abbr class="comment-time" title="Tuesday, March 15th, 2011, 9:59 pm">9:59 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15433" title="Permalink to comment 15433">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15433#respond' onclick='return addComment.moveForm("comment-15433", "15433", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>就是规范化.?.</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15434" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://blog.misuzi.me/" rel="external nofollow" title="EmiNarcissus"><img alt='EmiNarcissus' src='http://1.gravatar.com/avatar/7069798026cff84be5e0ec8a2127658a?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://blog.misuzi.me/"><a href="http://blog.misuzi.me/" title="EmiNarcissus" class="url" rel="external nofollow">EmiNarcissus</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, March 16th, 2011, 12:25 am">March 16, 2011</abbr> at <abbr class="comment-time" title="Wednesday, March 16th, 2011, 12:25 am">12:25 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15434" title="Permalink to comment 15434">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15434#respond' onclick='return addComment.moveForm("comment-15434", "15434", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>路过学习，博主文章真的很棒！</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15435" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://nornor.net" rel="external nofollow" title="CXM"><img alt='CXM' src='http://1.gravatar.com/avatar/d8372ff7850a1bf79b00844252adb6ab?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://nornor.net"><a href="http://nornor.net" title="CXM" class="url" rel="external nofollow">CXM</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 18th, 2011, 11:21 am">March 18, 2011</abbr> at <abbr class="comment-time" title="Friday, March 18th, 2011, 11:21 am">11:21 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15435" title="Permalink to comment 15435">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15435#respond' onclick='return addComment.moveForm("comment-15435", "15435", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>文章整理得很整洁，我有处不懂，为什么不到万不得已也不要去掉focus？</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15436" class="comment odd alt thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://startwmlife.com" rel="external nofollow" title="飞鱼的声纳"><img alt='飞鱼的声纳' src='http://1.gravatar.com/avatar/d5be08d8ca3850b8312247e5c9fb5035?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://startwmlife.com"><a href="http://startwmlife.com" title="飞鱼的声纳" class="url" rel="external nofollow">飞鱼的声纳</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 18th, 2011, 11:22 am">March 18, 2011</abbr> at <abbr class="comment-time" title="Friday, March 18th, 2011, 11:22 am">11:22 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15436" title="Permalink to comment 15436">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15436#respond' onclick='return addComment.moveForm("comment-15436", "15436", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>这篇文章不错，很多不常用的标签值得细细研究一下。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15437" class="comment even thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='浩初' src='http://0.gravatar.com/avatar/892549b8393319f3d20405a79b7ccc1a?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">浩初</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 18th, 2011, 8:27 pm">March 18, 2011</abbr> at <abbr class="comment-time" title="Friday, March 18th, 2011, 8:27 pm">8:27 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15437" title="Permalink to comment 15437">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15437#respond' onclick='return addComment.moveForm("comment-15437", "15437", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>我长知识了</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+    <ol class='children'>
+
+        <li id="comment-15438" class="comment byuser comment-author-admin bypostauthor odd alt depth-2 role-administrator user-admin entry-author has-avatar">
+
+
+            <div class="comment-wrap">
+
+
+                <div class="comment-header">
+                    <a href="http://www.sofish.de" rel="external nofollow" title="sofish"><img alt='sofish' src='http://0.gravatar.com/avatar/e8fb37bb5570f1f8a349a5d248ede347?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+                    <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.sofish.de"><a href="http://www.sofish.de" title="sofish" class="url" rel="external nofollow">sofish</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 18th, 2011, 8:28 pm">March 18, 2011</abbr> at <abbr class="comment-time" title="Friday, March 18th, 2011, 8:28 pm">8:28 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15438" title="Permalink to comment 15438">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15438#respond' onclick='return addComment.moveForm("comment-15438", "15438", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+                <div class="comment-content comment-text">
+
+                    <p>@浩初: XD。你真来看。</p>
+                </div><!-- .comment-content .comment-text -->
+
+
+            </div><!-- .comment-wrap -->
+
+
+        </li><!-- .comment --></ol>
+</li><!-- .comment -->
+<li id="comment-15439" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ilepad.info" rel="external nofollow" title="乐Pad"><img alt='乐Pad' src='http://0.gravatar.com/avatar/04da95dacb2c38c2a68ee32837457ad2?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ilepad.info"><a href="http://ilepad.info" title="乐Pad" class="url" rel="external nofollow">乐Pad</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 18th, 2011, 10:29 pm">March 18, 2011</abbr> at <abbr class="comment-time" title="Friday, March 18th, 2011, 10:29 pm">10:29 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15439" title="Permalink to comment 15439">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15439#respond' onclick='return addComment.moveForm("comment-15439", "15439", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>又来拜读了，越看越有意思。存起来读</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15440" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='前叔' src='http://0.gravatar.com/avatar/892549b8393319f3d20405a79b7ccc1a?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">前叔</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 19th, 2011, 9:54 pm">March 19, 2011</abbr> at <abbr class="comment-time" title="Saturday, March 19th, 2011, 9:54 pm">9:54 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15440" title="Permalink to comment 15440">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15440#respond' onclick='return addComment.moveForm("comment-15440", "15440", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>因为我真的很葱白你</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15441" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.jscsshtml.com" rel="external nofollow" title="前端开发"><img alt='前端开发' src='http://1.gravatar.com/avatar/5e21174b8ba11ac2cda17f9c76d63eeb?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.jscsshtml.com"><a href="http://www.jscsshtml.com" title="前端开发" class="url" rel="external nofollow">前端开发</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 20th, 2011, 8:20 pm">March 20, 2011</abbr> at <abbr class="comment-time" title="Sunday, March 20th, 2011, 8:20 pm">8:20 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15441" title="Permalink to comment 15441">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15441#respond' onclick='return addComment.moveForm("comment-15441", "15441", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>追求细致，追求品质</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15442" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='iblike' src='http://1.gravatar.com/avatar/1ca33702168fc1ecfecf9d94ca630798?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">iblike</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, March 23rd, 2011, 4:16 pm">March 23, 2011</abbr> at <abbr class="comment-time" title="Wednesday, March 23rd, 2011, 4:16 pm">4:16 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15442" title="Permalink to comment 15442">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15442#respond' onclick='return addComment.moveForm("comment-15442", "15442", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>很细致。值得学习</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+li id="comment-15443" class="comment even thread-even depth-1 reader has-avatar">
+
+
+<div class="comment-wrap">
+
+
+    <div class="comment-header">
+        <a href="http://booto.net" rel="external nofollow" title="Kimcool"><img alt='Kimcool' src='http://1.gravatar.com/avatar/1ab947291c22b9759cb42b88a988f50c?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+        <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://booto.net"><a href="http://booto.net" title="Kimcool" class="url" rel="external nofollow">Kimcool</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 25th, 2011, 9:12 am">March 25, 2011</abbr> at <abbr class="comment-time" title="Friday, March 25th, 2011, 9:12 am">9:12 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15443" title="Permalink to comment 15443">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15443#respond' onclick='return addComment.moveForm("comment-15443", "15443", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+    <div class="comment-content comment-text">
+
+        <p>前端初学者路过，期待更多的CSS3和HTML5教导。。</p>
+    </div><!-- .comment-content .comment-text -->
+
+
+</div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15444" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ilepad.info" rel="external nofollow" title="乐pad"><img alt='乐pad' src='http://0.gravatar.com/avatar/04da95dacb2c38c2a68ee32837457ad2?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ilepad.info"><a href="http://ilepad.info" title="乐pad" class="url" rel="external nofollow">乐pad</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, March 30th, 2011, 8:00 am">March 30, 2011</abbr> at <abbr class="comment-time" title="Wednesday, March 30th, 2011, 8:00 am">8:00 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15444" title="Permalink to comment 15444">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15444#respond' onclick='return addComment.moveForm("comment-15444", "15444", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p><cite>据说是很NB的</cite></p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15445" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.chenguangblog.com" rel="external nofollow" title="晨光博客"><img alt='晨光博客' src='http://0.gravatar.com/avatar/e90d28227f224a7ac54f33dffb52d799?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.chenguangblog.com"><a href="http://www.chenguangblog.com" title="晨光博客" class="url" rel="external nofollow">晨光博客</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, March 31st, 2011, 9:25 am">March 31, 2011</abbr> at <abbr class="comment-time" title="Thursday, March 31st, 2011, 9:25 am">9:25 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15445" title="Permalink to comment 15445">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15445#respond' onclick='return addComment.moveForm("comment-15445", "15445", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>看来我学习HTML还得下一翻功夫啦</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15446" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://imluren.com" rel="external nofollow" title="IM路人"><img alt='IM路人' src='http://1.gravatar.com/avatar/79c34a8e43c9c81dbb8e444ecdf1bb61?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://imluren.com"><a href="http://imluren.com" title="IM路人" class="url" rel="external nofollow">IM路人</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, April 2nd, 2011, 4:45 pm">April 2, 2011</abbr> at <abbr class="comment-time" title="Saturday, April 2nd, 2011, 4:45 pm">4:45 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15446" title="Permalink to comment 15446">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15446#respond' onclick='return addComment.moveForm("comment-15446", "15446", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>受用了~~~</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15447" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://tc89.com" rel="external nofollow" title="随缘"><img alt='随缘' src='http://1.gravatar.com/avatar/d94967b298c3fcfed3f8e5a6c5181f42?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://tc89.com"><a href="http://tc89.com" title="随缘" class="url" rel="external nofollow">随缘</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 7th, 2011, 12:06 pm">April 7, 2011</abbr> at <abbr class="comment-time" title="Thursday, April 7th, 2011, 12:06 pm">12:06 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15447" title="Permalink to comment 15447">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15447#respond' onclick='return addComment.moveForm("comment-15447", "15447", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>很受用，谢谢分享</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15448" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://cssor.com" rel="external nofollow" title="ToFishes"><img alt='ToFishes' src='http://1.gravatar.com/avatar/9ddb719150550dc3ed573dd7392561fc?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://cssor.com"><a href="http://cssor.com" title="ToFishes" class="url" rel="external nofollow">ToFishes</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, April 13th, 2011, 12:03 pm">April 13, 2011</abbr> at <abbr class="comment-time" title="Wednesday, April 13th, 2011, 12:03 pm">12:03 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15448" title="Permalink to comment 15448">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15448#respond' onclick='return addComment.moveForm("comment-15448", "15448", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>@ethan: 很不错</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15449" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://ethantw.net/" rel="external nofollow" title="Ethan"><img alt='Ethan' src='http://0.gravatar.com/avatar/c727762ca4e00019bdb29a48e7fa4c0e?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://ethantw.net/"><a href="http://ethantw.net/" title="Ethan" class="url" rel="external nofollow">Ethan</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 15th, 2011, 12:20 pm">April 15, 2011</abbr> at <abbr class="comment-time" title="Friday, April 15th, 2011, 12:20 pm">12:20 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15449" title="Permalink to comment 15449">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15449#respond' onclick='return addComment.moveForm("comment-15449", "15449", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>這篇文章關於&lt;del&gt;的範例現在有些爭議，因為&lt;s&gt;重回HTML5標準了。怎麼區分兩者呢？</p>
+            <p>ins、del都是針對文章後來所做的修訂，有新（刪減）內容時，用ins、del。但若是用以告知讀者事實為非的訊息時，則用s元素。</p>
+            <p>p.s. &lt;u&gt;也重回標準了（這個月的事），不過現在正名為「註記元素」。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15450" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.cnblogs.com/wangzhichao" rel="external nofollow" title="枫叶绿了"><img alt='枫叶绿了' src='http://0.gravatar.com/avatar/48cfe8b749b64088c91fbfc63d7a8b15?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.cnblogs.com/wangzhichao"><a href="http://www.cnblogs.com/wangzhichao" title="枫叶绿了" class="url" rel="external nofollow">枫叶绿了</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 15th, 2011, 5:25 pm">April 15, 2011</abbr> at <abbr class="comment-time" title="Friday, April 15th, 2011, 5:25 pm">5:25 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15450" title="Permalink to comment 15450">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15450#respond' onclick='return addComment.moveForm("comment-15450", "15450", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>指出文章中的一个问题：col标签有浏览器兼容性方面的问题（经过我的测试，col标签只有IE7-浏览器支持），建议博主更正一下</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15451" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.wmtimes.cn" rel="external nofollow" title="wmtimes"><img alt='wmtimes' src='http://0.gravatar.com/avatar/2667e3794c00b147ea9cda10b88365ae?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.wmtimes.cn"><a href="http://www.wmtimes.cn" title="wmtimes" class="url" rel="external nofollow">wmtimes</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, April 26th, 2011, 5:13 pm">April 26, 2011</abbr> at <abbr class="comment-time" title="Tuesday, April 26th, 2011, 5:13 pm">5:13 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15451" title="Permalink to comment 15451">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15451#respond' onclick='return addComment.moveForm("comment-15451", "15451", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>不错，有些我还是头一次看到。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15452" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.zheyexing.com" rel="external nofollow" title="xmlijian"><img alt='xmlijian' src='http://0.gravatar.com/avatar/65b1ec339a531a505910df5fa0810c79?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.zheyexing.com"><a href="http://www.zheyexing.com" title="xmlijian" class="url" rel="external nofollow">xmlijian</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 28th, 2011, 2:02 pm">April 28, 2011</abbr> at <abbr class="comment-time" title="Thursday, April 28th, 2011, 2:02 pm">2:02 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15452" title="Permalink to comment 15452">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15452#respond' onclick='return addComment.moveForm("comment-15452", "15452", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>真的很不错啊.学习了.</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15453" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.underone.com" rel="external nofollow" title="underone"><img alt='underone' src='http://0.gravatar.com/avatar/e8f87528ed0a0eaba60009f8580df401?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.underone.com"><a href="http://www.underone.com" title="underone" class="url" rel="external nofollow">underone</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, June 11th, 2011, 12:25 am">June 11, 2011</abbr> at <abbr class="comment-time" title="Saturday, June 11th, 2011, 12:25 am">12:25 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15453" title="Permalink to comment 15453">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15453#respond' onclick='return addComment.moveForm("comment-15453", "15453", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>前一阵特地翻了一遍HTML和XHTML权威指南，看的那叫一个心惊胆战，错用了一万种标签啊之前。。。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15454" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.mytstyle.com" rel="external nofollow" title="mytstyle"><img alt='mytstyle' src='http://1.gravatar.com/avatar/b2bf5b8c2d2356d0adff35d4d8a0f0af?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.mytstyle.com"><a href="http://www.mytstyle.com" title="mytstyle" class="url" rel="external nofollow">mytstyle</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, July 1st, 2011, 9:43 pm">July 1, 2011</abbr> at <abbr class="comment-time" title="Friday, July 1st, 2011, 9:43 pm">9:43 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15454" title="Permalink to comment 15454">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15454#respond' onclick='return addComment.moveForm("comment-15454", "15454", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>html的书看了几本 折腾过几个页面 感觉就像ps 会用容易 精用则难</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15455" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.imyxiao.com" rel="external nofollow" title="仰肖"><img alt='仰肖' src='http://0.gravatar.com/avatar/066486244fbedc35e442731121ac2c83?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.imyxiao.com"><a href="http://www.imyxiao.com" title="仰肖" class="url" rel="external nofollow">仰肖</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, July 18th, 2011, 2:49 pm">July 18, 2011</abbr> at <abbr class="comment-time" title="Monday, July 18th, 2011, 2:49 pm">2:49 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15455" title="Permalink to comment 15455">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15455#respond' onclick='return addComment.moveForm("comment-15455", "15455", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>学起来挺麻烦的。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15456" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://62mm.net" rel="external nofollow" title="62mm"><img alt='62mm' src='http://1.gravatar.com/avatar/792a8397986d463c2e0fd70b7544268c?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://62mm.net"><a href="http://62mm.net" title="62mm" class="url" rel="external nofollow">62mm</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, July 19th, 2011, 10:21 am">July 19, 2011</abbr> at <abbr class="comment-time" title="Tuesday, July 19th, 2011, 10:21 am">10:21 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15456" title="Permalink to comment 15456">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15456#respond' onclick='return addComment.moveForm("comment-15456", "15456", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>受教了.</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15457" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://wheato.com" rel="external nofollow" title="wheato"><img alt='wheato' src='http://1.gravatar.com/avatar/dce1c00b8087309ff720948862d25b72?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://wheato.com"><a href="http://wheato.com" title="wheato" class="url" rel="external nofollow">wheato</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, August 24th, 2011, 1:31 am">August 24, 2011</abbr> at <abbr class="comment-time" title="Wednesday, August 24th, 2011, 1:31 am">1:31 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15457" title="Permalink to comment 15457">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15457#respond' onclick='return addComment.moveForm("comment-15457", "15457", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>这种写法是html5的Doctype写法吧，用这个来触发标准模式吧。如果是不支持HTML5的浏览器，这样写也正确吗？</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15458" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.softinn.org" rel="external nofollow" title="软件志"><img alt='软件志' src='http://0.gravatar.com/avatar/e2d95a9c19387213df36474a0962da2f?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.softinn.org"><a href="http://www.softinn.org" title="软件志" class="url" rel="external nofollow">软件志</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, August 29th, 2011, 6:38 am">August 29, 2011</abbr> at <abbr class="comment-time" title="Monday, August 29th, 2011, 6:38 am">6:38 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15458" title="Permalink to comment 15458">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15458#respond' onclick='return addComment.moveForm("comment-15458", "15458", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>不错 有时候这样一点拨就觉得比较容易了</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15459" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.qcoke.com" rel="external nofollow" title="可乐加糖"><img alt='可乐加糖' src='http://1.gravatar.com/avatar/bc89af44757fcb2d02736e30451a2b08?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.qcoke.com"><a href="http://www.qcoke.com" title="可乐加糖" class="url" rel="external nofollow">可乐加糖</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, August 30th, 2011, 2:10 pm">August 30, 2011</abbr> at <abbr class="comment-time" title="Tuesday, August 30th, 2011, 2:10 pm">2:10 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15459" title="Permalink to comment 15459">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15459#respond' onclick='return addComment.moveForm("comment-15459", "15459", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>HTML 中对于展示型语义元素爱是少用为妙，并且 W3C 组织对于 del,b,stone,big,small 这样的元素还是精良使用 Css 来实现控制的比较好。文章不错，总结得非常好。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15460" class="pingback odd alt thread-odd thread-alt depth-1 ping reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://songchuang.me/72" rel="external nofollow" title="blockquote、cite、q的区别 | SONGCHUANG.ME"><img alt='blockquote、cite、q的区别 | SONGCHUANG.ME' src='http://0.gravatar.com/avatar/?d=http://sofish.de/wp-content/themes/cascade/library/images/pingback.png&amp;s=80' class='avatar avatar-80 photo avatar-default' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://songchuang.me/72"><a href="http://songchuang.me/72" title="blockquote、cite、q的区别 | SONGCHUANG.ME" class="url" rel="external nofollow">blockquote、cite、q的区别 | SONGCHUANG.ME</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, September 14th, 2011, 11:24 pm">September 14, 2011</abbr> at <abbr class="comment-time" title="Wednesday, September 14th, 2011, 11:24 pm">11:24 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15460" title="Permalink to comment 15460">Permalink</a>  </div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>[...] 相关推荐： cite,q与blockquote的使用区别 你真的了解HTML吗  这样去写你的 HTML [...]</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15461" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://gewuz.com" rel="external nofollow" title="Leon"><img alt='Leon' src='http://0.gravatar.com/avatar/8895a04afc4b0e1f0834f66b8c47b329?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://gewuz.com"><a href="http://gewuz.com" title="Leon" class="url" rel="external nofollow">Leon</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, December 27th, 2011, 3:26 pm">December 27, 2011</abbr> at <abbr class="comment-time" title="Tuesday, December 27th, 2011, 3:26 pm">3:26 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15461" title="Permalink to comment 15461">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15461#respond' onclick='return addComment.moveForm("comment-15461", "15461", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>第12点的代码<br />
+                God, oh my zsh<br />
+                错了吧？</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15462" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.tageta.com" rel="external nofollow" title="klvoek"><img alt='klvoek' src='http://0.gravatar.com/avatar/412b67318056f23c772b79273d3ab15d?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.tageta.com"><a href="http://www.tageta.com" title="klvoek" class="url" rel="external nofollow">klvoek</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, December 29th, 2011, 5:38 pm">December 29, 2011</abbr> at <abbr class="comment-time" title="Thursday, December 29th, 2011, 5:38 pm">5:38 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15462" title="Permalink to comment 15462">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15462#respond' onclick='return addComment.moveForm("comment-15462", "15462", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>很好很强大，学习一下</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15463" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='想飞' src='http://1.gravatar.com/avatar/df0de55bc8663c38e41bdb4f37a718fe?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">想飞</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, March 6th, 2012, 6:17 pm">March 6, 2012</abbr> at <abbr class="comment-time" title="Tuesday, March 6th, 2012, 6:17 pm">6:17 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15463" title="Permalink to comment 15463">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15463#respond' onclick='return addComment.moveForm("comment-15463", "15463", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>很喜欢类似的文章。<br />
+                为了避免标签的乱用，掌握html标签的语义是很重要的</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15464" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.niko-blog.com" rel="external nofollow" title="niko"><img alt='niko' src='http://0.gravatar.com/avatar/e4895a348cd011ae01c156149e5fe0fd?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.niko-blog.com"><a href="http://www.niko-blog.com" title="niko" class="url" rel="external nofollow">niko</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 11th, 2012, 1:20 pm">March 11, 2012</abbr> at <abbr class="comment-time" title="Sunday, March 11th, 2012, 1:20 pm">1:20 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15464" title="Permalink to comment 15464">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15464#respond' onclick='return addComment.moveForm("comment-15464", "15464", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>细节知深浅</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15465" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://marco9.com" rel="external nofollow" title="马可"><img alt='马可' src='http://0.gravatar.com/avatar/01352e7ef1027c0da125b8eb4f74c15e?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://marco9.com"><a href="http://marco9.com" title="马可" class="url" rel="external nofollow">马可</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 23rd, 2012, 12:48 am">March 23, 2012</abbr> at <abbr class="comment-time" title="Friday, March 23rd, 2012, 12:48 am">12:48 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15465" title="Permalink to comment 15465">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15465#respond' onclick='return addComment.moveForm("comment-15465", "15465", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>&#8220;除非万不得已，不要去掉 focus 时虚线框&#8221;，为什么啊？鱼叔，有点不理解。我在Alice里看到的去处虚线框的方法就是写hidefocus(兼容ie),求解释哈</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15466" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://marco9.com" rel="external nofollow" title="马可"><img alt='马可' src='http://0.gravatar.com/avatar/01352e7ef1027c0da125b8eb4f74c15e?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://marco9.com"><a href="http://marco9.com" title="马可" class="url" rel="external nofollow">马可</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 23rd, 2012, 12:52 am">March 23, 2012</abbr> at <abbr class="comment-time" title="Friday, March 23rd, 2012, 12:52 am">12:52 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15466" title="Permalink to comment 15466">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15466#respond' onclick='return addComment.moveForm("comment-15466", "15466", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>鱼叔，我写代码很喜欢用dl，当然是用在很适合的时候，&#8221; 也是应该慎用的&#8221;能不能解释一下在什么时候是不能用的啊？谢谢</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15467" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://jacse.com" rel="external nofollow" title="Jacse"><img alt='Jacse' src='http://0.gravatar.com/avatar/2b1300fe49e3155b8cf1b6c1f983fd02?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://jacse.com"><a href="http://jacse.com" title="Jacse" class="url" rel="external nofollow">Jacse</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, May 13th, 2012, 1:44 pm">May 13, 2012</abbr> at <abbr class="comment-time" title="Sunday, May 13th, 2012, 1:44 pm">1:44 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15467" title="Permalink to comment 15467">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15467#respond' onclick='return addComment.moveForm("comment-15467", "15467", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>虽然我不是做前端的，这些平时工作中还是有不错用途的。</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15468" class="pingback odd alt thread-odd thread-alt depth-1 ping reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://web.366days.cn/wordpress/?p=2443" rel="external nofollow" title="样式库构建规范 | 探索---不思"><img alt='样式库构建规范 | 探索---不思' src='http://0.gravatar.com/avatar/?d=http://sofish.de/wp-content/themes/cascade/library/images/pingback.png&amp;s=80' class='avatar avatar-80 photo avatar-default' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://web.366days.cn/wordpress/?p=2443"><a href="http://web.366days.cn/wordpress/?p=2443" title="样式库构建规范 | 探索---不思" class="url" rel="external nofollow">样式库构建规范 | 探索---不思</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, June 13th, 2012, 10:16 pm">June 13, 2012</abbr> at <abbr class="comment-time" title="Wednesday, June 13th, 2012, 10:16 pm">10:16 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15468" title="Permalink to comment 15468">Permalink</a>  </div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>[...] 关于 HTML 的语义化，可以参考：这样去写你的 HTML [...]</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-15469" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='wtcsy' src='http://0.gravatar.com/avatar/865428de647a6935c878a61805868ee4?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">wtcsy</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, July 2nd, 2012, 5:57 pm">July 2, 2012</abbr> at <abbr class="comment-time" title="Monday, July 2nd, 2012, 5:57 pm">5:57 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-15469" title="Permalink to comment 15469">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=15469#respond' onclick='return addComment.moveForm("comment-15469", "15469", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>经常看到你的blog开头一句  在twitter上说<br />
+                twitter地址是  我去围观围观</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-16220" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='宇尘' src='http://0.gravatar.com/avatar/25e38cb8b994df004ef4d6865b84293a?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">宇尘</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, July 19th, 2012, 9:14 am">July 19, 2012</abbr> at <abbr class="comment-time" title="Thursday, July 19th, 2012, 9:14 am">9:14 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-16220" title="Permalink to comment 16220">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=16220#respond' onclick='return addComment.moveForm("comment-16220", "16220", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>很有借鉴意义</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-16365" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='老大的一群' src='http://0.gravatar.com/avatar/668ed1b9425c56a0858119474769893a?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">老大的一群</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, August 13th, 2012, 3:16 am">August 13, 2012</abbr> at <abbr class="comment-time" title="Monday, August 13th, 2012, 3:16 am">3:16 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-16365" title="Permalink to comment 16365">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=16365#respond' onclick='return addComment.moveForm("comment-16365", "16365", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>我们老大说的，很有借鉴意义，还让我手打~</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-16926" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='neekey' src='http://0.gravatar.com/avatar/8896cc725e36350023e7f41f0455b8aa?s=80&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">neekey</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, December 25th, 2012, 3:43 am">December 25, 2012</abbr> at <abbr class="comment-time" title="Tuesday, December 25th, 2012, 3:43 am">3:43 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-16926" title="Permalink to comment 16926">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=16926#respond' onclick='return addComment.moveForm("comment-16926", "16926", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>感谢</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-16960" class="comment even thread-even depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='apollyonx' src='http://1.gravatar.com/avatar/d7db49055b2993749a03fe1d87734f92?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">apollyonx</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 8th, 2013, 2:12 am">January 8, 2013</abbr> at <abbr class="comment-time" title="Tuesday, January 8th, 2013, 2:12 am">2:12 am</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-16960" title="Permalink to comment 16960">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=16960#respond' onclick='return addComment.moveForm("comment-16960", "16960", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>tnks</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-17064" class="comment odd alt thread-odd thread-alt depth-1 reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <img alt='叶子天堂' src='http://1.gravatar.com/avatar/92ca43e786c94fa721500d65d015cfc4?s=80&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D80&amp;r=G' class='avatar avatar-80 photo' height='80' width='80' />
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn">叶子天堂</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, March 2nd, 2013, 4:46 pm">March 2, 2013</abbr> at <abbr class="comment-time" title="Saturday, March 2nd, 2013, 4:46 pm">4:46 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-17064" title="Permalink to comment 17064">Permalink</a>  <a class='comment-reply-link' href='/1688?replytocom=17064#respond' onclick='return addComment.moveForm("comment-17064", "17064", "respond", "1688")'>Reply</a></div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>文章写的很好，网页字体看起来特别舒服</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->
+<li id="comment-17078" class="pingback even thread-even depth-1 ping reader has-avatar">
+
+
+    <div class="comment-wrap">
+
+
+        <div class="comment-header">
+            <a href="http://www.iloveolive.info/2013/03/alice_note/" rel="external nofollow" title="Alice笔记"><img alt='Alice笔记' src='http://0.gravatar.com/avatar/?d=http://sofish.de/wp-content/themes/cascade/library/images/pingback.png&amp;s=80' class='avatar avatar-80 photo avatar-default' height='80' width='80' /></a>
+            <div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.iloveolive.info/2013/03/alice_note/"><a href="http://www.iloveolive.info/2013/03/alice_note/" title="Alice笔记" class="url" rel="external nofollow">Alice笔记</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, March 18th, 2013, 3:09 pm">March 18, 2013</abbr> at <abbr class="comment-time" title="Monday, March 18th, 2013, 3:09 pm">3:09 pm</abbr></span>  . <a class="permalink" href="http://sofish.de/1688#comment-17078" title="Permalink to comment 17078">Permalink</a>  </div>			</div><!-- .comment-header -->
+
+        <div class="comment-content comment-text">
+
+            <p>[...] 这样去写你的 HTML [...]</p>
+        </div><!-- .comment-content .comment-text -->
+
+
+    </div><!-- .comment-wrap -->
+
+
+</li><!-- .comment -->				</ol><!-- .comment-list -->
+
+
+
+
+</div><!-- #comments -->
+
+<div id="respond">
+    <h3 id="reply-title">Post Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/1688#respond" style="display:none;">Click here to cancel reply.</a></small></h3>
+    <form action="http://sofish.de/wp-comments-post.php" method="post" id="commentform">
+        <p class="form-author req"><label for="author">Name <span class="required">*</span> </label> <input type="text" class="text-input" name="author" id="author" value="" size="40" /></p>
+        <p class="form-email req"><label for="email">Email <span class="required">*</span> </label> <input type="text" class="text-input" name="email" id="email" value="" size="40" /></p>
+        <p class="form-url"><label for="url">Website</label><input type="text" class="text-input" name="url" id="url" value="" size="40" /></p>
+        <p class="form-textarea req"><label for="comment">Comment</label><textarea name="comment" id="comment" cols="60" rows="10"></textarea></p>												<p class="form-submit">
+        <input name="submit" type="submit" id="submit" value="Post Comment" />
+        <input type='hidden' name='comment_post_ID' value='1688' id='comment_post_ID' />
+        <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+    </p>
+        <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2838f155db" /></p>					</form>
+</div><!-- #respond -->
+
+</div><!-- .comments-wrap -->
+
+</div><!-- #comments-template -->
+
+
+
+</div><!-- .hfeed -->
+
+
+
+
+
+<div class="loop-nav">
+    <a href="http://sofish.de/1685" rel="prev"><span class="previous"><span class="meta-nav">&larr;</span> Previous</span></a>			<a href="http://sofish.de/1725" rel="next"><span class="next">Next <span class="meta-nav">&rarr;</span></span></a>		</div><!-- .loop-nav -->
+
+
+</div><!-- #content -->
+
+
+
+
+
+
+</div><!-- .wrap -->
+
+</div><!-- #main -->
+
+
+</div></div><!-- #container -->
+
+
+
+
+
+<div id="footer">
+
+
+    <div class="footer-wrap">
+
+
+        <div class="footer-content">
+            <p class="copyright">Copyright © 2013 <a class="site-link" href="http://sofish.de" title="幸福收藏夹" rel="home"><span>幸福收藏夹</span></a>.</p>
+
+            <p class="credit">Powered by <a class="wp-link" href="http://wordpress.org" title="State-of-the-art semantic personal publishing platform"><span>WordPress</span></a> and <a class="theme-link" href="http://devpress.com/themes/cascade/" title="Cascade WordPress Theme"><span>Cascade</span></a>.</p>			</div><!-- .footer-content -->
+
+
+    </div><!-- .wrap -->
+
+
+</div><!-- #footer -->
+
+
+
+</body>
+</html>
