@@ -240,4 +240,71 @@ class Controller extends CController
         }
     }
     //.....................................................................................................................
+
+
+    //.....................................................................................................................
+
+    public function ajaxReturn($data)
+    {
+
+        echo $data;
+        throw new CException("暂时不准备用这个方法了！");
+    }
+
+    /**
+     * ajax request is success handled
+     * @param array|string $data
+     * ----------------------------------------
+     * 新浪ajax返回格式：{
+     *    key: "xxxxxx",
+     *    code: "10000",
+     *    msg: "",
+     *    data:"....."
+     * }
+     * 搜狐ajax返回格式：{
+     *    status: 1,
+     *    data  : "...."
+     * }
+     * ----------------------------------------
+     */
+    public function ajaxSuccess($data = array())
+    {
+        $ajaxReturn = array();
+        if (is_string($data)) {
+            $ajaxReturn['data'] = $data;
+            $ajaxReturn['status'] = 'success';
+        } elseif (is_array($data)) {
+            if (!isset($data['status'])) {
+                $data['status'] = 'success';
+            }
+            $ajaxReturn = &$data ;
+        }
+        echo CJSON::encode($ajaxReturn);
+    }
+
+    /**
+     * @param array|string $data
+     */
+    public function ajaxFailure($data)
+    {
+        $ajaxReturn = array();
+        if (is_string($data)) {
+            $ajaxReturn['data'] = $data;
+            $ajaxReturn['status'] = 'failure';
+        } elseif (is_array($data)) {
+            if (!isset($data['status'])) {
+                $data['status'] = 'failure';
+            }
+            $ajaxReturn = &$data ;
+        }
+        echo CJSON::encode($ajaxReturn);
+
+    }
+    //----------<define controller action event>---------------------------------------------------
+    public function onControllerAction($event)
+    {
+        $this->raiseEvent('onControllerAction', $event);
+    }
+
+    //----------<define controller action event/>---------------------------------------------------
 }
