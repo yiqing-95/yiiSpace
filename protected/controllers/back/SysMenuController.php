@@ -50,6 +50,7 @@ class SysMenuController extends BackendController
      */
     public function actionView($id)
     {
+        YsSectionWidget::
         $model = $this->loadModel($id);
         $this->onControllerAction(new ControllerActionEvent($this, $this->action->id, $model));
 
