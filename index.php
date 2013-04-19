@@ -13,7 +13,7 @@ defined('DEV_STAGE') or define('DEV_STAGE',  true );
  * use  ?debug=yes to open debug mode
  */
 //defined('YII_DEBUG') or define('YII_DEBUG', isset($_GET['debug'])? true : false);
-defined('YII_DEBUG') or define('YII_DEBUG',true);
+defined('YII_DEBUG') or define('YII_DEBUG',false);
 defined('YS_CONTROLLER_HELP') or define('YS_CONTROLLER_HELP', true);
 // specify how many levels of call stack should be shown in each log message
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);

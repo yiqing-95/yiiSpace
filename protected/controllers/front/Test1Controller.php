@@ -4,6 +4,21 @@
  */
 class Test1Controller extends Controller
 {
+    public function actionJDropDownMenu(){
+        $this->render('menu/jdropdownmenu');
+    }
+
+    public function actionDcVerticalMegaMenu(){
+        $this->render('menu/dcVerticalMegaMenu');
+    }
+
+    public function actionDcMegaMenu(){
+        $this->render('menu/dcMegaMenu');
+    }
+
+    public function actionJMegaMenu2(){
+        $this->render('menu/jmegamenu2');
+    }
 
     public function actionTestServiceX(){
         WebUtil::printCharsetMeta();
