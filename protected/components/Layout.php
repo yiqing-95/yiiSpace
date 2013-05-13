@@ -104,7 +104,7 @@ class Layout
      * @param bool $visibleOnly
      * @return CMap
      */
-    public function getBlocks($regionId, $visibleOnly = true)
+   static  public function getBlocks($regionId, $visibleOnly = true)
     {
         $instance = self::getInstance();
 

@@ -4,6 +4,17 @@
  */
 class Test1Controller extends Controller
 {
+
+
+    public function actionJqSimpleMenu(){
+        $this->render('menu/jqSimpleMenu');
+    }
+
+    public function actionRdMenu(){
+        $this->render('menu/rdMenu');
+    }
+
+
     public function actionJDropDownMenu(){
         $this->render('menu/jdropdownmenu');
     }
@@ -493,6 +504,7 @@ CLASS_TPL;
         } catch (Exception $e) {
             echo nl2br($e->getMessage()) . '<br />' . "\n";
         }
+
     }
 
 

@@ -6,6 +6,7 @@
             'callback' => 'js:function(key, options) {
              var m = "Clicked on " + key + " on element " + options.$trigger.attr("class");
              $("#msg").html(m);
+
         }',
             'items' => array(
                 'create' => array('name' => '新增',
@@ -34,7 +35,7 @@
                     'callback' => 'js:function(key, options) {
                        var node =  $.ui.dynatree.getNode(options.$trigger);
                        var nodeId = node.data.key;
-                       debug("你要修改"+nodeId+ " 节点了");
+                        debug("你要修改"+nodeId+ " 节点了");
                        editMenu(nodeId);
 
         }'
@@ -67,6 +68,15 @@
         'container' => '#tree',
         'options' => array(
             'initAjax' => array('url' => $this->createUrl('initAjax')),
+            'onActivate'=>'js:function(node) {
+         // A DynaTreeNode object is passed to the activation handler
+         // Note: we also get this event, if persistence is on, and the page is reloaded.
+         //  alert("You activated " + node.data.title);
+         var nodeId = node.data.key;
+          debug("You activated " + node.data.key);
+           editMenu(nodeId);
+        }
+    ',
             'onLazyRead' => 'js:function(node){
                     node.appendAjax({
                  url: "' . $this->createUrl('loadChildren') . '",
@@ -101,7 +111,7 @@
 
 
 <div class="fluid-row">
-        <div class="span3">
+        <div class="span2">
             <p>
                 <a href="javascript:reloadTree()" accesskey="">刷新树</a>
             </p>
@@ -111,14 +121,19 @@
             </div>
 
         </div>
-    <div class="span11">
+    <div class="span9">
         <?php
         $this->widget('my.widgets.iframeAutoHeight.IFrameAutoHeight', array(
                 'debug' => false
             )
         );
         ?>
-        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>" class="auto-height span12" scrolling="no" frameborder="0" name="helperFrame" id="helperFrame"></iframe>
+        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>"
+                class="auto-height span12"
+                scrolling="no"
+                frameborder="0"
+                name="helperFrame"
+                id="helperFrame"></iframe>
 
     </div>
 </div>

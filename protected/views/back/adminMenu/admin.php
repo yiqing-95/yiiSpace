@@ -52,7 +52,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				'type' => 'primary',
 				'size' => 'small',
 				'label' => 'bulkDeletion',
-                'url' => array('batchDelete');
+                'url' => array('batchDelete'),
 				'click' => 'js:function(values){console.log(values);}'
 				)
 			),
