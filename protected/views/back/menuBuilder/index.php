@@ -88,9 +88,12 @@
             'dnd' => array('onDragStart' => 'js:function(node){return true}',
                 'preventVoidMoves' => true,
                 'onDragEnter' => 'js:function(node, sourceNode){
+                   return true ;
+                    /*
                     if(node.parent !== sourceNode.parent)
                          return false;
                          return ["before", "after"];
+                         */
                     }',
                 'onDrop' => 'js:function(node, sourceNode, hitMode, ui, draggable){
                        $("#msg").html( sourceNode.data.title+ " move "+hitMode+node.data.title);

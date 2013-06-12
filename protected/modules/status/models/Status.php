@@ -124,6 +124,14 @@ class Status extends BaseStatus
                 'id'
             )
         );
+        /**
+          $sort = new CSort();
+        $sort->defaultOrder = 'order_id'; // for initial order
+        $sort->attributes = array(
+        'created'
+        );
+         */
+
         $sqlDataProviderConfig = CMap::mergeArray($config, $sqlDataProviderConfig);
         return new CSqlDataProvider($sql, $sqlDataProviderConfig);
     }
