@@ -9,8 +9,11 @@ return array(
         // If removed, Gii defaults to localhost only. Edit carefully to taste.
         'ipFilters' => array('127.0.0.1', '::1'),
         'generatorPaths' => array(
-            'ext.giix-core', // giix generators
+            // 顺序也可能影响 有些模板不能加载哦！
             'my.gii',
+            'ext.giix-core', // giix generators
+
+            'ext.YiiBooster.gii'
         ),
     ),
 
@@ -41,15 +44,15 @@ return array(
         'loginUrl' => array('/user/login'),
 
         # page after login
-        'returnUrl' => array('/user/profile'),
+        'returnUrl' => array('/user/home'),
 
         # page after logout
         'returnLogoutUrl' => array('/user/login'),
     ),
 
     //webshell
-    'webshell'=>array(
-        'class'=>'ext.yiiext.modules.webshell.WebShellModule',
+    'webshell' => array(
+        'class' => 'ext.yiiext.modules.webshell.WebShellModule',
         // when typing 'exit', user will be redirected to this URL
         'exitUrl' => '/',
         // custom wterm options
@@ -66,20 +69,25 @@ return array(
 
         // adding custom yiic commands not from protected/commands dir
         'yiicCommandMap' => array(
-            'queryii'=>array(
-                'class'=>'application.commands.shell.QueryiiCommand',
+            'queryii' => array(
+                'class' => 'application.commands.shell.QueryiiCommand',
             ),
         ),
     ),
 
-    //dashboard module
-    'sdashboard'=>array(),
-	
-	//syte module
-	'syte',  // need oauth installed !
+    /**
+     *
+     */
+    'backup'=>array(
 
-    //test module to study css knowledge
-    'cssTest',
+        'path'=>  dirname(__FILE__) .'/../data/backup/',
+    ),
+
+    'blog',
+
+    //dashboard module
+    'sdashboard' => array(),
+
 
     'friend',
 
@@ -92,16 +100,77 @@ return array(
     'group',
 
     'test',
-	
-	'badger' => array(
-                  //'layout' => '//layouts/mainx', //default: "//layouts/main"
-                  //'userTable' => 'userx', // default: "user"
-                  'cacheSec' => 3600 * 24, // cache duration. default: 3600
 
-                  // Creates tables and copy necessary files
-                  //'install' => true, // remove/comment after succesful install
-                   // drop all badger tables before installing (fresh install)
-                  'dropBeforeInstall' => false, 
+    'photo',
+    //-----------------------<for comments >-----------------------------------------------------------------
+    'comments' => array(
+        //you may override default config for all connecting models
+        'defaultModelConfig' => array(
+            //only registered users can post comments
+            'registeredOnly' => false,
+            'useCaptcha' => false,
+            //allow comment tree
+            'allowSubcommenting' => true,
+            //display comments after moderation
+            'premoderate' => false,
+            //action for postig comment
+            'postCommentAction' => 'comments/comment/postComment',
+            //super user condition(display comment list in admin view and automoderate comments)
+            'isSuperuser' => '1==1',//'Yii::app()->user->checkAccess("moderate")',
+            //order direction for comments
+            'orderComments' => 'DESC',
+        ),
+        //the models for commenting
+        'commentableModels' => array(
+            /*
+            //model with individual settings
+            'User' => array(
+                'registeredOnly' => true,
+                'useCaptcha' => false,
+                'allowSubcommenting' => true,
             ),
+            //model with default settings
+            'Photo',
+            */
+        ),
+        //config for user models, which is used in application
+        'userConfig' => array(
+            'class' => 'User',
+            'nameProperty' => 'username',
+            'emailProperty' => 'email',
+        ),
+    ),
+    //-----------------------<for comments />-----------------------------------------------------------------
+
+    'voting',
+
+    //
+    'apiPublisher',
+    'apiUpdater',
+
+    // yii rbac 的一个GUI实现
+    'auth' => array(
+        'strictMode' => true, // when enabled authorization items cannot be assigned children of the same type.
+        'userClass' => 'User', // the name of the user model class.
+        'userIdColumn' => 'id', // the name of the user id column.
+        'userNameColumn' => 'username', // the name of the user name column.
+        'appLayout' => '//layouts/iframe', // the layout used by the module.
+        'viewDir' => null, // the path to view files to use with this module.
+    ),
+
+    // oauth 服务器 先测试2.0
+    'oauth',
+    // oauth 1 服务端实现
+    'api'=>array(
+        'connectionString' => 'mysql:host=localhost;port=3306;dbname=yii_space',
+        'username' => 'root',
+        'password' => '',
+    ),
+
+    // api 平台管理
+    'apiPlatform',
+
+    // api文档
+    'apiDoc',
 );
 

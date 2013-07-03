@@ -1,0 +1,68 @@
+div.right_menu {
+    border-radius: 10px 0px 0px 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-bottomleft: 10px;
+
+    -webkit-box-shadow: -10px 0px 20px #ffffff;
+    -moz-box-shadow: -10px 0px 20px #ffffff;
+    box-shadow: -10px 0px 20px #ffffff;
+    -webkit-box-shadow: 0px 0px 10px #888888;
+    -moz-box-shadow: 0px 0px 10px #888888;
+    box-shadow: 0px 0px 10px #888888;
+}
+
+div.right_menu div.title {
+    border-radius: 10px 0px 0px 0px;
+    -moz-border-radius-topleft: 10px;
+
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, rgb(112,112,112)),
+        color-stop(0.98, rgb(60,60,60))
+        );
+    background: -moz-linear-gradient(
+        center top,
+        rgb(112,112,112) 0%,
+        rgb(60,60,60) 98%
+        );
+    text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 0px;
+}
+
+div.right_menu div.title a {
+    text-shadow: none;
+}
+
+/* ------------------------------------------------- */
+
+div.right_menu {
+    position: fixed;
+    width: 180px;
+    right: 0px;
+    top: 160px;
+    background: #FFFFFF;
+    border-right: 0px none;
+    z-index: 10;
+}
+
+
+div.right_menu div.title {
+    background: #666;
+    border-bottom: 1px solid #888;
+    text-align: center;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    margin-bottom: 0em;
+    color: #FFF;
+    font-weight: bold;
+}
+
+div.right_menu div.title a {
+    font-weight: normal;
+    float: right;
+    margin-right: 0.4em;
+    text-decoration: none;
+    color: #CCC;
+}
+

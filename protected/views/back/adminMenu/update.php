@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'List AdminMenu','url'=>array('index')),
 	array('label'=>'Create AdminMenu','url'=>array('create')),
 	array('label'=>'View AdminMenu','url'=>array('view','id'=>$model->id)),
-    array('label'=>'Manage AdminMenu(advance mode) ','url'=>array('adminAdv')),
+	array('label'=>'Manage AdminMenu','url'=>array('admin')),
 );
 ?>
 

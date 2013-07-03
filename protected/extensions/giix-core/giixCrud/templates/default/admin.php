@@ -5,19 +5,16 @@
  */
 ?>
 <?php
-echo "<?php\n";
-$label=$this->pluralize($this->class2name($this->modelClass));
-echo "\$this->breadcrumbs = array(
-	Yii::t('controller', '$label') => array('index'),
+echo "<?php\n
+\$this->breadcrumbs = array(
+	\$model->label(2) => array('index'),
 	Yii::t('app', 'Manage'),
 );\n";
 ?>
 
 $this->menu = array(
-		array('label'=>Yii::t('app', 'List') . ' <?php echo $this->modelClass; ?>',
-			'url'=>array('index')),
-		array('label'=>Yii::t('app', 'Create') . ' <?php echo $this->modelClass; ?>',
-		'url'=>array('create')),
+		array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url'=>array('index')),
+		array('label'=>Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
 	);
 
 Yii::app()->clientScript->registerScript('search', "
@@ -34,7 +31,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1><?php echo '<?php'; ?> echo Yii::t('app', 'Manage'); ?> <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h1>
+<h1><?php echo '<?php'; ?> echo Yii::t('app', 'Manage') . ' ' . GxHtml::encode($model->label(2)); ?></h1>
 
 <p>
 You may optionally enter a comparison operator (&lt;, &lt;=, &gt;, &gt;=, &lt;&gt; or =) at the beginning of each of your search values to specify how the comparison should be done.

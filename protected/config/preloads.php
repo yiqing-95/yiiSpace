@@ -1,10 +1,8 @@
 <?php
 return array(
     'log',
-    /**
-     * foundation extension
-     */
-    'foundation',
+
+     'bootstrap',
 
     'modUrlRuleManager',
 

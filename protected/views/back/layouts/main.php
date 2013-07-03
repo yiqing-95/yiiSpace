@@ -1,66 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="language" content="en"/>
-
-    <!-- blueprint CSS framework -->
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
-          media="screen, projection"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css"
-          media="print"/>
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css"
-          media="screen, projection"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
-
-    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<body id="top">
 
-<div class="container" id="page">
-
-    <div id="header">
-        <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-    </div>
-    <!-- header -->
-
-    <div id="mainmenu">
-        <?php $this->widget('zii.widgets.CMenu', array(
-        'items' => array(
-            array('label' => 'Home', 'url' => array('/site/index')),
-            array('url' => Yii::app()->getModule('user')->loginUrl, 'label' => Yii::app()->getModule('user')->t("Login"), 'visible' => Yii::app()->user->isGuest),
-            array('url' => Yii::app()->getModule('user')->registrationUrl, 'label' => Yii::app()->getModule('user')->t("Register"), 'visible' => Yii::app()->user->isGuest),
-            array('url' => Yii::app()->getModule('user')->profileUrl, 'label' => Yii::app()->getModule('user')->t("Profile"), 'visible' => !Yii::app()->user->isGuest),
-            array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-            array('label' => 'Contact', 'url' => array('/site/contact')),
-            array('url' => Yii::app()->getModule('user')->logoutUrl, 'label' => Yii::app()->getModule('user')->t("Logout") . ' (' . Yii::app()->user->name . ')', 'visible' => !Yii::app()->user->isGuest),
+<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'type' => 'inverse',
+    'brand' => CHtml::encode(Yii::app()->name),
+    'brandUrl' => false,
+    'collapse' => true,
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbMenu',
+            'items' => array(
+                array('label' => 'Docs', 'url' => Yii::app()->homeUrl,
+                    'active' => Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
+                array('label' => 'Setup', 'url' => array('site/setup')),
+            ),
+            'htmlOptions' => array('class' => 'pull-left'),
         ),
-    )); ?>
-    </div>
-    <!-- mainmenu -->
-    <?php if (isset($this->breadcrumbs)): ?>
-        <?php $this->widget('zii.widgets.CBreadcrumbs', array(
-        'links' => $this->breadcrumbs,
-    )); ?><!-- breadcrumbs -->
-    <?php endif?>
+        '<div class="add-this pull-right">
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style">
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_twitter"></a>
+                        <a class="addthis_button_google"></a>
+                        <a class="addthis_button_email"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                        </div>
+                        <!-- AddThis Button END -->
+                </div>',
+
+    ),
+)); ?>
+<div class="" style="margin-top: 50px;"></div>
+<div class="fluid-container">
 
     <?php echo $content; ?>
 
-    <div id="footer">
-        Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-        All Rights Reserved.<br/>
-        <?php echo Yii::powered(); ?>
-    </div>
-    <!-- footer -->
+    <hr/>
+
+    <footer>
+
+        <div class="row">
+
+            <div class="span6">
+
+                <p class="powered">
+                    Powered
+                    by <?php echo CHtml::link('Yii', 'http://www.yiiframework.com', array('target' => '_blank')); ?> /
+                    <?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap', array('target' => '_blank')); ?>
+                    /
+                    <?php echo CHtml::link('Yii-SEO', 'http://www.yiiframework.com/extension/seo', array('target' => '_blank')); ?>
+                    /
+                    <?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap', array('target' => '_blank')); ?>
+                    /
+                    <?php echo CHtml::link('jQuery', 'http://www.jquery.com', array('target' => '_blank')); ?> /
+                    <?php echo CHtml::link('LESS', 'http://www.lesscss.org', array('target' => '_blank')); ?>
+                </p>
+
+            </div>
+
+            <div class="span6">
+
+                <p class="copy">
+                    &copy; <?php echo Yii::app()->name ;?> <?php echo date('Y'); ?>
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
 
 </div>
-<!-- page -->
+
 
 </body>
 </html>

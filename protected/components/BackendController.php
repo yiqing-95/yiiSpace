@@ -10,6 +10,8 @@ class BackendController extends Controller
 {
     public $layout = '//layouts/iframe';
 
+   // public $layout = '//adminLayouts/main';
+
     public $menu = array();
 
     public $breadcrumbs = array();
@@ -27,6 +29,9 @@ class BackendController extends Controller
     public function init()
     {
         if (isset($_GET['menuId'])) {
+
+
+
             $currentMenuNode = AdminMenu::model()->findByPk($_GET['menuId']);
 
             $ancestors = $currentMenuNode->ancestors()->findAll();
@@ -35,6 +40,9 @@ class BackendController extends Controller
                     //顶级虚根 没有关联菜单
                    if($menuNode->group_code != 'sys_admin_menu_root'){
                        $this->menuLabelList[$menuNode->label] = $menuNode->calcUrl();
+                       if($menuNode->level == 2){
+                           user()->setState('activeTopMenuId',$menuNode->id);
+                       }
                    }
             }
             $this->menuLabelList[$currentMenuNode->label] = $currentMenuNode->calcUrl();

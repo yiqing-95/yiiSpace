@@ -1,0 +1,10 @@
+.nbanner { position: relative; padding:0; margin:0; font: normal 12px Arial,Helvetica,sans-serif; }
+.nbanner a img { border:none; padding:0; margin:0; }
+.nbanner ul{ padding:0; margin: 0; }
+.nbanner ul.slides { margin:0; }
+.nbanner ul.slides li.slide { list-style-type:none; visibility:hidden; position:absolute; left:0; top:0; }
+.nbanner ul.buttons { }
+.nbanner ul.buttons li { float:left; font-size: 10px; display:inline; height:0px; width: 14px; padding:14px 0 0 0; margin:0 0 0 5px; background: url('bgli.gif') 0 0 no-repeat; cursor: pointer; overflow: hidden; }
+.nbanner ul.buttons li:hover { background: url('bgli.gif') -15px 0 no-repeat; }
+.nbanner ul.buttons li.active{ background: url('bgli.gif') -30px 0 no-repeat; }
+.nbanner .cclear{ clear: both; }

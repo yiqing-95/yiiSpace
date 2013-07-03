@@ -1,0 +1,1 @@
+<p>With the <b>attachTo</b> and <b>position</b> options, you can display the guide relatively to any element in you web page. Just use a JQuery selector, and that's done !</p>

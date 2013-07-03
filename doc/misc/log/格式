@@ -1,0 +1,16 @@
+日志
+=======
+@see ["logging: logstash and other things" by Jordan Sissel, czar of ](http://www.youtube.com/watch?v=RuUFnog29M4&list=PLynE-g6Vl6LFxT0SM7g1hkGqkHLTpca7x)
+
+格式
+---------------
+    （timestamp）（事件的描述/用来描述此事件的数据存储）
+    TimeStamp + DATA = LOG !
+
+    ##相关工具：
+    > transport : flume ,fluentd ,scribe ,rsyslog,syslog-ng;
+    > search + analytics: hadoop, graylog2,elsa
+    >  storage: hdfs , cassandra ,elasticsearch
+
+    logstash
+    GROK

@@ -1,0 +1,96 @@
+body {
+	background:#333;
+	padding:20px;
+	color:#fff;
+	font-size:12px;
+	font-family:'helvetica neue',helvetica,sans-serif;
+}
+
+h1 {
+	letter-spacing:3px;
+	text-transform:uppercase;
+	font-size:1.2em;
+	margin:10px 0;
+}
+
+#main {
+	width:824px;
+	margin:0 auto;
+}
+
+.exposureTarget {
+	width:800px;
+	height:600px;
+	background-color:#111;	
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	float:left;	
+	padding:0;
+	margin:0;
+	border:12px solid #111;
+	position:relative;
+	overflow:hidden; 
+}
+
+.exposureWrapper {
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;	
+}
+
+.exposureControls span,
+.exposureControls a {
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:12px;
+	padding:8px;
+	background-color:#555;
+	display:block;
+	float:left;
+}
+
+.exposureControls a {
+	color:#ccc;
+	text-decoration:none;
+	outline:none;
+}
+
+.exposureControls a:active,
+.exposureControls a:hover {
+	background-color:#444;
+	color:#ddd;
+}
+
+.exposurePaging .active {
+	color:#fff;
+	background-color:#111;	
+}
+
+.clear {
+	clear:both;	
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;	
+	width:600px;
+}
+
+p.info a {
+	color:#006fc0;	
+}
+
+p.info a:hover, p.info a:active {
+	color:#0084e7;	
+}

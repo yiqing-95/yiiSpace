@@ -9,26 +9,29 @@
     </title>
 </head>
 <body>
-<div class="row">
+<div class="fluid-container">
 
     <div class="row">
         <?php
+        /*
         $this->beginWidget('zii.widgets.CPortlet', array(
             'id' => 'menuItems',
             'htmlOptions' => array(
                 'class' => 'alert alert-success',// alert-error,alert-block ,alert-info ,alert-success
             )
         ));
-        $this->widget('foundation.widgets.FounSubNav', array(
+        $this->widget('bootstrap.widgets.TbNavbar', array(
             'items' => $this->menu
         ));
 
         $this->endWidget();
+        */
         ?>
     </div>
 
 </div>
-<div class="row" id="page">
+<div class="fluid-row" id="page">
+
     <?php echo $content; ?>
 </div>
 

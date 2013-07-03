@@ -1,0 +1,161 @@
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp .markItUpButton1 a	{
+	background-image:url(images/bold.png);
+}
+.markItUp .markItUpButton2 a	{
+	background-image:url(images/italic.png);
+}
+.markItUp .markItUpButton3 a	{
+	background-image:url(images/underline.png);
+}
+
+.markItUp .markItUpButton4 a	{
+	background-image:url(images/picture.png);
+}
+.markItUp .markItUpButton5 a	{
+	background-image:url(images/link.png);
+}
+
+.markItUp .markItUpButton6 a	{
+	background-image:url(images/fonts.png);
+}
+.markItUp .markItUpButton7 a	{
+	background-image:url(images/list-bullet.png);
+}
+.markItUp .markItUpButton8 a	{
+	background-image:url(images/list-numeric.png);
+}
+.markItUp .markItUpButton9 a	{
+	background-image:url(images/list-item.png);
+}
+
+.markItUp .markItUpButton10 a	{
+	background-image:url(images/quotes.png);
+}
+.markItUp .markItUpButton11 a	{
+	background-image:url(images/code.png);
+}
+	
+.markItUp .clean a {
+	background-image:url(images/clean.png);
+}
+.markItUp .preview a {
+	background-image:url(images/preview.png);
+}
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp .colors a {
+	background-image:url(images/colors.png);
+}
+	.markItUp .colors ul {
+		width:81px;
+		padding:1px;	
+	}
+	.markItUp .colors  li {
+		border:1px solid white;
+		width:25px;	height:25px;
+		overflow:hidden;
+		padding:0px; margin:0px;
+		float:left;
+	}
+	.markItUp .colors ul a {
+		width:25px;	height:25px;
+	}
+	.markItUp .colors ul a:hover {
+		background-color:none;
+	}
+	
+	.markItUp .colors .col1-1 a {
+		background:#FCE94F;
+	}
+	.markItUp .colors .col1-2 a {
+		background:#EDD400;
+	}
+	.markItUp .colors .col1-3 a {
+		background:#C4A000;
+	}
+	
+	.markItUp .colors .col2-1 a {
+		background:#FCAF3E;
+	}
+	.markItUp .colors .col2-2 a {
+		background:#F57900;
+	}
+	.markItUp .colors .col2-3 a {
+		background:#CE5C00;
+	}
+	
+	.markItUp .colors .col3-1 a {
+		background:#E9B96E;
+	}
+	.markItUp .colors .col3-2 a {
+		background:#C17D11;
+	}
+	.markItUp .colors .col3-3 a {
+		background:#8F5902;
+	}
+	
+	.markItUp .colors .col4-1 a {
+		background:#8AE234;
+	}
+	.markItUp .colors .col4-2 a {
+		background:#73D216;
+	}
+	.markItUp .colors .col4-3 a {
+		background:#4E9A06;
+	}
+								
+	.markItUp .colors .col5-1 a {
+		background:#729FCF;
+	}
+	.markItUp .colors .col5-2 a {
+		background:#3465A4;
+	}
+	.markItUp .colors .col5-3 a {
+		background:#204A87;
+	}
+
+	.markItUp .colors .col6-1 a {
+		background:#AD7FA8;
+	}
+	.markItUp .colors .col6-2 a {
+		background:#75507B;
+	}
+	.markItUp .colors .col6-3 a {
+		background:#5C3566;
+	}
+	
+	.markItUp .colors .col7-1 a {
+		background:#EF2929;
+	}
+	.markItUp .colors .col7-2 a {
+		background:#CC0000;
+	}
+	.markItUp .colors .col7-3 a {
+		background:#A40000;
+	}
+	
+	.markItUp .colors .col8-1 a {
+		background:#FFFFFF;
+	}
+	.markItUp .colors .col8-2 a {
+		background:#D3D7CF;
+	}
+	.markItUp .colors .col8-3 a {
+		background:#BABDB6;
+	}
+	
+	.markItUp .colors .col9-1 a {
+		background:#888A85;
+	}
+	.markItUp .colors .col9-2 a {
+		background:#555753;
+	}
+	.markItUp .colors .col9-3 a {
+		background:#000000;
+	}

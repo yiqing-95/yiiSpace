@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery nbsp slider Plugin Demo6 快动画/竖向/ALT区块和样式/首张和尾张幻灯片之间使用无特效切换</title>
+<link type="text/css" rel="stylesheet" href="./css/css.css" />
+<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.nbspSlider.1.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#slider").nbspSlider({
+			width:           "800px",
+			height:          "300px",
+			effect:	         "vertical",
+			autoplay:        1,
+			speeds:          500,
+			delays:          5000,
+			altBgColor:      'green',  		// ALT区块背景颜色
+			altHeight:       '70px',  		// ALT区块高度
+			altShow:         1,				// ALT区块是否显示(1为是0为否)
+			altFontColor:    'red',        // ALT区块内的字体颜色
+			btnFontColor:    'red',        // 数字按钮的数字颜色
+			btnBorderColor:  '#ccc',        // 数字按钮边框颜色
+			btnBgColor:      'blue',		// 数字按钮背景颜色
+			btnActBgColor:   '#fff',		// 数字按钮选中的背景
+			starEndNoEff:     1
+		});
+	});
+</script>
+
+<meta name="description" content="jQuery nbsp slider">
+</meta>
+</head>
+
+<body>
+
+<h2>Demo6 快动画/竖向/ALT区块和样式/首张和尾张幻灯片之间使用无特效切换</h2>
+	<div id="slider">
+		<ul>				
+			<li><a href="javascript:void(0);"><img src="./images/01.jpg" alt="1111111111" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/02.jpg" alt="22222222222" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/03.jpg" alt="333333333333" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/04.jpg" alt="444444444444" /></a></li>
+			<li><a href="javascript:void(0);"><img src="./images/05.jpg" alt="555555555555" /></a></li>	
+		</ul>
+	</div>
+
+
+</body>
+</html>

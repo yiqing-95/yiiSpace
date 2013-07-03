@@ -1,18 +1,40 @@
-<?php $this->beginContent('//layouts/found_main'); ?>
+<?php $this->beginContent('//layouts/_main'); ?>
 
-<div class="four columns" role="complementary" >
-   <?php $this->widget('user.widgets.sidebar.UserSidebar'); ?>
-</div>
-<div class="six columns ">
+<?php
+$this->beginWidget('application.extensions.rightsidebar.RightSidebar', array('title' => 'Menu', 'collapsed' => true));
 
-    <?php echo $content; ?>
-</div>
-<div class="two columns">
-    <?php
-    if (!empty($this->menu)) :
-        $this->widget("foundation.widgets.FounTabs", array('items' => $this->menu, 'type' => 'nice vertical hide-on-phones'));
-    endif;
-    ?>
-</div>
+$this->widget('zii.widgets.CMenu', array(
+    'items' => array(
+        array('label' => 'Home', 'url' => array('site/index')),
+        array('label' => 'Products', 'url' => array('product/index'), 'items' => array(
+            array('label' => 'New Arrivals', 'url' => array('product/new')),
+            array('label' => 'Most Popular', 'url' => array('product/popular')),
+        )),
+    ),
+));
+
+$this->endWidget();
+?>
+
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2 ">
+<!--        <div class="span2 offset1"> 早期的bootstrap 没有offset1 这个css类-->
+
+            <!--Sidebar content-->
+            <div class="alert alert-info span12">
+                <?php $userProfile = $this->widget('user.widgets.usercenter.UserCenterProfile'); ?>
+                <br/>
+                <?php $userProfile->renderSidebarMenu(); ?>
+            </div>
+
+        </div>
+        <div class="span8">
+            <?php UserHelper::getUserPublicProfile()->renderUserTopMenus(0) ;?>
+            <?php echo $content; ?>
+            <!--Body content-->
+        </div>
+
+    </div>
 
 <?php $this->endContent(); ?>

@@ -7,7 +7,6 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'List AdminMenu','url'=>array('index')),
 	array('label'=>'Create AdminMenu','url'=>array('create')),
-    array('label'=>'Manage AdminMenu(advance mode) ','url'=>array('adminAdv')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -24,8 +23,6 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<?php $this->beginClip('searchForm'); ?>
-
 <h1>Manage Admin Menus</h1>
 
 <p>
@@ -39,24 +36,32 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-<?php $this->endClip(); ?>
 
-<?php $this->widget('wij.WijTabs', array(
-          'theme'=>EWijmoWidget::THEME_ARISTO,
-          'htmlOptions'=>array(
-          'class'=>'controls',
-      ),
-    'tabs'=>array(
-        'search'=> array('content'=>$this->clips['searchForm'], 'active'=>true),
-        'quickLinks'=> array('content'=>'<p>all quick links for searching the different status (such as :active ,deleted,...)</p>'),
-        //'Tags'=> array('content'=>'<p>search with tags , here you prepare the available tags</p>'),
-         ),
-    )); ?>
-
-<?php $this->widget('zii.widgets.grid.CGridView',array(
+<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
+	'type' => 'striped bordered',
 	'id'=>'admin-menu-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+	'bulkActions' => array(
+		'actionButtons' => array(
+			array(
+				'buttonType' => 'link',
+                'htmlOptions' => array(
+                            'class'=>'bulk-action'
+                         ),
+				'type' => 'primary',
+				'size' => 'small',
+				'label' => 'bulkDeletion',
+                'url' => array('batchDelete'),
+				'click' => 'js:function(values){console.log(values);}'
+				)
+			),
+			// if grid doesn't have a checkbox column type, it will attach
+			// one and this configuration will be part of it
+			'checkBoxColumnConfig' => array(
+				'name' => 'id'
+			),
+	),
 	'columns'=>array(
 		'id',
 		'root',
@@ -74,7 +79,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'group_code',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
 )); ?>

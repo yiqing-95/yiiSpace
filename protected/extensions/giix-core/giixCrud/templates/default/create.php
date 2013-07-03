@@ -5,21 +5,20 @@
  */
 ?>
 <?php
-echo "<?php\n";
-$label=$this->pluralize($this->class2name($this->modelClass));
-echo "\$this->breadcrumbs = array(
-	Yii::t('controller', '$label') => array('index'),
+echo "<?php\n
+\$this->breadcrumbs = array(
+	\$model->label(2) => array('index'),
 	Yii::t('app', 'Create'),
 );\n";
 ?>
 
 $this->menu = array(
-	array('label'=>Yii::t('app', 'List') . ' <?php echo $this->modelClass; ?>', 'url' => array('index')),
-	array('label'=>Yii::t('app', 'Manage') . ' <?php echo $this->modelClass; ?>', 'url' => array('admin')),
+	array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url' => array('index')),
+	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo '<?php'; ?> echo Yii::t('app', 'Create'); <?php echo '?>'; ?> <?php echo $this->modelClass; ?></h1>
+<h1><?php echo '<?php'; ?> echo Yii::t('app', 'Create') . ' ' . GxHtml::encode($model->label()); ?></h1>
 
 <?php echo "<?php\n"; ?>
 $this->renderPartial('_form', array(

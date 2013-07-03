@@ -1,0 +1,111 @@
+html, body {
+	margin:0;
+	padding:0;
+}
+body{
+	text-align: center;
+}
+div#page {
+	width: 900px;
+	margin: 0 auto;
+	text-align: left;
+	padding-bottom: 20px;
+}
+div#container {
+	padding: 20px;
+	background:url(images/contentbg.gif) repeat-y top center;
+}
+
+div#header {
+	padding-bottom: 20px;
+}
+div#ads {
+	clear: both;
+	padding: 30px 0 12px 66px;
+}
+div#footer {
+	text-align: center;
+	clear: both;
+	padding-top: 12px;
+}
+
+/* Specific Styles for TwoSpy Gallery */
+body {
+	background: #333 url(images/bodybg.png) repeat-x fixed top center;
+	font: 11px Verdana,Arial,Helvetica,sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family:Georgia,Verdana,Arial,Helvetica,sans-serif;
+	font-weight:lighter;
+	margin:0;
+	padding:0;
+	color:#333;
+}
+h1{
+	font-size:28px;
+}
+h2, h3 {
+	font-size:20px;
+	color:#0a294f;
+	margin:8px 0;
+}
+h4{
+	font-size:18px;
+	color:#911322;
+}
+h5{
+	font-size:16px;
+	color:#af3d0a;
+}
+h6{
+	font-size:11px;
+	font-weight:bold;
+	color:#333;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+a{
+	color:#af2639;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:underline;
+}
+div#gutter {
+	background:url(images/gutter.gif) no-repeat bottom center;
+	height:9px;
+}
+* html #gutter {
+	margin-top:-4px;
+}
+h2.album-date {
+	margin-top: 6px;
+}
+p.album-description {
+	margin-top: 20px;
+}
+ul.meta {
+	margin: 10px 0 0 0;
+	padding: 0;
+	font-size: 0.8em;
+}
+ul.meta li {
+	padding: 0;
+	list-style: none;
+}
+div.caption-container {
+	color: #111;
+}
+div.image-title {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+div.image-desc {
+	line-height: 1.3em;
+	padding-top: 12px;
+}
+div.photo-index {
+	color: #777;
+}

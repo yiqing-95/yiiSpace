@@ -1,7 +1,10 @@
 <?php
-return CMap::mergeArray(require(dirname(__FILE__) . '/common.php'),
-    array(
+$consoleConfigs = dirname(__FILE__). DIRECTORY_SEPARATOR. 'console';
+
+return   array(
         'language' => 'en',
+         'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+         'name'=>'My Console Application',
         // preloading 'log' component
 
         'components'=>array(
@@ -70,5 +73,4 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/common.php'),
 
          'behaviors' => require(dirname(__FILE__) . '/console/behaviors.php'),
          */
-    )
-);
+    );
