@@ -1,0 +1,42 @@
+基于Yii的sns 测试项目
+=============================
+
+感谢选择Yii 作为您的web应用程序框架.
+
+
+安装
+------------
+
+下载本程序 解压到您的web服务器www目录
+用你最喜欢的数据库管理工具（导入）执行protected/data/newYiiSpace.mysql.sql
+
+根据你服务器配置情况 修改.htaccess Ngix用户请参考此文件修改
+
+环境需求
+------------
+
+The minimum requirement by Yii is that your Web server supports
+PHP 5.1.0 or above. Yii has been tested with Apache HTTP server
+on Windows and Linux operating systems.
+
+Please access the following URL to check if your Web server reaches
+the requirements by Yii, assuming "YiiPath" is where Yii is installed:
+
+      http://hostname/YiiPath/requirements/index.php
+
+
+QUICK START
+-----------
+
+等待开发差不多了 在考虑提供自动安装功能 现在只能手工安装 ^-^
+
+WHAT's NEXT
+-----------
+
+.....
+
+
+贡献者列表
+-----------
+
+

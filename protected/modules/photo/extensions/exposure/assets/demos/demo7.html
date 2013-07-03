@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<!-- saved from url=(0014)about:internet -->
+	<head>
+		<title>Exposure - Demo 7</title>
+		<link href="demo7.css" type="text/css" rel="stylesheet" />
+		<script src="res/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="../jquery.exposure.js?v=1.0.1" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				var gallery = $('#images');
+				gallery.exposure({target : '#exposure',
+					controlsTarget : '#controls',
+					controls : {
+						prevNext : false,
+						firstLast : false,
+						pageNumbers : true				
+					}, 
+					showThumbs : false,				
+					showCaptions : false,
+					showExtraData : false,
+					maxWidth: 273,
+					onImage : function(image, imageData, thumb) {
+						gallery.wrapper.find('.exposureLastImage').stop().fadeOut(500, function() {
+							$(this).remove();
+						});
+						image.hide().stop().fadeIn(1000);
+					}
+				});
+				var gallery2 = $('#images2');
+				gallery2.exposure({target : '#exposure2',
+					controlsTarget : '#controls2',
+					controls : {
+						prevNext : false,
+						firstLast : false,
+						pageNumbers : true				
+					}, 					
+					showThumbs : false,
+					showCaptions : false,
+					showExtraData : false,
+					maxWidth: 273,
+					onImage : function(image, imageData, thumb) {
+						gallery2.wrapper.find('.exposureLastImage').stop().fadeOut(500, function() {
+							$(this).remove();
+						});
+						image.hide().stop().fadeIn(1000);
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<h1>Exposure - Demo 7</h1>
+			<div class="gallery1">
+				<h3>Gallery 1</h3>
+				<ul id="images">
+					<li><a href="slides/IMG_2198.jpg" title="Home made"></a></li>
+					<li><a href="slides/IMG_2339.jpg" title="Chocolate"></a></li>
+					<li><a href="slides/IMG_2446.jpg" title="Love birds"></a></li>
+					<li><a href="slides/IMG_2623.jpg" title="Blue"></a></li>
+					<li><a href="slides/IMG_5077.jpeg" title="White"></a></li>
+				</ul>
+				<div id="controls"></div>
+				<div id="exposure"></div>			
+				<div class="clear"></div>
+			</div>
+			<div class="gallery2">
+				<h3>Gallery 2</h3>
+				<ul id="images2">
+					<li><a href="slides/IMG_5177.jpeg" title="Yellow on blue"></a></li>			
+					<li><a href="slides/IMG_5278.jpeg" title="Heat"></a></li>
+					<li><a href="slides/IMG_5324.jpeg" title="Cold"></a></li>
+					<li><a href="slides/IMG_5650.jpeg" title="Homes"></a></li>
+					<li><a href="slides/IMG_9006.jpg" title="Ace"></a></li>
+				</ul>	
+				<div id="controls2"></div>
+				<div id="exposure2"></div>			
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<p class="info"><a href="demo6.html?v=1.0.1">View previous demo</a> | <a href="demo8.html?v=1.0.1">View next demo</a></p>
+		<p class="info">This is a demo showing the <a href="http://exposure.blogocracy.org/">Exposure plugin for jQuery</a>. With Exposure you can give your gallery any look you want, this is just an example. <a href="http://exposureforjquery.wordpress.com/download/">Download Exposure</a> or <a href="http://exposure.blogocracy.org/">learn more</a>.</p>
+	</body>
+</html>

@@ -6,7 +6,7 @@
     <title>jQuery contextMenu Plugin</title>
     <meta name="description" content="simple contextMenu generator for interactive web applications based on jQuery" />
     
-    <script src="jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
     <script src="prettify/prettify.js" type="text/javascript"></script>
     <script src="screen.js" type="text/javascript"></script>
     <link href="screen.css" rel="stylesheet" type="text/css" />
@@ -95,7 +95,15 @@
             <p>Specifies the event to show the contextMenu</p>
             <p>Possible values: "right", "left", "hover", "none"</p>
         </dd>
-                
+        
+        <dt id="options-reposition"><em>(boolean)</em> reposition</dt>
+        <dd>
+            <p>
+                Specifies if a menu should be repositioned (true) or rebuilt (false) if a second trigger event (like a right click) is performed
+                on the same trigger element (or its children) while the menu is still visible.
+            </p>
+        </dd>
+        
         <dt id="options-delay"><em>(int)</em> delay</dt>
         <dd>
             <p>default: <em>200</em></p>
@@ -252,6 +260,8 @@ build: function($trigger, e){
             <p>Events to register on &lt;input&gt; elements</p>
             <p>Only used with <a href="#items-type">types</a> <em>"text"</em>, <em>"textarea"</em>, <em>"radio"</em>, <em>"checkbox"</em> and <em>"select"</em>.</p>
             <p>Example: { command1: {name: "Foobar", type: "text", events: {keyup: function(e){alert(e.keyCode);}} }}</p>
+            <p>The contents of the options object are passed to jQuery event.data.</p>
+            <p>Example: { command1: {name: "Foobar", type: "text", events: {keyup: function(e){alert(e.data.$trigger.attr("id"));}} }}</p>
         </dd>
 
         <dt id="items-value"><em>(string)</em> value</dt>

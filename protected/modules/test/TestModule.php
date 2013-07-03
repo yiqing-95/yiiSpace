@@ -21,6 +21,8 @@ class TestModule extends CWebModule implements IUrlRewriteModule
 
             // EventInterceptor is required by EventBridgeBehavior
             'test.extensions.event-interceptor.*',
+
+            'test.services.*',
 		));
 
         Yii::setPathOfAlias('bootstrap', Yii::getPathOfAlias('test.extensions.bootstrap'));

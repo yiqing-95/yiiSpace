@@ -4,6 +4,9 @@ return array(
     'application.models.forms.*',
     'application.components.*',
 
+    // giix components
+    'ext.giix-components.*',
+
     'application.components.extensionloader.*',
     // user module
     'application.modules.user.models.*',

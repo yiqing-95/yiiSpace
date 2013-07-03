@@ -1,0 +1,1 @@
+<p>Using the <b>EGuiders</b> extension is easy. Just create a widget with the class name set to EGuiders. Then set options for your guider ...</p>

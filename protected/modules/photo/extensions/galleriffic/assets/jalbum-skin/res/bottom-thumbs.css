@@ -1,0 +1,26 @@
+div.navigation-container {
+	float: left;
+	position: relative;
+	left: 50%;
+	margin-top: 20px;
+}
+div.navigation {
+	float: left;
+	position: relative;
+	left: -50%;
+}
+div.pagination {
+	clear: both;
+	position: relative;
+	left: -50%;
+}
+div.photo-index {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 12px;
+}
+div.slideshow-container,
+div.caption-container {
+	float: left;
+}

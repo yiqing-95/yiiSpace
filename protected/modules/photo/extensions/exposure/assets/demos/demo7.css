@@ -1,0 +1,105 @@
+body {
+	background:#fff;
+	padding:20px;
+	color:#000;
+	font-size:12px;
+	font-family:'helvetica neue',helvetica,sans-serif;
+}
+
+h1 {
+	font-size:2.3em;
+	margin:10px 0;
+}
+
+h3 {
+	font-size:1.4em;
+	margin:10px 0;
+}
+
+#main {
+	width:586px;
+	margin:0 auto;
+}
+
+.exposureTarget {
+	background-color:#111;	
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	float:left;	
+	padding:0;
+	margin:0;
+	border:12px solid #111;
+	position:relative;
+	overflow:hidden; 
+}
+
+.exposureWrapper {
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;	
+}
+
+.exposureControls span,
+.exposureControls a {
+	font-family:Arial,Verdana,Helvetica,sans-serif;
+	font-size:12px;
+	padding:8px;
+	display:block;
+	float:left;
+}
+
+.exposureControls a {
+	color:#000;
+	text-decoration:none;
+	outline:none;
+}
+
+.exposureControls a:active,
+.exposureControls a:hover {
+	background-color:#ccc;
+	color:#333;
+}
+
+.exposurePaging .active {
+	color:#fff;
+	background-color:#111;	
+}
+
+.gallery1, .gallery2 {
+	float:left;
+	width:273px;
+}
+
+.gallery2 {
+	margin-left:40px;	
+}
+
+.clear {
+	clear:both;	
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;	
+	width:600px;
+}
+
+p.info a {
+	color:#006fc0;	
+}
+
+p.info a:hover, p.info a:active {
+	color:#0084e7;	
+}

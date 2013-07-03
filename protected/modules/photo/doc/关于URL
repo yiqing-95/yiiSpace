@@ -1,0 +1,49 @@
+sns中 关于url的创建 看似简单 其实是一个难题！（容易引起歧义的抉择不要在视图上搞 抽象到下面做成方法 不然多个页面时会引起混乱！）
+
+所有内容节点一般都是嵌套的
+   user
+      -----  contentNodeCate
+          [----- contentNodeSubCate ]*
+                    -----   contentNode
+                             ----  comment
+
+
+下面分别考虑 crud 的url问题：
+
+   create：  创建子节点 一般必须附带一个父节点pid（顶级是0）  如果没有附带那么在创建时 需要选择一个父节点
+             允许创建时选择其他父节点  或者继续创建新的父节点（创建完毕后 默认选择会是刚创建的节点作为pid ajax+js可以做到）
+
+             创建动作发生在 用户中心还是公共空间？  用户中心的导航一般不带u 参数  但公共空间的都要求带u 如果两者都允许
+             那么需要根据是否带u 来切换layout
+
+   read、即view：  浏览某个节点的url  全路径形式：带上所有路径上级的节点如 yiqing/cate/2/node/3
+                    最简单形式：  view/3  这是yii用Gii默认创建页面的形式
+                    中间情况     yiqing/photo/3    只有根和叶子  中间节点信息不在url中
+
+
+   update ：  修改某个节点 /contentType/edit/id/3   是否需要带上u 或者上级节点信息？
+
+   delete ： 最简单形式即可(post 请求) /nodeType/delete/id/3   删除时 判断是不是节点的主人
+
+
+为了达到一致统一  尽量在某个中心位置完成 。  yii的blog 示例 url创建是在model中完成的 getUrl() 方法 但这种形式可能限于AR
+如果是数组那么需要 populate成ar  才能使用这种方法。
+
+看过RubyOnRail中 有些做法是 在一个helper方法中做的   所以每个模块可以引入一个或多个helper 来协助controller做某些事情
+
+======================================================================================
+DB Responder HTTP method URL path Helper function
+Actions(Traditional )
+C create POST /blogs/1/posts posts path(1)
+R show GET /blogs/1/posts/99 post path(1, 99)
+U update PUT /blogs/1/posts/99 post path(1, 99)
+D destroy DELETE /blogs/1/posts/99 post path(1, 99)
+Modifiers(RESTFul )
+R index GET /blogs/1/posts posts path(1)
+R new GET /blogs/1/posts/new new post path(1)
+R edit GET /blogs/1/posts/99;edit edit post path(1, 99)
+post path(1, 99) and post path(:blog id => 1, :id => 99) are equivalent.
+Inside /blogs/1, the blog id can be omitted in the helper.
+In this case, post path and post path(:id => 99) (but not post path(99)) all work.
+Each path helper has a corresponding URL helper that returns the full URL.
+===========================================================================================

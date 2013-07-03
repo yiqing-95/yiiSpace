@@ -1,12 +1,18 @@
 <?php
 
+// set the smtp config for swiftMailer
+$smtpConfig = getSmtpConfig();
+
 // application components
 return array(
 
     //................{yii standard components}....................................................................
     'session' => array(
-        'class' => 'CHttpSession',
+        'class' => 'application.my.components.YsDbHttpSession',
         'sessionName' => 'yiiSpace',
+        'connectionID'=>'db',  // important !! if not set will use sqliteDb as storage .
+       // 'gCProbability'=>4  , // every 4 request will invoke the Session  GC 测试打开之
+       // 'timeout'=>120 ,
     ),
 
     /* uncomment the following to enable URLs in path-format
@@ -22,6 +28,18 @@ return array(
         ),
     ),*/
 
+    // 云存储时的情况 参考： https://github.com/andremetzen/yii-s3assetmanager
+    /**
+     * 通过该例子 看出 凡是可以设置baseUrl的组件 都可以指到某个指定的域名去！！
+     * 比如用bu() 方法得到的图像地址 如果request 组件的baseUrl是全域名路径 那么
+     * 图像地址会变成全域名情况 所以在类似图像地址输出上尽量用bu方法 这样如果是
+     * 多台服务器都有图像那么.....
+     *
+    'assetManager'=>array(
+     // 'baseUrl'=>'http:://www.xx.com'  多web应用时可以指定一个服务器 cdn??
+   ),
+    */
+
     //  use  MySQL database
     'db' => array(
         'class' => 'CDbConnection',
@@ -35,11 +53,26 @@ return array(
         //'schemaCachingDuration' => 108000,
         'tablePrefix' => '',
     ),
+    //  use  MySQL database
+    'db4apiDoc' => array(
+        'class' => 'CDbConnection',
+        'connectionString' => 'mysql:host=localhost;dbname=api_doc',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8',
+        'emulatePrepare' => true,
+        'enableParamLogging' => 1,
+        'enableProfiling' => 1,
+        //'schemaCachingDuration' => 108000,
+        'tablePrefix' => '',
+    ),
 
     'user' => array(
-        // 'class' => 'RWebUser',
+         'class' => 'application.my.components.YsWebUser',
         // enable cookie-based authentication
         'allowAutoLogin' => true,
+        // @see http://www.yiiframework.com/wiki/321/using-loginrequiredajaxresponse-to-solve-ajax-session-timeout
+        'loginRequiredAjaxResponse' => 'YII_LOGIN_REQUIRED',
     ),
 
     'errorHandler' => array(
@@ -52,11 +85,12 @@ return array(
         'routes' => array(
             array(
                 'class' => 'CFileLogRoute',
-                'levels' => 'error,warning ,info,trace',
+                'levels' => 'error,warning ,info',// 'error,warning ,info,trace',
             ),
 
             array(
                 'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                'enabled'=>YII_DEBUG,
                 'ipFilters' => array('*'),
             ),
         ),
@@ -64,6 +98,14 @@ return array(
 
     'cache'=>array(
         'class'=>'system.caching.CFileCache',
+    ),
+
+    'messages' => array (
+        'class'=>'application.components.ExPhpMessageSource',
+        // Pending on core: http://code.google.com/p/yii/issues/detail?id=2624
+        'extensionBasePaths' => array(
+            'giix' => 'ext.giix.messages', // giix messages directory.
+        ),
     ),
     //................{yii standard components /}....................................................................
 
@@ -95,15 +137,18 @@ return array(
         'class' => 'ext.file.CFile'
     ),
 
-    //触发器管理器
-    'triggerManager' => array(
-        'class' => 'application.common.components.LTriggerManager',
-        'triggers' => require(dirname(__FILE__) . '/triggers.php'),
-    ),
-
-
     'uploadStorage'=>array(
       'class'=>'application.components.YsUploadStorage'
+    ),
+
+    // 系统配置管理器
+    'sysConfig'=>array(
+        'class'=>'application.components.sysConfig.ESysConfig',
+        'formConfigs'=>array(
+            'test'=>'application.config.sysParams.formConfig.test',
+            'test1'=>'application.config.sysParams.formConfig.test2',
+            'system'=>'application.config.sysParams.formConfig.test',
+        ),
     ),
 
     //................{ components  special for this app}....................................................................
@@ -122,13 +167,28 @@ return array(
     ),
 
 
-    'foundation' => array(
-        "class" => "ext.foundation.components.Foundation"
+    'bootstrap' => array(
+        "class" => "ext.YiiBooster.components.Bootstrap"
     ),
 
     //互斥锁
     'mutex' => array(
         'class' => 'application.extensions.EMutex',
+    ),
+
+    //yii-mail
+    'mail' => array(
+        'class' => 'ext.yii-mail.YiiMail',
+        'transportType' => 'smtp',
+        'transportOptions'=>array(
+            'host'=>$smtpConfig['host'],
+            'username'=>$smtpConfig['username'], //yii_qing@163.com
+            'password'=>$smtpConfig['password'],         //yiqing
+            'port'=>$smtpConfig['port'],
+        ),
+        'viewPath' => 'application.views.mail',
+        'logging' => true,
+        'dryRun' => false
     ),
 
     'image'=>array(
@@ -138,5 +198,30 @@ return array(
         // ImageMagick setup path
         // 'params'=>array('directory'=>'/opt/local/bin'),
     ),
+
+
     //............{extension from yii repo /}................................................................
 );
+
+/**
+ * @return array
+ */
+function getSmtpConfig(){
+    $options = array(
+        array(
+            'host'=>'smtp.163.com',
+            'username'=>'yii_qing@163.com', // notice $msg->from must be this too!
+            'password'=>'yiqing',
+            'port'=>25
+        ),
+        /*
+        array(
+            'host'=>'smtp.163.com',
+            'username'=>'xxx@163.com',
+            'password'=>'xxx',
+            'port'=>25
+        ),*/
+    );
+    //shuffle($options);
+    return $options[array_rand($options)];
+}

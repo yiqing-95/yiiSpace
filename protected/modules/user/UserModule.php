@@ -8,7 +8,7 @@
  * @version $Id: UserModule.php 132 2011-10-30 10:45:01Z mishamx $
  */
 
-class UserModule extends CWebModule
+class UserModule extends CWebModule implements IUrlRewriteModule
 {
 	/**
 	 * @var int
@@ -267,4 +267,23 @@ class UserModule extends CWebModule
 	public function users() {
 		return User;
 	}
+
+    /**
+     * Method to return urlManager-parseable url rules
+     * @return array An array of urlRules for this object
+     * -------------------------------------------------------
+     * return array(
+     *  );
+     *----------------------------------------------------------
+     * 常用规则：
+     * 模块名和控制器同名：'forum/<action:\w+>'=>'forum/forum/<action>',
+     *
+     *----------------------------------------------------------
+     */
+    public static function getUrlRules()
+    {
+       return array(
+         'user/home'=>'user/user/home'
+       );
+    }
 }

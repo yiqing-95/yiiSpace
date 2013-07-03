@@ -87,8 +87,12 @@ class StatusController extends BaseStatusController
             $model->generateType();
 
             //echo   YiiUtil::getPathOfClass($model) ;  die(__METHOD__);
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()){
+                //$this->redirect(array('view', 'id' => $model->id));
+                echo CHtml::script('parent.refreshListOrGridView();');
+                exit;
+            }
+
         }
 
         $loggedInUser = Yii::app()->user->id;
@@ -173,9 +177,20 @@ class StatusController extends BaseStatusController
         $dataProvider->criteria = array(
             'condition'=>"profile={$user}" ,
         );
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+
+
+        if(Yii::app()->request->getIsAjaxRequest()){
+            $this->layout = false ;
+            $this->renderPartial('index', array(
+                'dataProvider' => $dataProvider,
+            ),false,true
+            );
+
+        }else{
+            $this->render('index', array(
+                'dataProvider' => $dataProvider,
+            ));
+        }
     }
 
     /**
@@ -280,6 +295,7 @@ class StatusController extends BaseStatusController
        // My::listView4sqlDataProvider($dp);
         $this->widget('zii.widgets.CListView',array(
             'id'=>'status-list',
+            'template'=>'{pager}{items}{pager}',
             'dataProvider'=>$dp,
             'itemView'=>'_statusView',
         ));

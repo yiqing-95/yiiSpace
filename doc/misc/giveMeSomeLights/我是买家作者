@@ -1,0 +1,17 @@
+以用户为中心,user表放在中间,关联其他的实体
+
+实体表 可以进行扩展 添加相关的应用实体
+
+关系表  主要包含4个表
+
+用户和模型关联表 比如: 张三 喜欢 IPOD   李四 想买 IPOD linktype="like/buy"
+
+模型模型关联表  比如商品评论关联 modela 商品 modelb 评论
+
+actionandmodel 页面模型关联表  tag关键字及实体关联表
+
+资源表  主要包含了 image ablum  image表包含了系统实体类关联的图片
+
+群组表  包含了group,topic,post userandgroup ,群组作为系统独立模块独立出来
+
+常用表  常有表从实体表中分离出来,放站点需要的表

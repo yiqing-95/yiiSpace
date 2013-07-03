@@ -5,16 +5,31 @@
  * Date: 12-8-13
  * Time: 下午4:00
  * To change this template use File | Settings | File Templates.
+ * ------------------------------------------------------------------------
+ * 上传文件统一用这个组件 不然文件存放很零散
+ * linux下 可以采用fastDfs 新版的客户端已经支持自定义fileId 功能
+ * @see http://code.google.com/p/my-fastdfs-client/（安装 fastDHT 分布式hash表组件）
+ * 如果想用那个 可以改造下该类予以支持 目前不考虑分布式存储
+ *
+ * ------------------------------------------------------------------------
+ * 文件还可以采取按日期存放 year/month  ...
+ * ------------------------------------------------------------------------
  */
 class YsUploadStorage extends CApplicationComponent
 {
 
     /**
+     * @var string
+     */
+    protected $savePathTemplate = 'base_path/module_id/user_id/';
+    /**
      * @var bool
      */
     public $autoCreateUploadDir = true;
-
-    protected $_tempUploadDir;
+    /**
+     * @var string
+     */
+    protected $_tempUploadDir ;
 
     /**
      * @static
@@ -165,6 +180,16 @@ class YsUploadStorage extends CApplicationComponent
     }
 
     /**
+     * @static
+     * @param int $uid
+     * @return string
+     * 获取特定用户的文件保存地址
+     */
+    public static function getUploadDir4user($uid=0){
+        return '';
+    }
+
+    /**
      * @param $path
      *
      * @return bool|string
@@ -277,7 +302,7 @@ class YsUploadStorage extends CApplicationComponent
      */
     public function genFileName($uid=0){
         $moduleId = $this->getCurrentModuleId();
-        $fileName = $this->hash($moduleId)."_{$uid}_".time();
+        $fileName = $this->hash($moduleId)."_{$uid}_".str_replace(array(' ','.'),'',microtime()) ;
         return $fileName;
     }
 
@@ -295,5 +320,9 @@ class YsUploadStorage extends CApplicationComponent
         }else{
             return $module->getId();
         }
+    }
+
+    public function getSaveToPath($uid=0){
+        return $this->getUploadDir(). DIRECTORY_SEPARATOR .$this->genFileName($uid);
     }
 }

@@ -1,0 +1,128 @@
+body {
+	background:#000;
+	padding:20px;
+	color:#fff;
+	font-size:12px;
+	font-family:"Trebuchet MS",Verdana,Arial,sans-serif;
+}
+
+h1 {
+	font-size:1.8em;
+	margin:10px 0;
+}
+
+#main {
+	width:986px;
+	margin:0 auto;
+}
+
+#images {
+	display:none;	
+}
+
+.main {
+	float:left;	
+}
+
+.panel {
+	float:left;
+	margin-left:12px;
+}
+
+.panel img {
+	border:none;
+	opacity:0.6;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter:alpha(opacity=60);
+    cursor:pointer;
+    border:10px solid #000;
+    margin-bottom:10px;
+    z-index:100;
+}
+
+.panel img:hover {
+	opacity:1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:alpha(opacity=100);
+    border:10px solid #fff;
+}
+
+.panel p {
+	margin:0;
+	padding:0 10px;	
+}
+
+.exposureTarget {
+	width:800px;
+	height:600px;
+	background-color:#111;	
+	background-image:url(res/loader.gif);
+	background-repeat:no-repeat;
+	background-position:center center;
+	padding:0;
+	margin:0;
+	position:relative;
+	overflow:hidden; 
+}
+
+.exposureWrapper {
+	position:absolute; 
+	top:0; 
+	left:0;
+}
+
+.exposureWrapper img {
+	cursor:pointer;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.exposureLoaded {
+	background-image:none;	
+}
+
+.caption {
+	text-align:center;
+	margin-top:12px;
+	font-size:24px;
+	font-style:italic;	
+}
+
+.extra {
+	text-align:center;	
+}
+
+.clear {
+	clear:both;	
+}
+
+.prev,
+.next {
+	position:relative;	
+}
+
+.label {
+	background:#333;
+	color:#fff;
+	padding:2px 6px;
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+
+p.info {
+	margin:40px auto;
+	text-align:center;	
+	width:600px;
+}
+
+.extra a,
+p.info a {
+	color:#006fc0;	
+}
+
+.extra a:hover, .extra a:active,
+p.info a:hover, p.info a:active {
+	color:#0084e7;	
+}

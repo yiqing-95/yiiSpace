@@ -5,24 +5,23 @@
  */
 ?>
 <?php
-echo "<?php\n";
-$label = $this->pluralize($this->class2name($this->modelClass));
-echo "\$this->breadcrumbs = array(
-	Yii::t('controller', '$label') => array('index'),
+echo "<?php\n
+\$this->breadcrumbs = array(
+	\$model->label(2) => array('index'),
 	GxHtml::valueEx(\$model),
 );\n";
 ?>
 
 $this->menu=array(
-	array('label'=>Yii::t('app', 'List') . ' <?php echo $this->modelClass; ?>', 'url'=>array('index')),
-	array('label'=>Yii::t('app', 'Create') . ' <?php echo $this->modelClass; ?>', 'url'=>array('create')),
-	array('label'=>Yii::t('app', 'Update') . ' <?php echo $this->modelClass; ?>', 'url'=>array('update', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>)),
-	array('label'=>Yii::t('app', 'Delete') . ' <?php echo $this->modelClass; ?>', 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>), 'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>Yii::t('app', 'Manage') . ' <?php echo $this->modelClass; ?>', 'url'=>array('admin')),
+	array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url'=>array('index')),
+	array('label'=>Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
+	array('label'=>Yii::t('app', 'Update') . ' ' . $model->label(), 'url'=>array('update', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>)),
+	array('label'=>Yii::t('app', 'Delete') . ' ' . $model->label(), 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>), 'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url'=>array('admin')),
 );
 ?>
 
-<h1><?php echo '<?php'; ?> echo Yii::t('app', 'View'); <?php echo '?>'; ?> <?php echo $this->modelClass . " #<?php echo GxHtml::encode(GxHtml::valueEx(\$model)); ?>"; ?></h1>
+<h1><?php echo '<?php'; ?> echo Yii::t('app', 'View') . ' ' . GxHtml::encode($model->label()) . ' ' . GxHtml::encode(GxHtml::valueEx($model)); ?></h1>
 
 <?php echo '<?php'; ?> $this->widget('zii.widgets.CDetailView', array(
 	'data' => $model,
@@ -36,7 +35,7 @@ foreach ($this->tableSchema->columns as $column)
 
 <?php foreach (GxActiveRecord::model($this->modelClass)->relations() as $relationName => $relation): ?>
 <?php if ($relation[0] == GxActiveRecord::HAS_MANY || $relation[0] == GxActiveRecord::MANY_MANY): ?>
-<h2><?php echo $this->pluralize($this->class2name($relation[1])); ?></h2>
+<h2><?php echo '<?php'; ?> echo GxHtml::encode($model->getRelationLabel('<?php echo $relationName; ?>')); ?></h2>
 <?php echo "<?php\n"; ?>
 	echo GxHtml::openTag('ul');
 	foreach($model-><?php echo $relationName; ?> as $relatedModel) {
