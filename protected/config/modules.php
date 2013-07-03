@@ -169,5 +169,8 @@ return array(
 
     // api 平台管理
     'apiPlatform',
+
+    // api文档
+    'apiDoc',
 );
 

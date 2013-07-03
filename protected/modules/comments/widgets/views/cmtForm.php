@@ -48,7 +48,7 @@
         <?php echo $form->labelEx($newComment, 'verifyCode'); ?>
         <div>
             <?php $this->widget('CCaptcha', array(
-            'captchaAction' => Yii::app()->urlManager->createUrl(CommentsModule::CAPTCHA_ACTION_ROUTE),
+            'captchaAction' => CommentsModule::CAPTCHA_ACTION_ROUTE,
         )); ?>
             <?php echo $form->textField($newComment, 'verifyCode'); ?>
 

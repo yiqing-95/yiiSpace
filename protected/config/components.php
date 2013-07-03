@@ -53,6 +53,19 @@ return array(
         //'schemaCachingDuration' => 108000,
         'tablePrefix' => '',
     ),
+    //  use  MySQL database
+    'db4apiDoc' => array(
+        'class' => 'CDbConnection',
+        'connectionString' => 'mysql:host=localhost;dbname=api_doc',
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8',
+        'emulatePrepare' => true,
+        'enableParamLogging' => 1,
+        'enableProfiling' => 1,
+        //'schemaCachingDuration' => 108000,
+        'tablePrefix' => '',
+    ),
 
     'user' => array(
          'class' => 'application.my.components.YsWebUser',

@@ -9356,3 +9356,1433 @@ Stack trace:
 REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/images/loader.gif
 HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/galleriffic-yiispace.css
 ---
+2013/06/14 20:30:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/14 20:30:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/14 20:31:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/b1c0dfc7/css/images/loader.gif"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/b1c0dfc7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/images/loader.gif
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/galleriffic-yiispace.css
+---
+2013/06/16 17:21:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/16 17:21:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/16 17:21:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/06/16 17:21:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/16 17:21:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/b1c0dfc7/css/images/loader.gif"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/b1c0dfc7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/images/loader.gif
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/galleriffic-yiispace.css
+---
+2013/06/16 17:22:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/1
+---
+2013/06/16 17:22:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/1
+---
+2013/06/16 17:22:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/16 17:22:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/16 17:22:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/b1c0dfc7/css/images/loader.gif"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/b1c0dfc7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/images/loader.gif
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/galleriffic-yiispace.css
+---
+2013/06/16 17:22:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl3/style.css
+---
+2013/06/16 17:22:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/16 17:22:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/16 17:22:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl2/style.css
+---
+2013/06/17 08:11:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/17 08:11:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/17 08:11:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/user/space/u/3
+---
+2013/06/17 08:11:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/17 08:11:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "images" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/images/u...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/images/user/avatars/5.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/user/index
+---
+2013/06/17 08:12:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/06/17 08:12:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "uploads/status/1345009466_1345009466.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/status/...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/uploads/status/1345009466_1345009466.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/17 08:12:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007357_1345007357.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007357_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007357_1345007357.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/17 08:12:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007278_1345007278.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007278_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007278_1345007278.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/17 08:12:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007223_1345007223.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007223_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007223_1345007223.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/17 08:12:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl3/style.css
+---
+2013/06/17 08:12:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl2/style.css
+---
+2013/06/17 08:12:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl3/style.css
+---
+2013/06/18 07:42:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CDbHttpSession.php(174): CModule->getComponent('db')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CDbHttpSession.php(198): CDbHttpSession->getDbConnection()
+#5 [internal function]: CDbHttpSession->openSession('d:/wamp/tmp', 'yiiSpace')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CHttpSession.php(118): session_start()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CHttpSession.php(92): CHttpSession->open()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CHttpSession->init()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(201): CModule->getComponent('session')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\auth\CWebUser.php(199): CWebApplication->getSession()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CWebUser->init()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#13 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php(37): CModule->__get('user')
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(263): YsWebApplication->beforeControllerAction(Object(SiteController), Object(CInlineAction))
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('')
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#23 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/
+---
+2013/06/18 11:35:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] ����Ŀ�����������ܾ����޷����ӡ�
+' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CDbHttpSession.php(174): CModule->getComponent('db')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CDbHttpSession.php(198): CDbHttpSession->getDbConnection()
+#5 [internal function]: CDbHttpSession->openSession('d:/wamp/tmp', 'yiiSpace')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CHttpSession.php(118): session_start()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CHttpSession.php(92): CHttpSession->open()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CHttpSession->init()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(201): CModule->getComponent('session')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\auth\CWebUser.php(199): CWebApplication->getSession()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CWebUser->init()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#13 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php(37): CModule->__get('user')
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(263): YsWebApplication->beforeControllerAction(Object(SiteController), Object(CInlineAction))
+#15 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('')
+#16 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#19 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#20 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#21 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#22 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#23 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/
+---
+2013/06/19 01:38:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:38:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:38:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/user/space/u/1
+---
+2013/06/19 01:38:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl3/style.css
+---
+2013/06/19 01:38:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/1
+---
+2013/06/19 01:38:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/19 01:39:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/b1c0dfc7/css/images/loader.gif"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/b1c0dfc7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/images/loader.gif
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/assets/b1c0dfc7/css/galleriffic-yiispace.css
+---
+2013/06/19 01:39:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/06/19 01:39:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/1
+---
+2013/06/19 01:39:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/06/19 01:39:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:39:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:39:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/19 01:39:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:39:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/06/19 01:39:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/19 01:41:20 [error] [php] include(ControllerActionEvent.php): failed to open stream: No such file or directory (D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\back\SysMenuController.php(234): spl_autoload_call()
+#1 unknown(0): SysMenuController->actionDelete()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(133): SysMenuController->runAction()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CInlineFilter.php(58): SysMenuController->filterAccessControl()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): SysMenuController->runActionWithFilters()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): SysMenuController->run()
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsAdminWebApplication->runController()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): YsAdminWebApplication->processRequest()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsAdminWebApplication->run()
+#16 unknown(0): WebApplicationEndBehavior->runEnd()
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array()
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->__call()
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/admin.php/sysMenu/delete/id/11?ajax=sys-menu-items-view
+2013/06/19 01:41:28 [error] [php] include(ControllerActionEvent.php): failed to open stream: No such file or directory (D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\back\SysMenuController.php(234): spl_autoload_call()
+#1 unknown(0): SysMenuController->actionDelete()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(133): SysMenuController->runAction()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CInlineFilter.php(58): SysMenuController->filterAccessControl()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): SysMenuController->runActionWithFilters()
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): SysMenuController->run()
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsAdminWebApplication->runController()
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): YsAdminWebApplication->processRequest()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsAdminWebApplication->run()
+#16 unknown(0): WebApplicationEndBehavior->runEnd()
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array()
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->__call()
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/admin.php/sysMenu/delete/id/11?ajax=sys-menu-items-view
+2013/06/21 06:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/21 06:35:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/21 06:35:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/21 06:35:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/user/space/u/3
+---
+2013/06/21 06:35:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/user/space/u/3
+---
+2013/06/21 06:35:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl2/style.css
+---
+2013/06/21 06:35:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/3
+---
+2013/06/21 06:35:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/3
+---
+2013/06/21 06:35:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/21 06:35:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member/u/3
+---
+2013/06/21 06:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/21 06:36:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/21 06:36:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "uploads/status/1345009466_1345009466.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('uploads/status/...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/uploads/status/1345009466_1345009466.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/21 06:36:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007357_1345007357.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007357_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007357_1345007357.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/21 06:36:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007278_1345007278.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007278_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007278_1345007278.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/21 06:36:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1345007223_1345007223.jpg"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1345007223_1345...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1345007223_1345007223.jpg
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/user/home
+---
+2013/06/21 06:36:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/flower/style.css
+---
+2013/06/21 06:36:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/baby_girls/style.css
+---
+2013/06/21 06:36:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/3ab23cf7/js/jquery.toggle.buttons.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/3ab23cf7...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/3ab23cf7/js/jquery.toggle.buttons.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/album/member
+---
+2013/06/21 06:36:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/06/21 07:15:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/21 07:15:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/06/21 07:15:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/07/03 01:48:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "1"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/07/03 01:48:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "bootstrap" 动作.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/girl4/style.css
+---
+2013/07/03 01:48:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/default/login
+---
+2013/07/03 01:48:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/default/index
+---
+2013/07/03 01:48:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:49:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:49:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:49:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:49:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:51:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'api_doc.sys_hook' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `sys_hook`.
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsHookService.php (30)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (104)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php (83)
+2013/07/03 01:51:46 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "SysHook" 对应的 table "sys_hook".' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(SysHook))
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsHookService.php(30): CActiveRecord->findAll(Object(CDbCriteria))
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php(104): YsHookService::getHooks('app', 'createUrl')
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\YsWebApplication.php(83): YsWebApplication->getCreateUrlHooks()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\gii\GiiModule.php(126): YsWebApplication->createUrl('gii/default/log...')
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(90): GiiModule->init()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\YiiBase.php(206): CModule->__construct('gii', NULL, Array)
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(282): YiiBase::createComponent('system.gii.GiiM...', 'gii', NULL, Array)
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(337): CModule->getModule('gii')
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('gii/giixModel/i...')
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/giixModel/i...')
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#16 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#20 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/gii/giixModel/index
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/module/index
+---
+2013/07/03 01:52:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/giixModel/index
+---
+2013/07/03 01:52:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:55:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:55:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:55:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:57:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:57:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:58:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:58:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:59:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:59:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:59:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:59:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
+2013/07/03 01:59:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "assets/10099fdf/js/tooltip.js"。' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/10099fdf...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
+---
