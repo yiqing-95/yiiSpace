@@ -1,0 +1,89 @@
+参考：
+https://github.com/jeromeetienne/MicroCache.js/blob/master/microcache.js
+http://www.dustindiaz.com/javascript-cache-provider
+https://github.com/ded/Kizzy
+
+
+
+/**
+* Micro Cache
+* - a micro library to handle a inmemory cache
+* - works in node and browser.
+*
+* @tags inmemory, keyvalue, cache, node, browser
+*/
+var MicroCache	= function(){
+var _values	= {};
+return {
+get	: function(key){ return _values[key];	},
+contains: function(key){ return key in _values;	},
+remove	: function(key){ delete _values[key];	},
+set	: function(key, value){	_values[key] = value;},
+values	: function(){ return _values;	},
+getSet	: function(key, value){
+if( !this.contains(key) ){
+this.set(key, typeof value == 'function' ? value() : value )
+}
+return this.get(key);
+}
+}
+}
+
+
+// export in common js
+if( typeof module !== "undefined" && ('exports' in module)){
+module.exports	= MicroCache;
+}
+
+//------------------------------------------------------------------------------------
+function CacheProvider() {
+  // values will be stored here
+  this._cache = {};
+}
+
+try {
+  CacheProvider.hasLocalStorage = ('localStorage' in window) && window['localStorage'] !== null;
+} catch (ex) {
+  CacheProvider.hasLocalStorage = false;
+}
+
+if (CacheProvider.hasLocalStorage) {
+  Storage.prototype.setObject = function(key, value) {
+    this.setItem(key, JSON.stringify(value));
+  };
+
+
+  Storage.prototype.getObject = function(key) {
+    return JSON.parse(this.getItem(key));
+  };
+}
+
+//--------------------------------------
+var cache = new CacheProvider;
+
+
+window.getElementsByClassName = getElementsByClassName || function(c) {
+  var reg = cache.get(c) || cache.set(c, new RegExp("(?:^|\\s+)" + c + "(?:\\s+|$)"));
+  var elements = document.getElementsByTagName('*');
+  var results = [];
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i].className.match(reg)) {
+      results.push(elements[i]);
+    }
+  }
+  return results;
+};
+
+var i18nCache = new CacheProvider;
+
+
+if (i18nCache.get('topnav')) {
+  $('#nav').html(i18nCache.get('topnav'));
+} else {
+  ajax('top-nav.tmpl', function(html) {
+    i18nCache.set('topnav', html);
+    $('#nav').html(i18nCache.get('topnav'));
+  });
+}
+
+
