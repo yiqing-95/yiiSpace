@@ -10786,3 +10786,180 @@ Stack trace:
 REQUEST_URI=/my/MyGithubProjects/yiiSpace/assets/10099fdf/js/tooltip.js
 HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/gii/model/index
 ---
+2013/07/03 08:47:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'æ— æ³•è§£æžè¯·æ±‚ "api/jsonRpc/module/test/method/getTest2Service"ã€‚' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('api/jsonRpc/mod...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/api/jsonRpc/module/test/method/getTest2Service
+---
+2013/07/03 08:47:59 [error] [php] fopen(http://localhost/my/MyGithubProjects/yiiSpace/api/jsonRpc/module/test/method/getTest2Service): failed to open stream: HTTP request failed! HTTP/1.0 404 Not Found
+ (D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\vendors\json_rpc\jsonRPCClient.php:132)
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(165): jsonRPCClient->helloTo()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): Test1Controller->actionTestRpcServiceCall()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): Test1Controller->runAction()
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): Test1Controller->runActionWithFilters()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): Test1Controller->run()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): YsWebApplication->runController()
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): YsWebApplication->processRequest()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): YsWebApplication->run()
+#9 unknown(0): WebApplicationEndBehavior->runEnd()
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array()
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->__call()
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd()
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/testRpcServiceCall
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\vendors\json_rpc\jsonRPCClient.php (132)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php (165)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php (165)
+2013/07/03 08:48:34 [info] [application] TestModule::onEndRequest - test handler
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\TestModule.php (88)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventRegistry.php (234)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventBridgeBehavior.php (72)
+2013/07/03 08:57:58 [info] [application] TestModule::onEndRequest - test handler
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\TestModule.php (88)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventRegistry.php (234)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventBridgeBehavior.php (72)
+2013/07/03 08:57:58 [error] [exception.CException] exception 'CException' with message 'yyy' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\services\Test2Service.php:19
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(179): Test2Service->helloTo('Test1Controller...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): Test1Controller->actionTestService2()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('testService2')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('test1/testServi...')
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#9 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#13 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/testService2
+---
+2013/07/05 05:28:50 [info] [application] TestModule::onEndRequest - test handler
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\TestModule.php (88)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventRegistry.php (234)
+in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\extensions\static-events\EventBridgeBehavior.php (72)
+2013/07/05 05:28:50 [error] [exception.CException] exception 'CException' with message 'yyy' in D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\modules\test\services\Test2Service.php:19
+Stack trace:
+#0 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\front\Test1Controller.php(179): Test2Service->helloTo('Test1Controller...')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): Test1Controller->actionTestService2()
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('testService2')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('test1/testServi...')
+#7 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#9 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#11 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#12 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#13 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/test1/testService2
+---
+2013/07/09 10:45:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'æ— æ³•è§£æžè¯·æ±‚ "1"ã€‚' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/07/09 10:47:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'æ— æ³•è§£æžè¯·æ±‚ "1"ã€‚' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('1')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#3 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#5 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#6 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#7 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/1
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/
+---
+2013/07/09 10:47:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ç³»ç»Ÿæ— æ³•æ‰¾åˆ°è¯·æ±‚çš„ "bootstrap" åŠ¨ä½œ.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php:483
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(270): CController->missingAction('bootstrap')
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('bootstrap')
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('public/bootstra...')
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#5 [internal function]: WebApplicationEndBehavior->runEnd('front')
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): CComponent->__call('runEnd', Array)
+#8 D:\wamp\www\my\MyGithubProjects\yiiSpace\index.php(47): YsWebApplication->runEnd('front')
+#9 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/public/bootstrap/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/public/bootstrap/boottheme1/style.css
+---
+2013/07/09 11:03:12 [error] [exception.CDbException] SQLSTATE[HY000] [2002] ÓÉÓÚÄ¿±ê¼ÆËã»ú»ý¼«¾Ü¾ø£¬ÎÞ·¨Á¬½Ó¡£
+
+2013/07/09 11:03:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php:388
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(439): CModule->getComponent('db')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\back\MenuBuilderController.php(16): CActiveRecord->find('group_code=:gro...', Array)
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): MenuBuilderController->actionInitAjax()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('initAjax')
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('menuBuilder/ini...')
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#16 [internal function]: WebApplicationEndBehavior->runEnd('back')
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): CComponent->__call('runEnd', Array)
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->runEnd('back')
+#20 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/admin.php/menuBuilder/initAjax?_=1373367781960
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/admin.php/menuBuilder
+---
+2013/07/09 11:04:23 [error] [exception.CDbException] SQLSTATE[HY000] [2002] ÓÉÓÚÄ¿±ê¼ÆËã»ú»ý¼«¾Ü¾ø£¬ÎÞ·¨Á¬½Ó¡£
+
+2013/07/09 11:04:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection.' in D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php:388
+Stack trace:
+#0 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(439): CModule->getComponent('db')
+#4 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(634): CApplication->getDb()
+#5 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(667): CActiveRecord->getDbConnection()
+#6 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\db\ar\CActiveRecord.php(1455): CActiveRecord->getCommandBuilder()
+#7 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\controllers\back\MenuBuilderController.php(16): CActiveRecord->find('group_code=:gro...', Array)
+#8 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\actions\CInlineAction.php(49): MenuBuilderController->actionInitAjax()
+#9 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('initAjax')
+#13 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('menuBuilder/ini...')
+#14 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 D:\wamp\www\my\MyGithubProjects\yiiSpace\protected\components\WebApplicationEndBehavior.php(32): CApplication->run()
+#16 [internal function]: WebApplicationEndBehavior->runEnd('back')
+#17 D:\wamp\bin\php\php5.3.8\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#18 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): CComponent->__call('runEnd', Array)
+#19 D:\wamp\www\my\MyGithubProjects\yiiSpace\admin.php(30): YsAdminWebApplication->runEnd('back')
+#20 {main}
+REQUEST_URI=/my/MyGithubProjects/yiiSpace/admin.php/menuBuilder/initAjax?_=1373367861771
+HTTP_REFERER=http://localhost/my/MyGithubProjects/yiiSpace/admin.php/menuBuilder
+---

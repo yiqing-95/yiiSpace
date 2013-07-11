@@ -16,6 +16,7 @@ class Test2Service implements ITestService
      */
     public function helloTo($param = '')
     {
-       return 'yes '.$param;
+        throw new CException('yyy');
+      // return 'yes '.$param;
     }
 }

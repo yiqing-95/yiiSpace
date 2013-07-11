@@ -5,6 +5,9 @@
 class Test1Controller extends Controller
 {
 
+    public function actionKizzy(){
+        $this->render('kizzy');
+    }
 
     public function actionJqSimpleMenu(){
         $this->render('menu/jqSimpleMenu');
