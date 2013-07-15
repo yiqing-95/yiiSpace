@@ -6,46 +6,18 @@
  * Time: 下午6:55
  * To change this template use File | Settings | File Templates.
  * @see http://wwwendt.de/tech/dynatree/doc/samples.html
- * -----------------------------------------
- * how to:
- * dynamic change the skin:
- *<link href="../src/skin/ui.dynatree.css" rel="stylesheet" type="text/css" id="skinSheet">
- * $("#skinCombo")
- *       .val(0) // set state to prevent caching
- *       .change(function(){
- *       var href = "../src/" + $(this).val() + "/ui.dynatree.css" + "?reload=" + new Date().getTime();
- *          $("#skinSheet").attr("href", href);
- *       });
- * -----------------------------------------
  */
 class JFancyTree extends CWidget
 {
 
     /**
-     * @param bool $autoGenerate
-     * @return string
+     * 支持的皮肤
      */
-    public function getId($autoGenerate = true)
-    {
-        $id = parent::getId($autoGenerate);
-        if ($this->startsWith($id, 'yw')) {
-            return __CLASS__ . substr($id, 2);
-        }
-        return $id;
-    }
-
-    /**
-     * @param $h
-     * @param $n
-     * @return bool
-     * if $h  stars with $n
-     *
-     */
-    protected function startsWith($h, $n)
-    {
-        return (false !== ($i = strrpos($h, $n)) &&
-            $i === strlen($h) - strlen($n));
-    }
+    const SKIN_WIN7 = 'win7';
+    const SKIN_WIN8 = 'win8';
+    const SKIN_XP = 'xp';
+    const SKIN_LION = 'lion';
+    const SKIN_VISTA = 'vista';
 
     /**
      * @var CClientScript
@@ -55,25 +27,13 @@ class JFancyTree extends CWidget
     /**
      * @var bool
      */
-    public $debug;
+    public $debug = YII_DEBUG;
 
     /**
      * @var string
      */
     public $container;
 
-    /**
-     * @var bool
-     */
-    protected $needClose = false;
-   /**
-    * @var array
-    */
-    public $htmlOptions = array();
-    /**
-     * @var string
-     */
-    public $tagName = 'div';
 
     /**
      * @var string
@@ -87,7 +47,15 @@ class JFancyTree extends CWidget
      * @var string
      * currently there are two skin one is basic(default) another is vista
      */
-    public $skin = 'vista';
+    public $skin = self::SKIN_VISTA;
+
+    /**
+     * @var array|string
+     * array('dnd','persistent'),
+     * 'dnd'
+     * 'table,dnd'
+     */
+    public $extensions = array();
 
     /**
      * @var array|string
@@ -114,21 +82,10 @@ class JFancyTree extends CWidget
      */
     public function init()
     {
-        if (empty($this->container) || is_string($this->content)) {
-            //throw new CException('want to use this widget ? you must give an container id which tree will display in ');
-            $this->container = '#'.$this->getId();
-
-            $this->needClose = true;
-            echo CHtml::openTag($this->tagName,$this->htmlOptions)."\n";
-        }
         //  most of places use it so make it as instance variable and for intelligence tips from IDE
         $this->cs = Yii::app()->getClientScript();
-
         parent::init();
 
-        if (!isset($this->debug)) {
-            $this->debug = defined(YII_DEBUG) ? YII_DEBUG : true;
-        }
     }
 
 
@@ -140,12 +97,14 @@ class JFancyTree extends CWidget
         $this->publishAssets()
             ->registerClientScripts();
 
+        /*
         if(is_string($this->content)){
             echo $this->content;
         }
         if($this->needClose == true){
             echo CHtml::closeTag($this->tagName)."\n";
         }
+        */
     }
 
 
@@ -171,28 +130,63 @@ class JFancyTree extends CWidget
      */
     public function registerClientScripts()
     {
-
-
         //> .register js file;
         $this->cs->registerCoreScript('jquery')
-            ->registerScriptFile($this->baseUrl .
-            (($this->debug == true) ? '/jquery/jquery-ui.custom.js' : '/jquery/jquery-ui.custom.min.js'))
-            ->registerScriptFile($this->baseUrl . '/jquery/jquery.cookie.js')
+        ->registerCoreScript('jquery.ui');
 
-            ->registerCssFile($this->baseUrl . "/src/{$skinDir}/ui.dynatree.css")
-            ->registerScriptFile($this->baseUrl . '/src/jquery.dynatree.js');
+        $this->registerSkinCssFiles();
+
+        $this->cs->registerScriptFile($this->baseUrl.'/src/jquery.fancytree.js');
+
+        $this->registerExtensionScriptFiles();
+
+
+        if(empty($this->container)){
+            // 想手动用js来实例化插件
+            return ;
+        }
 
         $jsCode = '';
-
-
-        $options = CJavaScript::encode($this->options);
+        $options =  CJavaScript::encode($this->options);
         //>  the js code for setup
         $jsCode .= <<<SETUP
-         $("{$this->container}").dynatree({$options});
+         $("{$this->container}").fancytree({$options});
 SETUP;
-
         //> register jsCode
         $this->cs->registerScript(__CLASS__ . '#' . $this->getId(), $jsCode, CClientScript::POS_READY);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function registerSkinCssFiles(){
+       $skinJsUrl = $this->baseUrl.'/src/skin-'.$this->skin.'/ui.fancytree.css';
+        $this->cs->registerCssFile($skinJsUrl);
+        return $this ;
+    }
+
+    /**
+     * @return $this
+     * @throws InvalidArgumentException
+     */
+    protected function registerExtensionScriptFiles(){
+        if(!empty($this->extensions)){
+            $extensionNames = array();
+            if(is_string($this->extensions)){
+                $extensionNames = explode(',',$this->extensions);
+                $extensionNames = array_map('trim',$extensionNames);
+            }elseif(is_array($this->extensions)){
+                $extensionNames = $this->extensions;
+            }else{
+                throw new InvalidArgumentException('extensions should be a array or string type ');
+            }
+            // we suppose the $extensionNames is a array now:
+            foreach($extensionNames as $extensionName){
+                $this->cs->registerScriptFile($this->baseUrl."/src/jquery.fancytree.{$extensionName}.js");
+            }
+        }
         return $this;
     }
 
