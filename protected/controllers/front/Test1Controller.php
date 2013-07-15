@@ -5,6 +5,9 @@
 class Test1Controller extends Controller
 {
 
+    public function actionJsTemplate(){
+        $this->render('jsTemplate');
+    }
 
     public function actionJqSimpleMenu(){
         $this->render('menu/jqSimpleMenu');
