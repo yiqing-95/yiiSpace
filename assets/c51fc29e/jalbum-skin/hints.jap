@@ -1,0 +1,37 @@
+# Galleriffic
+# http://www.twospy.com/galleriffic
+mediaRSS=false
+style=black.css
+imageSize=544x544
+highQualityScaling=true
+slides=false
+imageOrdering=OrderByName
+imageLinking=LinkOriginalsViaScaled
+sameDirectory=false
+widgetInjection=true
+class=class se.datadosen.jalbum.AlbumBean
+cols=1
+rows=1200
+subdirs=true
+thumbSize=90x90
+qualityPercent=85
+urlEncode=false
+directoriesFirst=false
+textEncoding=UTF-8
+writeUTF8=true
+appendImages=true
+metaData=true
+copyOriginals=true
+dateFormat=MMMM d, yyyy h\:mm a
+user.filter3=class\=FixedShapeFilter prescale thumbnails
+skin.numThumbs=18
+skin.fixedShape=true
+skin.enableTopPager=false
+skin.enableBottomPager=true
+skin.renderSSControls=true
+skin.autoStart=false
+skin.preloadAhead=10
+skin.enableHistory=true
+skin.inactiveThumbOpacity=0.67
+skin.enableDownload=false
+skin.thumbsLocation=top

@@ -5,7 +5,7 @@
  * Date: 12-11-24
  * Time: 下午9:28
  * To change this template use File | Settings | File Templates.
- * ----------------------------------------------------------------------
+ * -----------------------------------------------------ix-----------------
  * 关于json_rpc   请参考：http://json-rpc.org/wiki/implementations
  * 以及本项目文件夹：doc/misc/codeReference/zabbix_php_api_v1_0
  * ................................................................
@@ -15,6 +15,12 @@
  * fastRpc 也可以跨应用跨语言通讯 配合serviceProxy在多个大型项目中被采用
  * 请参考 [服务化的网站架构](http://www.slideshare.net/thinkinlamp/ss-6168750)
  * ----------------------------------------------------------------------
+ * 2014年：
+ * 远程rpc的实现 在module中的实现：
+ * 将仿形进行到底 每个模块也提供api/rpc 实现[moduleId]/api/rpc
+ * ...............................
+ * 还有一种实现通过Yii::app()->runController  实现内部调用 用jsonRpc实现外部调用
+ *
  */
 class YsService extends CApplicationComponent
 {

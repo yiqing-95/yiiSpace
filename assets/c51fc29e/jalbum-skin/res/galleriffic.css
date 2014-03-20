@@ -1,0 +1,166 @@
+div#container {
+	overflow: hidden;
+}
+div.content {
+	display: none;
+	clear: both;
+}
+div.content a, div.navigation a {
+	text-decoration: none;
+}
+div.content a:hover, div.content a:active {
+	text-decoration: underline;
+}
+div.controls {
+	margin-top: 5px;
+	height: 23px;
+}
+div.controls a {
+	padding: 5px;
+}
+div.ss-controls {
+	float: left;
+}
+div.nav-controls {
+	float: right;
+}
+div.slideshow-container {
+	position: relative;
+	clear: both;
+}
+div.loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('images/loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+div.slideshow span.image-wrapper {
+	display: block;
+	position: absolute;
+	top: 30px;
+	left: 0;
+}
+div.slideshow a.advance-link {
+	display: block;
+	text-align: center;
+}
+div.slideshow a.advance-link:hover,
+div.slideshow a.advance-link:active,
+div.slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+div.slideshow a.advance-link:focus {
+	outline: none;
+}
+div.slideshow img {
+	/* vertical-align: middle; */
+	border: 1px solid #ccc;
+}
+div.caption-container {
+	position: relative;
+	margin-top: 30px;
+}
+span.image-caption {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+div.caption {
+	padding: 0 12px;
+}
+div.download {
+	padding-top:12px;
+}
+div.navigation a.pageLink {
+	display: block;
+	position: relative;
+	float: left;
+	margin: 2px;
+	width: 16px;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+div.navigation a.pageLink:focus {
+	outline: none;
+}
+div.navigation a.prev {
+	background-image: url(images/prevPageArrow.gif);
+}
+div.navigation a.next {
+	background-image: url(images/nextPageArrow.gif);
+}
+ul.thumbs {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin: 2px;
+	list-style: none;
+}
+a.thumb {
+	padding: 1px;
+	display: block;
+}
+ul.thumbs li.selected a.thumb {
+	background: #000;
+}
+a.thumb:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+	display: block;
+}
+div.pagination {
+	padding: 2px 0 2px 3px;
+}
+div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+	position: relative;
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+div.pagination a:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+div.pagination span.current {
+	font-weight: bold;
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
+}
+div.pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+
+div.gallery-gutter {
+	clear: both;
+	padding-bottom: 20px;
+}
+#folders {
+	float: left;
+	position: relative;
+	left: 50%;
+}
+#folders ul.thumbs {
+    position: relative;
+	left: -50%;
+}
+#folders ul.thumbs li {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 10px 20px;
+	text-align: center;
+}

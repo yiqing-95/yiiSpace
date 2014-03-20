@@ -1,5 +1,6 @@
 <?php
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+Yii::setPathOfAlias('yupe', dirname(__FILE__) . '/../modules/yupe/');
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',

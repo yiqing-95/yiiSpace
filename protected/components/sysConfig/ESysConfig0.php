@@ -17,7 +17,6 @@ class ESysConfig0 extends CApplicationComponent implements IteratorAggregate, Ar
 
     public static function addIncludes()
     {
-
     }
 
     public static function removeIncludes()

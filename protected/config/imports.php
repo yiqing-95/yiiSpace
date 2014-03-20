@@ -31,6 +31,12 @@ return array(
     'application.my.components.*',
     'application.my.interfaces.*',
 	
-	// Badger
+	// Badgeru
     'application.modules.badger.models.*',
+
+    // yupe
+    'application.modules.yupe.models.*',
+    'application.modules.yupe.widgets.*',
+    'application.modules.yupe.controllers.*',
+    'application.modules.yupe.extensions.tagcache.*',
 );

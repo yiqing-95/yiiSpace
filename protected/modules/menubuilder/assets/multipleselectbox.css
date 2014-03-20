@@ -1,0 +1,81 @@
+.MultipleSelectBox {
+	border: 1px solid #aaa;
+	height: 200px;
+	list-style-type: none;
+	margin: 0;
+	overflow: auto;
+	padding: 1px 0;
+	width: 500px;
+	/* corner */
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+}
+
+.MultipleSelectBox.selecting {
+	border: 1px solid black;
+}
+
+.MultipleSelectBox li {
+	border: 1px solid white;
+	cursor: pointer;
+	padding: 0 3px;
+}
+
+.MultipleSelectBox li.disabled {
+	color: gray;
+	font-style: italic;
+}
+
+.MultipleSelectBox li.optgroup {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.MultipleSelectBox li.selected {
+	border: 1px solid #F39814;
+	background-color: #F39814;
+}
+
+.MultipleSelectBox li.selecting {
+	border: 1px dotted black;
+}
+
+.MultipleSelectBox.vertical li.optgroupitem {
+	margin-left: 30px;
+}
+
+/* horizontal mode */
+.MultipleSelectBox.horizontal {
+	height: auto;
+	white-space: nowrap;
+}
+
+.MultipleSelectBox.horizontal li {
+	display: inline-block;
+	/* for IE6 and IE7 */
+	*display: inline;
+	vertical-align: middle;
+}
+
+.MultipleSelectBox.horizontal li.optgroup {
+	margin-bottom: 10px;
+}
+
+/* Ultimate CSS Gradient Generator (Orange 3D) */
+.MultipleSelectBox li.selected {
+	background: #ffa84c;
+	background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffa84c), color-stop(100%,#ff7b0d));
+	background: -webkit-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+	background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+	background: -ms-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+	background: linear-gradient(to bottom, #ffa84c 0%,#ff7b0d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d',GradientType=0 );
+	/* for IE6 */
+	_background: #F39814;
+}

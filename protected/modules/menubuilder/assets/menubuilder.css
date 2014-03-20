@@ -1,0 +1,116 @@
+input[readonly]
+{
+ color: #d3d3d3;
+}
+
+span.emb-nestedsaved, span.emb-nestedsaved-warning, p.hint {
+     font-size: 80%;
+}
+
+span.emb-nestedsaved-warning {
+    color: #ee5f5b;
+}
+
+div.emb-createdinfo, span.emb-rsinfo
+{
+   font-size: 70%;
+   color: #808080;
+}
+
+
+div.row.icondropdown ul.dropdown-menu.MultipleSelectBox {
+    margin-left:110px;
+}
+
+ul.dropdown-menu.MultipleSelectBox {
+    position: relative;
+    width: 180px;
+}
+
+div.emb-locked.emb-invisiblemenu
+{
+    background-color: #ee5f5b;
+
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    -webkit-background-size: 30 30px;
+    -moz-background-size: 30px 30px;
+    -o-background-size: 30px 30px;
+    background-size: 30px 30px;
+}
+
+
+.dd3-content.emb-invisiblemenuitem, .dd3-handle.emb-invisiblemenu
+{
+    background: #f2dede;
+}
+
+div.emb-locked {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 0;
+    cursor: not-allowed;
+    width: 30px;
+    height: 28px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid #d55552;
+    background: #ee5f5b;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    background-image: -moz-linear-gradient(top, #ee5f5b, #d55552);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#d55552));
+    background-image: -webkit-linear-gradient(top, #ee5f5b, #d55552);
+    background-image: -o-linear-gradient(top, #ee5f5b, #d55552);
+    background-image: linear-gradient(to bottom, #ee5f5b, #d55552);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#d55552', GradientType=0);
+
+}
+
+
+div.emb-menuinput, div.emb-menuiteminput,div.emb-utilinput
+{
+    padding: 10px;
+}
+
+div.emb-utilinput div
+{
+    padding: 10px;
+}
+
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+
+.emb-form-actions {
+    margin-left: 180px;
+    max-width: 566px;
+}
+
+.emb-createdinfo {
+    margin-bottom: 10px;
+}
+
+.emb-form-simulate {
+    padding-top: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.emb-form-simulate label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.emb-menupreview {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-top: 30px;
+}

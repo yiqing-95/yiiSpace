@@ -98,6 +98,11 @@ return array(
 
     'cache'=>array(
         'class'=>'system.caching.CFileCache',
+        'behaviors' => array(
+            'clear' => array(
+                'class' => 'application.modules.yupe.extensions.tagcache.TaggingCacheBehavior',
+            ),
+        ),
     ),
 
     'messages' => array (

@@ -16,6 +16,11 @@ return array(
             'ext.YiiBooster.gii'
         ),
     ),
+    'yupe'  => array(
+        'class'        => 'application.modules.yupe.YupeModule',
+        'brandUrl'     => 'http://yupe.ru?from=engine',
+        'cache'        => true,
+    ),
 
     //用户模块
     'user' => array(
@@ -172,5 +177,29 @@ return array(
 
     // api文档
     'apiDoc',
+
+    // menubuilder
+    /*
+    'menubuilder'=>array(
+        'theme'=>'bootstrap', //comment for bluegrid theme (=default)
+        //'checkInstall'=>false, //uncomment after first usage
+        //'cacheDuration'=> -1, //uncomment for disabling the menucaching
+        'languages'=>array('de','en_us'),
+        'supportedScenarios'=>array('backend' => 'Backend', 'frontend' => 'Frontend', 'dashboard' => 'Dashboard'),
+
+        //set EMBDbAdapter to switch to mysql (checkInstall=>true on first run)
+        //'dataAdapterClass'=> 'EMBDbAdapter', //'EMBMongoDbAdapter',
+
+        //the available menus/lists for the preview
+        'previewMenus'=>array(
+            // 'superfish'=>'Superfish',
+            // 'mbmenu'=>'MbMenu',
+            'bootstrapnavbar'=>'Bootstrap Navbar',
+            'bootstrapmenu'=>'Bootstrap Menu',
+            // 'dropdownlist'=>'Dropdownlist',
+            'unorderedlist'=>'Unordered list'
+        )
+    ),
+    */
 );
 

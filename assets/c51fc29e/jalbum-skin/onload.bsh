@@ -1,0 +1,187 @@
+// onload.bsh - creates the Galleriffic tab in the JAlbum Settings box
+
+import se.datadosen.component.*;
+import se.datadosen.util.*;
+import java.awt.*;
+import javax.swing.*;
+
+GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+ControlPanel ui = new ControlPanel() {
+	// Title and description
+	JTextField gKeywords   = new JTextField("",35);
+	JTextField copyright   = new JTextField("",35);
+
+	// Navigation
+	JTextField siteTitle    = new JTextField("My Cool Site",35);
+	JTextField linkHome = new JTextField("",35);
+	JTextField bcLevel1Label = new JTextField("",35);
+	JTextField bcLevel1Link = new JTextField("",35);
+	JTextField bcLevel2Label = new JTextField("",35);
+	JTextField bcLevel2Link = new JTextField("",35);
+
+	// Labels
+	JTextField playLinkText = new JTextField("Play", 20);
+	JTextField pauseLinkText = new JTextField("Pause", 20);
+	JTextField prevLinkText = new JTextField("Previous", 20);
+	JTextField nextLinkText = new JTextField("Next", 20);
+	JTextField nextPageLinkText = new JTextField("Next &rsaquo;", 20);
+	JTextField prevPageLinkText = new JTextField("&lsaquo; Prev", 20);
+
+	// Behavior
+	JComboBox thumbsLocation = new JComboBox(new Object[]{ "top", "left", "bottom", "right" });
+	JCheckBox enableTopPager = new JCheckBox("Enable Top Pager", true);
+	JCheckBox enableBottomPager = new JCheckBox("Enable Bottom Pager", true);
+	JTextField numThumbs = new JTextField("",4);
+	JCheckBox renderSSControls = new JCheckBox("Enable Slideshow", true);
+	JTextField delay = new JTextField("3000", 4);
+	JCheckBox autoStart = new JCheckBox("Auto Start Slideshow", false);
+	JTextField preloadAhead = new JTextField("10", 2);
+	JCheckBox enableHistory = new JCheckBox("Enable Browser History", true);
+	JTextField inactiveThumbOpacity = new JTextField("0.67", 5);
+	JCheckBox enableDownload = new JCheckBox("Enable Download", false);
+
+	// EXIF
+	JCheckBox showExif = new JCheckBox("Show EXIF information", false);
+	JCheckBox showExifMakeModel = new JCheckBox("Make & Model", true);
+	JCheckBox showExifResolution = new JCheckBox("Resolution", true);
+	JCheckBox showExifFlash = new JCheckBox("Flash", true);
+	JCheckBox showExifFocalLength = new JCheckBox("Focal Length", true);
+	JCheckBox showExifAperture = new JCheckBox("Aperture", true);
+	JCheckBox showExifFocalDistance = new JCheckBox("Focal Distance", true);
+	JCheckBox showExifShutterSpeed = new JCheckBox("Shutter Speed", true);
+	JCheckBox showExifISO = new JCheckBox("ISO Equivalent", true);
+	JCheckBox showExifMeterMode = new JCheckBox("Meter Mode", true);
+	JCheckBox showExifSensorType = new JCheckBox("Sensor Type", false);
+	
+	// Advertising
+	JTextArea adHtml = new JSmartTextArea(16,60);
+
+	// Scripts
+	JTextArea scripts = new JSmartTextArea(16,60);
+};
+
+  // General
+  ControlPanel generalPanel = new ControlPanel();
+  generalPanel.add("br", new JLabel("Site Title"));
+  generalPanel.add("tab hfill", ui.siteTitle);
+  generalPanel.add("br", new JLabel("Site Home Link"));
+  generalPanel.add("tab hfill", ui.linkHome);
+  generalPanel.add("br", new JLabel("Breadcrumb Root Label"));
+  generalPanel.add("tab hfill", ui.bcLevel1Label);
+  generalPanel.add("br", new JLabel("Breadcrumb Root Link"));
+  generalPanel.add("tab hfill", ui.bcLevel1Link);
+  generalPanel.add("br", new JLabel("Keywords"));
+  generalPanel.add("tab hfill", ui.gKeywords);
+  generalPanel.add("br", new JLabel("Copyright"));
+  generalPanel.add("tab hfill", ui.copyright);
+
+  // Behavior
+  ControlPanel behavior = new ControlPanel();
+	ControlPanel thumbnails = new ControlPanel("Thumbnails");
+	  thumbnails.add(new JLabel("Thumbnails Location"));
+	  thumbnails.add("tab", ui.thumbsLocation);
+	  ControlPanel leftRightThumbnails = new ControlPanel("Settings applicable only for left or right positioned thumbnails");
+	    leftRightThumbnails.add(ui.enableTopPager);
+         leftRightThumbnails.add("br", ui.enableBottomPager);
+         leftRightThumbnails.add("br", ui.numThumbs);
+         leftRightThumbnails.add("tab", new JLabel("Number of Thumbnails per Page"));
+       thumbnails.add("br hfill vfill", leftRightThumbnails);
+    behavior.add("br hfill vfill", thumbnails);
+    ControlPanel slideshow = new ControlPanel("Slideshow");
+      slideshow.add(ui.renderSSControls);
+      slideshow.add("tab", ui.autoStart);
+      slideshow.add("br", ui.delay);
+      slideshow.add("tab", new JLabel("Speed of the Slide Show Transition (1000 = 1 second)"));
+    behavior.add("br hfill vfill", slideshow);
+    ControlPanel advanced = new ControlPanel("Advanced");
+      advanced.add(ui.preloadAhead);
+      advanced.add("tab", new JLabel("# of Images to Preload Ahead of the Current Image"));
+      advanced.add("tab", ui.enableHistory);
+      advanced.add("br", ui.inactiveThumbOpacity);
+      advanced.add("tab", new JLabel("Inactive Thumbnail Opacity (between 0 and 1)"));
+      advanced.add("tab", ui.enableDownload);
+    behavior.add("br hfill vfill", advanced);
+
+  // Labels
+  ControlPanel labelsPanel = new ControlPanel();
+    labelsPanel.add(new JLabel("Play Slideshow Label Text"));
+    labelsPanel.add("tab", ui.playLinkText);
+    labelsPanel.add("br", new JLabel("Pause Slideshow Label Text"));
+    labelsPanel.add("tab", ui.pauseLinkText);
+    labelsPanel.add("br", new JLabel("Previous Photo Label Text"));
+    labelsPanel.add("tab", ui.prevLinkText);
+    labelsPanel.add("br", new JLabel("Next Photo Label Text"));
+    labelsPanel.add("tab", ui.nextLinkText);
+    labelsPanel.add("br", new JLabel("Previous Page Label Text"));
+    labelsPanel.add("tab", ui.prevPageLinkText);
+    labelsPanel.add("br", new JLabel("Next Page Label Text"));
+    labelsPanel.add("tab", ui.nextPageLinkText);
+
+  // EXIF tab
+  ControlPanel cameraPanel = new ControlPanel();
+    cameraPanel.add(ui.showExif);
+    ControlPanel ex = new ControlPanel("Fields to Display");
+      ex.add(ui.showExifMakeModel);
+      ex.add("tab", ui.showExifResolution);
+      ex.add("br", ui.showExifFlash);
+      ex.add("tab", ui.showExifFocalLength);
+      ex.add("br", ui.showExifAperture);
+      ex.add("tab", ui.showExifFocalDistance);
+      ex.add("br", ui.showExifShutterSpeed);
+      ex.add("tab", ui.showExifISO);
+      ex.add("br", ui.showExifMeterMode);
+      ex.add("tab", ui.showExifSensorType);
+    cameraPanel.add("br hfill vfill", ex);
+
+  // Ads tab
+  ControlPanel adsPanel = new ControlPanel();
+    adsPanel.add(new JLabel("Copy and paste (Ctrl-V) the HTML provided to you into the box below for a horizontal ad across the bottom of the page."));
+    adsPanel.add("br hfill vfill", ui.adHtml);
+
+  // Scripts tab
+  ControlPanel scriptsPanel = new ControlPanel();
+    scriptsPanel.add(new JLabel("Copy and paste (Ctrl-V) any addition scripts that should be included just before the closing </body> tag into the"));
+    scriptsPanel.add("br", new JLabel("box below.  This could be analytics, etc."));
+    scriptsPanel.add("br hfill vfill", ui.scripts);
+
+  // About tab
+  ControlPanel aboutPanel = new ControlPanel();
+    JLinkLabel gallerifficLink = new JLinkLabel("Galleriffic");
+    gallerifficLink.setURL("http://www.twospy.com/galleriffic/index.html");
+    gallerifficLink.setToolTipText("Go to Galleriffic Homepage");
+    aboutPanel.add(gallerifficLink);
+    aboutPanel.add(new JLabel(" : v 1.1"));
+    aboutPanel.add("p", new JLabel("Galleriffic is a JAlbum gallery skin that wraps the Galleriffic jQuery plugin."));
+    aboutPanel.add("br", new JLabel("It is designed to handle large volumes of photos by performing smart image"));
+    aboutPanel.add("br", new JLabel("preloading behind the scenes after the page is loaded."));
+
+// Configure controls
+// ui.description.setLineWrap(true);
+// ui.description.setWrapStyleWord(true);
+
+// Set help text for individual fields
+//ui.albumDate.setToolTipText("This could be a tagline or album date");
+//ui.description.setToolTipText("A longer description of the subject matter of this web album");
+ui.gKeywords.setToolTipText("Enter keywords to describe the album, each seperated by a comma and space");
+ui.copyright.setToolTipText("Enter (c) details for this Album: date and owner");
+ui.linkHome.setToolTipText("Address must start with http:// - example http://www.mydomain.com");
+ui.siteTitle.setToolTipText("Text that will appear on the page, such as Home or My Site");
+
+// Create tabs
+
+tabs = new JTabbedPane();
+tabs.setName("GallerifficTabs");
+tabs.add(generalPanel, "General");
+//tabs.add(thumbsPanel, "Thumbnails");
+tabs.add(behavior, "Behavior");
+tabs.add(labelsPanel, "Labels");
+tabs.add(cameraPanel, "EXIF");
+tabs.add(adsPanel, "Ads");
+tabs.add(scriptsPanel, "Misc Scripts");
+tabs.add(aboutPanel, "About");
+
+ui.add("vtop hfill vfill", tabs);
+
+
+window.setSkinUI(ui);

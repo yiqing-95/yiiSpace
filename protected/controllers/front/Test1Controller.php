@@ -5,6 +5,23 @@
 class Test1Controller extends Controller
 {
 
+    public function actionYupeCacheClear(){
+        $data = Yii::app()->cache->clear('yiiSpace');
+    }
+
+    public function actionYupeCache(){
+          $key = 'test';
+          $data = Yii::app()->cache->get($key);
+        if($data == false){
+            echo 'can not find in cache  ';
+          $data = array(
+              'hi'=>'yupe',
+          );
+            Yii::app()->cache->set($key,$data, 0,new TagsCache('yiiSpace'));
+        }
+        print_r($data);
+    }
+
     public function actionJsTemplate(){
         $this->render('jsTemplate');
     }

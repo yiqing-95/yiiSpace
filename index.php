@@ -18,9 +18,11 @@ defined('YS_CONTROLLER_HELP') or define('YS_CONTROLLER_HELP', true);
 // specify how many levels of call stack should be shown in each log message
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
 
+require_once($yii);
+
 // 配置文件移到下面来 可以使用上面定义的常量了！
 $config = dirname(__FILE__) . '/protected/config/front.php';
-require_once($yii);
+
 
 include_once(dirname(__FILE__) . '/protected/my/global.php');
 include_once(dirname(__FILE__) . '/protected/components/YsWebApplication.php');

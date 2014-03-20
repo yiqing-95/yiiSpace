@@ -4,7 +4,7 @@ RewriteEngine on
 #RewriteBase /
 # flowing line is my project dir position under the www root dir
 #RewriteBase /my/yiiSpace/
-RewriteBase /my/MyGithubProjects/yiiSpace/
+#RewriteBase /my/MyGithubProjects/yiiSpace/
 
 #Admin
 # Rewriterule ^admin$ admin.php
