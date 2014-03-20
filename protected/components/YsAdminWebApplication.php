@@ -22,6 +22,19 @@ class YsAdminWebApplication extends CWebApplication
      */
     public function beforeControllerAction($controller,$action)
     {
+        /*
+        if($controller->module == null){
+            echo 'yes';
+        }
+
+        print_r($this->urlManager->rules);
+        print_r(array(
+         //  $controller->module->id ,
+            $controller->id,
+            $action->id ,
+        ));
+        die(__METHOD__);
+        */
 
         if(!empty($controller)){
             if($controller instanceof BackendController){

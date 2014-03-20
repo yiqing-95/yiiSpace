@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Yiisession','url'=>array('index')),
-	array('label'=>'Create Yiisession','url'=>array('create')),
+	array('label'=>'Create Yiisession','url'=>array('create'),'linkOptions'=>array('class'=>'ajax_create')),
 	array('label'=>'View Yiisession','url'=>array('view','id'=>$model->id)),
 	array('label'=>'Manage Yiisession','url'=>array('admin')),
 );

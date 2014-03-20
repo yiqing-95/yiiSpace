@@ -1,0 +1,108 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<div style="display: none; ">
+<!--  隐藏域用来传递信息用的不可以忽略掉-->
+<p>当前文件夹[<span id="currDir"><{$currDir}></span>]   共有【<{ $fileNum }>】个文件
+    <span id="parentDir"><{$parentDir}></span>
+  </p> <{$viewStyle}>
+</div>
+
+<div>
+<{$pageLinkBar}>
+
+<{if isset($pageLinkBar)}>
+<script type="text/javascript">
+    //alert('sddfj');
+     $(function(){
+        // 这段代码提供了分页支持
+        $(".PagerNavLink").find('a').click(
+          function(){
+            $("#fileView").load($(this).attr('href'),function(){
+            //求文件统计信息：
+            $("#totalFileCount").text(getTotalFileCount());
+            $("#imageFileCount").text(getImageFileCount());
+          //currDir = $("#currDir").text();
+          // parentDir = $('#parentDir').text();
+            });
+            return false;
+          }
+        );
+        //所有图片类型的img都先隐藏起来 等调整好高度后再显示
+        
+       });
+        function zoomImg(img){
+
+        if($(img).is('.Photo')){
+          $(img).css('display','none');
+        //图片让其适合高度：
+         ZoomImage(img,'100','90','');
+         }
+         $(img).css('display','block');
+        }
+
+</script>
+<{/if}>
+</div>
+
+<div class="addSkin_wp_k">
+  <{if $viewStyle eq 'icon' }>
+  <{foreach item=file from=$fileList}>
+  <div class="addSkin_wp">
+    <{if  $file.is_image }>
+	<table width="100" height="90" border="0" cellspacing="0" cellpadding="0">
+  	<tr>
+    <td align="center" style="width:100px;height:90px;overflow:hidden;display: block;">
+    
+    <img src="<{$file.path}>"
+         id="<{$file.path}>"
+         filename="<{$file.name}>"
+         filepath="<{$file.path}>"
+         onLoad="zoomImg(this)"
+         class ="<{$file.class}> resizeme"
+         /></td>
+  	</tr>
+	</table>
+    <{else}>
+	<table width="100" height="90" border="0" cellspacing="0" cellpadding="0">
+  	<tr>
+    <td align="center">
+
+    <img src="images/fileType/ico48/<{$file.ico_type}>.png"
+         id="<{$file.path}>"
+         filename="<{$file.name}>"
+         filepath="<{$file.path}>"
+         class ="<{$file.class}> resizeme"
+         onLoad="zoomImg(this)"
+         parent ="<{$file.parent}>"
+         />
+    <span><{$file.name}></span></td>
+  	</tr>
+	</table>
+    <{/if}>
+
+  </div>
+   <{foreachelse}>
+  <img src="images/jgzs.gif" style="vertical-align:middle;margin-right:5px;"/>
+  <{/foreach}>
+  <{else}>
+  <table border="0" cellspacing="0" cellpadding="0" class="addSkin_wp_xx">
+    <tbody>
+      <{foreach item=file from=$fileList}>
+      <tr>
+        <td width="20px"> <img src="images/fileType/ico/<{$file.ico_type}>.gif"
+                  id="<{$file.path}>"
+                  class ="<{$file.class}>"
+                  parent ="<{$file.parent}>"
+                  filepath="<{$file.path}>"
+                  /></td>
+        <td width="200px"><{$file.name}></td>
+<!--         <td><{$file.size}> bytes</td>-->
+        <td width="100px"><{$file.easysize}>&nbsp;</td>
+        <td width="200px"><{$file.ctime}></td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+
+  <{/if}>
+</div>

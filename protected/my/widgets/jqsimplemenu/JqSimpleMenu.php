@@ -57,7 +57,7 @@ class JqSimpleMenu  extends CWidget
      * @var string
      * css selector which is the trigger selector
      */
-    public $container;
+    public $selector;
 
 
 

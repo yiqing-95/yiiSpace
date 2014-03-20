@@ -1,3 +1,7 @@
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+
 Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
@@ -8,7 +12,7 @@ RewriteEngine on
 
 #Admin
 # Rewriterule ^admin$ admin.php
-RewriteRule ^admin admin.php
+# RewriteRule ^admin admin.php
 
 #Install
 #Rewriterule ^install$ install.php?r=Install/default

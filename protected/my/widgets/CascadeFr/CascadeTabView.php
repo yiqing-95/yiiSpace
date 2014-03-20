@@ -6,6 +6,8 @@
  * Time: 下午3:52
  * To change this template use File | Settings | File Templates.
  * -------------------------------------------------------
+ * @see http://jslegers.github.io/cascadeframework/components-tabblocks.html#
+ * some features are not implemented yet! to be continue ..
  * -------------------------------------------------------
  */
 
@@ -13,16 +15,10 @@ class CascadeTabView extends CWidget
 {
     /**
      * Default CSS class for the tab container
+     * 'cell tab-block top-nav';
      */
-    const CSS_CLASS = 'tabs';
+    const CSS_CLASS = 'tab-block top-nav';
 
-    /**
-     * @var mixed the CSS file used for the widget. Defaults to null, meaning
-     * using the default CSS file included together with the widget.
-     * If false, no CSS file will be used. Otherwise, the specified CSS file
-     * will be included when using this widget.
-     */
-    public $cssFile;
     /**
      * @var string the ID of the tab that should be activated when the page is initially loaded.
      * If not set, the first tab will be activated.
@@ -93,9 +89,15 @@ class CascadeTabView extends CWidget
 
         $this->registerClientScript();
 
-        echo CHtml::openTag('div', $htmlOptions) . "\n";
+        echo CHtml::openTag('div', $htmlOptions) . "\n",
+        '<div class="tabs">';
         $this->renderHeader();
+        echo '</div>';
+
+        echo '<div class="tab-content">';
         $this->renderBody();
+        echo '</div>';
+
         echo CHtml::closeTag('div');
     }
 
@@ -104,13 +106,7 @@ class CascadeTabView extends CWidget
      */
     public function registerClientScript()
     {
-        $cs = Yii::app()->getClientScript();
-        $cs->registerCoreScript('yiitab');
-        $id = $this->getId();
-        $cs->registerScript('Yii.CTabView#' . $id, "jQuery(\"#{$id}\").yiitab();");
 
-        if ($this->cssFile !== false)
-            self::registerCssFile($this->cssFile);
     }
 
     /**
@@ -119,10 +115,7 @@ class CascadeTabView extends CWidget
      */
     public static function registerCssFile($url = null)
     {
-        $cs = Yii::app()->getClientScript();
-        if ($url === null)
-            $url = $cs->getCoreScriptUrl() . '/yiitab/jquery.yiitab.css';
-        $cs->registerCssFile($url, 'screen');
+
     }
 
     /**
@@ -132,7 +125,7 @@ class CascadeTabView extends CWidget
     {
         echo "<ul class=\"nav\">\n";
 
-        $ajaxTab = false ;
+        $ajaxTab = false;
 
         foreach ($this->tabs as $id => $tab) {
             $title = isset($tab['title']) ? $tab['title'] : 'undefined';
@@ -145,35 +138,36 @@ class CascadeTabView extends CWidget
                 $linkOptions['ref'] = $id;
                 $linkOptions['ajax-url'] = $tab['url'];
 
-                $linkOptions['ajax-reload'] = isset($tab['reload'])? 'true' : 'false';
+                $linkOptions['ajax-reload'] = isset($tab['reload']) ? 'true' : 'false';
 
                 $url = "#{$id}";
                 // mark it  as ajax tab behavior !
-                $ajaxTab = true ;
+                $ajaxTab = true;
             } else {
                 $url = isset($tab['url']) ? $tab['url'] : "#{$id}";
             }
 
-            if(isset($tab['linkOptions'])){
-                $linkOptions = CMap::mergeArray($linkOptions,$tab['linkOptions']);
+            if (isset($tab['linkOptions'])) {
+                $linkOptions = CMap::mergeArray($linkOptions, $tab['linkOptions']);
             }
 
-            $linkAttributes = empty($linkOptions)? '' : CHtml::renderAttributes($linkOptions);
+            $linkAttributes = empty($linkOptions) ? '' : CHtml::renderAttributes($linkOptions);
 
-            echo "<li><a href=\"{$url}\"{$active} {$linkAttributes} >{$title}</a></li>\n";
+            echo "<li {$active}><a href=\"{$url}\"{$active} {$linkAttributes} >{$title}</a></li>\n";
         }
         echo "</ul>\n";
 
-        if($ajaxTab == true){
-            $this->doAjaxLoad() ;
+        if ($ajaxTab == true) {
+            $this->doAjaxLoad();
         }
     }
 
     /**
      * load the specified tab use ajax request
      */
-    protected function doAjaxLoad(){
-         $ajaxLoad = <<<JS_INIT
+    protected function doAjaxLoad()
+    {
+        $ajaxLoad = <<<JS_INIT
     $("li .ajax").on("click",function(){
       var that = this ;
       var tabId = $(this).attr("ref");
@@ -193,7 +187,7 @@ class CascadeTabView extends CWidget
     });
 JS_INIT;
 
-        Yii::app()->clientScript->registerScript(__CLASS__.__METHOD__,$ajaxLoad,CClientScript::POS_READY);
+        Yii::app()->clientScript->registerScript(__CLASS__ . __METHOD__, $ajaxLoad, CClientScript::POS_READY);
     }
 
     /**
@@ -202,10 +196,12 @@ JS_INIT;
     protected function renderBody()
     {
         foreach ($this->tabs as $id => $tab) {
-            $inactive = $id !== $this->activeTab ? ' style="display:none"' : '';
-            echo "<div class=\"tab-content \" id=\"{$id}\"{$inactive}>\n";
+            $tabClass = ($id== $this->activeTab) ? 'cell' : 'cell hidden-tab';
+            echo "<div class=\"{$tabClass}\" id=\"{$id}\">\n";
+
             if (isset($tab['content']))
-                echo '<div class="cell">', $tab['content'], '</div>';
+                echo  $tab['content'];
+
             elseif (isset($tab['view'])) {
                 if (isset($tab['data'])) {
                     if (is_array($this->viewData))
@@ -220,3 +216,29 @@ JS_INIT;
         }
     }
 }
+/*
+<div class="cell">
+    <div class="col">
+        <div class="cell tab-block top-nav">
+            <div class="tabs">
+                <ul class="nav">
+                    <li class=""><a href="#tabcontent1" class="">Item one</a></li>
+                    <li class="active"><a href="#tabcontent2" class="">Item two</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="cell hidden-tab" id="tabcontent1">
+                    First tab content block.<br>
+                    First tab content block.<br>
+                    First tab content block.
+                </div>
+                <div class="cell" id="tabcontent2">
+                    Second tab content block.<br>
+                    Second tab content block.<br>
+                    Second tab content block.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+*/

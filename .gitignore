@@ -68,7 +68,14 @@ Session.vim
 #yiiSpace ignore:
 public/thumbs/
 protected/runtime/
-#assets/
+assets/
 #  qq 纯真ip库
 
 #protected/vendors/ip/
+
+## composer 支持
+composer.phar
+composer.lock
+
+# 此目录下的用composer安装
+/vendor

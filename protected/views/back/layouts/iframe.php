@@ -14,7 +14,8 @@
      -->
 
     <?php $assetsUrl = PublicAssets::url('back');
-      cs()->registerCoreScript('cookie');
+    cs()->registerCoreScript('cookie');
+    PublicAssets::registerScriptFile('js/ys_base.js');
     ?>
 
     <meta charset="utf-8">
@@ -28,10 +29,10 @@
      * @see http://www.yiiframework.com/wiki/152/cookie-management-in-yii
      */
     /*
-    $currentTheme = isset(Yii::app()->request->cookies['current_theme']) ?
-        Yii::app()->request->cookies['current_theme']->value : user()->getState('currentTheme','cerulean');
-    */
-    $currentTheme =  user()->getState('currentTheme','cerulean');
+$currentTheme = isset(Yii::app()->request->cookies['current_theme']) ?
+Yii::app()->request->cookies['current_theme']->value : user()->getState('currentTheme','cerulean');
+*/
+    $currentTheme = user()->getState('currentTheme', 'cerulean');
     ?>
     <!-- The styles -->
     <link id="bs-css" href="<?php echo "{$assetsUrl}/css/bootstrap-{$currentTheme}.css"; ?>" rel="stylesheet"
@@ -61,27 +62,21 @@
     <!-- The fav icon -->
     <link rel="shortcut icon" href="<?php echo $assetsUrl; ?>/img/favicon.ico">
 
-    <script type="text/javascript">
-        $(function () {
-            if (window.self === window.top) {
-                //alert('not in a frame');
-               window.location = "<?php echo Yii::app()->createUrl('site/index');?>";
-            } else {
-
-            }
-        });
-    </script>
-
 </head>
 
 <body>
 <div class="container-fluid">
     <?php // echo user()->getState('currentTheme','cerulean'); ?>
     <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-           // 'links'=>$this->breadcrumbs,
-            'links'=>array_merge(empty($this->menuLabelList)?array():$this->menuLabelList, $this->breadcrumbs),
-            'separator'=>'>>' , // default is /
-            'homeLink'=>false ,
+        // 'links'=>$this->breadcrumbs,
+        'links' => array_merge($this->menuLabelList, $this->breadcrumbs),
+        'separator' => '>>', // default is /
+        'homeLink' => false,
+    )); ?>
+    <?php $this->widget('bootstrap.widgets.TbMenu', array(
+        'type' => 'tabs', // '', 'tabs', 'pills' (or 'list')
+        'stacked' => false, // whether this is a stacked menu
+        'items' => $this->menu,
     )); ?>
     <div class="row-fluid">
         <?php echo $content; ?>
@@ -91,8 +86,26 @@
 </div>
 <!--/.fluid-container-->
 
+
+<?php
+$this->beginWidget('application.extensions.rightsidebar.RightSidebar', array('title' => 'Menu', 'collapsed' => true));
+?>
+
+<?php Yii::app()->bootstrap->registerAffix(); ?>
+<div data-spy="affix" data-offset-top="200">
+    <a href="javascript:;" onclick="parent.refresh()">刷新</a>
+</div>
+<?php
+$this->widget('zii.widgets.CMenu', array(
+    'items' => $this->menu
+
+)); ?>
+
+
+<?php $this->endWidget();?>
+
 <!-- external javascript
-    ================================================== -->
+================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
 <!-- chart libraries start -->
@@ -109,42 +122,42 @@
 <?php //Google Analytics code for tracking my demo site, you can remove this.
 if ($_SERVER['HTTP_HOST'] == 'usman.it') {
     ?>
-<script>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-26532312-1']);
-    _gaq.push(['_trackPageview']);
-    (function () {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-    })();
-</script>
-    <?php } ?>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26532312-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+        })();
+    </script>
+<?php } ?>
 
 <?php
 /**
- *  // jSuccess('welcome to yiiSpace!');
+ * // jSuccess('welcome to yiiSpace!');
  * // jError('some thing wrong happened !');
  */
-$this->widget('my.widgets.jnotify.JNotify',  array( )); ?>
+$this->widget('my.widgets.jnotify.JNotify', array()); ?>
 
 <script type="text/javascript">
-    $(function(){
-        // set the current theme url same as the parent's
-        if($('#bs-css').attr('href') !== parent.getCurrentThemeUrl()){
-             $('#bs-css').attr('href',parent.getCurrentThemeUrl());
+
+    $(function () {
+// set the current theme url same as the parent's
+        if ($('#bs-css').attr('href') !== parent.getCurrentThemeUrl()) {
+            $('#bs-css').attr('href', parent.getCurrentThemeUrl());
         }
-        $('body',$(document)).resize(function(){
-           parent.risizeIframe();
+        $('body', $(document)).resize(function () {
+            parent.risizeIframe();
         });
     });
-    function switch_theme(theme_name)
-    {
-        //$('#bs-css').attr('href','css/bootstrap-'+theme_name+'.css');
+    function switch_theme(theme_name) {
+//$('#bs-css').attr('href','css/bootstrap-'+theme_name+'.css');
         var themeTplUrl = $('#bs-css').attr("theme_tpl_url");
-        $('#bs-css').attr('href',themeTplUrl.replace('{{theme_name}}',theme_name));
+        $('#bs-css').attr('href', themeTplUrl.replace('{{theme_name}}', theme_name));
     }
 </script>
 </body>

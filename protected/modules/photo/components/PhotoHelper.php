@@ -34,6 +34,7 @@ class PhotoHelper
     }
 
     public static function getDefaultAlbumCoverUrl(){
-      return PublicAssets::instance()->url('default/photo/cover.jpg');
+       //return PublicAssets::instance()->url('default/photo/cover.jpg');
+       return Yii::app()->getModule('photo')->getAssetsUrl() .'/photo/cover.jpg';
   }
 }

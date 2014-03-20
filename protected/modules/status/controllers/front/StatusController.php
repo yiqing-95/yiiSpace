@@ -61,6 +61,7 @@ class StatusController extends BaseStatusController
      */
     public function actionCreate()
     {
+
         $model = new Status;
 
         // Uncomment the following line if AJAX validation is needed
@@ -84,7 +85,6 @@ class StatusController extends BaseStatusController
             }
 
             $model->attributes = $_POST['Status'];
-            $model->generateType();
 
             //echo   YiiUtil::getPathOfClass($model) ;  die(__METHOD__);
             if ($model->save()){
@@ -95,12 +95,14 @@ class StatusController extends BaseStatusController
 
         }
 
+
+
         $loggedInUser = Yii::app()->user->id;
         $user = isset($_GET['u']) ? $_GET['u'] : $loggedInUser;
         if(isset($_GET['u'])){
-           $this->layout = '//layouts/user/user_space';
+           $this->layout = 'userSpace';
         }else{
-            $this->layout = '//layouts/user/user_center';
+            $this->layout = 'userCenter';
         }
 
         if ($loggedInUser == $user) {
@@ -170,13 +172,18 @@ class StatusController extends BaseStatusController
      */
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('Status');
+
 
         $user = isset($_GET['u']) ?$_GET['u']: Yii::app()->user->id ;
 
+        /*
+         *
+        $dataProvider = new CActiveDataProvider('Status');
         $dataProvider->criteria = array(
             'condition'=>"profile={$user}" ,
         );
+        */
+        $dataProvider =         Status::listRecentStatuses($user);
 
 
         if(Yii::app()->request->getIsAjaxRequest()){
@@ -288,6 +295,55 @@ class StatusController extends BaseStatusController
         }
     }
 
+    public function actionStatusForAll(){
+        $cs=Yii::app()->clientScript;
+        $cs->scriptMap=array(
+            'jquery.js'=>false,
+            'jquery.min.js'=>false,
+        );
+       // die(print_r($_REQUEST,true));
+        //die(print_r($_REQUEST,true));
+        $this->layout = false;
+        $user =  user()->getId() ;
+        $dp = Status::listAllStatus($user);
+        $this->beginClip('allStatus');
+        // My::listView4sqlDataProvider($dp);
+        $this->widget('YsAjaxListView',array(
+            'id'=>'all-status-list',
+            'template'=>'{pager}{items}{pager}',
+            'dataProvider'=>$dp,
+            'itemView'=>'_statusView',
+        ));
+        $this->endClip();
+
+        $this->renderText($this->clips['allStatus']);
+    }
+
+    public function actionStatusForFriends(){
+        $cs=Yii::app()->clientScript;
+        $cs->scriptMap=array(
+            'jquery.js'=>false,
+            'jquery.min.js'=>false,
+        );
+
+       //die(print_r($_REQUEST,true));
+        $this->layout = false;
+        $user =  user()->getId() ;
+        $dp = Status::listFriendsStatuses($user);
+        $this->beginClip('friendsStatus');
+        // My::listView4sqlDataProvider($dp);
+        $this->widget('YsAjaxListView',array(
+            'id'=>'friends-status-list',
+            'template'=>'{pager}{items}{pager}',
+            'dataProvider'=>$dp,
+            'itemView'=>'_statusView',
+        ));
+        $this->endClip();
+
+        $this->renderText($this->clips['friendsStatus']);
+
+    }
+
     public function actionListRecentStatus($u=null){
         $this->layout = false;
    $user = ($u == null) ? user()->getId() : $u ;
@@ -297,7 +353,7 @@ class StatusController extends BaseStatusController
             'id'=>'status-list',
             'template'=>'{pager}{items}{pager}',
             'dataProvider'=>$dp,
-            'itemView'=>'_statusView',
+            'itemView'=>'_myStatusView',
         ));
 
 
@@ -308,6 +364,7 @@ class StatusController extends BaseStatusController
      */
     public function actionStream($u=null){
        // $this->layout = false;
+        die(__METHOD__);
         $user = ($u == null) ? user()->getId() : $u ;
         $dataProvider = Status::buildStream($user);
         //My::listView4sqlDataProvider($dataProvider); die(__METHOD__);

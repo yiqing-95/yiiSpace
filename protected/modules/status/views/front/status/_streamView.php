@@ -3,9 +3,6 @@
     <b> id:</b>
     <?php echo CHtml::link(CHtml::encode($data['id']),array('view','id'=>$data['id'])); ?>
     <br />
-    <b>type_reference:</b>
-    <?php echo CHtml::encode($data['type_reference']); ?>
-    <br />
     <b>type_name:</b>
     <?php echo CHtml::encode($data['type_name']); ?>
     <br />

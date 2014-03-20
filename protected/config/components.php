@@ -9,7 +9,7 @@ return array(
     //................{yii standard components}....................................................................
     'session' => array(
         'class' => 'application.my.components.YsDbHttpSession',
-        'sessionName' => 'yiiSpace',
+        'sessionName' => 'yiiSpace2',
         'connectionID'=>'db',  // important !! if not set will use sqliteDb as storage .
        // 'gCProbability'=>4  , // every 4 request will invoke the Session  GC 测试打开之
        // 'timeout'=>120 ,
@@ -26,8 +26,8 @@ return array(
             //'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             //'<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
         ),
-    ),*/
-
+    ),
+*/
     // 云存储时的情况 参考： https://github.com/andremetzen/yii-s3assetmanager
     /**
      * 通过该例子 看出 凡是可以设置baseUrl的组件 都可以指到某个指定的域名去！！
@@ -44,19 +44,6 @@ return array(
     'db' => array(
         'class' => 'CDbConnection',
         'connectionString' => 'mysql:host=localhost;dbname=yii_space',
-        'username' => 'root',
-        'password' => '',
-        'charset' => 'utf8',
-        'emulatePrepare' => true,
-        'enableParamLogging' => 1,
-        'enableProfiling' => 1,
-        //'schemaCachingDuration' => 108000,
-        'tablePrefix' => '',
-    ),
-    //  use  MySQL database
-    'db4apiDoc' => array(
-        'class' => 'CDbConnection',
-        'connectionString' => 'mysql:host=localhost;dbname=api_doc',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -93,16 +80,14 @@ return array(
                 'enabled'=>YII_DEBUG,
                 'ipFilters' => array('*'),
             ),
+            array(
+                'class' => 'YsTestLogRoute',
+            ),
         ),
     ),
 
     'cache'=>array(
         'class'=>'system.caching.CFileCache',
-        'behaviors' => array(
-            'clear' => array(
-                'class' => 'application.modules.yupe.extensions.tagcache.TaggingCacheBehavior',
-            ),
-        ),
     ),
 
     'messages' => array (
@@ -146,19 +131,11 @@ return array(
       'class'=>'application.components.YsUploadStorage'
     ),
 
-    // 系统配置管理器
-    'sysConfig'=>array(
-        'class'=>'application.components.sysConfig.ESysConfig',
-        'formConfigs'=>array(
-            'test'=>'application.config.sysParams.formConfig.test',
-            'test1'=>'application.config.sysParams.formConfig.test2',
-            'system'=>'application.config.sysParams.formConfig.test',
-        ),
-    ),
-
     //................{ components  special for this app}....................................................................
 
     //............{extension from yii repo }................................................................
+
+
 
     'settings'=>array(
         'class'                 => 'ext.CmsSettings',
@@ -171,10 +148,6 @@ return array(
         'dbEngine'      => 'InnoDB',
     ),
 
-
-    'bootstrap' => array(
-        "class" => "ext.YiiBooster.components.Bootstrap"
-    ),
 
     //互斥锁
     'mutex' => array(
@@ -204,6 +177,38 @@ return array(
         // 'params'=>array('directory'=>'/opt/local/bin'),
     ),
 
+    'events' => array(
+        'class'  => 'ext.static-events.EventRegistry',
+        'attach' => array(
+           // we don't use configurable way but the dynamic attach way!
+        ),
+    ),
+
+    //X-editable config
+    'editable' => array(
+        'class'     => 'editable.EditableConfig',
+        'form'      => 'bootstrap',        //form style: 'bootstrap', 'jqueryui', 'plain'
+        'mode'      => 'popup',            //mode: 'popup' or 'inline'
+        'defaults'  => array(              //default settings for all editable elements
+            'emptytext' => 'Click to edit'
+        )
+    ),
+
+    'elastica' => array(
+        'class' => 'ext.Yii-Elastica.components.YiiElastica',
+        'host' => 'localhost',
+        'port' => '9200',
+        'debug' => true
+    ),
+    // ES phpnode 的扩展！
+    'elasticSearch' => array(
+        'class' => 'YiiElasticSearch\Connection',
+        'baseUrl' => 'http://localhost:9200/',
+    ),
+
+    'alice' => array(
+        'class' => 'alice.components.AliceApi',
+    ),
 
     //............{extension from yii repo /}................................................................
 );

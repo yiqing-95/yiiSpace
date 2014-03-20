@@ -12,7 +12,32 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
             'class'=>'PhotoModule.controllers.photoAlbumController'),
     );
      */
+    /**
+     * @property boolean whether to enable debug mode.
+     */
+    public $debug = false;
 
+    private $_assetsUrl;
+    /**
+     * borrow  from Rights module!
+     * Publishes the module assets path.
+     * @return string the base URL that contains all published asset files of photo.
+     */
+    public function getAssetsUrl()
+    {
+        if( $this->_assetsUrl===null )
+        {
+            $assetsPath = Yii::getPathOfAlias($this->getId(). '.assets');
+
+            // We need to republish the assets if debug mode is enabled.
+            if( $this->debug===true )
+                $this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath, false, -1, true);
+            else
+                $this->_assetsUrl = Yii::app()->getAssetManager()->publish($assetsPath);
+        }
+
+        return $this->_assetsUrl;
+    }
 
 	public function init()
 	{
@@ -24,7 +49,7 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
 			'photo.models.*',
 			'photo.components.*',
 		));
-
+       //die(__METHOD__);
         // Raise onModuleCreate event.
         Yii::app()->onModuleCreate(new CEvent($this));
 	}
@@ -63,6 +88,9 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
 
             'photo/<controller:home>/*'=>'photo/home/block',
 
+            'photo/glean/<action:\w+>'=>'photo/glean/<action>',
+            'photo/glean/<action:\w+>/*'=>'photo/glean/<action>',
+
             'photo/<action:\w+>'=>'photo/photo/<action>',
             'photo/<action:\w+>/*'=>'photo/photo/<action>',
 
@@ -70,4 +98,18 @@ class PhotoModule extends CWebModule implements IUrlRewriteModule
             'album/<action:\w+>/*'=>'photo/photoAlbum/<action>',
         );
     }
+
+    //.......................................................................\\
+    // 模块间通信数据的格式 尽量用php基本类型 不要用对象传递 这样在变为远程调用时 可以无缝迁移！
+    /**
+     * ajax 切换评论列表时需要计算某个实体是否有删除和编辑权
+     * @param $params
+     * @return mixed
+     */
+    public function serviceCanDeleteAndEditComment($params){
+        // return $params ;
+        return false ;
+    }
+
+    //.......................................................................//
 }

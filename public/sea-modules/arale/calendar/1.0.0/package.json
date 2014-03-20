@@ -1,0 +1,41 @@
+{
+  "family": "arale",
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "Calendar widget.",
+  "author": "Hsiaoming Yang <me@lepture.com>",
+  "maintainers": [
+    "冒顿 <hotoo.cn@gmail.com>",
+    "乔花 <shengyan1985@gmail.com>"
+  ],
+  "homepage": "http://aralejs.org/calendar/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aralejs/calendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aralejs/calendar/issues"
+  },
+  "keywords": ["widget", "month", "datepicker"],
+
+  "spm": {
+    "alias": {
+      "$": "$",
+      "moment": "gallery/moment/2.0.0/moment",
+      "base": "arale/base/1.1.1/base",
+      "position": "arale/position/1.0.1/position",
+      "iframe-shim": "arale/iframe-shim/1.0.2/iframe-shim",
+      "handlebars": "gallery/handlebars/1.0.2/handlebars",
+      "widget": "arale/widget/1.1.1/widget"
+    },
+    "output": [
+      "calendar.js",
+      "calendar.css",
+      "i18n/en.js",
+      "i18n/fr.js",
+      "i18n/ja.js",
+      "i18n/zh-cn.js",
+      "i18n/zh-tw.js"
+    ]
+  }
+}

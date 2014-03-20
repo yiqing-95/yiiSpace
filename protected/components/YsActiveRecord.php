@@ -17,5 +17,26 @@ class YsActiveRecord extends CActiveRecord
         );
     }
 
+    protected function beforeSave()
+    {
+        if (parent::beforeSave()) {
+            if (($this->getIsNewRecord()
+                && $this->hasAttribute('create_time'))
+                && (is_null($this->create_time)
+                    || $this->create_time == 0)
+            ) {
+                $this->create_time = time();
+            }
+            if ($this->hasAttribute('update_time')
+                && (is_null($this->update_time) || $this->update_time == 0)
+            ) {
+                $this->update_time = time();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

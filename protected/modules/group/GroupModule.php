@@ -12,6 +12,9 @@ class GroupModule extends CWebModule
 			'group.models.*',
 			'group.components.*',
 		));
+        if(Yii::app() instanceof CWebApplication){
+            Yii::app()->onModuleCreate(new CEvent($this));
+        }
 	}
 
 	public function beforeControllerAction($controller, $action)

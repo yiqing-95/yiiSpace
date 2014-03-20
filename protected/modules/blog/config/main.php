@@ -9,7 +9,7 @@ return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 	'defaultController'=>'post',
-    'theme'=>'classic',     //皮肤配置 default为默认或注释掉
+    //  'theme'=>'classic',     //皮肤配置 default为默认或注释掉
 	// preloading 'log' component
         'preload'=>array(
 			'log',

@@ -4,13 +4,17 @@ class StatusVideo extends Status
 {
     public  $video_id;
 
+    /**
+     * @var string
+     * @overwrite
+     */
+    public $type = 'video';
 
     /**
      * @param string $scenario
      */
     public function __construct($scenario = 'insert')
     {
-        parent::setTypeReference('video');
 
         parent::__construct($scenario);
     }

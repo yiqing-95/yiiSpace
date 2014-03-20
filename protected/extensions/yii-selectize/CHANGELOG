@@ -1,0 +1,22 @@
+
+====================================================
+  v. 0.4 - Sep 29, 2013
+====================================================
+
+- Added parameter selectedValues: the list of selected options when using multiple selection
+- Updated selectize.js to version 0.7.7
+
+
+====================================================
+  v. 0.3 - Sep 1, 2013
+====================================================
+
+- Updated selectize.js to version 0.7.3 (with native support for bootstrap!)
+- Added the new cssTheme parameter to manually specify a css theme
+
+
+====================================================
+  v. 0.2 - Aug 11, 2013
+====================================================
+
+- First public release

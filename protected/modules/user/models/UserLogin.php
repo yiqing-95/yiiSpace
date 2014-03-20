@@ -53,8 +53,13 @@ class UserLogin extends CFormModel
 			switch($identity->errorCode)
 			{
 				case UserIdentity::ERROR_NONE:
-					$duration=$this->rememberMe ? Yii::app()->controller->module->rememberMeTime : 0;
+					$duration=$this->rememberMe ? Yii::app()->getModule('user')->rememberMeTime : 0;
+                    // here login the current user after validate！！
 					Yii::app()->user->login($identity,$duration);
+                    if($identity->userModel !== null){
+                        $identity->userModel->setLastvisit(time());
+                        $identity->userModel->save(false);
+                    }
 					break;
 				case UserIdentity::ERROR_EMAIL_INVALID:
 					$this->addError("username",UserModule::t("Email is incorrect."));

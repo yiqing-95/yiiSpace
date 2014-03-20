@@ -40,7 +40,7 @@
 )); ?>
     <div class="row-fluid">
         <div class="span11">
-            <?php //echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error row')); ?>
+            <?php echo $form->errorSummary($model, 'Opps!!!', null, array('class' => 'alert alert-error row')); ?>
 
 
             <?php echo $form->textAreaRow($model, 'update', array('rows' => 6, 'cols' => 50, 'class' => 'span11 row')); ?>

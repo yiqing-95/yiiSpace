@@ -33,18 +33,53 @@ class YsWebApplication extends CWebApplication
      */
     public function beforeControllerAction($controller,$action)
     {
+        $forYaAn = <<<GRAY_PAGE
+ html {
+            filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+            -webkit-filter: grayscale(100%);
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+        }
 
-        if (!empty($this->user->loginRequiredAjaxResponse)){
-            Yii::app()->clientScript->registerScript('ajaxLoginRequired', '
-            //jQuery("body").ajaxComplete(
-            jQuery("body").ajaxSuccess(
+        img {
+            _filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=0);
+            -webkit-filter: grayscale(100%);
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+        }
+GRAY_PAGE;
+
+        // $this->clientScript->registerCss('for_yaAn',$forYaAn);
+
+        $loginRequiredAjaxResponse = $this->user->loginRequiredAjaxResponse ;
+
+        $userLoginUrl = $this->createUrl('/site/login') ;
+        if (!empty($loginRequiredAjaxResponse)){
+            // 判断是否ajax请求 但超时登录了 参考CWebUser 里面的loginRequired方法对ajax时的处理
+
+            $ajaxLoginRequiredHandler = <<<EOD
+                $.ajaxSetup({
+                  dataFilter:function (data, type) {
+                     // 对Ajax返回的原始数据进行预处理
+                     if (data == "{$loginRequiredAjaxResponse}") {
+                       alert("登录超时！");
+                        window.location.href = "{$userLoginUrl}";
+                    }
+                     return data ; // 返回处理后的数据
+                  }
+                });
+EOD;
+            Yii::app()->clientScript->registerScript('ajaxLoginRequired', $ajaxLoginRequiredHandler);
+           /*
+            Yii::app()->clientScript->registerScript('ajaxLoginRequired', $ajaxLoginRequiredHandler . '
+
+            jQuery("body").ajaxComplete(
+           // jQuery("body").ajaxSuccess(
                 function(event, request, options) {
                     if (request.responseText == "'.Yii::app()->components['user']->loginRequiredAjaxResponse.'") {
                         window.location.href = "'. $this->createUrl(UserHelper::getLoginUrl()) .'";
                     }
                 }
             );
-        ');
+         ');*/
         }
        return parent::beforeControllerAction($controller,$action);
     }

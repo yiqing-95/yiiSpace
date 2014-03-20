@@ -1,5 +1,8 @@
 /**
- * Metabox extension
+ * Metabox javascript class.
+ * 
+ * @author Yannis Fragkoulis <yannis.fragkoulis@gmail.com>
+ * @version 0.4
  */
 
 !function( $ ){
@@ -7,15 +10,18 @@
     "use strict";
 
     var Metabox = function ( element, options ) {
-        this.$element = $(element);
         this.options = $.extend({}, $.fn.metabox.defaults, options);
+        this.$element = $(element);
+		this.$content = $('.' + this.options.cssClass + '-content', element);
+        this.$header = $('.' + this.options.cssClass + '-header', element);
+        this.$footer = $('.' + this.options.cssClass + '-footer', element);
         
         this.options.errorText = this.options.errorText.replace('{url}', this.options.url);
         
         if(this.options.loadingContainer)
             this.options.loadingContainer = $(this.options.loadingContainer);
         else
-            this.options.loadingContainer = this.$element;
+            this.options.loadingContainer = this.$content;
     
         if(this.options.refreshTimeout>0)
             this.createTimeout();
@@ -137,6 +143,7 @@
         loadingClass: 'metabox-loading',
         loadingContainer: null,
         errorText: 'Error loading {url}',
+		cssClass: 'metabox',
         url: null,
         data : {},
         type : 'GET',
@@ -145,7 +152,7 @@
         refreshInterval : 0,
         beforeRefresh: function() {},
         handleResponse: function(data) {
-            this.$element.html(data);
+            this.$content.html(data);
         },
         afterRefresh: function(data) {},
         debug: true

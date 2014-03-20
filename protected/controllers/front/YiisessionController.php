@@ -31,7 +31,7 @@ class YiisessionController extends BackendController
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('create','update',$this->action->id),
+				'actions'=>array('create','update',$this->action->id),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -50,8 +50,11 @@ class YiisessionController extends BackendController
 	 */
 	public function actionView($id)
 	{
+        $model = $this->loadModel($id);
+        $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$model));
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -69,10 +72,25 @@ class YiisessionController extends BackendController
 		if(isset($_POST['Yiisession']))
 		{
 			$model->attributes=$_POST['Yiisession'];
-			if($model->save())
+			if($model->save()){
+                if (Yii::app()->request->isAjaxRequest) {
+                    $this->ajaxSuccess(
+                        array(
+                            'message' => "Yiisession successfully added"
+                        )
+                    );
+                    return ;
+                } else
 				$this->redirect(array('view','id'=>$model->id));
+            }
 		}
-
+        if (Yii::app()->request->isAjaxRequest) {
+                $this->ajaxFailure(
+                        array(
+                            'form' => $this->renderPartial('_form', array('model' => $model), true)
+                        )
+                );
+        } else
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -87,20 +105,80 @@ class YiisessionController extends BackendController
 	{
 		$model=$this->loadModel($id);
 
+        $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$model));
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Yiisession']))
 		{
 			$model->attributes=$_POST['Yiisession'];
-			if($model->save())
+			if($model->save()){
+                if (Yii::app()->request->isAjaxRequest) {
+                    $this->ajaxSuccess(array(
+                            'message' => "Yiisession successfully saved"
+                        )
+                    );
+                    return ;
+                } else
 				$this->redirect(array('view','id'=>$model->id));
+            }
 		}
 
+        if (Yii::app()->request->isAjaxRequest) {
+            $this->ajaxSuccess(
+                   array(
+                         'status' => 'failure',
+                         'form' => $this->renderPartial('_form', array('model' => $model), true)
+                    )
+            );
+        } else
 		$this->render('update',array(
 			'model'=>$model,
 		));
 	}
+
+
+    /**
+     * Updates a particular model. in ajax mode
+     * @param integer $id the ID of the model to be updated
+     *  --------------------------------------------------
+     *  use the application.extensions.formDialog2.FormDialog2 extension
+     *  ajaxCreate functionality is almost using the same code (just change the $this->loadModel($id) to new Yiisession)
+     */
+    public function actionUpdateAjax($id)
+	{
+        $model=$this->loadModel($id);
+        $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$model));
+
+		if(isset($_POST['Yiisession']))
+		{
+            $model->attributes=$_POST['Yiisession'];
+			if($model->save()){
+                if (Yii::app()->request->isAjaxRequest) {
+                    $this->ajaxSuccess(
+                        array(
+                            'message' => "Yiisession successfully saved"
+                        )
+                    );
+                    return ;
+                } else
+                      $this->redirect(array('view','id'=>$model->id));
+            }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+                $this->ajaxSuccess(
+                        array(
+                            'status' => 'failure',
+                            'form' => $this->renderPartial('_form', array('model' => $model), true)
+                        )
+                );
+
+            } else
+            $this->render('update', array('model' => $model,));
+	}
+
 
 	/**
 	 * Deletes a particular model.
@@ -112,7 +190,10 @@ class YiisessionController extends BackendController
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+            $model = $this->loadModel($id);
+            $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$model));
+
+            $model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -175,14 +256,14 @@ class YiisessionController extends BackendController
 	}
 
     /**
-    * 批量删除动作 其他批处理 可以仿此
-    *---------------------------------------------
-    *  基本ajax返回结构定为： {status:"success/failure",
-    *                           msg   :  "the operate result text",
-    *                           data  :  "response to client"
-    *                          }
-    *---------------------------------------------
-    */
+     * 批量删除动作 其他批处理 可以仿此
+     *---------------------------------------------
+     *  基本ajax返回结构定为： {status:"success/failure",
+     *                           msg   :  "the operate result text",
+     *                           data  :  "response to client"
+     *                          }
+     *---------------------------------------------
+     */
     public function actionBatchDelete()
     {
         //  print_r($_POST);
@@ -193,22 +274,100 @@ class YiisessionController extends BackendController
             }
             if (empty($ids)) {
                 echo CJSON::encode(array('status' => 'failure', 'msg' => '至少选择一项'));
-                die();
+               return ;
             }
             //print_r($ids);
+            if(is_string($ids)){
+                $ids = explode(',',$ids);
+            }
             $successCount = $failureCount = 0;
-            foreach ($ids as $id) {
-                $model = $this->loadModel($id);
+
+            $criteria = new CDbCriteria();
+            $criteria->index = 'id';
+            $criteria->addInCondition('id',$ids);
+            $models = Yiisession::model()->findAll($criteria);
+            $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$models));
+
+            foreach ($models as $model) {
                 ($model->delete() == true) ? $successCount++ : $failureCount++;
             }
-            echo CJSON::encode(array('status' => 'success',
-                'data' => array(
-                    'successCount' => $successCount,
-                    'failureCount' => $failureCount,
-                )));
-            die();
+            $this->ajaxSuccess(
+                array(
+                    'data' => array(
+                        'successCount' => $successCount,
+                        'failureCount' => $failureCount,
+                    )
+                )
+            );
+            return ;
         }else{
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
         }
     }
+
+    //==============<batch update>===================================================================
+
+
+
+    public function actionBatchUpdateAjax()
+	{
+
+        $model = new Yiisession;
+
+		if(isset($_POST['Yiisession']))
+		{
+            $model->attributes=$_POST['Yiisession'];
+			if($model->validate(array_keys($_POST['Yiisession']))){
+                    $items=$this->getItemsToUpdate();
+                    $this->onControllerAction(new ControllerActionEvent($this,$this->action->id,$items));
+
+                    foreach($items as $i=>$item)
+                    {
+                        $item->attributes = $_POST['Yiisession'];
+                        $item->save(false);// $item->save(); will run the validate function !
+                    }
+                    $this->ajaxSuccess(
+                        array(
+                            'message' => "Yiisession successfully saved" // .print_r($_POST['Comment'],true),
+                        )
+                    );
+                return ;
+            }
+		}
+
+          if (Yii::app()->request->isAjaxRequest) {
+               $this->ajaxSuccess(
+                        array(
+                            'status' => 'failure',
+                            'form' => $this->renderPartial('batchUpdate', array('model' => $model), true)
+                        )
+               );
+            } else
+            $this->render('batchUpdate', array('model' => $model,));
+	}
+
+    /**
+    * @see http://www.yiiframework.com/doc/guide/1.1/en/form.table
+    */
+    public  function getItemsToUpdate(){
+        if(isset($_POST['ids'])){
+            $ids = $_POST['ids'];
+        }
+        if (empty($ids)) {
+            echo CJSON::encode(array('status' => 'failure', 'form' => '至少选择一项'));
+            die();
+        }
+        //print_r($ids);
+        if(is_string($ids)){
+            $ids = explode(',',$ids);
+        }
+        $criteria = new CDbCriteria();
+        $criteria->index = 'id';
+        $criteria->addInCondition('id',$ids);
+        $items = Yiisession::model()->findAll($criteria);
+
+         return $items ;
+    }
+
+    //==============<batch update/>===================================================================
 }

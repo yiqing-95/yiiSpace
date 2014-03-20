@@ -11,128 +11,24 @@ for ($i = 1; $i <= 5; $i++) {
 }
 
 ?>
-<div class="row-fluid">
-    <div class="span8">
-        <?php
-        $this->widget('bootstrap.widgets.TbCarousel', array(
-                'items' => $banners,
-            )
-        ); ?>
+<style type="text/css">
+  .sidebar-nav{
+      background: #fafad2;
+      min-height: 150px;
+      height: auto;
+  }
+    .sidebar-content{
+        background: #cccc77;
+        min-height: 150px;
+        height: auto;
+    }
+</style>
+<div class="row ">
+    <div class = "grid_4 sidebar-nav stretchedToMargin">
+        this is left
     </div>
-    <div class="span4">
-        <?php
-        $this->widget('user.widgets.pageblock.UserHomeBlock', array(
-            'title' => '最新加入',
-            'tbBoxOptions' => array(
-
-            )
-        )); ?>
-
+    <div class="grid_8 sidebar-content ">
+        this is right
     </div>
-</div>
 
-<div class="row-fluid">
-    <div class="span8">
-        <?php $this->widget('ext.metabox.EMetabox', array(
-        'id' => 'mymetabox',
-        'url' => array('/status/home/block'),
-        'refreshOnInit' => true,
-        'options' => array(
-            'afterRefresh' => 'js:function(data){
-                  // alert("youyou");
-                   }'
-        ),
-    )); ?>
-
-    </div>
-    <div class="span4">
-
-        <div class="">
-            <?php $this->widget('ext.metabox.EMetabox', array(
-            'id' => 'photo_module',
-            'url' => array('/photo/home/block'),
-            'refreshOnInit' => true,
-            'options' => array(
-                'afterRefresh' => 'js:function(data){
-                  // alert("youyou");
-                   }'
-            ),
-        )); ?>
-        </div>
-
-        <!--        在线用户-->
-        <div>
-            <?php $this->widget('ext.metabox.EMetabox', array(
-            'id' => 'online_users',
-            'url' => array('/user/home/onlineUsers'),
-            'refreshOnInit' => true,
-            'options' => array(
-                'afterRefresh' => 'js:function(data){
-                  // alert("youyou");
-                   }'
-            ),
-        )); ?>
-        </div>
-        <!--        在线用户 end-->
-
-
-        <div>
-            <?php
-            $this->widget("ext.FleetBox.FleetBoxWidget", array(
-                    'header' => array(
-                        'title' => '网站统计',
-                        'addon' => '', //additional string with data near header
-                        'actions' => array(
-                            //  CHtml::link('add', '#', array('class' => 'btn btn-mini')),
-                            //  CHtml::link('delete', '#'),
-                        )
-                    ),
-                    'size' => 'large', //'','large','small'
-                    'body' => 'FleetBox size:small',
-                )
-            );
-            ?>
-        </div>
-
-        <div>
-            <?php $box = $this->beginWidget('bootstrap.widgets.TbBox', array(
-            'title' => 'Advanced Box',
-            'headerIcon' => 'icon-th-list',
-            // when displaying a table, if we include bootstra-widget-table class
-            // the table will be 0-padding to the box
-            'htmlOptions' => array('class' => 'bootstrap-widget-table')
-        ));?>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Language</th>
-                    <th>Hours worked</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="odd">
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>CSS</td>
-                    <td>10</td>
-                </tr>
-                <tr class="even">
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>JavaScript</td>
-                    <td>20</td>
-                </tr>
-                </tbody>
-            </table>
-            <?php $this->endWidget(); ?>
-
-        </div>
-
-
-    </div>
 </div>

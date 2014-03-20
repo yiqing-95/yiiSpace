@@ -51,9 +51,15 @@ class YsUploadStorage extends CApplicationComponent
     /**
      * Default web accessible base path for storing protected files
      */
-    const DEFAULT_BASEPATH = 'uploads';
+    public  $uploadPath = 'uploads';
 
+    /**
+     * @var int
+     */
     public $newFileMode = 0666;
+    /**
+     * @var int
+     */
     public $newDirMode = 0777;
     /**
      * @var string base web accessible path for storing private files
@@ -72,7 +78,7 @@ class YsUploadStorage extends CApplicationComponent
     {
         if ($this->_basePath === null) {
             $request = Yii::app()->getRequest();
-            $this->setBasePath(dirname($request->getScriptFile()) . DIRECTORY_SEPARATOR . self::DEFAULT_BASEPATH);
+            $this->setBasePath(dirname($request->getScriptFile()) . DIRECTORY_SEPARATOR . $this->uploadPath);
         }
         return $this->_basePath;
     }
@@ -90,28 +96,6 @@ class YsUploadStorage extends CApplicationComponent
             throw new CException(Yii::t('yii', 'YsUploadStorage.basePath "{path}" is invalid.
              Please make sure the directory exists and is writable by the Web server process.',
                 array('{path}' => $value)));
-    }
-
-    /**
-     * @param bool $absolute
-     * @return string the base url that the published asset files can be accessed.
-     * Note, the ending slashes are stripped off. Defaults to '/AppBaseUrl/assets'.
-     */
-    public function getBaseUrl($absolute=false)
-    {
-        if ($this->_baseUrl === null) {
-            $request = Yii::app()->getRequest();
-            $this->setBaseUrl($request->getBaseUrl($absolute) . '/' . self::DEFAULT_BASEPATH);
-        }
-        return $this->_baseUrl;
-    }
-
-    /**
-     * @param string $value the base url that the published asset files can be accessed
-     */
-    public function setBaseUrl($value)
-    {
-        $this->_baseUrl = rtrim($value, '/');
     }
 
 
@@ -179,17 +163,10 @@ class YsUploadStorage extends CApplicationComponent
 
     }
 
-    /**
-     * @static
-     * @param int $uid
-     * @return string
-     * 获取特定用户的文件保存地址
-     */
-    public static function getUploadDir4user($uid=0){
-        return '';
-    }
 
     /**
+      * @deprecated 不在建议使用了
+     *
      * @param $path
      *
      * @return bool|string
@@ -204,6 +181,25 @@ class YsUploadStorage extends CApplicationComponent
         if (strpos($path, $relPath) === 0){
             // echo substr($path, strlen($relPath) + 1) , die;
             return substr($path, strlen($relPath) + 1);
+        }else
+            return false;
+    }
+
+    /**
+     * 获取相对url
+     *
+     * @param $path
+     * @return bool|string
+     */
+    public function getRelativeUrl($path)
+    {
+
+        $path = strtr($path, array('/' => DIRECTORY_SEPARATOR, '\\' => DIRECTORY_SEPARATOR));
+        $relPath = $this->getBasePath();
+        if (strpos($path, $relPath) === 0){
+            // echo substr($path, strlen($relPath) + 1) , die;
+            $relPath = substr($path, strlen($relPath) + 1);
+             return   $this->getBaseUrl().str_replace(DIRECTORY_SEPARATOR, '/', ltrim($relPath, '/'));
         }else
             return false;
     }
@@ -230,6 +226,11 @@ class YsUploadStorage extends CApplicationComponent
     public function getAccessibleUrl($relPath , $absolute=false){
         if(($pos=strpos($relPath,'http'))===0){
             return $relPath ;
+        }
+
+        // 如果是文件那么传递的是绝对路径了！
+        if(is_file($relPath)){
+            $relPath = $this->getRelativePath($relPath);
         }
 
         if(empty($relPath)) throw new InvalidArgumentException('must give a not null param !') ;
@@ -322,7 +323,74 @@ class YsUploadStorage extends CApplicationComponent
         }
     }
 
+    /**
+     * 获取上传路径
+     *
+     * @param int $uid
+     * @return string
+     */
     public function getSaveToPath($uid=0){
         return $this->getUploadDir(). DIRECTORY_SEPARATOR .$this->genFileName($uid);
     }
+
+    //============================================================\\
+    /**
+     * 传递上传文件实例 返回文件存储的URI地址
+     *
+     * @param CUploadedFile $uploadFile
+     * @throws CException
+     * @return string
+     */
+    public function upload(CUploadedFile $uploadFile){
+        $extName =  $uploadFile->getExtensionName();
+        $saveToPath = $this->getSaveToPath(Yii::app()->user->getId()).".{$extName}";
+         if($uploadFile->saveAs($saveToPath)){
+            $basePath = $this->getBasePath() ;
+             $relPath = substr($saveToPath, strlen($basePath) + 1);
+             return   $this->uploadPath.'/'.str_replace(DIRECTORY_SEPARATOR, '/', ltrim($relPath, '/'));
+
+         }  else{
+            throw new CException('can not upload file to file path :'.$saveToPath);
+         }
+
+         }
+
+    /**
+     * 根据文件存储的URI 删除掉该文件
+     *
+     * @param string $fileUri
+     * @return bool
+     */
+    public function deleteFile($fileUri=''){
+        $filePath =  Yii::getPathOfAlias('webroot').'/'.ltrim(
+                strtr($fileUri, array('/' => DIRECTORY_SEPARATOR, '\\' => DIRECTORY_SEPARATOR)),
+                '/'
+            );
+        return unlink($filePath);
+    }
+
+    /**
+     * @param string $fileURI
+     * @param bool $absolute
+     * @return string
+     */
+    public function getUrl($fileURI= '',$absolute=false){
+        $baseUrl = Yii::app()->getBaseUrl($absolute);
+        return  $baseUrl.'/'.ltrim($fileURI,'/');
+    }
+
+    /**
+     * return the thumbnailUrl calculated by the fileURI
+     *
+     * @param string $fileUri
+     * @param $height
+     * @param int $width
+     * @param string $suffix
+     * @return string
+     */
+    public function getThumbUrl($fileUri='',$height,$width=0,$suffix=''){
+        return Ys::thumbUrl($fileUri,$height,$width,$suffix);
+    }
+    //============================================================//
+
 }

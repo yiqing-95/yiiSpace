@@ -1,0 +1,19 @@
+{
+	"name": "alice",
+	"version": "0.0.1",
+	"author": "yiqing-95 <yiqing_95@qq.com>",
+	"description": "alice ui , TaoBao alice UI framework for Yii.",
+	"contributors": [
+		{
+			"name": "yiqing",
+			"email": "yiqing_95@qq.com",
+			"homepage": ""
+		}
+	],
+	"keywords": [
+		"yii",
+		"alice"
+	],
+	"devDependencies": {
+	}
+}

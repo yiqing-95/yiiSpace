@@ -45,3 +45,5 @@ echo '<br/>';
 echo '<br/>';
 echo 'Enjoy Bugitor. :)<br/><br/>';
 echo CHtml::link('Exit Installer', '../../user/login');
+
+echo CHtml::link('初始化ElasticSearch', '../../site/ensureEsIndex');

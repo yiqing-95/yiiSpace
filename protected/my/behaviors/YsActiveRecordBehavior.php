@@ -13,7 +13,7 @@ class YsActiveRecordBehavior extends CActiveRecordBehavior
     public static function getStreamModels(){
         //来自配置 参考ActionFeedManager 类先
         return array(
-            'Relationship',
+           // 'Relationship',
         );
     }
 

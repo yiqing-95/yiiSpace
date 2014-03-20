@@ -1,8 +1,12 @@
 <?php
-
 class SiteController extends Controller
 {
+    public $menuLabelList = array() ;
+
+
+
     protected function beforeAction($action){
+
         if($action->id == 'page'){
             $this->layout =  '//layouts/iframe';
         }
@@ -36,6 +40,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         if (Yii::app()->user->isGuest) {
@@ -50,7 +56,15 @@ class SiteController extends Controller
             // $roots = SysMenuTree::model()->roots()->with('menu')->findAll();
             $roots = $topRoot->children()->findAll();
 
-            $descendants = $topRoot->descendants()->findAll();
+            if(Yii::app()->theme !==null && Yii::app()->theme->getName()=='EzBoot'){
+                $criteria = $topRoot->descendants()->getDbCriteria();
+                $criteria->select .= ', label as name'; //ztree 用 name 作为显示！
+                $command= $topRoot->getCommandBuilder()->createFindCommand($topRoot->getTableSchema(),$criteria);
+                $descendants = $command->queryAll();
+
+            }else{
+                $descendants = $topRoot->descendants()->findAll();
+            }
 
             $this->render('index', array('roots' => $roots, 'descendants' => $descendants));
         }
@@ -92,12 +106,19 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+        if (!AdminWebUser::getUser()->getIsGuest()){
+            $this->redirect(array('/admin'));
+        }
+
+
         // 禁用theme功能 暂时不需要！
         Yii::app()->theme = null; // false 会导致问题的！ 不要赋值为false
 
         $this->layout = 'login';
-
-        $model = new LoginForm;
+       // $model = new LoginForm;
+        $model = new AdminLoginForm;
+        $modelClassName = get_class($model);
 
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -106,8 +127,8 @@ class SiteController extends Controller
         }
 
         // collect user input data
-        if (isset($_POST['LoginForm'])) {
-            $model->attributes = $_POST['LoginForm'];
+        if (isset($_POST[$modelClassName])) {
+            $model->attributes = $_POST[$modelClassName];
             // validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->login())
                 $this->redirect(Yii::app()->user->returnUrl);

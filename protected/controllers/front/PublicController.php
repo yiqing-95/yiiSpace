@@ -39,7 +39,7 @@ class PublicController extends YsController
 
 
             if (!file_exists($originalFile))
-                throw new CHttpException(404, 'File not found');
+                throw new CHttpException(404, 'File not found: '.$originalFile);
 
             $dirname = dirname($targetPath);
 

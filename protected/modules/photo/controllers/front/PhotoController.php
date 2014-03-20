@@ -11,6 +11,7 @@ class PhotoController extends BasePhotoController
 
     protected  function beforeAction( $action){
 
+        /*
         switch ($action->id) {
             case 'create':
             case 'update':
@@ -19,7 +20,17 @@ class PhotoController extends BasePhotoController
                 break;
             default:
                 ;
+        }*/
+        $actionId = $action->getId();
+        if (in_array($actionId, array('my', 'create', 'update', 'manager'))) {
+            $this->layout = 'userCenter';
+        } elseif (in_array($actionId, array('member'))) {
+            $this->layout = 'userSpace';
+            //$this->layout = UserHelper::getUserBaseLayoutAlias('userSpaceContent');
+        }else{
+            $this->layout = 'userSpace';
         }
+
         return parent::beforeAction($action);
     }
 
@@ -65,8 +76,6 @@ class PhotoController extends BasePhotoController
 	 */
 	public function actionView($id)
 	{
-        $this->layout = YsHelper::getUserSpaceLayout(true);
-
         $spaceOwnerId = $_GET['u'];
         $albumId = $_GET['aid'];
 
@@ -229,7 +238,7 @@ class PhotoController extends BasePhotoController
      */
     public function actionMember()
     {
-        $this->layout = YsHelper::getUserSpaceLayout(true);
+
         $dataProvider=new CActiveDataProvider('Photo');
 
         $criteria = $dataProvider->getCriteria();
@@ -247,7 +256,9 @@ class PhotoController extends BasePhotoController
 
         $dataProvider->getPagination()->setPageSize(6);
 
-        $this->render('index',array(
+       //print_r($dataProvider->getData());
+
+        $this->render('memberList',array(
             'dataProvider'=>$dataProvider,
         ));
     }

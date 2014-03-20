@@ -32,13 +32,12 @@ return 'type_name';
 
 public function rules() {
 return array(
-array('type_name, type_reference', 'required'),
+array('type_name', 'required'),
 array('active', 'numerical', 'integerOnly'=>true),
 array('type_name', 'length', 'max'=>25),
-array('type_reference', 'length', 'max'=>120),
 array('type_name_other', 'length', 'max'=>255),
 array('active, type_name_other', 'default', 'setOnEmpty' => true, 'value' => null),
-array('id, type_name, type_reference, active, type_name_other', 'safe', 'on'=>'search'),
+array('id, type_name,  active, type_name_other', 'safe', 'on'=>'search'),
 );
 }
 
@@ -56,7 +55,6 @@ public function attributeLabels() {
 return array(
 'id' => Yii::t('status_type', 'id'),
 'type_name' => Yii::t('status_type', 'type_name'),
-'type_reference' => Yii::t('status_type', 'type_reference'),
 'active' => Yii::t('status_type', 'active'),
 'type_name_other' => Yii::t('status_type', 'type_name_other'),
 );
@@ -67,7 +65,6 @@ $criteria = new CDbCriteria;
 
 $criteria->compare('id', $this->id);
 $criteria->compare('type_name', $this->type_name, true);
-$criteria->compare('type_reference', $this->type_reference, true);
 $criteria->compare('active', $this->active);
 $criteria->compare('type_name_other', $this->type_name_other, true);
 

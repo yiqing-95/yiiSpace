@@ -1,113 +1,506 @@
 <?php
+Yii::setPathOfAlias('Elastica',Yii::getPathOfAlias('application.vendors.Elastica'));
+
+use Elastica\Client;
+use Elastica\Document;
+
+// socketIo  客户端
+use ElephantIO\Client as ElephantIOClient;
 /**
  * @Desc('this is a test class . you can use test/help to see all available test items')
  */
 class Test1Controller extends Controller
 {
-
-    public function actionYupeCacheClear(){
-        $data = Yii::app()->cache->clear('yiiSpace');
+    public function filters()
+    {
+        return array(
+            array(
+                'my.filters.ERequestLockFilter',
+                // 'method'=>'ANY',
+            ),
+        );
     }
 
-    public function actionYupeCache(){
-          $key = 'test';
-          $data = Yii::app()->cache->get($key);
-        if($data == false){
-            echo 'can not find in cache  ';
-          $data = array(
-              'hi'=>'yupe',
-          );
-            Yii::app()->cache->set($key,$data, 0,new TagsCache('yiiSpace'));
+
+    /**
+     * @Desc('ajax防止重复请求的例子 只请求一次 注意有个id参数 ：1,2,3,4 可以取')
+     * @param string $id
+     */
+    public function actionAjaxPostOnce($id=''){
+        $this->render('ajaxPostOnce'.$id);
+    }
+
+    public function actionRequestLock(){
+        $this->render('requestLock');
+    }
+
+    //---------------------------------------------------\\
+    public function actionAjaxErrorTest(){
+
+        if(Yii::app()->request->getIsAjaxRequest())
+        {
+            throw new CHttpException(467,'哈哈哈 管用不?');
+
         }
+
+        $this->render('ajaxErrorTest');
+    }
+
+
+    //----------------------------------------------------//
+
+    public function actionMiniAudioPlayer(){
+        $this->render('miniAudioPlayer');
+    }
+
+    //...............................................................\\
+    public function actionSwfUpload(){
+        $this->render('swfUpload');
+    }
+
+    /**
+     * @Desc(测试swfUpload上传)
+     * 图片预览要关闭debug模式 Yii-debug-Toolbar 会干扰输出！
+     */
+    public function actionHandleSwfUpload(){
+        try{
+            // get the file
+            $picture_file = CUploadedFile::getInstanceByName('Filedata');
+            if(!$picture_file || $picture_file->getHasError()){
+                echo 'Error: Documento Invalido';
+                Yii::app()->end();
+            }
+
+            //--------------------------------------------\\
+            // Yii app的end方法使用了 register_shutdown 注册了 所以总会被最终调用的注册监听endRequest的callabe总被调用！
+            // 这个是用来hack 日志问题！ 不需要debug信息的输出 特别是yii-debug-toolbar 组件！
+            ob_start();
+            Yii::app()->end(0,false);
+            ob_end_clean() ;
+            //--------------------------------------------//
+
+
+            // remember the post params?
+            // $yourvar = Yii::app()->request->getParam('yourvarname');
+            $picture_name = $picture_file->name;
+            //
+            // I normally here I use PhpThumb Library instead of this
+            // make sure 'thepathyousavethefile' is a writable path
+            $picture_file->saveAs(
+                Yii::getPathOfAlias('webroot.images').DIRECTORY_SEPARATOR.
+                $picture_name
+            );
+            // Return the file id to the script
+            // This will display the thumbnail of the uploaded file to the view
+            echo "FILEID:" . Yii::app()->getBaseUrl() .
+                '/images/' .
+                $picture_name;
+           // 调试模式下 输出的debug信息 会干扰客户端显示图片的！
+           exit();
+        }  catch(Exception $e){
+            echo 'Error: ' . $e->getMessage();
+        }
+        eixt();
+    }
+
+    //...............................................................//
+
+    /**
+     * @Desc('测试发送额外的post数据！(wiki)[http://www.yiiframework.com/wiki/395/additional-form-data-with-xupload/]')
+     *
+     * 虽然继承自CJuiWidget 但可以禁用其注册jquery.ui 相关的js css！
+     * 通过CJuiWidget的属性： scriptFile cssFile为false 即可 这样可以自定义模板的样式！
+     *
+     * 以前总是纠结模型问题 其实多个模型看成一个就行了 一个分裂为多个 多个可合为一个
+     * 一个控制器是可以渲染多个model的 同时在处理时也可以处理多个model的 这样最后在处理
+     * 文件上传模型的验证 和提交就好了！ 上传模型可以看做是目标模型的分裂部分 这样上传
+     * 处理完成后再把值合并回来就行！
+     */
+    public function actionXUpload2(){
+        Yii::setPathOfAlias('xupload',Yii::getPathOfAlias('ext.xupload'));
+
+
+        Yii::import("xupload.models.XUploadForm");
+        $model = new XUploadForm;
+
+        // 其实获取一个目录别名即可 另一个可以跟第一个共用一个别名！
+        $templateDownload = $this->getViewFile('xupload/tmpl-download');
+        $downloadTpl = Yii::setPathOfAlias('downloadDir',dirname($templateDownload));
+
+        $templateUpload =  $this->getViewFile('xupload/tmpl-upload');
+        $uploadTpl = Yii::setPathOfAlias('uploadDir',dirname($templateUpload));
+
+         /*  var_dump(array(
+               $templateDownload,
+               $templateUpload,
+           )); die(__METHOD__);
+            */
+
+        $this -> render('xupload/upload2', array(
+            'model' => $model,
+        ));
+    }
+
+    public   function actionUploadAdditional(){
+    header( 'Vary: Accept' );
+    if( isset( $_SERVER['HTTP_ACCEPT'] ) && (strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false) ) {
+        header( 'Content-type: application/json' );
+    } else {
+        header( 'Content-type: text/plain' );
+    }
+
+    if( isset( $_GET["_method"] ) ) {
+        if( $_GET["_method"] == "delete" ) {
+            $success = is_file( $_GET["file"] ) && $_GET["file"][0] !== '.' && unlink( $_GET["file"] );
+            echo json_encode( $success );
+        }
+    } else {
+        $this->init( );
+        Yii::setPathOfAlias('xupload',Yii::getPathOfAlias('ext.xupload'));
+        Yii::import("xupload.models.XUploadForm");
+        $model = new XUploadForm;
+
+       //  $model = new Image;//Here we instantiate our model
+
+        //We get the uploaded instance
+        $model->file = CUploadedFile::getInstance( $model, 'file' );
+        if( $model->file !== null ) {
+            $model->mime_type = $model->file->getType( );
+            $model->size = $model->file->getSize( );
+            $model->name = $model->file->getName( );
+            //Initialize the ddditional Fields, note that we retrieve the
+            //fields as if they were in a normal $_POST array
+
+          // 这里是额外的信息！
+          //  $model->title = Yii::app()->request->getPost('title', '');
+          //  $model->description  = Yii::app()->request->getPost('description', '');
+
+            if( $model->validate( ) ) {
+                $path = Yii::app() -> getBasePath() . "/../images/uploads";
+                $publicPath = Yii::app()->getBaseUrl()."/images/uploads";
+                if( !is_dir( $path ) ) {
+                    mkdir( $path, 0777, true );
+                    chmod ( $path , 0777 );
+                }
+                $model->file->saveAs( $path.$model->name );
+                chmod( $path.$model->name, 0777 );
+
+                //Now we return our json
+                echo json_encode( array( array(
+                    "name" => $model->name,
+                    "type" => $model->mime_type,
+                    "size" => $model->size,
+                    //Add the title
+                  //  "title" => $model->title,
+                    //And the description
+                 //   "description" => $model->description,
+
+                    "url" => $publicPath.$model->name,
+                    "thumbnail_url" => $publicPath.$model->name,
+                    "delete_url" => $this->createUrl( $this->action->id, array(
+                            "_method" => "delete",
+                            "file" => $path.$model->name
+                        ) ),
+                    "delete_type" => "POST"
+                ) ) );
+            } else {
+                echo json_encode( array( array( "error" => $model->getErrors( 'file' ), ) ) );
+                Yii::log( "XUploadAction: ".CVarDumper::dumpAsString( $model->getErrors( ) ), CLogger::LEVEL_ERROR, "xupload.actions.XUploadAction" );
+            }
+        } else {
+            throw new CHttpException( 500, "Could not upload file" );
+        }
+
+    }
+}
+
+    public function actionXUpload(){
+        Yii::setPathOfAlias('xupload',Yii::getPathOfAlias('ext.xupload'));
+
+
+        Yii::import("xupload.models.XUploadForm");
+        $model = new XUploadForm;
+        $this -> render('xupload/upload', array('model' => $model, ));
+    }
+
+    public function actionFloatMenu(){
+        $this->render('floatMenu');
+    }
+
+public function actionEFlatMenu(){
+    $this->render('eflatMenu');
+}
+
+
+
+    public function actionModuleService(){
+
+
+       // YsModuleService::instance()->call('user','test',array('param1'=>'y'));
+
+      print_r(  YsModuleService::instance()->call('user','CanDeleteAndEditComment',array('param1'=>'y','yes')) );
+    }
+
+    public function actionTestComment(){
+        // note : there is another Comment class under the application/models for latency usage !
+        Yii::app()->getModule('comment');
+        // above code will change the php include path order !
+        $this->render('testComment');
+    }
+
+    public function actionSocketIo2(){
+        $this->render('socketIo2');
+    }
+    public function actionSocketIo(){
+        $this->render('socketIo');
+    }
+
+    public function actionElephantIO(){
+
+        $elephant = new ElephantIOClient('http://localhost:8000', 'socket.io', 1, false, true, true);
+
+        $elephant->init();
+        $elephant->emit('action', 'foo');
+        $elephant->emit('my other event', 'foo');
+        $elephant->close();
+
+        echo 'tryin to send `foo` to the event called action';
+    }
+
+    public function actionPowerSwitch(){
+        $this->render('powerSwitch');
+    }
+
+    /**
+     * @Desc('测试 smint 插件')
+     */
+    public function actionSmint(){
+        $this->render('smint');
+    }
+
+    /**
+     * @Desc('测试 powerFloat 插件')
+     */
+    public function actionPowerFloat(){
+        $this->render('powerFloat');
+    }
+
+    public function actionAlice(){
+        $this->render('alice');
+    }
+
+    /**
+     * @Desc('测试aliceUi seajs')
+     */
+    public function actionAliceUi2(){
+        $this->render('aliceUi2');
+    }
+
+    /**
+     * @Desc('测试aliceUi')
+     */
+    public function actionAliceUi(){
+        $this->render('aliceUi');
+    }
+
+    public function actionYiiElasticSearch2(){
+
+
+        $search = new \YiiElasticSearch\Search("yiitest" , "domainType");
+        $search->query = array(
+        //"match_all" => array()
+        );
+        // start returning results from the 20th onwards
+        $search->offset = 20;
+        $resultSet = Yii::app()->elasticSearch->search($search);
+        print_r($resultSet);
+
+        $client = Yii::app()->elasticSearch->client;
+        $client = AppComponent::elasticSearch()->getClient();
+
+        $esConn = AppComponent::elasticSearch();
+        $document = new \YiiElasticSearch\Document();
+        $document->setConnection($esConn);
+        $document->setIndex('yiitest');
+        $document->setType('domainType');
+        $document->setId(4+time());
+        $document['key'] = 'yiqing'.time();
+
+        AppComponent::elasticSearch()->index($document,true);
+        /*
+        $mapping = array(
+            'country' => array(
+                'properties' => array(
+                    'name' => array(
+                        'type' => 'string',
+                    ),
+                ),
+            ),
+        );
+
+
+// Create a mapping
+         $request = $client->put('yiiTest', array("Content-type" => "application/json"));
+        $request->setBody(array('mapping' => $mapping));
+
+        $response = $request->send();
+
+        $result = $response->getBody();
+        */
+
+    }
+
+    public function actionYiiElasticSearch(){
+       Yii::import('ext.Yii-Elastica.components.*');
+        $elastica_query = new Elastica\Query();
+     //   $term_filter = new \Elastica\Filter\Term();
+       // $term_filter->setTerm('name', 'Elastica_test');
+       // $elastica_query->setFilter($term_filter);
+       /*
+        $dataprovider = new  ElasticaDataProvider('test', $elastica_query, array(
+            'sort' => array(
+                'attributes' => array('attribute.desc',),
+            ),
+            'pagination' => array(
+                'pageSize' => 30,
+            ),
+        ), 'type_name_optional');
+        */
+        $dataprovider = new  ElasticaDataProvider('blog', $elastica_query, array(
+
+            'pagination' => array(
+                'pageSize' => 130,
+            ),
+        ));
+
+        $data = $dataprovider->getData();
         print_r($data);
     }
 
-    public function actionJsTemplate(){
-        $this->render('jsTemplate');
+    public function actionElasticSearch(){
+
+        $client = new Client();
+        $index = $client->getIndex('test');
+        $index->create(array(), true);
+        $type = $index->getType('test');
+
+        $start = microtime(true);
+
+        for ($i = 1; $i <= 100; $i++) {
+            $doc = new Document($i, array('test' => 1));
+            $type->addDocument($doc);
+        }
+
+        // Refresh index
+        $index->refresh();
+
+        $end = microtime(true);
+
+        //echo $end - $start;
+
     }
 
-    public function actionJqSimpleMenu(){
-        $this->render('menu/jqSimpleMenu');
+    public function actionTestJuiDialog(){
+        $this->render('juiDialog');
     }
 
-    public function actionRdMenu(){
-        $this->render('menu/rdMenu');
+    public function actionIconFonts(){
+        $this->render('iconFonts');
     }
 
 
-    public function actionJDropDownMenu(){
-        $this->render('menu/jdropdownmenu');
+
+
+    public function actionPopover(){
+        $this->render('popover');
     }
 
-    public function actionDcVerticalMegaMenu(){
-        $this->render('menu/dcVerticalMegaMenu');
+
+    public function actionBubblePopup(){
+        $this->render('bubblePopup');
     }
 
-    public function actionDcMegaMenu(){
-        $this->render('menu/dcMegaMenu');
+    public function actionResponsiveMenu1(){
+        $this->render('responsiveMenu');
+    }
+    public function actionPop(){
+        $this->render('pop');
     }
 
-    public function actionJMegaMenu2(){
-        $this->render('menu/jmegamenu2');
+    public function actionArtDialog(){
+        $this->render('artDialog');
+    }
+    public function actionCurlTest()
+    {
+        echo "<pre>";
+        var_dump(curl_version());
+        echo "</pre>";
     }
 
-    public function actionTestServiceX(){
-        WebUtil::printCharsetMeta();
-        Yii::app()->getModule('user');
-        Yii::import('user.services.UserService');
+    public function actionYsPageBox(){
+        $this->render('ysPageBox');
+    }
 
-          $us = new UserService();
-       $return =    $us->register('tewt','test');
+    public function actionJBoxSlider(){
+    $this->render('JBoxSlider');
+    }
 
-        print_r($return);
+    public function actionJStickyBox(){
+        $this->render('JStickBox');
     }
 
     /**
-     * @Desc('测试右侧浮动菜单')
+     * @param $event
+     * 定义一个事件
      */
-    public function actionRightSideBar(){
-        $this->render('rightSideBar');
+    public function onModelOp($event)
+    {
+        $this->raiseEvent('onModelOp', $event);
     }
 
-    public function actionTest52Fr(){
-        $this->layout = '//layouts/test/52fr';
-        $this->render('52fr');
+    public function handleModelOp($event){
+        print_r($event);
+        die("hi  your event is handled by ".__METHOD__);
     }
 
     /**
-     * @Desc('测试下die方法跟exit方法的区别 exit 只是终止当前php段 ')
+     * @Desc('测试出触发一个自定义控制器事件 并利用 事件拦截 静态事件扩展来处理它！')
      */
-    public function actionTestExit(){
-        $this->render('testExit');
-        echo "after exit";
+    public function actionTestControllerEvent(){
+        // 来动态注册一个事件处理器
+        // or to attach/ detach at runtime:
+        $events = Yii::app()->events;
+        $events->attach( __CLASS__, 'onModelOp', array($this,'handleModelOp') );
+
+        // 某种行为后 或者满足条件后 触发此事件
+        $this->onModelOp(new CEvent($this));
+    }
+
+
+    /**
+     * @Desc('测试 dwz 扩展 输入特定参数：plugin=accordion');
+     */
+    public function actionDwz($plugin=''){
+
+        //$this->layout = 'dwz';
+        $this->layout = 'dwz_menu';
+        $this->render('dwz/'.$plugin);
+    }
+
+    /**
+     * @Desc('测试 dwz 扩展')
+     */
+    public function actionDwz2(){
+        Yii::import('application.extensions.*');
+        $this->render('dwz/t2');
     }
     /**
-     * @Desc('测试下die方法跟exit方法的区别 ')
+     * @Desc('测试 dwz 扩展')
      */
-    public function actionTestDie(){
-       $this->render('testDie');
-        echo "after die";
-
+    public function actionDwz1(){
+        Yii::import('application.extensions.*');
+        $this->render('dwz/t1');
     }
-
-
-    public function actionPathAlias(){
-        echo Yii::getPathOfAlias('application.hello');
-    }
-    /**
-     * @Desc('测试配置功能')
-     */
-    public function actionEConfig(){
-        WebUtil::printCharsetMeta();
-        Yii::import('application.components.sysConfig.*');
-        print_r(ESysConfig::instance()->getAll());
-        echo "<br/> 测试 下不存在情况下 ",
-        ESysConfig::instance()->get('none',__METHOD__),
-            "<br/> 测试 下不存在情况下 ",
-            ESysConfig::instance()->get('fax','defaultValue');
-         //Yii::t('cate','key');
-    }
-
     /**
      * @Desc('测试 ztree扩展!')
      */
@@ -179,7 +572,6 @@ CLASS_TPL;
     {
         $serviceProviderSdk = 'application.api_vendors.yiiSpace';
         Yii::import($serviceProviderSdk . '.test.services.TestServiceHolder');
-
         $serviceHolder = TestServiceHolder::instance();
         //echo get_class($serviceHolder->getTest2Service()); die();
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
@@ -193,7 +585,6 @@ CLASS_TPL;
     {
         Yii::app()->getModule('test');
         Yii::import('test.services.TestServiceHolder');
-
         $serviceHolder = TestServiceHolder::instance();
 
         echo $serviceHolder->getTest2Service()->helloTo(__METHOD__);
@@ -524,7 +915,6 @@ CLASS_TPL;
         } catch (Exception $e) {
             echo nl2br($e->getMessage()) . '<br />' . "\n";
         }
-
     }
 
 
@@ -924,7 +1314,6 @@ JS;
         $itemValue = array('k' => 'v', 'k2' => 2);
         Yii::app()->settings->set($categoryName, $itemName, $itemValue, $toDatabase = true);
         var_dump(Yii::app()->settings->get($categoryName, $itemName));
-      // AppComponent::settings()->get()
     }
 
     public function actionIndex()

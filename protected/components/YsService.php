@@ -21,6 +21,13 @@
  * ...............................
  * 还有一种实现通过Yii::app()->runController  实现内部调用 用jsonRpc实现外部调用
  *
+ * 参考symfony相关概念：
+ * the format
+ * BUNDLE_NAME:CONTROLLER_NAME:ACTION_NAME. For instance, AcmeDemoBundle:Welcome:index maps to
+ *  the indexAction method from the Acme\DemoBundle\Controller\WelcomeController class
+ * 对外是逻辑名称 对内需要映射到物理名称上
+ * ................................
+ * YsService::instance()->call('<moduleId>','serviceName:methodName',array(....))
  */
 class YsService extends CApplicationComponent
 {

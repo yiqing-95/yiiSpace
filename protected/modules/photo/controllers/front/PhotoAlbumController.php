@@ -9,21 +9,32 @@ class PhotoAlbumController extends BasePhotoController
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    // public $layout = 'userSpace';
+    // public $layout = 'userCenter';
 
-    protected  function beforeAction( $action)
+    protected function beforeAction($action)
     {
-
+        /*
         switch ($action->id) {
             case 'create':
             case 'update':
             case 'manage':
             case 'my':
-                $this->layout = YsHelper::getUserCenterLayout();
+               // $this->layout = YsHelper::getUserCenterLayout();
                 break;
             default:
                 ;
         }
+        */
+
+        $actionId = $action->getId();
+        if (in_array($actionId, array('my', 'create', 'update', 'manager'))) {
+            $this->layout = 'userCenter';
+        } elseif (in_array($actionId, array('member'))) {
+            $this->layout = 'userSpace';
+            //$this->layout = UserHelper::getUserBaseLayoutAlias('userSpaceContent');
+        }
+
 
         return parent::beforeAction($action);
     }
@@ -63,22 +74,6 @@ class PhotoAlbumController extends BasePhotoController
                 'users' => array('*'),
             ),
         );
-    }
-
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id)
-    {
-        unset($_GET['id']);
-        $_GET['album'] = $id ;
-        $this->forward('photo/member');
-        /*
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-        */
     }
 
 
@@ -133,7 +128,7 @@ class PhotoAlbumController extends BasePhotoController
     {
         $model = $this->loadModel($id);
 
-        if($model->uid !== UserHelper::getVisitorId()){
+        if ($model->uid !== UserHelper::getVisitorId()) {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
         }
         // Uncomment the following line if AJAX validation is needed
@@ -207,31 +202,6 @@ class PhotoAlbumController extends BasePhotoController
         ));
     }
 
-    /**
-     * Lists all models.for space user
-     */
-    public function actionMember()
-    {
-        $this->layout = YsHelper::getUserSpaceLayout();
-
-        if(!isset($_GET['u'])){
-            $_GET['u'] = user()->getId();
-        }
-
-        $dataProvider = new CActiveDataProvider('PhotoAlbum');
-        $criteria = $dataProvider->getCriteria();
-        $criteria->addColumnCondition(array(
-           'uid'=>UserHelper::getSpaceOwnerId(),
-        ));
-       // $criteria->order = 'update_time DESC';
-        $criteria->order = 'id DESC';
-
-        $dataProvider->getPagination()->setPageSize(6);
-
-        $this->render('member', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
 
     /**
      * Manages all models.
@@ -310,4 +280,52 @@ class PhotoAlbumController extends BasePhotoController
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
         }
     }
+
+    //-------------------------------------------------------------------------------\\
+    // 这是公共访问区 用户public空间 或者相册广场区
+    //
+    /**
+     * Lists all models.for space user
+     */
+    public function actionMember()
+    {
+        if (!isset($_GET['u'])) {
+            $_GET['u'] = user()->getId();
+        }
+        $spaceOwnerId = $_GET['u'];
+        UserHelper::setSpaceOwnerId($spaceOwnerId);
+
+        $dataProvider = new CActiveDataProvider('PhotoAlbum');
+        $criteria = $dataProvider->getCriteria();
+        $criteria->addColumnCondition(array(
+            'uid' => UserHelper::getSpaceOwnerId(),
+        ));
+        // $criteria->order = 'update_time DESC';
+        $criteria->order = 'id DESC';
+
+        $dataProvider->getPagination()->setPageSize(6);
+
+        $this->render('member', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionView($id)
+    {
+        unset($_GET['id']);
+        $_GET['album'] = $id;
+        $this->forward('photo/member');
+        /*
+        $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+        */
+    }
+
+
+    //-------------------------------------------------------------------------------//
 }

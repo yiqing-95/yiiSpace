@@ -11,10 +11,10 @@
  *
  * @property integer $id
  * @property string $name
- * @property integer $creator
- * @property string $created
+ * @property integer $creator_id
+ * @property integer $created
  * @property integer $active
- * @property integer $group
+ * @property integer $group_id
  *
  */
 abstract class BaseGroupTopic extends YsActiveRecord
@@ -38,24 +38,19 @@ abstract class BaseGroupTopic extends YsActiveRecord
     public function rules()
     {
         return array(
-            array('name, creator,  group', 'required'),
-            array('creator, active, group', 'numerical', 'integerOnly' => true),
+            array('name, creator_id, group_id', 'required'),
+            array('creator_id, created, active, group_id', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 255),
-            array('active', 'default', 'setOnEmpty' => true, 'value' => null),
-            array('id, name, creator, created, active, group', 'safe', 'on' => 'search'),
+            array('created, active', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, name, creator_id, created, active, group_id', 'safe', 'on' => 'search'),
         );
     }
 
-    public function relations()
-    {
-        return array(
-        );
-    }
+
 
     public function pivotModels()
     {
-        return array(
-        );
+        return array();
     }
 
     public function attributeLabels()
@@ -63,10 +58,10 @@ abstract class BaseGroupTopic extends YsActiveRecord
         return array(
             'id' => Yii::t('group_topic', 'id'),
             'name' => Yii::t('group_topic', 'name'),
-            'creator' => Yii::t('group_topic', 'creator'),
+            'creator_id' => Yii::t('group_topic', 'creator_id'),
             'created' => Yii::t('group_topic', 'created'),
             'active' => Yii::t('group_topic', 'active'),
-            'group' => Yii::t('group_topic', 'group'),
+            'group_id' => Yii::t('group_topic', 'group_id'),
         );
     }
 
@@ -76,13 +71,15 @@ abstract class BaseGroupTopic extends YsActiveRecord
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('creator', $this->creator);
-        $criteria->compare('created', $this->created, true);
+        $criteria->compare('creator_id', $this->creator_id);
+        $criteria->compare('created', $this->created);
         $criteria->compare('active', $this->active);
-        $criteria->compare('group', $this->group);
+        $criteria->compare('group_id', $this->group_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
     }
+
+
 }

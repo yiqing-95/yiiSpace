@@ -9,6 +9,14 @@
 class ApiController extends CController
 {
 
+    /**
+     * 参考YsModuleService类
+     * @return mixed
+     */
+    public function actionModuleService(){
+      echo CJSON::encode( $_POST );
+    }
+
     public function actionRpc()
     {
         //  die(__METHOD__);

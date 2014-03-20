@@ -1,4 +1,9 @@
 <?php
+/**
+ * @see  http://x-editable.demopage.ru/
+ */
+Yii::setPathOfAlias('editable', dirname(__FILE__).'/../extensions/x-editable');
+
 return array(
     'application.models.*',
     'application.models.forms.*',
@@ -30,13 +35,16 @@ return array(
     //my
     'application.my.components.*',
     'application.my.interfaces.*',
-	
-	// Badgeru
-    'application.modules.badger.models.*',
 
-    // yupe
-    'application.modules.yupe.models.*',
-    'application.modules.yupe.widgets.*',
-    'application.modules.yupe.controllers.*',
-    'application.modules.yupe.extensions.tagcache.*',
+    // EventInterceptor is required by EventBridgeBehavior
+    'ext.event-interceptor.*',
+
+    // 导入Cascade框架目录：
+    'application.my.widgets.CascadeFr.*',
+
+    //
+    'editable.*', //easy include of editable classes
+
+    // 搜索
+    'ext.Yii-Elastica.components.*',
 );

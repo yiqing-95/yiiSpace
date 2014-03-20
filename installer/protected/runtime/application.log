@@ -157,27 +157,329 @@ Stack trace:
 REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=installDb
 HTTP_REFERER=http://localhost/sns_my/rcyxw2013/installer/install/installation?step=installDb
 ---
-2013/12/20 18:07:30 [error] [php] file_get_contents(D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\data\my_space.sql) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory (D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php:251)
+2013/12/21 07:10:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'rcyx'' in D:\wamp\bin\php\PEAR\yii\framework\db\CDbConnection.php:382
 Stack trace:
-#0 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php(169): call_user_func()
-#1 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep()
-#2 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\components\WizardBehavior.php(681): WizardBehavior->raiseEvent()
-#3 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep()
-#4 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
-#5 unknown(0): WizardBehavior->process()
-#6 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array()
-#7 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php(96): InstallController->__call()
-#8 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php(96): InstallController->process()
-#9 unknown(0): InstallController->actionInstallation()
-#10 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
-#11 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
-#12 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
-#13 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(286): InstallController->runAction()
-#14 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(265): InstallController->runActionWithFilters()
-#15 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(282): InstallController->run()
-#16 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
-#17 D:\wamp\bin\php\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
-#18 D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\index.php(23): CWebApplication->run()
-REQUEST_URI=/my_github_old/MyGithubProjects/yiiSpace/installer/install/installation?step=installDb
-in D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php (251)
-in D:\wamp\www\my_github_old\MyGithubProjects\yiiSpace\installer\protected\controllers\InstallController.php (169)
+#0 D:\wamp\bin\php\PEAR\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\wamp\bin\php\PEAR\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\wamp\bin\php\PEAR\yii\framework\base\CModule.php(419): CDbConnection->init()
+#3 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(278): CModule->setComponent('db', Object(CDbConnection))
+#4 [internal function]: InstallController->processInstallDb(Object(WizardEvent))
+#5 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#6 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#7 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#8 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#9 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#10 [internal function]: WizardBehavior->process('installDb')
+#11 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#12 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#13 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('installDb')
+#14 [internal function]: InstallController->actionInstallation('installDb')
+#15 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#16 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#17 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#21 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#22 D:\wamp\bin\php\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#23 D:\wamp\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#24 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=installDb
+HTTP_REFERER=http://localhost/sns_my/rcyxw2013/installer/install/installation?step=installDb
+---
+2013/12/21 07:49:59 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table '`rcyx`.`admin_menu`' already exists. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'.
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (291)
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (169)
+2013/12/21 07:49:59 [error] [exception.CException] exception 'CException' with message 'import failed! CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table '`rcyx`.`admin_menu`' already exists. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'' in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php:294
+Stack trace:
+#0 [internal function]: InstallController->processInstallDb(Object(WizardEvent))
+#1 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#2 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#3 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#4 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#5 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#6 [internal function]: WizardBehavior->process('installDb')
+#7 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#8 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#9 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('installDb')
+#10 [internal function]: InstallController->actionInstallation('installDb')
+#11 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#12 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#13 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#15 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#17 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#18 D:\wamp\bin\php\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 D:\wamp\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#20 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=installDb
+HTTP_REFERER=http://localhost/sns_my/rcyxw2013/installer/install/installation?step=installDb
+---
+2013/12/21 08:43:25 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table '`rcyx`.`admin_menu`' already exists. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'.
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (291)
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (169)
+2013/12/21 08:43:25 [error] [exception.CException] exception 'CException' with message 'import failed! CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table '`rcyx`.`admin_menu`' already exists. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'' in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php:294
+Stack trace:
+#0 [internal function]: InstallController->processInstallDb(Object(WizardEvent))
+#1 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#2 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#3 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#4 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#5 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#6 [internal function]: WizardBehavior->process('installDb')
+#7 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#8 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#9 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('installDb')
+#10 [internal function]: InstallController->actionInstallation('installDb')
+#11 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#12 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#13 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#15 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#17 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#18 D:\wamp\bin\php\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 D:\wamp\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#20 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=installDb
+HTTP_REFERER=http://localhost/sns_my/rcyxw2013/installer/install/installation?step=installDb
+---
+2013/12/21 08:46:11 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1813 Tablespace for table '`rcyx`.`admin_menu`' exists. Please DISCARD the tablespace before IMPORT.. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'.
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (291)
+in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php (169)
+2013/12/21 08:46:11 [error] [exception.CException] exception 'CException' with message 'import failed! CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1813 Tablespace for table '`rcyx`.`admin_menu`' exists. Please DISCARD the tablespace before IMPORT.. The SQL statement executed was: CREATE TABLE `admin_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url 如 array(user/create); 或者user/create  //user/create 服务端处理时要判断是否转为array 要考虑如果采用前者分号的问题 eval函数',
+  `params` tinytext COMMENT 'url 后的请求参数',
+  `ajaxoptions` text,
+  `htmloptions` text,
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `uid` int(11) NOT NULL DEFAULT '0' COMMENT '谁的树 系统默认的是后台树0 ',
+  `group_code` varchar(25) NOT NULL DEFAULT 'sys_admin_menu' COMMENT '归类码表示用途的 一般只需要标记根的用途即可 也可以考虑用eav 但考虑到查询问题 所以引入了此字段',
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='用nestedset保存树关系'' in D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php:294
+Stack trace:
+#0 [internal function]: InstallController->processInstallDb(Object(WizardEvent))
+#1 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#2 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#3 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#4 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#5 D:\wamp\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#6 [internal function]: WizardBehavior->process('installDb')
+#7 D:\wamp\bin\php\PEAR\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#8 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#9 D:\wamp\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('installDb')
+#10 [internal function]: InstallController->actionInstallation('installDb')
+#11 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#12 D:\wamp\bin\php\PEAR\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#13 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#15 D:\wamp\bin\php\PEAR\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#17 D:\wamp\bin\php\PEAR\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#18 D:\wamp\bin\php\PEAR\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 D:\wamp\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#20 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=installDb
+HTTP_REFERER=http://localhost/sns_my/rcyxw2013/installer/install/installation?step=installDb
+---
+2013/12/21 17:57:26 [error] [php] require(D:\www\sns_my\rcyxw2013\installer\protected\requirements\requirements): failed to open stream: No such file or directory (D:\www\sns_my\rcyxw2013\installer\protected\views\install\helloValue.php:27)
+Stack trace:
+#0 D:\www\php_libs\yii\framework\web\CBaseController.php(95): InstallController->renderInternal()
+#1 D:\www\php_libs\yii\framework\web\CController.php(869): InstallController->renderFile()
+#2 D:\www\php_libs\yii\framework\web\CController.php(782): InstallController->renderPartial()
+#3 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(197): InstallController->render()
+#4 unknown(0): InstallController->processCheckEnv()
+#5 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func()
+#6 D:\www\php_libs\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep()
+#7 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): WizardBehavior->raiseEvent()
+#8 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep()
+#9 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#10 unknown(0): WizardBehavior->process()
+#11 D:\www\php_libs\yii\framework\base\CComponent.php(261): call_user_func_array()
+#12 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->__call()
+#13 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process()
+#14 unknown(0): InstallController->actionInstallation()
+#15 D:\www\php_libs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#16 D:\www\php_libs\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#17 D:\www\php_libs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#18 D:\www\php_libs\yii\framework\web\CController.php(286): InstallController->runAction()
+#19 D:\www\php_libs\yii\framework\web\CController.php(265): InstallController->runActionWithFilters()
+#20 D:\www\php_libs\yii\framework\web\CWebApplication.php(282): InstallController->run()
+#21 D:\www\php_libs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 D:\www\php_libs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 D:\www\sns_my\rcyxw2013\installer\index.php(23): CWebApplication->run()
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=checkEnv
+in D:\www\sns_my\rcyxw2013\installer\protected\views\install\helloValue.php (27)
+in D:\www\sns_my\rcyxw2013\installer\protected\views\install\helloValue.php (27)
+2013/12/21 17:57:57 [error] [exception.CException] exception 'CException' with message 'InstallController and its behaviors do not have a method or closure named "checkPhpExtensionVersion".' in D:\www\php_libs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\www\sns_my\rcyxw2013\installer\protected\requirements\requirements.php(44): CComponent->__call('checkPhpExtensi...', Array)
+#1 D:\www\sns_my\rcyxw2013\installer\protected\requirements\requirements.php(44): InstallController->checkPhpExtensionVersion('intl', '1.0.2', '>=')
+#2 D:\www\sns_my\rcyxw2013\installer\protected\views\install\helloValue.php(27): require('D:\www\sns_my\r...')
+#3 D:\www\php_libs\yii\framework\web\CBaseController.php(126): require('D:\www\sns_my\r...')
+#4 D:\www\php_libs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\www\sns_my\r...', Array, true)
+#5 D:\www\php_libs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\www\sns_my\r...', Array, true)
+#6 D:\www\php_libs\yii\framework\web\CController.php(782): CController->renderPartial('helloValue', Array, true)
+#7 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(197): CController->render('helloValue', Array)
+#8 [internal function]: InstallController->processCheckEnv(Object(WizardEvent))
+#9 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#10 D:\www\php_libs\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#11 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#12 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#13 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#14 [internal function]: WizardBehavior->process('checkEnv')
+#15 D:\www\php_libs\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#16 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#17 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('checkEnv')
+#18 [internal function]: InstallController->actionInstallation('checkEnv')
+#19 D:\www\php_libs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#20 D:\www\php_libs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#21 D:\www\php_libs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#22 D:\www\php_libs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#23 D:\www\php_libs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 D:\www\php_libs\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#25 D:\www\php_libs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#26 D:\www\php_libs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#27 D:\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#28 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=checkEnv
+---
+2013/12/21 17:57:58 [error] [exception.CException] exception 'CException' with message 'InstallController and its behaviors do not have a method or closure named "checkPhpExtensionVersion".' in D:\www\php_libs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\www\sns_my\rcyxw2013\installer\protected\requirements\requirements.php(44): CComponent->__call('checkPhpExtensi...', Array)
+#1 D:\www\sns_my\rcyxw2013\installer\protected\requirements\requirements.php(44): InstallController->checkPhpExtensionVersion('intl', '1.0.2', '>=')
+#2 D:\www\sns_my\rcyxw2013\installer\protected\views\install\helloValue.php(27): require('D:\www\sns_my\r...')
+#3 D:\www\php_libs\yii\framework\web\CBaseController.php(126): require('D:\www\sns_my\r...')
+#4 D:\www\php_libs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\www\sns_my\r...', Array, true)
+#5 D:\www\php_libs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\www\sns_my\r...', Array, true)
+#6 D:\www\php_libs\yii\framework\web\CController.php(782): CController->renderPartial('helloValue', Array, true)
+#7 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(197): CController->render('helloValue', Array)
+#8 [internal function]: InstallController->processCheckEnv(Object(WizardEvent))
+#9 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(169): call_user_func(Array, Object(WizardEvent))
+#10 D:\www\php_libs\yii\framework\base\CComponent.php(561): InstallController->installationWizardProcessStep(Object(WizardEvent))
+#11 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(681): CComponent->raiseEvent('onProcessStep', Object(WizardEvent))
+#12 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(634): WizardBehavior->onProcessStep(Object(WizardEvent))
+#13 D:\www\sns_my\rcyxw2013\installer\protected\components\WizardBehavior.php(233): WizardBehavior->processStep()
+#14 [internal function]: WizardBehavior->process('checkEnv')
+#15 D:\www\php_libs\yii\framework\base\CComponent.php(261): call_user_func_array(Array, Array)
+#16 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): CComponent->__call('process', Array)
+#17 D:\www\sns_my\rcyxw2013\installer\protected\controllers\InstallController.php(96): InstallController->process('checkEnv')
+#18 [internal function]: InstallController->actionInstallation('checkEnv')
+#19 D:\www\php_libs\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(InstallController), Array)
+#20 D:\www\php_libs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(InstallController), Object(ReflectionMethod), Array)
+#21 D:\www\php_libs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#22 D:\www\php_libs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#23 D:\www\php_libs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 D:\www\php_libs\yii\framework\web\CWebApplication.php(282): CController->run('installation')
+#25 D:\www\php_libs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('install/install...')
+#26 D:\www\php_libs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#27 D:\www\sns_my\rcyxw2013\installer\index.php(23): CApplication->run()
+#28 {main}
+REQUEST_URI=/sns_my/rcyxw2013/installer/install/installation?step=checkEnv
+---

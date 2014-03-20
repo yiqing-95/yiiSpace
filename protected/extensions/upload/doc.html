@@ -1,0 +1,1318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SWFUpload v2 中文帮助手册--第一php网原创翻译</title>
+    <style type="text/css">
+        h1 /* Title */  {
+        }
+
+        h2 /* Chapter Header */  {
+            background-color: #DCE7F2;
+            border: solid 1px #CCD7E0;
+            padding: 10px;
+
+            margin-top: 50px;
+            margin-left: 5px;
+        }
+
+        h3 /* Section Header */   {
+            background-color: #EDFFEB;
+            padding: 10px;
+
+            margin-left: 15px;
+        }
+
+        h4 {
+            background-color: #FFFFD1;
+            padding: 7px;
+
+            margin-left: 20px;
+        }
+
+        h5 {
+            background-color: #F0F0F0;
+            padding: 4px;
+
+            font-weight: normal;
+
+            margin-left: 25px;
+        }
+
+        p {
+            margin-left: 35px;
+        }
+
+        span.function {
+            font-weight: bold;
+        }
+
+        span.parameter {
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        hr {
+            margin-right: 25px;
+        }
+
+        ul, ol {
+            list-style-position: outside;
+            margin: 0;
+            padding: 0;
+            margin-left: 50px;
+        }
+
+        li {
+            padding-left: 15px;
+        }
+
+        code {
+            display: block;
+            border: solid 1px #EFEFEF;
+            background-color: #FAFAFA;
+            padding: 15px;
+            margin-left: 25px;
+
+            white-space: pre;
+
+            overflow-x: scroll;
+            overflow-y: visible;
+        }
+    </style>
+    <script type="text/javascript">/*120*270，创建于2011-11-2*/
+    var cpro_id = 'u663658';</script>
+    <script src="http://cpro.baidu.com/cpro/ui/f.js" type="text/javascript"></script>
+</head>
+
+
+<body>
+<h1>SWFUpload v2.2.0.1 中文帮助手册</h1>
+
+<p><span style="color:red">译者的话：</span>swfupload是一个被国内开发人员广泛使用的国外上传插件，好评不断。目前最新的稳定版本是2.2.0.1。官方网站为<a
+        href="http://www.swfupload.org/">http://www.swfupload.org/</a>,现在整个项目已经移至谷歌，下载地址为<a
+        href="http://code.google.com/p/swfupload/downloads/list">http://code.google.com/p/swfupload/downloads/list</a>。站长并非专业翻译人员，凭借自己的一番热情，不揣浅陋的翻译了它的说明文档，为的只是希望能够给那些由于英文限制而在使用swfupload时遇到问题的朋友，毕竟，如此优秀的插件当然要让大家都知道如何使用。当然，我也希望我的一点不起眼的工作能够为小站带来更多的支持和人气。限于站长的水平，文中难免有错误疏漏之处，还请广大读者不吝斧正，不胜感激。
+</p>
+
+<p>站长邮箱：15624575@qq.com 主页：<a href="http://www.phptogether.com">www.phptogether.com</a></p>
+
+<h2>TOC</h2>
+<ol>
+    <li><a href="#swfupload">关于SWFUpload</a></li>
+    <li><a href="#v2">SWFUpload Version 2</a></li>
+    <li><a href="#overview">概述</a></li>
+    <li><a href="#gettingstarted">快速指南</a></li>
+    <li><a href="#javascriptobject">SWFUpload JavaScript对象</a>
+        <ol>
+            <li><a href="#constructor">构造函数</a></li>
+            <li><a href="#globals">全局变量和常量</a>
+                <ol>
+                    <li><a href="#instances">instances</a></li>
+                    <li><a href="#movieCount">movieCount</a></li>
+                    <li><a href="#queue_error">QUEUE_ERROR</a></li>
+                    <li><a href="#upload_error">UPLOAD_ERROR</a></li>
+                    <li><a href="#file_status">FILE_STATUS</a></li>
+                    <li><a href="#button_action">BUTTON_ACTION</a></li>
+                    <li><a href="#button_cursor">CURSOR</a></li>
+                    <li><a href="#button_window_mode">BUTTON_WINDOW_MODE</a></li>
+                </ol>
+            </li>
+            <li><a href="#properties">属性</a>
+                <ol>
+                    <li><a href="#customSettings">customSettings</a></li>
+                    <li><a href="#movieName">movieName</a></li>
+                </ol>
+            </li>
+            <li><a href="#methods">方法</a>
+                <ol>
+                    <li><a href="#addSetting">addSetting</a> (不建议使用)</li>
+                    <li><a href="#getSetting">getSetting</a> (不建议使用)</li>
+                    <li><a href="#retrieveSetting">retrieveSetting</a> (在v2.1.0版本中被移除)</li>
+                    <li><a href="#destroy">destroy</a> (在v2.1.0版本中添加)</li>
+                    <li><a href="#displayDebugInfo">displayDebugInfo</a></li>
+                    <li><a href="#selectFile">selectFile</a></li>
+                    <li><a href="#selectFiles">selectFiles</a></li>
+                    <li><a href="#startUpload">startUpload</a></li>
+                    <li><a href="#cancelUpload">cancelUpload</a></li>
+                    <li><a href="#stopUpload">stopUpload</a></li>
+                    <li><a href="#getStats">getStats</a></li>
+                    <li><a href="#setStats">setStats</a></li>
+                    <li><a href="#getFile">getFile</a></li>
+                    <li><a href="#addPostParam">addPostParam</a></li>
+                    <li><a href="#removePostParam">removePostParam</a></li>
+                    <li><a href="#addFileParam">addFileParam</a></li>
+                    <li><a href="#removeFileParam">removeFileParam</a></li>
+                    <li><a href="#setUploadURL">setUploadURL</a></li>
+                    <li><a href="#setPostParams">setPostParams</a></li>
+                    <li><a href="#setFileTypes">setFileTypes</a></li>
+                    <li><a href="#setFileSizeLimit">setFileSizeLimit</a></li>
+                    <li><a href="#setFileUploadLimit">setFileUploadLimit</a></li>
+                    <li><a href="#setFileQueueLimit">setFileQueueLimit</a></li>
+                    <li><a href="#setFilePostName">setFilePostName</a></li>
+                    <li><a href="#setUseQueryString">setUseQueryString</a></li>
+                    <li><a href="#setDebugEnabled">setDebugEnabled</a></li>
+                    <li><a href="#setButtonImageURL">setButtonImageURL</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonDimensions">setButtonDimensions</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonText">setButtonText</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonTextStyle">setButtonTextStyle</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonTextPadding">setButtonTextPadding</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonDisabled">setButtonDisabled</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonAction">setButtonAction</a> (在v2.2.0版本中添加)</li>
+                    <li><a href="#setButtonCursor">setButtonCursor</a> (在v2.2.0版本中添加)</li>
+                </ol>
+            </li>
+            <li><a href="#events">事件</a>
+                <ol>
+                    <li><a href="#flashReady">flashReady</a></li>
+                    <li><a href="#swfUploadLoaded">swfUploadLoaded</a></li>
+                    <li><a href="#fileDialogStart">fileDialogStart</a></li>
+                    <li><a href="#fileQueued">fileQueued</a></li>
+                    <li><a href="#fileQueueError">fileQueueError</a></li>
+                    <li><a href="#fileDialogComplete">fileDialogComplete</a></li>
+                    <li><a href="#uploadStart">uploadStart</a></li>
+                    <li><a href="#uploadProgress">uploadProgress</a></li>
+                    <li><a href="#uploadError">uploadError</a></li>
+                    <li><a href="#uploadSuccess">uploadSuccess</a></li>
+                    <li><a href="#uploadComplete">uploadComplete</a></li>
+                    <li><a href="#debug">debug</a></li>
+                </ol>
+            </li>
+            <li><a href="#utility">SWFUpload实用对象</a>
+                <ol>
+                    <li><a href="#settingsobject">Settings Object</a>（设置对象）</li>
+                    <li><a href="#settingsdescription">设置说明</a></li>
+                    <li><a href="#fileobject">File Object</a>（文件对象）</li>
+                    <li><a href="#statsobject">Stats Object</a>（统计对象）</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li><a href="#plugins">SWFUpload插件</a></li>
+    <li><a href="#knownissues">兼容性和bug</a></li>
+</ol>
+
+
+<h2><a name="swfupload"></a>关于SWFUpload</h2>
+
+<p>
+    <a href="http://www.swfupload.org/">SWFUpload</a>是一个由 <a href="http://www.vinterwebb.se/">Vinterwebb.se</a>原创开发的客户端文件上传工具。它采用Flash和JavaScript结合的方式来提供文件上传功能，而浏览器仅仅只需提供&lt;input
+    type="file" /&gt;标签。
+</p>
+
+<p>SWFUpload的主要功能如下：</p>
+
+<p>
+</p>
+<ul>
+    <li>允许一次上传多个文件。</li>
+    <li>采用AJAX方式上传，页面无须刷新。</li>
+    <li>上传过程中的事件控制。</li>
+    <li>类使用了名称空间，稳定兼容其他JavaScript库(例如jQuery, Prototype等。)。</li>
+    <li>支持Flash 9和Flash 10。(2.2.0不再支持Flash8)</li>
+</ul>
+<p></p>
+
+<p>
+    由于设计理念上见解和宗旨的差异，SWFUpload和其它基于Flash的上传工具不一样。SWFUpload将UI的表现交给浏览器，以给开发者尽可能多的发挥余地。开发者可以使用XHTML,
+    CSS和JavaScript来装饰上传UI以满足他们站点的需要。上传状态的更新是通过一系列简单的JavaScript事件完成的。开发者可以在文件上传过程中使用这些事件来更新页面。
+</p>
+
+<p>
+    遗憾的是，Flash Player 10强制我们在一个flash电影中必须设置一个按钮来触发文件浏览窗口。SWFUpload通过JavaScript仍然向开发者提供按钮和文本覆盖的功能。
+</p>
+
+<h2><a name="v2"></a>SWFUpload v2</h2>
+
+<p>SWFUpload拥有更先进的功能，更高的稳定性，Flash Player错误解决方案以及一系列非常有用的插件。新功能如下：
+</p>
+
+<p>
+</p>
+<ul>
+    <li>安全兼容Flash Player 10。</li>
+    <li>在上传时发送POST值。</li>
+    <li>按文件发送POST值。</li>
+    <li>完整的事件集合。</li>
+    <li>所有设置可动态更新。</li>
+    <li>从服务器获取数据。</li>
+    <li>不需要取消操作就可以停止上传。</li>
+    <li>可以任意顺序上传文件。</li>
+    <li>可以选择单个或多个文件。</li>
+    <li>可以对上传队列中的文件总数、已上传文件的大小和允许上传的文件大小做限制。</li>
+    <li>正确处理0字节文件。</li>
+    <li>上传之前可以通过事件进行校验。</li>
+    <li>对Flash和浏览器进行bug兼容。</li>
+</ul>
+<p></p>
+
+<h2><a name="overview"></a>概述</h2>
+
+<h3>HTML上传</h3>
+
+<p>标准的HTML上传提供一个输入框和一个供用户选择单个文件的按钮。文件使用表单提交，整个文件必须在下一个页面显示之前上传完成，在上传之前不能对文件进行校验(如文件大小限制和是否有效的扩展名等)。上传时提供给用户的反馈信息非常少。
+</p>
+
+<p>标准HTML上传的使用方式简单、直接并且支持几乎所有的浏览器。
+</p>
+
+<h3>SWFUpload</h3>
+
+<p>
+    SWFUpload使用一个Flash电影来处理文件选择和上传。Flash电影提供一个自定义按钮，该按钮可以激活Flash的高级文件选择窗口。该文件选择窗口允许用户选择单个或多个文件，文件类型可以被限制，如此一来，用户就只能选择被允许的文件
+    (如*.jpg;*.gif)。
+</p>
+
+<p>一旦被选择，每个文件就已经通过校验并且进入上传队列。当文件被Flash上传时，由开发者控制，用来更新页面UI的若干个JavaScript事件就会被触发，这些事件允许你提供上传的实时状态和错误消息。
+</p>
+
+<p>
+    上传完成的文件将脱离当前页面和表单并且被提交。每个文件都是单独被上传的，以此来使服务端处理上传的脚本不需要太复杂。由于Flash提供上传功能，因此页面无须被提交或重载。SWFUpload的使用方式更像一个AJAX应用而非标准的HTML表单，页面中的表单处理是和文件上传分开的。
+</p>
+
+<h2><a name="gettingstarted"></a>快速指南</h2>
+
+<p>SWFUpload不是一个可拖放的上传工具。使用它，需要掌握JavaScript和DOM的相关知识。一些demo展示了SWFUpload可以做到的事情以及它是如何完成普通任务的。</p>
+
+<p>SWFUpload由以下4个方面组成：</p>
+<ol>
+    <li>初始化和设置(JavaScript)</li>
+    <li>JavaScript库: SWFUpload.js</li>
+    <li>Flash控制: swfupload.swf</li>
+    <li>事件处理(JavaScript)</li>
+</ol>
+
+<p>在部署SWFUpload时，大多数问题都是由错误设置、糟糕的事件处理、Flash/浏览器bug或者服务器配置引起的。</p>
+
+<h3>初始化和设置</h3>
+
+<p>SWFUpload必须在页面中初始化，这通常在window.onload事件中完成。SWFUpload构造函数使用一个设置对象作为参数，设置对象可以对象原型的形式被直接传递给构造函数。</p>
+
+<p>必须使用一个对初始化的SWFUpload对象的引用，因为我们需要它来开始上传和控制SWFUpload。</p>
+
+<p><strong>Example:</strong>使用一个对象原型来初始化SWFUpload</p>
+
+<code>var swfu;
+
+    window.onload = function () {
+    swfu = new SWFUpload({
+    upload_url : "http://www.swfupload.org/upload.php",
+    flash_url : "http://www.swfupload.org/swfupload.swf",
+    file_size_limit : "20 MB"
+    });
+    };</code>
+
+<p><strong>Example:</strong>使用一个存储在变量中的设置对象来初始化SWFUpload</p>
+
+<code>var swfu;
+
+    window.onload = function () {
+    var settings_object = {
+    upload_url : "http://www.swfupload.org/upload.php",
+    flash_url : "http://www.swfupload.org/swfupload.swf",
+    file_size_limit : "20 MB"
+    };
+
+    swfu = new SWFUpload(settings_object);
+    };</code>
+
+<h3>JavaScript库</h3>
+
+<p>JavaScript库文件(swfupload.js)必须被包含在用户上传页面中。</p>
+
+<p>一旦SWFUpload对象被创建，开发者就可以访问一些函数来控制SWFUpload。</p>
+
+<p><strong>Example:</strong>添加SWFUpload.js到一个页面</p>
+
+<code>
+    &lt;script type="text/javascript" src="http://www.swfupload.org/swfupload.js"&gt;&lt;/script&gt;
+</code>
+
+<p><strong>Example:</strong>使用定义的设置初始化SWFUpload。</p>
+<code>var swfu = new SWFUpload({
+    upload_url : "http://www.swfupload.org/upload.php",
+    flash_url : "http://www.swfupload.org/swfupload_f9.swf",
+    button_placeholder_id : "spanSWFUploadButton"
+    });
+</code>
+
+<h3>Flash控制器</h3>
+
+<p>SWFUpload JavaScript库动态地载入Flash控制器(swfupload.swf)。</p>
+
+<p>Flash控制文件的路径必须在初始化时通过SWFUpload设置对象给出。</p>
+
+<p>Flash控制器是一个Flash小电影，它被用来处理文件浏览、校验和上传。它作为一个按钮呈现在页面中，并且与JavaScript相联系将上传状态和其他事件通知给浏览器。</p>
+
+<h3>事件处理器</h3>
+
+<p>开发者必须创建一系列的JavaScript函数来处理SWFUpload事件，当不同的事件发生时这些函数将被调用。</p>
+
+<p>通过处理SWFUpload事件，开发者可以根据上传过程、错误信息和上传完成提供反馈信息。开发者不应该重写存储在SWFUpload.prototype中的函数，而是应该创建你自己的一系列函数并且在设置对象中向它们传递参数。</p>
+
+<p><strong>Example:</strong>SWFUpload事件处理器和初始化。</p>
+
+<code>//上传开始事件处理器，这个函数作为一个变量值在设置对象中被赋予upload_start_handler
+    var myCustomUploadStartEventHandler = function (file) {
+    var continue_with_upload;
+
+    if (file.name === "the sky is blue") {
+    continue_with_upload = true;
+    } else {
+    continue_with_upload = false;
+    }
+
+    return continue_with_upload;
+    };
+
+    //上传成功事件处理器，这个函数作为一个变量值在设置对象中被赋予upload_success_handler
+    var myCustomUploadSuccessEventHandler = function (file, server_data, receivedResponse) {
+    alert("The file " + file.name + " has been delivered to the server. The server responded with " + server_data);
+    };
+
+    //创建SWFUpload Object
+    var swfu = new SWFUpload({
+    upload_url : "http://www.swfupload.org/upload.php",
+    flash_url : "http://www.swfupload.org/swfupload.swf",
+    file_size_limit : "200 MB",
+
+    upload_start_handler : myCustomUploadStartEventHandler,
+    upload_success_handler : myCustomUploadSuccessEventHandler
+    });</code>
+
+
+<h2><a name="javascriptobject"></a>SWFUpload JavaScript对象</h2>
+
+<h3><a name="constructor"></a>构造函数</h3>
+
+<p><span class="function">SWFUpload(<span class="parameter">settings object</span>)</span></p>
+
+<p><b>返回值:</b> 一个SWFUpload实例</p>
+<code>var swfupload_instance = new SWFUpload(settings_object);</code>
+
+<h3><a name="globals"></a>全局变量和常量</h3>
+
+<p>
+    一些与SWFUpload对象相关的全局变量和常量对高级应用和错误处理很有帮助，它们只是可读而不可修改的。
+</p>
+<h4><a name="instances"></a>SWFUpload.instances</h4>
+
+<p>
+    SWFUpload.instances是一个含有“对页面中所载入的每个SWFUpload实例的引用”的对象
+    。Flash播放器依赖这个对象来调用相应的事件处理器。SWFUpload.instances按照movieName属性进行索引。
+</p>
+
+<h4><a name="movieCount"></a>SWFUpload.movieCount</h4>
+
+<p>
+    SWFUpload.movieCount是一个用以跟踪记录SWFUpload实例数目的全局变量 ，它可以帮助确保每个flash电影都被给予一个唯一的movieName。
+</p>
+
+<h4><a name="queue_error"></a>SWFUpload.QUEUE_ERROR</h4>
+
+<p>
+    SWFUpload.QUEUE_ERROR是一个含有上传队列错误代码的单一对象。它一般用于确定在fileQueueError事件中发送了哪条错误代码。
+</p>
+
+<ul style="padding-left: 15px;">
+    <li>QUEUE_LIMIT_EXCEEDED - 说明用户选择的文件数目超出了限制。一旦上传队列中的文件被更新并且移除出队列（译者注：这是针对于上传队列已满的情况），用户就又可以向上传队列增加文件。</li>
+    <li>FILE_EXCEEDS_SIZE_LIMIT - 说明被选择的文件大小超出了file_size_limit的限制。</li>
+    <li>ZERO_BYTE_FILE - 说明被选择的文件是空的，Flash播放器无法处理空文件，因此该文件被拒绝。Windows快捷方式文件也可能导致这个错误。</li>
+    <li>INVALID_FILETYPE - 说明选择的文件类型（后缀）不符合file_types的设置。用户可以通过手工输入文件名以绕过file_types的限制。</li>
+</ul>
+
+<h4><a name="upload_error"></a>SWFUpload.UPLOAD_ERROR</h4>
+
+<p>
+    SWFUpload.UPLOAD_ERROR是一个含有上传错误代码的单一对象，它主要被用来确定在uploadError事件中发送了哪条错误代码。
+</p>
+
+<ul style="padding-left: 15px;">
+    <li>HTTP_ERROR - 尝试上传，但是服务器没有返回200状态代码（译者注：200表示服务器已成功处理了请求）。</li>
+    <li>MISSING_UPLOAD_URL - upload_url没有被设置。</li>
+    <li>IO_ERROR - 当在读取或上传文件时，发生了错误，通常发生在服务器意外断开连接时。</li>
+    <li>SECURITY_ERROR - 上传动作违反了一个安全限制，该错误很少发生。</li>
+    <li>UPLOAD_LIMIT_EXCEEDED - 用户尝试上传的文件数量超出了file_upload_limit的限制。</li>
+    <li>UPLOAD_FAILED - 在尝试初始化上传时发生了错误，该错误很少发生。</li>
+    <li>SPECIFIED_FILE_ID_NOT_FOUND - 传递一个文件ID以开始上传，但是该ID未被找到。</li>
+    <li>FILE_VALIDATION_FAILED - uploadStart事件返回了false。</li>
+    <li>FILE_CANCELLED - cancelUpload方法被调用。</li>
+    <li>UPLOAD_STOPPED - stopUpload方法被调用。</li>
+</ul>
+
+<h4><a name="file_status"></a>SWFUpload.FILE_STATUS</h4>
+
+<p>
+    SWFUpload.FILE_STATUS是一个含有文件状态代码的单一对象，它可以用来检查文件状态。
+</p>
+
+<ul style="padding-left: 15px;">
+    <li>QUEUED - 说明当前文件正在队列中等待上传。</li>
+    <li>IN_PROGRESS - 说明当前文件正在被上传。</li>
+    <li>ERROR - 说明当前文件引起了一个队列错误或者上传错误。</li>
+    <li>COMPLETE - 说明当前文件已经被成功上传至服务器。</li>
+    <li>CANCELLED - 说明当前文件已经被cancelUpload方法取消上传。</li>
+</ul>
+
+
+<h4><a name="button_action"></a>SWFUpload.BUTTON_ACTION</h4>
+
+<p>SWFUpload.BUTTON_ACTION是一个含有按钮行为代码的单一对象。 它与button_action设置搭配使用，以决定基于Flash的文件对话按钮的行为。</p>
+
+<ul style="padding-left: 15px;">
+    <li>SELECT_FILE - 当Flash按钮被点击时，文件对话只允许选择一个文件。</li>
+    <li>SELECT_FILES - 当Flash按钮被点击时，文件对话允许选择多个文件。</li>
+    <li>START_UPLOAD - 当Flash按钮被点击时，第一个进入队列的文件将被上传。</li>
+</ul>
+
+<h4><a name="button_cursor"></a>SWFUpload.CURSOR</h4>
+
+<p>SWFUpload.CURSOR是一个含有按钮光标（译者注：鼠标）代码的单一对象。它和button_cursor搭配使用，以决定当鼠标划过Flash按钮时的形态。</p>
+
+<ul style="padding-left: 15px;">
+    <li>ARROW - 光标将呈现为一个箭头。</li>
+    <li>HAND - 光标将呈现为一个手指/手掌。</li>
+</ul>
+
+<h4><a name="button_window_mode"></a>SWFUpload.WINDOW_MODE</h4>
+
+<p>SWFUpload.WINDOW_MODE是一个含有Flash电影的wmode参数的单一对象。 它用来告知浏览器如何呈现Flash电影。</p>
+
+<p>某些WINDOW_MODE/WMODE设置在一些浏览器中可能会产生问题。查看<a href="#knownissues">兼容性和bug</a>。</p>
+
+<ul style="padding-left: 15px;">
+    <li>WINDOW是默认的模式，Flash电影将被置于页面中其他所有元素之上。</li>
+    <li>OPAQUE将允许页面中的其他元素覆盖Flash按钮。</li>
+    <li>TRANSPARENT设置按钮背景呈现为透明的，这样位于按钮下方的HTML元素就可以透过按钮被显示出来。</li>
+</ul>
+
+<h3><a name="properties"></a>属性</h3>
+
+<p>
+    下面的属性列表是为用户使用准备的，使用其他的属性或者修改只读属性可能会使SWFUpload运行不正常。
+</p>
+<h4><a name="customSettings"></a>customSettings (读写)</h4>
+
+<p>
+    customSettings属性是一个空的JavaScript对象，它可以被用来存储与SWFUpload实例相关的数据。customSettings对象的内容可以通过设置custom_settings来初始化。
+</p>
+
+<p><strong>使用举例:</strong></p>
+<code>//使用一些自定义设置来初始化SWFUpload
+    var swfu = new SWFUpload({
+    custom_settings : {
+    custom_setting_1 : "custom_setting_value_1",
+    custom_setting_2 : "custom_setting_value_2",
+    custom_setting_n : "custom_setting_value_n",
+    }
+    });
+
+    swfu.customSettings.custom_setting_1 = "custom_setting_value_1"; //修改一个已有的设置
+    swfu.customSettings.myNewCustomSetting = "new custom setting value"; //新增一个自定义设置
+
+    //使用一个全新的对象来重写customSettings
+    swfu.customSettings = {
+    custom_setting_A : "custom_setting_value_A",
+    custom_setting_B : "custom_setting_value_B"
+    };
+</code>
+
+<p>存储在customSettings对象中的值可以在事件处理器中被访问到：</p>
+
+<code>
+    function uploadSuccess(file, serverData, receivedResponse) {
+    if (this.customSettings.custom_setting_A === true) {
+    alert("Checked the custom setting!");
+    }
+    }
+</code>
+
+<h4><a name="movieName"></a>movieName</h4>
+
+<p>
+    包含SWFUpload实例所对应电影的唯一名称。这个值将被传递给Flash来帮助与JavaScript进行通信。除此之外，它还用来索引SWFUpload.instances数组中的实例。你不应该修改movieName的值。
+</p>
+
+<h3><a name="methods"></a>方法</h3>
+
+<p>以下方法可以被用来操作TSWFUpload。一些方法与DOM元素点击事件绑定在一起，其他方法则只能在SWFUpload事件处理器内部使用。
+</p>
+
+<h4><a name="addSetting"></a>object addSetting(<span class="parameter">setting_name</span>, <span class="parameter">value</span>,
+    <span class="parameter">default_value</span>)</h4>
+
+<p><strong>已过期</strong> addSetting函数用来进行自定义设置
+    。如果value未定义，那么将使用默认值。此函数在SWFUpload初始化时被调用，使用addSetting方法更新设置不会改变Flash控制器的原有设置。
+</p>
+
+<p>addSetting返回存储在设置对象中的值 。</p>
+
+<h4><a name="getSetting"></a>object getSetting(<span class="parameter">setting_name</span>)</h4>
+
+<p><strong>已过期</strong> getSetting函数用来获取特定设置项的值。 如果设置项没有被找到，将返回一个空字符串。</p>
+
+<h4><a name="retrieveSetting"></a>object retrieveSetting(<span class="parameter">setting_value</span>, <span
+        class="parameter">default_value</span>)</h4>
+
+<p><strong>在v2.1.0版本中被移除</strong> retrieveSetting函数和 addSetting函数很相似，但是retrieveSetting函数不会修改内部设置对象。
+    retrieveSetting将返回设置项的值，如果该设置项没有定义，那么它将返回默认值。
+</p>
+
+<p>这是一个很实用的函数。</p>
+
+<h4><a name="destroy"></a>bool destroy()</h4>
+
+<p><strong>在v2.1.0版本中添加</strong></p>
+
+<p>移除SWF的DOM元素然后注销SWFUpload的内部引用。它被用来移除页面中的SWFUpload实例，除此之外，该方法还会试图阻止IE浏览器的内存溢出问题。</p>
+
+<p>如果元素被成功移除，该函数返回true；如果发生错误，将返回false，并且SWFUpload实例和DOM元素将前后不一致。</p>
+
+<h4><a name="displayDebugInfo"></a>void displayDebugInfo()</h4>
+
+<p>displayDebugInfo方法使用debug事件输出SWFUpload的设置项。如果debug被设置为'true',这个函数将在初始化之后自动被调用。</p>
+
+<h4><a name="selectFile"></a>void selectFile()</h4>
+
+<p><strong>已过期。与Flash Player 10不兼容。</strong></p>
+
+<p>selectFile函数将使Flash控制器显示出一个文件选择对话窗口，可以从对话窗口中选择单个文件。</p>
+
+<p>调用selectFile函数将引发一系列的文件相关事件。</p>
+
+<h4><a name="selectFiles"></a>void selectFiles()</h4>
+
+<p><strong>已过期。与Flash Player 10不兼容。</strong></p>
+
+<p>selectFiles函数将使Flash控制器显示出一个文件选择对话窗口，可以从对话窗口中选择多个文件。</p>
+
+<p>调用selectFile函数将引发一系列的文件相关事件。</p>
+
+<h4><a name="startUpload"></a>void startUpload(<span class="parameter">file_id</span>)</h4>
+
+<p>startUpload方法将根据file_id来开始上传一个文件。 如果file_id参数被忽略或者未定义，那么队列中的第一个文件将被上传。</p>
+
+<p>调用startUpload函数将引发一系列的上传相关事件。</p>
+
+<h4><a name="cancelUpload"></a>void cancelUpload(<span class="parameter">file_id</span>, <span class="parameter">trigger_error_event</span>)
+</h4>
+
+<p>cancelUpload方法根据file_id参数来取消特定文件的上传动作，之后该文件将被移除出上传队列。</p>
+
+<p>如果file_id参数被忽略或者未定义， 那么队列中的第一个文件将被取消上传。</p>
+
+<p>trigger_error_event参数是可选的，如果该参数设置为false，那么uploadError事件将不会触发。</p>
+
+<h4><a name="stopUpload"></a>void stopUpload()</h4>
+
+<p>stopUpload函数停止正在被上传的文件并且将重整上传队列。</p>
+
+<p>正在被上传的文件被停止后，uploadError事件将被触发。如果当前没有文件被上传，将不会发生任何动作，事件也不会触发。</p>
+
+<h4><a name="getStats"></a>object getStats()</h4>
+
+<p>获取stats（统计）对象。</p>
+
+<h4><a name="setStats"></a>void setStats(<span class="parameter">stats_object</span>)</h4>
+
+<p>Stats对象可以被修改。如果你想在上传完成之后，改变成功上传的文件数量或者上传中产生的错误，这一特效将非常有用。</p>
+
+<h4><a name="getFile"></a>object getFile(<span class="parameter">file_id</span>, <span class="parameter">index</span>)
+</h4>
+
+<p>getFile可以用来从文件队列获取一个文件对象，你可以通过传入一个文件ID(文件对象的ID属性)或一个文件索引(文件对象的index【索引】属性)来获取。</p>
+
+<p>当使用file_id时，只能获取上传队列中的文件。如果文件没有被找到，将返回null。</p>
+
+<p>当使用index时，所有文件都可以供获取。(包括那些产生队列错误而不在队列中的文件)。如果index超出了范围，将返回null。</p>
+
+<h4><a name="addPostParam"></a>void addPostParam(<span class="parameter">name</span>, <span
+        class="parameter">value</span>)</h4>
+
+<p>addPostParam将为文件上传添加name/value键值对，这些数据通过POST方法被发送。</p>
+
+<p>name/value键值对将被添加至post_params设置中。</p>
+
+<h4><a name="removePostParam"></a>void removePostParam(<span class="parameter">name</span>)</h4>
+
+<p>removePostParam将为文件上传从POST数据中移除name/value键值对。</p>
+
+<p>post_params设置中的name/value键值对也将被移除。</p>
+
+<h4><a name="addFileParam"></a>bool addFileParam(<span class="parameter">file_id</span>, <span
+        class="parameter">name</span>, <span class="parameter">value</span>)</h4>
+
+<p>addFileParam根据file_id参数添加name/value键值对，这些数据将通过POST方法被发送。</p>
+
+<p>name/value键值对只会和相应的文件一起被发送。如果要将所有的上传文件与它们相对应的name/value键值对一起发送，可以设置post_param。</p>
+
+<h4><a name="removeFileParam"></a>bool removeFileParam(<span class="parameter">file_id</span>, <span class="parameter">name</span>)
+</h4>
+
+<p>removeFileParam函数从一个文件上传移除由addFileParam函数添加的name/value键值对。</p>
+
+<p>如果name/value键值对没有被找到，将返回 'false'。</p>
+
+<h4><a name="setUploadURL"></a>void setUploadURL(<span class="parameter">url</span>)</h4>
+
+<p>动态地修改upload_url设置。</p>
+
+<h4><a name="setPostParams"></a>void setPostParams(<span class="parameter">param_object</span>)</h4>
+
+<p>动态地修改post_params设置，任何之前设置的值都将被覆盖。param_object应该是一个单一的JavaScript对象，所有的name和value必须是字符串。</p>
+
+<h4><a name="setFileTypes"></a>void setFileTypes(<span class="parameter">types</span>, <span class="parameter">description</span>)
+</h4>
+
+<p>动态地更新file_types和file_types_description的设置,2个参数都是必须的。</p>
+
+<h4><a name="setFileSizeLimit"></a>void setFileSizeLimit(<span class="parameter">file_size_limit</span>)</h4>
+
+<p>动态地修改file_size_limit设置。此设置对队列中所有将被上传的文件均有效。file_size_limit参数将接受一个单位 ，可用的单位有：B, KB, MB, and GB，默认单位是KB。</p>
+
+<p>使用举例: 2147483648 B, 2097152, 2097152KB, 2048 MB, 2 GB</p>
+
+<h4><a name="setFileUploadLimit"></a>void setFileUploadLimit(<span class="parameter">file_upload_limit</span>)</h4>
+
+<p>动态地修改file_upload_limit设置。如果设置为0，这说明“无限制”。</p>
+
+<h4><a name="setFileQueueLimit"></a>void setFileQueueLimit(<span class="parameter">file_queue_limit</span>)</h4>
+
+<p>动态地修改file_queue_limit设置。如果设置为0，这说明“无限制”。</p>
+
+<h4><a name="setFilePostName"></a>void setFilePostName(<span class="parameter">file_post_name</span>)</h4>
+
+<p>动态地修改file_post_name设置。Linux系统中，Flash播放器将忽略该设置。</p>
+
+<h4><a name="setUseQueryString"></a>void setUseQueryString(<span class="parameter">use_query_string</span>)</h4>
+
+<p>动态地修改use_query_string设置。当设置为true，将强制SWFUpload通过网址传值来发送POST参数，而不是通过POST数组。use_query_string参数必须是一个布尔值。</p>
+
+<h4><a name="setDebugEnabled"></a>void setDebugEnabled(<span class="parameter">debug_enabled</span>)</h4>
+
+<p>动态地启用或者禁用debug输出，debug_enabled参数应该是一个布尔值。</p>
+
+<h4><a name="setButtonImageURL"></a>void setButtonImageURL(<span class="parameter">url</span>)</h4>
+
+<p>
+    动态改变Flash按钮的背景图。图片的路径必须相对于swfupload.swf文件，或者以斜杠开始的绝对路径(如/)，或者一个完整的url地址(如http://www.swfupload.org/buttonImage.png)。任何Flash支持的图像格式都可以被载入，最常见的图片格式为jpg,
+    gif和png。</p>
+
+<p>按钮背景图最好是一个按钮浮标(或者是几张图片堆叠在一起)，通过将图片上移或者下移以显示图片的不同部分来表现按钮的所有状态。这些状态包括：普通，鼠标划过，点击，禁用。你可以查看demo中的示例按钮。</p>
+
+<h4><a name="setButtonDimensions"></a>void setButtonDimensions(<span class="parameter">width</span>, <span
+        class="parameter">height</span>)</h4>
+
+<p>动态改变Flash按钮的宽和高，宽、高值必须是数字型，并且不能含有任何单位。height参数的值应该是整个按钮背景图高度的1/4，这样按钮浮标才可以正确显示各个状态。</p>
+
+<h4><a name="setButtonText"></a>void setButtonText(<span class="parameter">text</span>)</h4>
+
+<p>设置显示在Flash按钮上的文本。如果文本太长超出了按钮，将进行截取。</p>
+
+<p>可以用Flash播放器支持的HTML标签来定义文本样式。(<a target="_blank"
+                                   href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/text/TextField.html#htmlText">Adobe文档</a>)
+</p>
+
+<h4><a name="setButtonTextStyle"></a>void setButtonTextStyle(<span class="parameter">css_style_text</span>)</h4>
+
+<p>设置应用于Flash按钮文本的CSS样式，CSS的格式必须遵循Flash播放器文档中的要求。(<a target="_blank"
+                                                     href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/text/StyleSheet.html">Adobe文档</a>)
+</p>
+
+<p>此方法中定义的样式类，在button_text设置中可以通过HTML标签引用。</p>
+
+<h4><a name="setButtonTextPadding"></a>void setButtonTextPadding(<span class="parameter">left</span>, <span
+        class="parameter">top</span>)</h4>
+
+<p>设置Flash按钮文本的顶边距和左边距，参数值可以是负数。</p>
+
+<h4><a name="setButtonDisabled"></a>void setButtonDisabled(<span class="parameter">isDisabled</span>)</h4>
+
+<p>当参数设置为'true'时，将把Flash按钮的状态设置为禁用，任何点击都无效。</p>
+
+<h4><a name="setButtonAction"></a>void setButtonAction(<span class="parameter">buttonAction</span>)</h4>
+
+<p>设置当Flash按钮被点击时所进行的动作，可选的动作可以从<a href="#button_action">BUTTON_ACTION</a>中获得。</p>
+
+<h4><a name="setButtonCursor"></a>void setButtonCursor(<span class="parameter">buttonCursor</span>)</h4>
+
+<p>设置当鼠标划过Flash按钮时的光标形态。可选的光标形态可以从<a href="#button_action">CURSOR</a>中获得。</p>
+
+
+<h3><a name="events"></a>事件</h3>
+
+<p style='color:red'><strong>译者注：</strong>文档中给出的事件参数只是对其的描述，而不是既定的参数形式。在你的代码中可以自定义，如：fileQueued(file
+    object)，在你的代码中可以是fileQueued(fobj)或者fileQueued(aaa))。</p>
+
+<p>SWFUpload在操作中可以触发多个事件。这些事件可以被开发者用来更新UI，改变SWFUpload的行为或者报告错误。</p>
+
+<p>所有的SWFUpload事件都将根据SWFUpload实例的上下文关系而调用。 比如，'this'对象是一个对触发当前事件的SWFUpload实例的引用。</p>
+
+<p>SWFUpload事件只能在对象初始化时通过在设置对象中分配事件处理器函数来设置，你不应该重写属于SWFUpload.prototype对象的内部函数。</p>
+
+<p>在一个文件上传中，事件通常以如下顺序被调用(上传事件序列)：</p>
+<ul>
+    <li>uploadStart</li>
+    <li>uploadProgress (当文件上传时被反复调用)</li>
+    <li>uploadError (如果有错误发生就会被调用，文件上传会被取消或者停止)</li>
+    <li>uploadSuccess (上传成功完成，可以获取从服务器返回的数据)</li>
+    <li>uploadComplete (一个文件上传完毕，SWFUpload准备上传下一个文件)</li>
+</ul>
+
+<h4><a name="flashReady"></a><span class="function">flashReady()</span></h4>
+
+<p>flashReady是一个内部事件，它不能被重写。Flash控制器通过调用此事件来通知SWFUpload，告诉它Flash电影已经载入并且准备接受指令。</p>
+
+<h4><a name="swfUploadLoaded"></a><span class="function">swfUploadLoaded()</span></h4>
+
+<p>swfUploadLoaded事件由flashReady触发，它是一个可设置的事件。swfUploadLoaded事件将告诉你，现在调用SWFUpload的方法是安全的。</p>
+
+<h4><a name="fileDialogStart"></a><span class="function">fileDialogStart(<span class="parameter"></span>)</span></h4>
+
+<p>fileDialogStart事件在selectFile方法或selectFiles方法被调用后触发。在文件选择对话窗口出现之间，此事件就会立即触发。但是，此事件直到对话窗口关闭之后才会执行。</p>
+
+<h4><a name="fileQueued"></a><span class="function">fileQueued(<span class="parameter">file object</span>)</span></h4>
+
+<p>在文件选择对话窗口关闭之后，被选择的的每个文件都会触发fileQueued事件。</p>
+
+<h4><a name="fileQueueError"></a><span class="function">fileQueueError(<span class="parameter">file object</span>, <span
+        class="parameter">error code</span>, <span class="parameter">message</span>)</span></h4>
+
+<p>在文件选择对话窗口关闭之后，未进入上传队列中的每个文件都会触发fileQueueError事件。 一个文件未能进入上传队列的原因有很多，如：文件太大，文件为空，队列中的文件已满等。</p>
+
+<p>通过error code参数可以识别引起队列错误的原因，error code对应于一个SWFUpload.QUEUE_ERROR常量。</p>
+
+<h4><a name="fileDialogComplete"></a><span class="function">fileDialogComplete(<span class="parameter">number of files selected</span>, <span
+        class="parameter">number of files queued</span>, <span
+        class="parameter">total number of files in the queue</span>)</span></h4>
+
+<p>fileDialogComplete事件在文件选择对话窗口关闭并且所有被选择文件都经过处理（校验）后 触发。'number of files
+    queued'表示从文件选择窗口中选择的文件数量(区分实际进入上传队列中的文件数量，译者注：从之前章节的介绍中，我们得知并不是所有被选择的文件都会进入上传队列，比如你选择了5个，但是实际被上传的只有4个。但是根据译者测试，最后两个参数的值是一样的，读者如果发现了区别请告知)。</p>
+
+<p>如果你想要自动开始上传，可以在此事件中调用'this.startUpload()'方法。</p>
+
+<h4><a name="uploadStart"></a><span class="function">uploadStart(<span class="parameter">file object</span>)</span></h4>
+
+<p>uploadStart事件在文件上传之前立即被调用。 此事件可以让你在文件被上传之前进行最后的校验、添加POST参数或者其他工作。</p>
+
+<p>在uploadStart事件中你可以返回一个'false'值来取消上传，如果你返回'true'或者不返回任何值，上传将继续。返回'false'将触发uploadError事件。</p>
+
+<h4><a name="uploadProgress"></a><span class="function">uploadProgress(<span class="parameter">file object</span>, <span
+        class="parameter">bytes complete</span>, <span class="parameter">total bytes</span>)</span></h4>
+
+<p>uploadProgress事件将由Flash控制器定时触发（译者注：上传进度发生改变就会触发），该事件用于在页面中更新UI（译者注：如上传进度）。</p>
+
+<p><strong>注意:</strong> Linux系统下的Flash播放器只在整个文件上传之后触发一次uploadProgress事件，这是Linux系统下Flash播放器的一个bug， 我们无法避免。</p>
+
+<h4><a name="uploadError"></a><span class="function">uploadError(<span class="parameter">file object</span>, <span
+        class="parameter">error code</span>, <span class="parameter">message</span>)</span></h4>
+
+<p>当上传被中断或者没有成功完成时，就会触发uploadError事件，error code参数表示发生错误的类型。根据error
+    code参数的值你可以得出SWFUpload.UPLOAD_ERROR中的一个常量（译者注：表示具体错误）。</p>
+
+<p>停止,取消或者uploadStart事件返回'false'都将触发uploadError事件。被取消上传但是仍然在上传队列中等候的文件，不会触发Uploaderror事件。</p>
+
+<h4><a name="uploadSuccess"></a><span class="function">uploadSuccess(<span class="parameter">file object</span>, <span
+        class="parameter">server data</span>, <span class="parameter">received response</span>)</span></h4>
+
+<p>当文件上传完毕并且服务器返回200状态时，uploadSuccess事件将触发。任何由服务器输出的数据，都可以通过服务器数据参数获得。</p>
+
+<p>
+    由于Flash播放器的一些bug，可能无法捕获服务器的回应，uploadSuccess事件也不会触发。在这种情况下，将会检查assume_success_timeout的设置，查看是否过了触发uploadSuccess事件的时间，这时捕获的服务器回应值应该是false。</p>
+
+<p>http_success设置，允许即使在状态码不是200的时候也可以触发uploadSuccess事件。这种情况下，Flash播放器无法获得任何服务器数据。</p>
+
+<p>这时候，当前上传并没有完成，其他上传无法通过uploadSuccess开始。</p>
+
+<h4><a name="uploadComplete"></a><span class="function">uploadComplete(<span
+        class="parameter">file object</span>)</span></h4>
+
+<p>uploadComplete总是在上传过程的最后触发 (在uploadError事件和uploadSuccess事件之后)。这时候，当前上传已经完成了，可以开始下一个上传。</p>
+
+<p>如果你想自动开始下一个上传，可以在此事件中调用this.uploadStart()。如果你在uploadComplete事件中还写了取消所有上传的代码，那么在调用uploadStart时需要谨慎。</p>
+
+<h4><a name="debug"></a><span class="function">debug(<span class="parameter">message</span>)</span></h4>
+
+<p>
+    当debug设置为'true'时，debug事件将由SWFUpload库和Flash控制器一起触发。如果debug事件没有被重载，那么SWFUpload将向控制台（一个自动被添加至页面body部分最后的文本框）记录debug信息。</p>
+
+<h3><a name="utility"></a>SWFUpload实用对象</h3>
+<h4><a name="settingsobject"></a>设置对象</h4>
+
+<p>设置对象是一个向SWFUpload实例提供一系列设置的JavaScript对象。<strong>每个设置都只应该出现一次。</strong>许多设置都是可选的，并且如果忽略将自动加载默认值。请在<a
+        href="#settingsdescription">设置说明</a>中查看必须和可选设置。</p>
+
+<p><strong>Example:</strong></p>
+<code>{
+    upload_url : "http://www.swfupload.org/upload.php",
+    flash_url : "http://www.swfupload.org/swfupload.swf",
+
+    file_post_name : "Filedata",
+    post_params : {
+    "post_param_name_1" : "post_param_value_1",
+    "post_param_name_2" : "post_param_value_2",
+    "post_param_name_n" : "post_param_value_n"
+    },
+    use_query_string : false,
+    requeue_on_error : false,
+    http_success : [201, 202],
+    assume_success_timeout : 0,
+    file_types : "*.jpg;*.gif",
+    file_types_description: "Web Image Files",
+    file_size_limit : "1024",
+    file_upload_limit : 10,
+    file_queue_limit : 2,
+
+    debug : false,
+
+    prevent_swf_caching : false,
+    preserve_relative_urls : false,
+
+    button_placeholder_id : "element_id",
+    button_image_url : "http://www.swfupload.org/button_sprite.png",
+    button_width : 61,
+    button_height : 22,
+    button_text : "&lt;b&gt;Click&lt;/b&gt; &lt;span class="redText"&gt;here&lt;/span&gt;",
+    button_text_style : ".redText { color: #FF0000; }",
+    button_text_left_padding : 3,
+    button_text_top_padding : 2,
+    button_action : SWFUpload.BUTTON_ACTION.SELECT_FILES,
+    button_disabled : false,
+    button_cursor : SWFUpload.CURSOR.HAND,
+    button_window_mode : SWFUpload.WINDOW_MODE.TRANSPARENT,
+
+    swfupload_loaded_handler : swfupload_loaded_function,
+    file_dialog_start_handler : file_dialog_start_function,
+    file_queued_handler : file_queued_function,
+    file_queue_error_handler : file_queue_error_function,
+    file_dialog_complete_handler : file_dialog_complete_function,
+    upload_start_handler : upload_start_function,
+    upload_progress_handler : upload_progress_function,
+    upload_error_handler : upload_error_function,
+    upload_success_handler : upload_success_function,
+    upload_complete_handler : upload_complete_function,
+    debug_handler : debug_function,
+
+    custom_settings : {
+    custom_setting_1 : "custom_setting_value_1",
+    custom_setting_2 : "custom_setting_value_2",
+    custom_setting_n : "custom_setting_value_n",
+    }
+    }</code>
+<h4><a name="settingsdescription"></a>设置说明</h4>
+
+<h5>upload_url</h5>
+
+<p>upload_url的值可以是一个完整的url或者相对于当前脚本的路径，upload_url应该和Flash控制器处于同一个域下以保证稳定性。</p>
+
+<p>如果preserve_relative_urls设置为false，SWFUpload会将相对路径转换为一个绝对路径以避免不同平台的Flash播放器对URL的不同识别问题。
+    如果你想禁用SWFUploads对URL的转换，相对路径应该相对于swfupload.swf文件。</p>
+
+<h5>file_post_name</h5>
+
+<p>
+    file_post_name用来设置提交文件的键名，这个名称跟文件本身的名称没有关系。默认值是'Filedata'（译者注：在上传脚本中，使用$_FILES['Filedata']来获取文件的相关信息），我们建议使用默认值以保证最好的兼容性。</p>
+
+<h5>post_params</h5>
+
+<p>
+    post_params定义一个将随每个已上传文件一起被提交的name/value键值对，该项的值是一个单一的JavaScript对象。如何定义多个name/value键值对，在上面设置对象例子中有示范。Value可以是字符串或者数字(可以用JavaScript的typeof函数来验证其类型)。</p>
+
+<p>注意: Flash Player 8不支持发送额外的post参数。SWFUpload将自动把post_params作为网址传值的一部分发送。</p>
+
+<h5>use_query_string</h5>
+
+<p>
+    use_query_string的值为true或false。此项的值告知SWFUpload是通过网址传值的形式发送post_params和文件参数（译者注：可以使用$_GET数组和$_REQUEST数组获取）还是直接通过POST（译者注：可以使用$_POST数组和$_REQUEST数组获取）发送。此设置从SWFUpload
+    v2.1.0版本中引进。</p>
+
+<h5>preserve_relative_urls</h5>
+
+<p>该项的值告诉SWFUpload是否将upload_url的相对路径转换为绝对路径。如果设置为true，SWFUpload将不会修改url路径 ，默认值是false。</p>
+
+<h5>requeue_on_error</h5>
+
+<p>
+    requeue_on_error的值可以是true或false。当此项的值被设置为true时，任何发生uploadError错误(除了fileQueueError和FILE_CANCELLED)的文件都将返回队列的前面，而不会被丢弃。如果需要，文件可以再次被上传。要从上传队列移除文件，应该调用cancelUpload方法。</p>
+
+<p>所有与上传失败相关的事件仍会被调用，所以重整上传失败的文件可能会和队列插件有冲突(或者是用来上传整个队列的自定义代码)。如果没有采取措施来取消已经上传失败的文件，自动上传下一个文件的代码将会重复上传已经失败的文件。</p>
+
+<p>该设置项从SWFUpload v2.1.0版本中引进。</p>
+
+<h5>http_success</h5>
+
+<p>此项是一个数组，它定义了一组用以表示执行成功的HTTP状态代码，状态码200通常意味着服务器成功响应。在服务器返回数据中，只给出了状态码200.</p>
+
+<p>当返回或者接受一个不是200的HTTP状态码时，服务器无须返回内容。</p>
+
+<h5>assume_success_timeout</h5>
+
+<p>
+    在文件上传完毕后，SWFUpload等待Flash探测服务器响应的时间（单位：秒）。此项可以让你规避Flash播放器的bug，这些bug通常是由于长时间运行的服务器端脚本使Flash忽略了服务器响应或者Mac平台下的Flash播放器忽略了无内容的服务器响应而引起的。</p>
+
+<p>测试表明，在上一次uploadProgress事件发生之后，Flash将会忽略那些超过30秒的服务器响应。</p>
+
+<p>默认值为0，这表示禁用此特性。 SWFUpload将不停地等待Flash播放器触发uploadSuccess事件。</p>
+
+<h5>file_types</h5>
+
+<p>file_types设置项的值是一系列以分号隔开，允许用户选择的文件后缀列表。如'*.*'将允许选择所有的文件类型。</p>
+
+<h5>file_types_description</h5>
+
+<p>在文件浏览窗口中呈现给用户的关于文件类型的文本描述。</p>
+
+<h5>file_size_limit</h5>
+
+<p>file_size_limit定义了上传文件的大小限制，它的值必须带有单位。可选单位有B, KB, MB和GB。如果没有给出单位，默认使用KB。设置为0，表示文件大小不受限制。</p>
+
+<p>
+    注意: 此设置只作用于用户的浏览器，它不会影响web服务器上的设置（译者注：为了防范恶意用户绕过前台脚本，你应该在后台脚本中加以验证）。
+</p>
+
+<h5>file_upload_limit</h5>
+
+<p>
+    定义SWFUpload一次最多可以同时上传的文件数量，此项值必须依赖于file_queue_limit的设置。一旦用户已经上传的文件数量或者上传队列中的文件数量达到了最大值，他就不能再添加文件。默认值为0，表示无限制。只有成功上传的文件，才会被计算进file_upload_limit(触发了uploadSuccess事件的上传)。setStats函数可以用来修改已成功的上传的数目。</p>
+
+<p>注意: 注意，此项的值无跨法页面进行跟踪，当页面刷新时它的值将被重置。允许同时上传的文件数量，应该根据web服务器的负载进行设置。</p>
+
+<h5>file_queue_limit</h5>
+
+<p>
+    定义上传队列中的文件最大数量。如果一个文件已经上传完成或者上传出错或者被取消上传，你可以向上传队列新增一个文件，只要不超出限制。如果file_upload_limit的值比file_queue_limit的值小，那么此设置将采用file_upload_limit的值。</p>
+
+<h5>flash_url</h5>
+
+<p>此项的值是Flash控制文件的完整或相对路径。一旦SWFUpload初始化，该设置无法更改，相对路径是指相对于当前页面的url。</p>
+
+<h5>flash_width</h5>
+
+<p>
+    <strong>(在v2.1.0版本中被移除)</strong>定义存放flash的HTML元素的宽度，如果此项的值小于1px，某些浏览器可能显示不正常。此设置是可选的，默认值是1px。
+</p>
+
+<h5>flash_height</h5>
+
+<p>
+    <strong>(在v2.1.0版本中被移除)</strong>定义存放flash的HTML元素的高度，如果此项的值小于1px，某些浏览器可能显示不正常。此设置是可选的，默认值是1px。
+</p>
+
+<h5>flash_color</h5>
+
+<p>
+    <strong>(在v2.2.0版本中被移除)</strong>设置存放flash的HTML元素的背景色，默认值是'#FFFFFF'。
+</p>
+
+<p>
+    注意:在所有浏览器中，如果对存放flash的元素采用"skinning"1px，将不会起做用（译者注：查资料，skinning一词在IT行业有蒙皮的意思。译者不确定，所以没有直接翻译，如果有热心读者知道，请告知。）。
+</p>
+
+<h5>prevent_swf_caching</h5>
+
+<p>
+    <strong>(从v2.2.0版本引进)</strong> 此项的值是布尔型。它用来指示是否应该向Flash的URL添加一个随机值来防止浏览器缓存SWF电影。对一些基于IE引擎的浏览器来说，此设置可以避免bug。
+</p>
+
+<p>注意:向flash的URL添加随机数的算法非常简单，并且无法处理已经带有参数的url地址。</p>
+
+<h5>debug</h5>
+
+<p>此项的值为布尔型，定义是否触发debug事件。</p>
+
+<h5>button_placeholder_id</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 此项的值是一个将被Flash按钮<strong>替换</strong>的DOM元素的ID。此设置会重载button_placeholder，Flash按钮的样式可以使用CSS类'swfupload'来实现。
+</p>
+
+<h5>button_placeholder</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 此项的值是一个将被Flash按钮<strong>替换</strong>的DOM元素，只有当设置了button_placeholder_id时，才会起作用。Flash按钮的样式可以使用CSS类'swfupload'来实现。
+</p>
+
+<h5>button_image_url</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> Flash按钮的背景图片，可以是一个完整有效的URL地址或者相对路径。任何Flash支持的图像格式都可以使用 (另一个SWF文件或者gif, jpg和png)。</p>
+
+<p>该图像URL受preserve_relative_urls设置的影响，并且应该和upload_url的规则一样（译者注：都是用相对路径或绝对路径）。</p>
+
+<p>按钮背景图像采用CSS精灵的方式处理，在一个按钮背景图片中应该含有4种按钮状态。每个按钮状态图像都应该堆叠在另一个状态图像之上，按如下顺序:普通, 鼠标划过, 按下/点击,禁用。</p>
+
+<h5>button_width</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> Flash按钮的宽度。</p>
+
+<h5>button_height</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong>
+    Flash按钮的高度，此项的值应该是整个按钮图片高度的1/4（译者注：文档上文提到了，一个Flash按钮图片里应该包含按钮的四个状态，也可以理解为是4张单独的按钮图片拼合在一起的）。</p>
+
+<h5>button_text</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 显示在Flash按钮上的文本，可以为空。文本可以使用CSS和button_text_style的设置来定义样式。查看<a target="_blank"
+                                                                                               href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/text/TextField.html#htmlText">Adobe
+    Flash的详细文档</a>。</p>
+
+<h5>button_text_style</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 定义如何显示的button_text的CSS样式，字符串形式。查看<a target="_blank"
+                                                                      href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/text/StyleSheet.html">Adobe
+    Flash的详细文档</a>。</p>
+
+<h5>button_text_top_padding</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 设置Flash按钮的文本在垂直方向上的位置，可以使用负数。</p>
+
+<h5>button_text_left_padding</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 设置Flash按钮的文本在水平方向上的位置，可以使用负数。</p>
+
+<h5>button_action</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 定义当Flash按钮被点击时所执行的动作。动作有效值可以在swfupload.js文件的BUTTON_ACTION对象源码中找到。</p>
+
+<h5>button_disabled</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 布尔型，设置Flash按钮是否处于禁用状态。当禁用时，按钮将不执行任何动作。</p>
+
+<h5>button_cursor</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 定义当鼠标划过Flash按钮时，光标呈现何种形态。</p>
+
+<h5>button_window_mode</h5>
+
+<p><strong>(从v2.2.0版本引进)</strong> 设置Flash电影的WMODE属性。有效值可以查看SWFUpload.WINDOW_MODE常量中查看。</p>
+
+<h5>custom_settings（自定义设置）</h5>
+
+<p>custom_settings允许开发者安全地向SWFUpload实例添加额外信息而不用担心影响SWFUpload内部的值或者新版本变更。此设置的值应该是一个JavaScript对象。</p>
+
+<p>一旦实例化，就可以通过SWFUpload的'customSettings'属性来访问自定义设置。</p>
+<code>var swfu = new SWFUpload({
+    custom_settings : {
+    "My Setting" : "This is my setting",
+    myothersetting : "This is my other setting",
+    integer_setting : 100,
+    a_dom_setting : document.getElementById("some_element_id")
+    }
+    });
+
+    var my_setting = swfu.customSettings["My Setting"]);
+    swfu.customSettings["My Setting"] = "This is my new setting";
+    swfu.customSetting.myothersetting = "another new value";
+    swfu.customSetting.integer_setting += 25;
+    swfu.customSetting["a_dom_setting"].style.visibility = "hidden";</code>
+
+<h5>事件处理器</h5>
+
+<p>其余的设置，用来定义SWFUpload操作过程中被调用的事件处理器。当需要时，应该定义一系列JavaScript函数来处理这些事件。 </p>
+
+
+<h4><a name="fileobject"></a>File Object(文件对象)</h4>
+
+<p>文件对象被传递给多个事件处理器，它包含有文件的相关信息。一些操作系统并不提供以下所有值(尤其是创建日期和修改日期)。</p>
+<code>{
+    id : 字符串, //SWFUpload文件的id, 用来开始或取消上传
+    index : 数字, //当前文件的索引，供getFile()方法使用。
+    name : 字符串, //文件名，不包含文件路径。
+    size : 数字, //文件大小，单位为字节。
+    type : 字符串, //客户端操作系统所描述的文件类型
+    creationdate : 日期格式, //文件被创建的日期
+    modificationdate : 日期格式, //文件的最后修改日期
+    filestatus : 数字, //文件的当前状态码，使用SWFUpload.FILE_STATUS来获取文件的状态描述。
+
+    }</code>
+
+<h4><a name="statsobject"></a>Stats Object(统计对象)</h4>
+
+<p>Stats对象提供关于上传队列的信息。</p>
+
+<p>stats对象包含以下属性:</p>
+<code>{
+    in_progress : 数字 //1或0表示一个文件是否处于上传中
+    files_queued : 数字 //当前上传队列中的文件数量
+    successful_uploads : 数字 //上传成功的文件数量 (上传成功将触发uploadSuccess事件)
+    upload_errors : 数字 //发生错误的文件数量 (除了取消文件)
+    upload_cancelled : 数字 //被取消的文件数量
+    queue_errors : 数字 //触发fileQueueError事件的文件数量
+    }</code>
+
+<p>除了<em>in_progress</em>和<em>files_queued</em>之外，所有这些值都可以通过setStats()方法来更新。</p>
+
+<h2><a name="plugins"></a>SWFUpload插件</h2>
+
+<p>在SWFUpload v2.0中，引入了多个插件。他们可以与SWFUpload一起，帮助完成很多普通功能。</p>
+
+<p>Currently most of the documentation for using the plugins is contained in the plugin JavaScript file.</p>
+
+<h3>SWFObject</h3>
+
+<p>SWFObject插件使用<a href="http://code.google.com/p/swfobject/">SWFObject库</a>来将SWFUpload的Flash组件嵌入页面。
+</p>
+
+<p>此插件也支持文件加载和Flash版本检测，插件中含有详细使用说明。你不能将SWFObject的文件载入功能和其他库的文件载入功能混合使用，只能选择其中一种。</p>
+
+<p><strong>Flash Player 10: </strong> 由于Flash Player
+    10要求SWFUpload的swf文件表现为一个按钮，为了成功载入SWFUpload，flash电影必须是可见的。如果button_placeholder_id所对应的元素是隐藏的。(visibility设置为hidden或者display设置为none)，SWFUpload将会载入失败。
+</p>
+
+<h3>Cookies</h3>
+
+<p>为了规避Flash的Cookie bug，Cookies插件将自动读取浏览器的cookies并且在上传时以POST或者GET变量的方式发送到上传url地址。</p>
+
+<p>注意，插件在发送cookies时，它们是以name/values键值对的形式存在于POST或者GET数组中。在服务端，它们将无法作为cookie被访问，一些会检查会话的cookies或者授权值的框架也无法获取这些值。</p>
+
+<h3>Queue Handling</h3>
+
+<p>该插件提供队列处理机制，如：一次性上传整个队列、一次性取消上传整个队列、自动上传。</p>
+
+
+<h3>Speed</h3>
+
+<p>此插件继承'file'对象，它拥有若干描述当前上传的属性。包括：当前上传速度、平均速度、已过时间、上传剩余时间和其他。</p>
+
+
+<h2><a name="knownissues"></a>常见问题</h2>
+
+<p>Flash播放器和许多浏览器都有bug，这些bug将直接反应在SWFUpload的表现上。当我们在努力规避/修复这些bug的同时，仍然有一些是我们不能避免的。</p>
+
+<h3>Cancelling in Linux</h3>
+
+<p>Linux系统下，如果你取消上传，旧版本的Flash 9将使浏览器崩溃，较新版本的Flash 9改善了该问题。</p>
+
+<h3>Upload Progress in Linux</h3>
+
+<p>Linux系统中，在文件上传结束后，Flash仅仅触发一次uploadProgress事件。</p>
+
+<p>在一些版本的Linux系统中，在上传的过程中，整个浏览器将不可用。</p>
+
+<h3>Upload Progress in OS X</h3>
+
+<p>有一些报告指出，uploadProgress事件在MAC平台的Flash中不会触发。尽管还没有被确认，但是开发者应该注意此问题。</p>
+
+<h3>MIME Type</h3>
+
+<p>不论文件的实际MIMIE类型是什么，Flash播放器都将使用<em>application/octet-stream</em>类型来上传文件。</p>
+
+<h3>Maximum number of selected files</h3>
+
+<p>
+    Flash播放器并不强制一次只能选择多少文件，但是，它会建立一个有长度限制的文件序列，该文件序列是由文件名和分隔符[引号][空格][引号]组成的。可以选择的文件数量，是由文件名长度、前后引号、被选择文件数量减去1再乘以3这三者的和来决定的。</p>
+
+<p>由于平台的不同，此限制也可能不同。如果用户选择了太多的文件，他们将会收到一条由Flash发出的警告而当前对话将仍然停留文件选择窗口。</p>
+
+<h3>Proxies</h3>
+
+<p>使用代理，Flash播放器可能工作不正常。它无法很好地识别代理，有时候还会崩溃。</p>
+
+<p>
+    一些反病毒软件使用代理服务器来扫描上传文件，这样会误使SWFUpload相信整个文件已经被上传了。只要上传进度达到100%，SWFUpload将迅速触发uploadProgress事件，在代理服务器将文件上传完毕之前，SWFUpload看上去就像暂停了一样。</p>
+
+<h3>Apache mod_security</h3>
+
+<p>
+    Apache的mod_security模块，会校验发送给服务器的POST数据。Flash播放器对此模块很敏感(目前，关于这一点是否无效，还没有定论)，如果服务器开启了mod_security，POST提交的上传文件将被拒绝。mod_security可以通过你的.htaccess文件禁用。</p>
+
+<h3>SSL</h3>
+
+<p>有一些报告指出，Flash播放器不能通过SSL协议上传。此问题还没有确认，但是绕过SSL上传的文件可能是不可靠的。尤其要注意的是，使用自行签约的SSL证书可能存在问题。</p>
+
+<p>另外，由于Flash没有提供用于接受SSL证书的方法，那么从不被信任的认证机构获取的SSL证书将无效。我们已经注意到此问题，就像cookie bug一样,Windows平台上的Flash可以通过互联网浏览器来获取被信任的CA。</p>
+
+<h3>Authentication</h3>
+
+<p>Flash对HTTP身份认证的支持并不完美。最新版本的Flash对此有了改善，老版本的Flash将会使浏览器崩溃。</p>
+
+<h3>Prematurely terminated connections</h3>
+
+<p>过早地结束响应(如ASP.Net中的Response.end())有时候可能会将成功的上传报告为失败。</p>
+
+<h3>Filedata in Linux</h3>
+
+<p>Linux系统中，改变Filedata的值(file_post_name设置)将被忽略。</p>
+
+<h3>Cookie issue</h3>
+
+<p>在Windows平台中，非IE浏览器的Flash插件(FireFox, Opera, Safari等)将发送IEcookies，而不顾浏览者的使用。这破坏了许多服务端脚本的身份认证和会话控制。</p>
+
+<p>如果开发者希望使用Session，那么他们应该手工传递Session和有关身份认证的cookie信息并且手工存储Session信息。</p>
+
+<p>SWFUpload源码包含有PHP和ASP.Net的规避bug的示例代码。</p>
+
+<h3>ExternalInterface bugs</h3>
+
+<p>当与浏览器/JavaScript通信时，Flash无法正确的转义数据。SWFUpload为了解决这个问题做了诸多努力。如果在以后的Flash/浏览器中解决此bug，那么SWFUpload就可以发送大量的转义数据。</p>
+
+<h3>Server Data length bugs</h3>
+
+<p>在MAC和Linux系统的flash中，服务器数据太长容易被损坏，数据可能会被清空，错乱，或重复。我们建议服务器返回的数据尽量精简。</p>
+
+<h3>Avant Browser</h3>
+
+<p>一些使用Avant浏览器的用户可能会发现，在Flash控制器被缓存后SWFUpload无法工作。SWFUpload开发者已经反复提到了此问题，但是Avant浏览器的开发团队就像没事人一样。</p>
+
+<p>当页面被重载时SWFUpload将会载入并触发swfupload_loaded事件。但是，没有任何内部回调函数被定义来处理存放Flash的DOM元素。SWFUpload
+    v2.0.2版本中添加了检测机制，如果没有检测到回调函数，将阻止swfupload_loaded被触发。</p>
+
+<p><strong>SWFUpload v2.2.0引进了prevent_swf_caching设置，以此来解决Avant浏览器中flash被缓存而无法工作的问题。</strong></p>
+
+<h3>File Dialog &amp; Page Changing</h3>
+
+<p>
+    当文件浏览窗口处于打开状态时离开或重载页面会导致浏览器崩溃(包括所有浏览器和所有操作系统，译者注：在谷歌浏览器测试没有崩溃，可能是官方文档没有更新此条目)。通常，这是由于在“一个onclick事件中调用了selectFile或selectFiles函数的”&lt;a&gt;标签上取消点击事件失败时造成的。</p>
+
+<h3>Long Running Upload Scripts</h3>
+
+<p>
+    在Flash将文件上传至web服务器之后，上传脚本将被执行。这个脚本可以控制是否保存文件、创建缩略图、扫描病毒等。如果上传脚本在30秒内没有返回任何数据，Flash将断开连接并返回一个IO错误。当脚本运行是你可以通过返回字符或数据来防止该错误(如果可以)对PHP来说，即使Flash中断了连接脚本仍然会继续执行并且成功完成。在Flash断开连接后返回的任何数据都将丢失。</p>
+
+<h3>WMODE / BUTTON_WINDOW_MODE</h3>
+
+<p>在一些浏览器中，如果Flash控制器不在频幕的可见范围中，当前的WMODE(使用BUTTON_WINDOW_MODE设置)可能会组织Flash控制器载入。当用户滚动页面让控制器可见时，它才会载入。</p>
+
+<p>这可能会对SWFObject插件产生不利影响。不会有任何SWFUpload事件触发，而且按钮背景也不会载入，直到flash控制器可见。</p>
+
+<h3>Memory Leaks</h3>
+
+<p>
+    当JavaScript通过SWFUpload使用的内部接口类进行通信时，一些浏览器(如IE)无法释放由Flash播放器使用的内存。创建多个SWFUpload实例或者多次重载页面将会导致浏览器耗费更多的内存直到浏览器崩溃或对系统产生危害。</p>
+
+<p>
+    v2.2.0版本中，我们为SWFUpload部署一些安全措施。其中一些安全措施会自动运行，但是我们仍然建议你在离开页面时调用destroy()方法。如果在你的页面中存在成百上千的SWFUpload实例，你应该谨慎使用并且仔细的进行内存泄漏测试。</p>
+
+<h3>Other Mac Issues</h3>
+<ul>
+    <li>
+        有用户报告称Mac平台的Flash播放器在上传文件到子域时工作不正常。
+    </li>
+    <li>
+        有用户报告称，Mac平台的Flash播放器不处理重定向(HTTP状态码为302)，Windows客户端目前看来并无此问题。
+    </li>
+    <li>
+        flash文档声明在OS X
+        10.3之前的版本中，载入的字节数总是被报告为-1。SWFUpload将该值转换为0，但是总的字节数不会被发送，而且进度条始终达不到100%。用户必须在uploadSuccess或uploadComplete事件中更新UI以显示100%来保持进度条的连续性。
+    </li>
+    <li>
+        一些用户报告称，如果upload_url中含有空格，Mac平台下的Flash播放器会出问题。应该避免空格或者用'+'或'%20'符合来替换。
+    </li>
+    <li>
+        有用户报告称，Mac平台的Flash播放器会向HTTP_HOST变量添加端口号(如：http://www.example.com:80)。如果你在服务端脚本检查此变量，请注意此问题。
+    </li>
+</ul>
+
+<p align="center">Copyright © <a href="http://www.phptogether.com/"
+                                 target="_blank">http://www.phptogether.com/</a></div><a target="_blank"
+                                                                                         href="http://sighttp.qq.com/authd?IDKEY=0d8f551beb86c567f5d026fc3af8f8a0c1cf318635116789"><img
+        border="0" src="http://wpa.qq.com/imgd?IDKEY=0d8f551beb86c567f5d026fc3af8f8a0c1cf318635116789&pic=45" alt="点击Q我"
+        title="点击Q我"></a>|
+<noscript><a href="http://www.51.la/?4095651" target="_blank"><img
+        alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/4095651.asp"
+        style="border:none"/></a></noscript>
+<script src="http://s17.cnzz.com/stat.php?id=2412230&web_id=2412230&show=pic" language="JavaScript"></script>
+|
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/4095651.js"></script>
+|
+<script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9541ae759aad5b1e7083c2f63b8e8e9c' type='text/javascript'%3E%3C/script%3E"));</script>
+</p></body>
+</html>

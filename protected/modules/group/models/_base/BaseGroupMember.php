@@ -10,15 +10,15 @@
 * and there are no model relations.
 *
 * @property integer $id
-* @property integer $group
-* @property integer $user
+* @property integer $group_id
+* @property integer $user_id
 * @property integer $approved
 * @property integer $requested
 * @property integer $invited
-* @property string $requested_date
-* @property string $invited_date
-* @property string $join_date
-* @property integer $inviter
+* @property integer $requested_time
+* @property integer $invited_time
+* @property integer $join_time
+* @property integer $inviter_id
 *
 */
 abstract class BaseGroupMember extends YsActiveRecord {
@@ -32,16 +32,15 @@ return 'group_member';
 }
 
 public static function representingColumn() {
-return 'requested_date';
+return 'id';
 }
 
 public function rules() {
 return array(
-array('group, user, inviter', 'required'),
-array('group, user, approved, requested, invited, inviter', 'numerical', 'integerOnly'=>true),
-array('requested_date, invited_date, join_date', 'safe'),
-array('approved, requested, invited, requested_date, invited_date, join_date', 'default', 'setOnEmpty' => true, 'value' => null),
-array('id, group, user, approved, requested, invited, requested_date, invited_date, join_date, inviter', 'safe', 'on'=>'search'),
+array('group_id, user_id, requested_time, invited_time, join_time, inviter_id', 'required'),
+array('group_id, user_id, approved, requested, invited, requested_time, invited_time, join_time, inviter_id', 'numerical', 'integerOnly'=>true),
+array('approved, requested, invited', 'default', 'setOnEmpty' => true, 'value' => null),
+array('id, group_id, user_id, approved, requested, invited, requested_time, invited_time, join_time, inviter_id', 'safe', 'on'=>'search'),
 );
 }
 
@@ -58,15 +57,15 @@ return array(
 public function attributeLabels() {
 return array(
 'id' => Yii::t('group_member', 'id'),
-'group' => Yii::t('group_member', 'group'),
-'user' => Yii::t('group_member', 'user'),
+'group_id' => Yii::t('group_member', 'group_id'),
+'user_id' => Yii::t('group_member', 'user_id'),
 'approved' => Yii::t('group_member', 'approved'),
 'requested' => Yii::t('group_member', 'requested'),
 'invited' => Yii::t('group_member', 'invited'),
-'requested_date' => Yii::t('group_member', 'requested_date'),
-'invited_date' => Yii::t('group_member', 'invited_date'),
-'join_date' => Yii::t('group_member', 'join_date'),
-'inviter' => Yii::t('group_member', 'inviter'),
+'requested_time' => Yii::t('group_member', 'requested_time'),
+'invited_time' => Yii::t('group_member', 'invited_time'),
+'join_time' => Yii::t('group_member', 'join_time'),
+'inviter_id' => Yii::t('group_member', 'inviter_id'),
 );
 }
 
@@ -74,15 +73,15 @@ public function search() {
 $criteria = new CDbCriteria;
 
 $criteria->compare('id', $this->id);
-$criteria->compare('group', $this->group);
-$criteria->compare('user', $this->user);
+$criteria->compare('group_id', $this->group_id);
+$criteria->compare('user_id', $this->user_id);
 $criteria->compare('approved', $this->approved);
 $criteria->compare('requested', $this->requested);
 $criteria->compare('invited', $this->invited);
-$criteria->compare('requested_date', $this->requested_date, true);
-$criteria->compare('invited_date', $this->invited_date, true);
-$criteria->compare('join_date', $this->join_date, true);
-$criteria->compare('inviter', $this->inviter);
+$criteria->compare('requested_time', $this->requested_time);
+$criteria->compare('invited_time', $this->invited_time);
+$criteria->compare('join_time', $this->join_time);
+$criteria->compare('inviter_id', $this->inviter_id);
 
 return new CActiveDataProvider($this, array(
 'criteria' => $criteria,

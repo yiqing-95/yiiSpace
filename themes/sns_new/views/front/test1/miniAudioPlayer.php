@@ -1,0 +1,149 @@
+<?php $this->widget('my.widgets.audio.JMiniAudioPlayer', array(
+   // 'container' => '.slider-viewport',
+    'debug'=>true ,
+    'options' =>array(),
+));
+
+?>
+
+<style type="text/css">
+
+    /*Generic page style*/
+
+    body{
+        margin:0px;
+        background: #ffc000;
+        font:normal 16px/20px Lekton, sans-serif;
+    }
+
+    .wrapper{
+        position:absolute;
+        padding:100px 50px;
+        width:80%;
+        min-height: 100%;
+        margin-left: 10% ;
+        top:0;
+        background: #e8e8e8;
+
+        font:normal 16px/20px Lekton, sans-serif;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+
+    .wrapper h1{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:26px;
+    }
+
+    button{
+        padding:3px;
+        display:inline-block;
+        cursor:pointer;
+        font:16px/18px Arial, Helvetica, sans-serif;
+        color:#fff;
+        background-color:#ccc;
+        border-radius:5px;
+        box-shadow:#999 1px 1px 3px;
+        border:1px solid white;
+        text-shadow: 1px -1px 2px #aaa9a9 !important;
+    }
+
+    button:hover{
+        color:#666;
+    }
+
+    hr{
+        border:none;
+        background-color:#ccc;
+        height:1px;
+    }
+
+    .wrapper span.param{
+        font:normal 13px/15px Lekton, sans-serif;
+        color:#767676;
+        display: block;
+        margin-top: 10px;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        if (self.location.href == top.location.href){
+            $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+            var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute", top:10, left:10});
+            $(".wrapper").prepend(logo);
+            $("#logo").fadeIn();
+        }
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = /android/.test(ua);
+        var isAndroidDefault = isAndroid && !(/chrome/i).test(ua);
+
+        if(isAndroidDefault){
+            alert("Sorry, your browser does not support this implementation of the player. It will be used the standard HTML5 audio player instead")
+        }
+
+        $(".audio").mb_miniPlayer({
+            width:240,
+            inLine:false,
+            id3:false,
+            downloadPage:null
+//                downloadPage:"map_download.php"
+        });
+
+    });
+
+</script>
+
+<div class="wrapper">
+    <h1>mb.miniAudioPlayer.demo</h1>
+    <br>
+    This is a GUI implementation of <a href="http://www.jplayer.org/" target="_blank"><strong>Happyworm jPlayer plugin</strong></a>, an HTML5 audio engine, developed on jQuery framework, that let you listen mp3 and ogg file over the html5 audio tag where supported or using an invisible flash player where not supported.
+    For more informations about html5 browsers' support go to <a href="http://www.jplayer.org/latest/developer-guide/" target="_blank">jPlayer documentation site</a>.
+    <br>
+    <br>
+    <p><a href="skinmaker.html"> Customize the player skin</a></p>
+    <br>
+    <a idd="m1" class="audio {ogg:'audio/allegro.ogg', loop:true, inLine:true, downloadable:true}" href="audio/allegro.mp3">Pietro Bicocchi - Allegro 2013</a>
+    <button onclick="$('#m1').mb_miniPlayer_play()">play</button>
+    <button onclick="$('#m1').mb_miniPlayer_stop()">stop</button>
+    <br>
+    <span class="param">param -> all features - loop = true</span>
+    <hr>
+    <a id="m2" class="audio {skin:'orange', ogg:'http://www.miaowmusic.com/ogg/Miaow-02-Hidden.ogg', showTime:false, downloadable:true}" href="http://www.miaowmusic.com/mp3/Miaow-02-Hidden.mp3">miaowmusic - Hidden (ogg/mp3)</a>
+    <span class="param"> param -> showTime:false, ogg:'http://www.miaowmusic.com/ogg/Miaow-02-Hidden.ogg' (FF will play it as HTML5)</span>
+    <hr>
+    <a id="m3" class="audio {skin:'blue', autoPlay:false,showRew:false}" href="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3">miaowmusic - Stirring of a Fool (mp3)</a>
+    <span class="param">param -> showRew:false</span>
+    <hr>
+    <a id="m4" class="audio {skin:'red', autoPlay:false,showRew:false, showTime:false}" href="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3">miaowmusic - Lismore (mp3)</a>
+    <span class="param">param -> showRew:false, showTime:false</span>
+    <hr>
+    <a id="m5" class="audio {skin:'green', autoPlay:false, addShadow:false}" href="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3">miaowmusic - Stirring of a Fool (mp3)</a>
+    <br>
+    <div>change track:
+        <br>
+        <button onclick="$('#m5').mb_miniPlayer_changeFile({mp3:'http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3'},'Lismore (mp3)')">miaowmusic - Lismore</button>
+        <button onclick="$('#m5').mb_miniPlayer_changeFile({mp3:'http://www.miaowmusic.com/mp3/Miaow-02-Hidden.mp3'},'Hidden (mp3)')">miaowmusic - Hidden</button>
+    </div>
+    <br>
+    <hr>
+    <a id="m7" class="audio {skin:'black', autoPlay:false}" href="http://www.jplayer.org/audio/m4a/TSP-01-Cro_magnon_man.m4a">Cro Magnon Man</a>
+    <span class="param">param -> uses m4a audio</span>
+    <hr>
+    <a id="m8" class="audio {skin:'red', autoPlay:false, width:80}" href="http://listen.radionomy.com/abc-jazz/#.mp3">Jazz radio stream</a>
+    <span class="param">This example get the stream of <a href="http://radionomy.com">Radionomy</a> Jazz channel</span>
+    <hr>
+    This is a gray player: <a id="m9" class="audio {skin:'gray', autoPlay:false, inLine:true, showVolumeLevel:false, showRew:true, showTime:false, width:100, addShadow:false}" href="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3">miaowmusic - Lismore (mp3)</a>
+    <span>and it is inline</span>
+
+    <hr>
+    <br>
+    <b>jquery.mb.miniPlayer</b> is a GUI implementation of the <a href="http://www.jplayer.org" target="_blank">jquery.jPlayer</a> plug-in realized by © Happyworm LTD. (many thanks to <a href="http://happyworm.com/blog/" target="_blank">Mark Boas</a>)
+    <br>
+    All the music are provided by <a href="http://www.miaowmusic.com" target="_blank">© miaowmusic</a>.
+</div>

@@ -8,11 +8,11 @@
 				'url': link.attr('href'),
 				'dataType': 'json',
 				'success': function(data){
-					var dialog=$('<div style="display:none;"><div class="forView"></div></div>');			
+					var dialog=$('<div style="display:none;"><div class="forView"></div></div>');
 					$('body').append(dialog);
 					dialog.dialog();
 					dialog.find('.forView').html(data.view || data.form);
-					
+
 					dialog.delegate('form', 'submit', function(e){
 						e.preventDefault();
 						$.ajax({

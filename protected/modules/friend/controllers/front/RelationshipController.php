@@ -1,7 +1,22 @@
 <?php
 
-class RelationshipController extends Controller
+class RelationshipController extends  BaseFriendController
 {
+    protected  function beforeAction( $action){
+
+        $actionId = $action->getId();
+
+        if (in_array($actionId, array('myRelationships', 'create', 'update', 'manager'))) {
+            $this->layout = 'userCenter';
+        } elseif (in_array($actionId, array('member','viewAll'))) {
+            $this->layout = 'userSpace';
+            //$this->layout = UserHelper::getUserBaseLayoutAlias('userSpaceContent');
+        }else{
+            $this->layout = 'userSpace';
+        }
+
+        return parent::beforeAction($action);
+    }
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -265,7 +280,7 @@ class RelationshipController extends Controller
 
     public function actionPendingRelationships()
     {
-        $this->layout = '//layouts/user/user_center';
+       // $this->layout = '//layouts/user/user_center';
 
         $dataProvider = Relationship::getRelationships(0, user()->getId(), 0);
         $this->render('pendingRelations', array(
@@ -274,9 +289,29 @@ class RelationshipController extends Controller
     }
 
     public function actionMyRelationships(){
-        $this->layout = '//layouts/user/user_center';
+       // $this->layout = '//layouts/user/user_center';
 
-        $dataProvider = Relationship::getByUser(Yii::app()->user->id);
+       //  $dataProvider = Relationship::getByUser(Yii::app()->user->id);
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria = new CDbCriteria;
+
+        //$criteria->compare('t.id', $this->id, true);
+        $criteria->compare('t.user_a',user()->getId(), true);
+
+        $criteria->with = array('friend');
+
+        $dataProvider = new CActiveDataProvider('Relationship', array(
+            'criteria' => $criteria,
+            'pagination' => array('pageSize' => 10),
+            'sort' => array(
+                'defaultOrder' => 't.create_time DESC',
+            )
+        ));
+
+
+
         $this->render('user/myRelationships', array(
             'dataProvider' => $dataProvider,
         ));
@@ -286,13 +321,73 @@ class RelationshipController extends Controller
      * @param int $u
      */
     public function actionViewAll($u=1){
-        $this->layout = '//layouts/user/user_space';
+       // $this->layout = '//layouts/user/user_space';
 
-        $dataProvider = Relationship::getByUser($u);
-        // consider if need another views ?
+        $criteria = new CDbCriteria;
+
+        //$criteria->compare('t.id', $this->id, true);
+        $criteria->compare('t.user_a',$u, true);
+
+        if(($cateId = request()->getParam('cateId',false)) !==false){
+            $criteria->addColumnCondition(
+                array(
+                    't.category_id'=>$cateId
+                )
+            );
+        }
+
+        $criteria->with = array('friend');
+
+        $dataProvider = new CActiveDataProvider('Relationship', array(
+            'criteria' => $criteria,
+            'pagination' => array('pageSize' => 10),
+            'sort' => array(
+                'defaultOrder' => 't.create_time DESC',
+            )
+        ));
+
+
+
         $this->render('user/myRelationships', array(
             'dataProvider' => $dataProvider,
         ));
+
+    }
+
+
+
+    /**
+     * @param int $u
+     */
+    public function actionFollowerList($u=0){
+        // $this->layout = '//layouts/user/user_space';
+
+        $criteria = new CDbCriteria;
+
+        //$criteria->compare('t.id', $this->id, true);
+        $criteria->addColumnCondition(
+            array(
+                'user_b'=>$u
+            )
+           );
+
+
+        $criteria->with = array('follower');
+
+        $dataProvider = new CActiveDataProvider('Relationship', array(
+            'criteria' => $criteria,
+            'pagination' => array('pageSize' => 10),
+            'sort' => array(
+                'defaultOrder' => 't.create_time DESC',
+            )
+        ));
+
+
+
+        $this->render('follower/myRelationships', array(
+            'dataProvider' => $dataProvider,
+        ));
+
     }
 
     public function actionApprove()
@@ -343,4 +438,68 @@ class RelationshipController extends Controller
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
         }
     }
+
+     // ============================<关注 取消关注>=======================================================\\
+    public function actionHasFollowed(){
+        $visitorId = user()->getId();
+        $objectId = Yii::app()->request->getParam('objectId');
+
+        $isFriend = Relationship::model()->exists(
+            'user_a=:visitorId AND user_b=:objectId',
+            array(
+                ':visitorId'=>$visitorId,
+                ':objectId'=>$objectId,
+            )
+        );
+
+        $this->ajaxSuccess(array(
+            'hasFollowed'=> ($isFriend == true)
+        ));
+    }
+
+    public function actionFollow(){
+        $visitorId = user()->getId();
+        $objectId = Yii::app()->request->getParam('objectId');
+        $categoryId = Yii::app()->request->getParam('categoryId',0);
+
+        $userB = User::model()->findByPk($objectId);
+
+        $relationship = new Relationship();
+
+        // 状态墙用来渲染 朋友的链接图像
+        $relationship->friendObj = $userB ;
+
+        $relationship->type = 1 ;
+        $relationship->category_id = $categoryId ;
+        $relationship->user_a = $visitorId;
+        $relationship->user_b = $objectId ;
+        $relationship->accepted = 0 ;
+        $relationship->create_time = time() ;
+
+        if($relationship->save()){
+
+            RelationshipCategory::model()->updateCounters(array(
+                    'mbr_count'=>1,
+                ),
+                'id=:cateId AND user_id=:userId',
+                array(
+                    ':cateId'=>$categoryId,
+                    ':userId'=>$visitorId,
+                )
+            );
+
+            $this->ajaxSuccess(array(
+
+            ));
+        }else{
+            $this->ajaxFailure(array(
+                'error'=>$relationship->getErrors(),
+            ));
+        }
+
+    }
+
+    // =============================<关注 取消关注/>======================================================//
+
+
 }

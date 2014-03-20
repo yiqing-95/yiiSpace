@@ -40,7 +40,7 @@ abstract class BaseStatus extends YsActiveRecord
     {
         return array(
             array('update, type, creator,  profile', 'required'),
-            array('type, creator, profile, approved', 'numerical', 'integerOnly' => true),
+            array('creator, profile, approved', 'numerical', 'integerOnly' => true),
             array('approved', 'default', 'setOnEmpty' => true, 'value' => null),
             array('id, update, type, creator, created, profile, approved', 'safe', 'on' => 'search'),
         );

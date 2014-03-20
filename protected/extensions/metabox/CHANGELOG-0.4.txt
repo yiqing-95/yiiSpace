@@ -1,0 +1,22 @@
+Metabox (Yii Frameword Extension) Change Log
+================================
+
+Version 0.4 January 2, 2013
+--------------------------------
+Bug: Use minified version when YII_DEBUG is defined. The opposite should happen.
+Enh: Added custom (default) css, header and footer support
+Enh: Added cssClass propery. Default value is 'metadata'
+Enh: Asset is now calculated with dirname() and is not hardcoded
+Chg: Url parameter is now optional. If null, the current url is being used.
+
+Version 0.3 December 18, 2012
+--------------------------------
+Enh: Added support for custom initial content using begin/end widget.
+
+Version 0.2 November 5, 2012
+--------------------------------
+Enh: Added customizable ajax response callbacks
+
+Version 0.1 Octover 10, 2012
+--------------------------------
+Initial release

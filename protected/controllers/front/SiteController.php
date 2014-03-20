@@ -4,6 +4,13 @@ class SiteController extends Controller
 {
     public $layout = '//layouts/main';
 
+    public function beforeAction($action){
+        if(!in_array($action->id,array('index'))){
+            $this->layout = '//layouts/column1';
+        }
+     return parent::beforeAction($action);
+    }
+
     /**
      * Declares class-based actions.
      */
@@ -20,8 +27,11 @@ class SiteController extends Controller
             'page' => array(
                 'class' => 'CViewAction',
             ),
-            'genApp' => array(// 'class'=> 'LAutoGenAppAction',
+            /*
+            'genApp' => array(
+               'class'=> 'LAutoGenAppAction',
             ),
+            */
         );
     }
 
@@ -31,7 +41,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        // renders the view file 'protected/views/site/index.php'
+
+         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         $this->render('index');
     }
@@ -43,13 +54,16 @@ class SiteController extends Controller
     {
         if ($error = Yii::app()->errorHandler->error) {
 
-                var_dump($error);
-
-
-            if (Yii::app()->request->isAjaxRequest)
+            if (Yii::app()->request->isAjaxRequest){
                 echo $error['message'];
-            else
+            }else{
+                if(YII_DEBUG){
+                    // 输出全部信息：
+                        var_dump($error);
+                }
                 $this->render('error', $error);
+            }
+
         }
     }
 
@@ -58,6 +72,8 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $this->layout = '//layouts/column1';
+
         $model = new ContactForm;
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
@@ -76,6 +92,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+
         $model = new LoginForm;
 
         // if it is ajax validation request
@@ -176,4 +194,27 @@ class SiteController extends Controller
             file_put_contents($installedFileName, 'remove if you need to run install.php again');
     }
 
+
+    //----------------------------------------------------------------\\
+    /**
+     * 确保ElasticSearch中的Index存在：
+     */
+    public function actionEnsureEsIndex(){
+        Yii::setPathOfAlias('Elastica',Yii::getPathOfAlias('application.vendors.Elastica'));
+
+        $client = new Elastica\Client();
+        $indexName = 'yii_space';
+        $index = $client->getIndex($indexName);
+        if(! $index->exists()){
+            $index->create(array(), true);
+            // Refresh index
+            $index->refresh();
+        }
+
+        if($index->exists()){
+            echo 'index [',$indexName,'] success created!';
+        }
+
+    }
+    //----------------------------------------------------------------//
 }

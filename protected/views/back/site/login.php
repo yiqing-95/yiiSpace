@@ -35,12 +35,25 @@ $this->breadcrumbs = array(
             <?php echo $form->error($model, 'password'); ?>
 
         </div>
+        <?php if(CCaptcha::checkRequirements()): ?>
+        <div class="row">
+            <?php // echo $form->labelEx($model,'verifyCode'); ?>
+            <div>
+                <?php $this->widget('CCaptcha'); ?>
+                <?php echo $form->textField($model,'verifyCode'); ?>
+            </div>
 
+            <?php echo $form->error($model,'verifyCode'); ?>
+        </div>
+        <?php endif; ?>
+        <!--
+        <?php /* ?>
         <div class="row rememberMe">
             <?php echo $form->checkBox($model, 'rememberMe'); ?>
             <?php echo $form->label($model, 'rememberMe'); ?>
             <?php echo $form->error($model, 'rememberMe'); ?>
-        </div>
+         <?php */ ?>
+        </div> -->
 
         <div class="row buttons">
             <?php // echo CHtml::submitButton('Login'); ?>

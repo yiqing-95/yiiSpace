@@ -86,7 +86,7 @@ function cs()
 
 /**
  * This is the shortcut to Yii::app()->user.
- * @return  CWebUser
+ * @return  YsWebUser|CWebUser|null
  */
 function user()
 {
@@ -679,7 +679,7 @@ function genFileName($uid = '0')
  */
 function getPublicProperties($object)
 {
-
+    /*
     $getFields = function($obj)
     {
         return get_object_vars($obj);

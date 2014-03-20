@@ -24,7 +24,8 @@ class FormDialog2 extends CJuiWidget
         $options= CJavaScript::encode($this->options);
 
         $jsCode = <<<INIT
-       $("{$this->link}").live("click",function(e){
+       $(document).on('click',"{$this->link}",function(e){
+
        e.preventDefault();
           $(this).formDialog({$options});
           return false ;

@@ -45,7 +45,7 @@ class InstallController extends CController
         $config = array(
             'steps' => array(
                 // 这个测试下效果 玩玩的！
-                'helloKey' => 'helloValue',
+                '环境监测' => 'checkEnv',
                 '安装数据库' => 'installDb',
 
                  'Start Installation/Upgrade' => 'prepare',
@@ -173,10 +173,11 @@ class InstallController extends CController
     }
 
     /**
-     * 玩玩的第一个事件处理流程！
+     * 环境监测
      * @param $event
+     * @return bool
      */
-    public function processHelloValue($event)
+    public function processCheckEnv($event)
     {
 
         $model = new StepTestForm();
@@ -247,7 +248,7 @@ class InstallController extends CController
             // from chive
             @set_time_limit(0);
 
-            $dbFile = Yii::getPathOfAlias('application.data') . DIRECTORY_SEPARATOR . 'mySpace.sql';
+            $dbFile = Yii::getPathOfAlias('application.data') . DIRECTORY_SEPARATOR . 'yii_space.sql';
             $content = file_get_contents($dbFile);
 
             $sqlSplitter = new SqlSplitter($content);
@@ -257,7 +258,7 @@ class InstallController extends CController
             /**
              *  'db' => array(
             'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=rcyx',
+            'connectionString' => 'mysql:host=localhost;dbname=yii_space',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -268,9 +269,10 @@ class InstallController extends CController
             'tablePrefix' => '',
             ),
              */
+
             $dbName = 'yii_space' ;
             $db = new CDbConnection();
-            // $db->connectionString = 'mysql:host=localhost;dbname=rcyx';
+            // $db->connectionString = 'mysql:host=localhost;dbname=yii_space';
             $db->connectionString = 'mysql:host=localhost';
             $db->username = 'root';
             $db->password = '';

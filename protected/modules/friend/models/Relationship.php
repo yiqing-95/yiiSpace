@@ -10,6 +10,70 @@ class Relationship extends BaseRelationship
     }
 
     /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            // 某次查询 只用关系中的一个
+            'friend' => array(self::HAS_ONE, 'User', array('id'=>'user_b')),
+            //  查询条件在控制器中设置
+            'follower' => array(self::HAS_ONE, 'User', array('id'=>'user_a'),
+              // 'condition'=>'',
+            ),
+        );
+    }
+
+    /**
+     * 这个等价 friend 关系名！
+     * @var User
+     */
+    public $friendObj ;
+
+
+    /**
+     * This is invoked after the record is saved.
+     */
+    protected function afterSave()
+    {
+        parent::afterSave();
+
+        if ($this->getIsNewRecord()) {
+
+            //  状态墙 这里以后可能引入队列或者异步
+            $statusData = array(
+                'id' => $this->friendObj->primaryKey,
+                'name' => $this->friendObj->username,
+                'iconUrl' => $this->friendObj->icon_uri,
+            );
+            /**
+             * $statusModel->creator = $creator ;
+             * $statusModel->type = $type ;
+             * $statusModel->profile = $profile;
+             * $statusModel->update = $update ;
+             * $statusModel->created = $created ;
+             * $statusModel->approved = $approved ;
+             */
+            $status = array(
+                'creator' => $this->user_a,
+                'type' => 'user_following',
+                // TODO 这里是双向通知么？
+                //  'profile' => $this->user_b,
+                 'profile' => $this->user_a,
+                'update' => CJSON::encode($statusData),
+                //  'created'=>time(),
+                'approved' => 1
+            );
+            YsService::call('status', 'postStatus', array($status));
+
+        } else {
+
+        }
+    }
+
+    /**
      * @return CActiveRecord|Relationship
      */
     public function createRelation()

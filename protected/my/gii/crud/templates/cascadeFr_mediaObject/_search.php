@@ -32,10 +32,10 @@
                             ?>
 
                             <div class="col">
-                                <div class="col size1of4">
+                                <div class="col width-1of4">
                                     <?php echo "<?php echo \$form->label(\$model,'{$column->name}'); ?>\n"; ?>
                                 </div>
-                                <div class="col sizefill">
+                                <div class="col width-fill">
                                     <?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; ?>
                                 </div>
                             </div>
@@ -43,8 +43,8 @@
                         <?php endforeach; ?>
 
                         <div class="col ">
-                            <div class="col size1of4"></div>
-                            <div class="col sizefill">
+                            <div class="col width-1of4"></div>
+                            <div class="col width-fill">
                                 <div class="cell">
                                     <?php echo "<?php echo CHtml::submitButton('Search',array(
                                        'class'=>'button',

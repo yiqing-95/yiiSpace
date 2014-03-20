@@ -25,8 +25,10 @@ class TbColumnView extends TbListView
 
     /**
      * @var bool
+     * whether to support ajax delete functionality as the CGridView
+     * just give a "delete" class
      */
-    public $forAdmin = true; //false;
+    public $enableAjaxDelete = false; //false;
 
     /**
      * @var array
@@ -246,28 +248,48 @@ class TbColumnView extends TbListView
         /**
          * if(confirm('Are you sure you want to delete this item?')) {jQuery.yii.submitForm(this,'/my/livmx/yq/delete/id/1',{});return false;} else return false;}
          * */
-        if ($this->forAdmin) {
+        // 注意跟gridview 共用时可能出现重复注册的现象！！
+        $jsNameSpace = __CLASS__ ;
+        $deleteContext = "#{$this->id}.{$this->itemsCssClass}";
+
+        if ($this->enableAjaxDelete) {
             $jsCode = <<<DELETE_ITEM
-jQuery('#{$this->id} a.delete').live('click',function() {
-	if(!confirm('确定要删除这条数据吗?')) return false;
-	var th=this;
-	var afterDelete=function(){};
-	$.fn.yiiListView.update('{$this->id}', {
-		type:'POST',
-		url:$(this).attr('href'),
-		success:function(data) {
-			$.fn.yiiListView.update('{$this->id}');
-			afterDelete(th,true,data);
-		},
-		error:function(XHR) {
-			return afterDelete(th,false,XHR);
-		}
-	});
-	return false;
+
+
+jQuery(function(){
+            if(typeof window.{$jsNameSpace} === "undefined"){
+                  window.{$jsNameSpace} = {};
+                  {$jsNameSpace}.deleteContexts = [];
+            }
+            if(jQuery.inArray("{$deleteContext}",{$jsNameSpace}.deleteContexts) !== -1){
+                // alert("已经注册了删除事件！");
+                return ;
+            }else{
+                {$jsNameSpace}.deleteContexts.push("{$deleteContext}");
+                //alert("没有注册删除事件！");
+            }
+    jQuery('{$deleteContext} a.delete').live('click',function() {
+        if(!confirm('确定要删除这条数据吗?')) return false;
+        var th=this;
+        var afterDelete=function(){};
+        $.fn.yiiListView.update('{$this->id}', {
+            type:'POST',
+            url:$(this).attr('href'),
+            success:function(data) {
+                $.fn.yiiListView.update('{$this->id}');
+                afterDelete(th,true,data);
+            },
+            error:function(XHR) {
+                return afterDelete(th,false,XHR);
+            }
+        });
+        return false;
+    });
 });
+
 DELETE_ITEM;
 
-            $this->cs->registerScript(__CLASS__ . '_' . $this->id . '_delete', $jsCode, CClientScript::POS_READY);
+            $this->cs->registerScript(__CLASS__ . '_' . $this->id . '_delete', $jsCode, CClientScript::POS_END);
         }
     }
 

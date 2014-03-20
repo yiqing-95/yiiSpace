@@ -1,0 +1,138 @@
+@charset "utf-8";
+.pageFormContent label {width:80px;text-align:right;}
+
+
+
+/* form */
+div.form
+{
+}
+
+div.form fieldset
+{
+	border: 1px solid #DDD;
+	padding: 10px;
+	margin: 0 0 10px 0;
+    -moz-border-radius:7px;
+}
+
+div.form label
+{
+	font-weight: bold;
+	display:inline-block;
+	float:left;
+	width:80px;
+	text-align:right;
+	padding-right:5px;
+}
+
+div.form .row
+{
+	margin: 10px 0;
+}
+
+div.form .hint
+{
+	margin: 0;
+	padding: 0;
+	color: #999;
+}
+
+div.form .note
+{
+	font-style: italic;
+}
+
+div.form span.required
+{
+	color: red;
+}
+
+div.form div.error label,
+div.form label.error,
+div.form span.error
+{
+	color: #C00;
+}
+
+div.form div.error input,
+div.form div.error textarea,
+div.form div.error select,
+div.form input.error,
+div.form textarea.error,
+div.form select.error
+{
+	background: #FEE;
+	border-color: #C00;
+}
+
+div.form div.success input,
+div.form div.success textarea,
+div.form div.success select,
+div.form input.success,
+div.form textarea.success,
+div.form select.success
+{
+	background: #E6EFC2;
+	border-color: #C6D880;
+}
+
+
+div.form .errorSummary
+{
+	border: 2px solid #C00;
+	padding: 7px 7px 12px 7px;
+	margin: 0 0 20px 0;
+	background: #FEE;
+	font-size: 1em;
+}
+
+div.form .errorMessage
+{
+	color: red;
+	font-size: 1em;
+	margin-left:90px;
+	height:14px;
+	line-height:14px;
+}
+
+div.form .errorSummary p
+{
+	margin: 0;
+	padding: 5px;
+}
+
+div.form .errorSummary ul
+{
+	margin: 0;
+	padding: 0 0 0 20px;
+	clear:both;
+}
+
+div.wide.form label
+{
+	float: left;
+	margin-right: 10px;
+	position: relative;
+	text-align: right;
+	width: 100px;
+}
+
+div.wide.form .row
+{
+	clear: left;
+}
+
+div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
+{
+	clear: left;
+	padding-left: 110px;
+}
+
+/* 自定 */
+div.buttons {padding-left:80px;}
+div.form label.wauto {width:auto;float:none;margin-top:-6px;vertical-align:middle}
+div.form .r10{margin-right:10px;}
+div.form .w200{width:200px;}
+div.form .w300{width:300px;}
+/* end Form */

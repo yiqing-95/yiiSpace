@@ -16,7 +16,7 @@
     <?php $assetsUrl = PublicAssets::url('back'); ?>
 
     <meta charset="utf-8">
-    <title>Free HTML5 Bootstrap Admin Template</title>
+    <title>欢迎进入 <?php echo Yii::app()->name ;?> 后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
     <meta name="author" content="Muhammad Usman">
@@ -232,7 +232,7 @@
 
             <div class="top-nav nav-collapse">
                 <ul class="nav">
-                    <li><a href="#">Visit Site</a></li>
+                    <li><a href="<?php echo abu('index.php'); ?>" target="_blank">Visit Site</a></li>
                     <li>
                         <form class="navbar-search pull-left">
                             <input placeholder="Search" class="search-query span2" name="query" type="text">
@@ -328,7 +328,8 @@
 			<div id="content" class="span10">
 			<!-- content starts -->
         <?php } ?>
-        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>" class="auto-height span12" scrolling="no" frameborder="0" name="contentFrame" id="contentFrame"></iframe>
+        <iframe src="<?php echo $this->createUrl('/site/page',array('view'=>'about'));?>"
+                class="auto-height span12" scrolling="no" frameborder="0" name="contentFrame" id="contentFrame"></iframe>
 
         <?php if (!isset($no_visible_elements) || !$no_visible_elements) { ?>
         <!-- content ends -->
@@ -394,22 +395,6 @@
 <!-- application script for siteIndex -->
 <script src="<?php echo PublicAssets::url(); ?>/js/backend/siteIndex.js"></script>
 
-<?php //Google Analytics code for tracking my demo site, you can remove this.
-if ($_SERVER['HTTP_HOST'] == 'usman.it') {
-    ?>
-<script>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-26532312-1']);
-    _gaq.push(['_trackPageview']);
-    (function () {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-    })();
-</script>
-    <?php } ?>
 
 </body>
 </html>

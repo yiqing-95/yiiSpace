@@ -1,10 +1,9 @@
 <?php
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-Yii::setPathOfAlias('yupe', dirname(__FILE__) . '/../modules/yupe/');
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'YiiSpace',
+    'name' => 'Yii-Space',
     'language' => 'zh_cn',
     'charset' => "UTF-8",
 
@@ -31,6 +30,11 @@ return array(
         'my'=>'application.my',
         'user'=>'application.modules.user',
         'friend'=>'application.modules.friend',
-    ),
+		// ES 搜索
+	    'YiiElasticSearch' => 'composerVendor.codemix.yiielasticsearch.src',
+
+        // alice ui  configuration
+        'alice' => 'ext.alice', // change if necessary
+ ),
 
 );

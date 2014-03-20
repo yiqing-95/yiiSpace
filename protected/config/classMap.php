@@ -5,4 +5,6 @@
 return array(
     // module url rule rewrite handle class
     'IUrlRewriteModule' => 'protected/my/interfaces/IUrlRewriteModule.php',
+
+    'DynamicActiveRecord' => 'protected/extensions/DynamicActiveRecord.php',
 );

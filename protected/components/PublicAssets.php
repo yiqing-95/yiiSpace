@@ -32,6 +32,11 @@
  */
 class PublicAssets extends CApplicationComponent
 {
+    /**
+     * @var bool 如果theme允许时 那么基路径url
+     * 会以当前theme baseUrl为准
+     */
+    public $enableTheme = true ;
 
     /**
      * @var CClientScript
@@ -113,8 +118,12 @@ class PublicAssets extends CApplicationComponent
     {
         if ($this->_baseUrl === null) {
             if($this->publicDirAsAssetsRoot == true){
-                $request = Yii::app()->getRequest();
-               $this->setBaseUrl($request->getBaseUrl().'/public');
+               if($this->enableTheme && (Yii::app()->theme !==null)){
+                    $this->setBaseUrl(Yii::app()->theme->baseUrl.'/public');
+               }else{
+                   $request = Yii::app()->getRequest();
+                   $this->setBaseUrl($request->getBaseUrl().'/public');
+               }
             }else{
                 $basePath = $this->getBasePath();
                 $bu = $this->am->publish($basePath,true,-1,YII_DEBUG);

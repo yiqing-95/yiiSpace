@@ -9,7 +9,30 @@
 
 class WebUtil
 {
+    /**
+     * @param $containerId
+     * @param $url
+     * @param string $callback
+     */
+    public static function ajaxLoad($containerId,$url,$callback='function(res){}'){
+        $script = <<<EOD
+        $(function(){
+            $('#{$containerId}').load('{$url}',{$callback});
+        });
+EOD;
+        echo CHtml::script($script);
+    }
 
+    /**
+     * @param string $msg
+     * @throws CHttpException
+     */
+    public static function throw404httpException($msg='The requested page does not exist！'){
+        throw new CHttpException(
+            404,
+           $msg
+        );
+    }
     /**
      * @static
      * @param $text
@@ -25,7 +48,8 @@ class WebUtil
     }'));
      * ------------------------------------------------
      */
-    public static function ajaxDeleteLink($text,$url='#',$ajaxOptions,$htmlOptions=array()) {
+    public static function ajaxDeleteLink($text, $url = '#', $ajaxOptions, $htmlOptions = array())
+    {
 
         $ajaxOptions['beforeSend'] = 'js:function(jqXHR, settings){
                 if(!confirm("确定要删除这条数据吗?")) return false;
@@ -39,9 +63,10 @@ class WebUtil
      * @static
      * @return string
      */
-    static public  function getUrl() {
-        $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-        $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
+    static public function getUrl()
+    {
+        $url = @($_SERVER["HTTPS"] != 'on') ? 'http://' . $_SERVER["SERVER_NAME"] : 'https://' . $_SERVER["SERVER_NAME"];
+        $url .= ($_SERVER["SERVER_PORT"] !== 80) ? ":" . $_SERVER["SERVER_PORT"] : "";
         $url .= $_SERVER["REQUEST_URI"];
         return $url;
     }
@@ -222,13 +247,17 @@ CODE;
      * @return mixed
      * 模拟mysql的同名方法实现 php中的inet_pton() 好像有时候返回奇怪字符
      * http://stackoverflow.com/questions/2754340/inet-aton-and-inet-ntoa-in-php
+     *
+     * http://code.tutsplus.com/tutorials/top-20-mysql-best-practices--net-7855
      */
-    public static   function inet_aton($ip){
+    public static function inet_aton($ip)
+    {
 
         $a = ip2long($ip);
-        $b = unpack("N",pack("L",$a));
+        $b = unpack("N", pack("L", $a));
         return $b[1];
     }
+
     /**
      * @static
      * @return string
@@ -407,7 +436,7 @@ CODE;
     }
 
 
-    public static function bootSwatch($theme='')
+    public static function bootSwatch($theme = '')
     {
         $themesDir = PublicAssets::instance()->getBasePath();
         $themesDir .= DIRECTORY_SEPARATOR . 'bootswatch2-0-4';
@@ -518,39 +547,47 @@ CODE;
         if (($rcs == 1) && ($v >= 1) && (($cur_tm - $_tm) > 0)) $x .= self::_timeAgo($_tm);
         return $x;
     }
+
     /**
      * @static
      * @param $time
      * @return string
      */
-    public static   function timeAgo($time)
+    public static function timeAgo($time)
     {
         $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
-        $lengths = array("60","60","24","7","4.35","12","10");
+        $lengths = array("60", "60", "24", "7", "4.35", "12", "10");
 
         $now = time();
 
-        $difference     = $now - $time;
-        $tense         = "ago";
+        $difference = $now - $time;
+        $tense = "ago";
 
-        for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+        for ($j = 0; $difference >= $lengths[$j] && $j < count($lengths) - 1; $j++) {
             $difference /= $lengths[$j];
         }
 
         $difference = round($difference);
 
-        if($difference != 1) {
-            $periods[$j].= "s";
+        if ($difference != 1) {
+            $periods[$j] .= "s";
         }
 
         return "$difference $periods[$j] 'ago' ";
     }
-   static public  function timeAgo2($i){
-        $m = time()-$i; $o='just now';
-        $t = array('year'=>31556926,'month'=>2629744,'week'=>604800,
-            'day'=>86400,'hour'=>3600,'minute'=>60,'second'=>1);
-        foreach($t as $u=>$s){
-            if($s<=$m){$v=floor($m/$s); $o="$v $u".($v==1?'':'s').' ago'; break;}
+
+    static public function timeAgo2($i)
+    {
+        $m = time() - $i;
+        $o = 'just now';
+        $t = array('year' => 31556926, 'month' => 2629744, 'week' => 604800,
+            'day' => 86400, 'hour' => 3600, 'minute' => 60, 'second' => 1);
+        foreach ($t as $u => $s) {
+            if ($s <= $m) {
+                $v = floor($m / $s);
+                $o = "$v $u" . ($v == 1 ? '' : 's') . ' ago';
+                break;
+            }
         }
         return $o;
     }
@@ -682,9 +719,10 @@ CODE;
      * @param $relUrl
      * @return string
      */
-    static public function getRealPath4relativeUrl($relUrl){
+    static public function getRealPath4relativeUrl($relUrl)
+    {
         $baseDir = dirname(Yii::app()->request->getScriptFile());
-        return $baseDir . DIRECTORY_SEPARATOR . str_replace('/',DIRECTORY_SEPARATOR,ltrim($relUrl,'/'));
+        return $baseDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, ltrim($relUrl, '/'));
     }
 
     /**
@@ -705,8 +743,41 @@ CODE;
         } else
             return false;
     }
+
 //======================================================================================================
 
+    /**
+     * 纠正ajax提交不验证的问题！
+     * 主要ajax 提交中 文件上传始终是个问题 可以借助flash或者iframe
+     */
+    static public function fixAjaxSubmitValidate()
+    {
+
+        $jsFixCode = <<<EOD
+;$.yii.fix = {
+    ajaxSubmit : {
+        beforeSend : function(form) {
+            return function(xhr,opt) {
+                form = $(form);
+                //jQuery.data( elem, name, data, true )
+                //$._data(form[0], "events").submit[0].handler();
+               form.get(0).trigger('onsubmit');
+                var he = form.data('hasError');
+                form.removeData('hasError');
+                return he===false;
+            }
+        },
+
+        afterValidate : function(form, data, hasError) {
+            $(form).data('hasError', hasError);
+            return true;
+        }
+    }
+};
+EOD;
+         Yii::app()->clientScript->registerCoreScript('yii')
+            ->registerScript(__METHOD__, $jsFixCode, CClientScript::POS_HEAD);
+    }
 }
 
 

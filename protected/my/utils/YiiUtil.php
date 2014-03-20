@@ -875,6 +875,17 @@ COL_ITEM;
     public static function refreshListGridView(){
 
     }
+
+    /**
+     * @param CModel $model
+     */
+    public static function trimAttributes(CModel &$model){
+        foreach($model->getAttributes() as  $attr=>$val){
+            if(!empty($val) && is_string($val)){
+                $model->{$attr} = trim($val);
+            }
+        }
+    }
 }
 
 if (!class_exists('KErrorException', false)) {

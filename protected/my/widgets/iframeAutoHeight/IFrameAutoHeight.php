@@ -63,8 +63,8 @@ class IFrameAutoHeight extends CWidget
      * @var string
      */
     public $callback = 'js: function(callbackObject) {
-            //var m = "new size is " + callbackObject.newFrameHeight;
-            // window.console && console.log(m) || alert(m);
+           // var m = "new size is " + callbackObject.newFrameHeight;
+           //  window.console && console.log(m) || alert(m);
         }';
 
 

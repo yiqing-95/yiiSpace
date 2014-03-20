@@ -4,29 +4,47 @@ Yii::import('photo.models._base.BasePhoto');
 
 class Photo extends BasePhoto
 {
-	public static function model($className=__CLASS__) {
-		return parent::model($className);
-	}
-
-    protected function afterSave(){
-        parent::afterSave();
-        PhotoAlbum::model()->updateCounters(array('mbr_count'=>1),'id=:id',array(':id'=>$this->album_id));
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
     }
 
-    protected function beforeSave(){
-        if($this->getIsNewRecord()){
-            if(empty($this->hash)){
+    protected function afterSave()
+    {
+        parent::afterSave();
+        PhotoAlbum::model()->updateCounters(array('mbr_count' => 1), 'id=:id', array(':id' => $this->album_id));
+    }
+
+    protected function beforeSave()
+    {
+        if ($this->getIsNewRecord()) {
+            if (empty($this->hash)) {
                 $this->hash = md5(microtime());
             }
         }
         return parent::beforeSave();
     }
 
-    public function getThumbUrl(){
-     return   Ys::thumbUrl($this->path,90,90);
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+                      // 收藏
+            'glean'=>array(self::BELONGS_TO, 'UserGlean', array('id'=>'object_id'),
+                'condition' => 'object_type = :object_type ',
+                'params' => array(':object_type' =>'photo')
+            ),
+        );
     }
 
-    public function getViewUrl(){
+    public function getThumbUrl()
+    {
+        return Ys::thumbUrl($this->path, 90, 90);
+    }
+
+    public function getViewUrl()
+    {
         return bu($this->path);
     }
 
@@ -41,9 +59,9 @@ class Photo extends BasePhoto
     public function getUrl()
     {
         return Yii::app()->createUrl('photo/view', array(
-            'id'=>$this->id,
-            'aid'=>$this->album_id,
-            'u'=>$this->uid,
+            'id' => $this->id,
+            'aid' => $this->album_id,
+            'u' => $this->uid,
         ));
     }
 
@@ -53,17 +71,18 @@ class Photo extends BasePhoto
      * @param array $sqlDataProviderConfig
      * @return CSqlDataProvider
      */
-    static  public function listRecentPhotos( $user = null , $sqlDataProviderConfig = array() ){
+    static public function listRecentPhotos($user = null, $sqlDataProviderConfig = array())
+    {
 
         $cmd = Yii::app()->db->createCommand();
         $cmd->select("p.* , u.id as user_id , u.username ")
             ->from(" user u , user_profile up, photo p");
-            //->leftJoin()
+        //->leftJoin()
 
-        if(empty($user)){
+        if (empty($user)) {
             $cmd->where("u.id=up.user_id AND p.uid=u.id");
-        }else{
-            $cmd->where("u.id=up.user_id AND p.uid=u.id AND u.id=:uid",array(':uid'=>$user));
+        } else {
+            $cmd->where("u.id=up.user_id AND p.uid=u.id AND u.id=:uid", array(':uid' => $user));
         }
         $sql = $cmd->text;
 
@@ -71,8 +90,32 @@ class Photo extends BasePhoto
         $config['totalItemCount'] = YiiUtil::countBySql($sql);
         $config['keyField'] = 'id';
         $config['sort'] = array(
-            'defaultOrder'=>'id DESC',
-            'attributes'=>array(
+            'defaultOrder' => 'id DESC',
+            'attributes' => array(
+                'id'
+            )
+        );
+        $sqlDataProviderConfig = CMap::mergeArray($config, $sqlDataProviderConfig);
+        return new CSqlDataProvider($sql, $sqlDataProviderConfig);
+    }
+
+    static public function listCommendPhotos($sqlDataProviderConfig = array())
+    {
+
+        $cmd = Yii::app()->db->createCommand();
+        $cmd->select("p.* , u.id as user_id , u.username ")
+            ->from(" user u , user_profile up, photo p");
+        //->leftJoin()
+
+        $cmd->where("u.id=up.user_id AND p.uid=u.id");
+        $sql = $cmd->text;
+
+        $config = array();
+        $config['totalItemCount'] = YiiUtil::countBySql($sql);
+        $config['keyField'] = 'id';
+        $config['sort'] = array(
+            'defaultOrder' => 'id DESC',
+            'attributes' => array(
                 'id'
             )
         );

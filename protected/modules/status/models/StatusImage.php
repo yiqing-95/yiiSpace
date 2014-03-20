@@ -19,7 +19,6 @@ class StatusImage extends Status
      */
     public function __construct($scenario='insert'){
         parent::__construct($scenario);
-        parent::setTypeReference('image');
     }
 
 

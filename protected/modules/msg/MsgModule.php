@@ -1,6 +1,11 @@
 <?php
 Yii::import('application.modules.friend.models.*');
 
+/**
+ * TODO 消息系统的扩充 通过msg表的type来做到 扩充方式参考status模块的实现！
+ *
+ * Class MsgModule
+ */
 class MsgModule extends CWebModule implements IUrlRewriteModule
 {
 	public function init()
@@ -13,6 +18,10 @@ class MsgModule extends CWebModule implements IUrlRewriteModule
 			'msg.models.*',
 			'msg.components.*',
 		));
+
+        if(Yii::app() instanceof CWebApplication){
+            Yii::app()->onModuleCreate(new CEvent($this));
+        }
 	}
 
 	public function beforeControllerAction($controller, $action)
@@ -42,7 +51,7 @@ class MsgModule extends CWebModule implements IUrlRewriteModule
     public static function getUrlRules()
     {
         return array(
-            'msg/<action:\w+>'=>'msg/msg/<action>',
+           // 'msg/<action:\w+>'=>'msg/msg/<action>',
         );
     }
 }

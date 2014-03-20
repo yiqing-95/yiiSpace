@@ -45,5 +45,18 @@ class WebApplicationEndBehavior extends CBehavior
     {
         $event->sender->controllerPath .= DIRECTORY_SEPARATOR.$this->_endName;
         $event->sender->viewPath .= DIRECTORY_SEPARATOR.$this->_endName;
+
+        // modify for support the theme characteristic
+       /*
+        if ( !empty($event->sender->theme ))
+            $event->sender->viewPath = $event->sender->theme->basePath.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$this->_endName;
+       */
+        if ( !empty(Yii::app()->theme ) && $event->sender instanceof CWebApplication){
+            $event->sender->viewPath = $event->sender->theme->basePath.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$this->_endName;
+        }elseif(!empty(Yii::app()->theme )){
+            $event->sender->viewPath = Yii::app()->theme->basePath.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$event->sender->getId() .DIRECTORY_SEPARATOR.$this->_endName;
+        }
+
+
     }
 }

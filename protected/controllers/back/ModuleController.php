@@ -263,6 +263,7 @@ class ModuleController extends BackendController
     {
         $m = $_GET['m'];
         $success = BaseModuleInstaller::uninstallModule($m);
+       // echo __METHOD__;
         if($success){
             $model = SysModule::model()->findByAttributes(array(
                'module_id'=>$m

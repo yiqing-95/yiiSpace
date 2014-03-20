@@ -5,6 +5,12 @@ class SettingsController extends BaseUserController
 
     public $layout = '//layouts/user/user_center';
 
+    public function beforeAction($action){
+        $this->layout = UserHelper::getUserCenterLayout();
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * @return array action filters
      */
@@ -49,7 +55,7 @@ class SettingsController extends BaseUserController
 
     public function actionPhoto()
     {
-        $model = UserModule::user()->profile;
+        $model = UserModule::user();
         if (Yii::app()->request->getIsPostRequest()) {
 
             //$fileFiledName = CHtml::resolveName($model,'file');
@@ -62,9 +68,10 @@ class SettingsController extends BaseUserController
             if ($im == true) {
                 $im->resizeScaleHeight(150);
                 //if there exists old upload then we should delete it
-                $oldImgPath = $model->photo;
+                $oldImgPath = $model->icon_uri;
 
-                $model->photo = $uploadStorage->realPath2url($uploadDir . DIRECTORY_SEPARATOR . $im->getName());
+                $model->icon_uri = $uploadStorage->realPath2url($uploadDir . DIRECTORY_SEPARATOR . $im->getName());
+
                 if($model->save(false)){
                     if(!empty($oldImgPath)){
                         $oldImgPath = $uploadStorage->url2realPath($oldImgPath);

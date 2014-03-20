@@ -97,6 +97,7 @@ class BaseModuleInstaller extends CComponent implements IInstaller
      * @return BaseModuleInstaller
      */
     public static function getInstaller($moduleId=''){
+
         $modulePath = Yii::app()->getModulePath() . DIRECTORY_SEPARATOR .$moduleId;
         $installerDir = $modulePath . DIRECTORY_SEPARATOR .'install';
         if(!is_dir($installerDir)){
@@ -105,19 +106,28 @@ class BaseModuleInstaller extends CComponent implements IInstaller
         $full_names = glob($installerDir . DIRECTORY_SEPARATOR . '*Installer.php');
         $full_name = current($full_names); if(empty($full_name)) return false;
         $class_name = pathinfo($full_name, PATHINFO_FILENAME);
+       // echo __METHOD__;
         try {
+           //  echo __METHOD__ , $class_name;
             //need transaction support ！
             if (!class_exists($class_name, false)){
+              // echo __METHOD__ , $full_name;
                 require($full_name);
+               // echo __METHOD__ , $full_name;
             }
+           // echo __METHOD__;
+
             if (class_exists($class_name, false) && is_subclass_of($class_name, 'IInstaller')) {
                 $installer = new $class_name() ;
+
                 return $installer;
             } else {
                 return false;
             }
         } catch (CException $e) {
             //do  nothing  here！ 什么也不做这里！
+            if(YII_DEBUG ) throw $e ;
+
             return false;
         }
 
@@ -136,6 +146,7 @@ class BaseModuleInstaller extends CComponent implements IInstaller
             $moduleInstaller->install();
             return true ;
         } catch (CException $e) {
+            throw $e ;
             //do  nothing  here！ 什么也不做这里！
             return false;
         }
@@ -147,12 +158,14 @@ class BaseModuleInstaller extends CComponent implements IInstaller
      */
     static  public function uninstallModule($moduleId){
         $moduleInstaller = self::getInstaller($moduleId);
+
         if($moduleInstaller == false) return false;
         try {
             //need transaction support ！
             $moduleInstaller->uninstall();
             return true ;
         } catch (CException $e) {
+            throw $e ;
             //do  nothing  here！ 什么也不做这里！
             return false;
         }

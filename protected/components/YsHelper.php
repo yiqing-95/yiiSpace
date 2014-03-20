@@ -89,4 +89,41 @@ class YsHelper
         $runner->run($args);
         echo htmlentities(ob_get_clean(), null, Yii::app()->charset);
     }
+
+    /**
+     * 锁定表单
+     *
+     * @param int $life_time 表单锁的有效时间(秒). 如果有效时间内未解锁, 表单锁自动失效.
+     * @return boolean 成功锁定时返回true, 表单锁已存在时返回false
+     */
+   public static  function lockSubmit($lifeTime = null) {
+        $lockKey = 'LOCK_SUBMIT_TIME' ;
+        if ( isset($_SESSION[$lockKey]) && intval($_SESSION[$lockKey]) > time() ) {
+            return false;
+        }else {
+            $lifeTime = $lifeTime ? $lifeTime : 10;
+            $_SESSION[$lockKey] = time() + intval($lifeTime);
+            return true;
+        }
+    }
+
+    /**
+     * 检查表单是否已锁定
+     *
+     * @return boolean 表单已锁定时返回true, 否则返回false
+     */
+   public static  function isSubmitLocked() {
+       $lockKey = 'LOCK_SUBMIT_TIME';
+        return isset($_SESSION[$lockKey]) && intval($_SESSION[$lockKey]) > time();
+    }
+
+    /**
+     * 表单解锁
+     *
+     * @return void
+     */
+   public static  function unlockSubmit() {
+       $lockKey = 'LOCK_SUBMIT_TIME';
+        unset($_SESSION[$lockKey]);
+    }
 }

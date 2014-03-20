@@ -62,9 +62,11 @@ class TbJumpPager extends CBasePager
      */
     public function run()
     {
+       /*
+        * must register the js firstly !!!
         if (($pageCount = $this->getPageCount()) <= 1)
             return;
-
+        */
 
         /**
          * the created pagerNumber will be 1000
@@ -162,8 +164,13 @@ EOD;
         }
 
 ON_JUMP;
-
-            cs()->registerScript(__CLASS__,$js,CClientScript::POS_END);
+        cs()->registerScript(__CLASS__,$js,CClientScript::POS_END);
+        /*
+          if(Yii::app()->getRequest()->getIsAjaxRequest()){
+             echo CHtml::script($js);
+          }else{
+              cs()->registerScript(__CLASS__,$js,CClientScript::POS_END);
+          }*/
     }
 
 }

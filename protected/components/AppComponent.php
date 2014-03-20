@@ -11,9 +11,26 @@ class AppComponent extends CComponent
 {
 
     /**
+     * @return TypeSearchManager
+     */
+    public static function typeSearchManager(){
+        return self::getComp('typeSearchManager',array(
+           'class'=>'application.components.TypeSearchManager',
+        ));
+    }
+
+    /**
+     * @return \YiiElasticSearch\Connection
+     */
+    public static function elasticSearch(){
+        return Yii::app()->elasticSearch;
+    }
+
+    /**
      * @static
      * @param string $componentId
      * @param array $config
+     * @return mixed
      */
     static protected function getComp($componentId = '', $config = array())
     {
@@ -60,13 +77,6 @@ class AppComponent extends CComponent
     }
 
     /**
-     * @return ESysConfig
-     */
-    static public function sysConfig(){
-        return Yii::app()->sysConfig ;
-    }
-
-    /**
      * @static
      * @return EPhpThumb
      */
@@ -78,4 +88,21 @@ class AppComponent extends CComponent
         ));
     }
 
+
+    /**
+     * @return CmsMessageStack
+     */
+    static public function messageStack(){
+        return self::getComp('messageStack', array(
+            'class' => 'ext.messageStack.CmsMessageStack',
+            'options' => array()
+        ));
+    }
+
+    /**
+     * @return IApplicationComponent|AliceApi
+     */
+    static public function alice(){
+        return Yii::app()->getComponent('alice');
+    }
 }

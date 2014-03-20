@@ -1,0 +1,6 @@
+composer.phar
+
+/vendor/
+composer.phar
+.idea
+coverage.xml

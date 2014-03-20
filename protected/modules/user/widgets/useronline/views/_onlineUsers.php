@@ -3,7 +3,7 @@ foreach ($users as $user): ?>
 
 <div class="row-fluid" style="margin: 5px ;">
     <div class="span3 thumbnail">
-        <img src="<?Php echo bu($user->profile->photo); ?>"
+        <img src="<?Php echo $user->getIconUrl(); ?>"
              width="360px" height="360px"
              alt=""/>
 

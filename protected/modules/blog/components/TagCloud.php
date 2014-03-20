@@ -13,7 +13,8 @@ class TagCloud extends CPortlet
 
 		foreach($tags as $tag=>$weight)
 		{
-			$link=CHtml::link(CHtml::encode($tag), array('post/index','tag'=>str_replace(' ','-',  trim($tag))));
+			$link=CHtml::link(CHtml::encode($tag), array('post/list','tag'=>str_replace(' ','-',  trim($tag))));
+
 			echo CHtml::tag('span', array(
 				'class'=>'tag',
 				'style'=>"font-size:{$weight}pt",

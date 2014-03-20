@@ -1,0 +1,19 @@
+{
+    "name": "yiqing-95/yiiSpace",
+    "description": "Yii test sns project",
+    "license": "MIT",
+    "authors": [
+     	 {
+            "name": "yiqing",
+            "email": "yiqing_95@qq.com"
+		}
+
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "codemix/yiielasticsearch": "*",
+        "codemix/restyii": "*",
+		"wisembly/elephant.io" : "*"
+    },
+    "minimum-stability": "dev"
+}

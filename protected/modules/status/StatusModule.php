@@ -45,11 +45,11 @@ class StatusModule extends CWebModule implements IUrlRewriteModule
     {
 
         return array(
-            'status/home/<action:\w+>'=>'status/home/<action>',
-            'status/home/<action:\w+>(/*)*'=>'status/home/<action>',
-            'status/<action:\w+>'=>'status/status/<action>',
-            'status/<action:\w+>/*'=>'status/status/<action>',
-
+           // 'status/home/<action:\w+>'=>'status/home/<action>',
+           // 'status/home/<action:\w+>(/*)*'=>'status/home/<action>',
+           // 'status/<action:\w+>'=>'status/status/<action>',
+           // 'status/<action:\w+>/*'=>'status/status/<action>',
+          // 'status/<action:\w+>/*'=>'status/status/<action>',
         );
     }
 }

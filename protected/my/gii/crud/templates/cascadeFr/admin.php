@@ -57,7 +57,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                     <?php echo "<?php"; ?> $this->widget('zii.widgets.grid.CGridView', array(
                     'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
                     'dataProvider'=>$model->search(),
-                    'filter'=>$model,
+                    'filter'=> null ,// $model,
                     'itemsCssClass'=>'items uppercase-header border',
                     'htmlOptions'=>array(
                     'class'=>'cell',// 'outline-header',// 'box-header',

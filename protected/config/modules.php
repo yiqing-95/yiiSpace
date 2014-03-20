@@ -16,11 +16,6 @@ return array(
             'ext.YiiBooster.gii'
         ),
     ),
-    'yupe'  => array(
-        'class'        => 'application.modules.yupe.YupeModule',
-        'brandUrl'     => 'http://yupe.ru?from=engine',
-        'cache'        => true,
-    ),
 
     //用户模块
     'user' => array(
@@ -55,6 +50,8 @@ return array(
         'returnLogoutUrl' => array('/user/login'),
     ),
 
+    'comment',
+
     //webshell
     'webshell' => array(
         'class' => 'ext.yiiext.modules.webshell.WebShellModule',
@@ -88,10 +85,27 @@ return array(
         'path'=>  dirname(__FILE__) .'/../data/backup/',
     ),
 
-    'blog',
+   
+    'backend',
 
-    //dashboard module
-    'sdashboard' => array(),
+    /**
+     *
+     */
+    'photo',
+
+    /**
+     * 新闻模块
+     */
+    'news',
+
+    /**
+     * 公告模块
+     * 性质其实跟新闻类似
+     * 但这里用另一种方式实现！
+     */
+    'notice',
+
+    'blog',
 
 
     'friend',
@@ -104,102 +118,12 @@ return array(
 
     'group',
 
-    'test',
+     //-----------------------<for comments >-----------------------------------------------------------------
 
-    'photo',
-    //-----------------------<for comments >-----------------------------------------------------------------
-    'comments' => array(
-        //you may override default config for all connecting models
-        'defaultModelConfig' => array(
-            //only registered users can post comments
-            'registeredOnly' => false,
-            'useCaptcha' => false,
-            //allow comment tree
-            'allowSubcommenting' => true,
-            //display comments after moderation
-            'premoderate' => false,
-            //action for postig comment
-            'postCommentAction' => 'comments/comment/postComment',
-            //super user condition(display comment list in admin view and automoderate comments)
-            'isSuperuser' => '1==1',//'Yii::app()->user->checkAccess("moderate")',
-            //order direction for comments
-            'orderComments' => 'DESC',
-        ),
-        //the models for commenting
-        'commentableModels' => array(
-            /*
-            //model with individual settings
-            'User' => array(
-                'registeredOnly' => true,
-                'useCaptcha' => false,
-                'allowSubcommenting' => true,
-            ),
-            //model with default settings
-            'Photo',
-            */
-        ),
-        //config for user models, which is used in application
-        'userConfig' => array(
-            'class' => 'User',
-            'nameProperty' => 'username',
-            'emailProperty' => 'email',
-        ),
-    ),
     //-----------------------<for comments />-----------------------------------------------------------------
 
     'voting',
 
-    //
-    'apiPublisher',
-    'apiUpdater',
 
-    // yii rbac 的一个GUI实现
-    'auth' => array(
-        'strictMode' => true, // when enabled authorization items cannot be assigned children of the same type.
-        'userClass' => 'User', // the name of the user model class.
-        'userIdColumn' => 'id', // the name of the user id column.
-        'userNameColumn' => 'username', // the name of the user name column.
-        'appLayout' => '//layouts/iframe', // the layout used by the module.
-        'viewDir' => null, // the path to view files to use with this module.
-    ),
-
-    // oauth 服务器 先测试2.0
-    'oauth',
-    // oauth 1 服务端实现
-    'api'=>array(
-        'connectionString' => 'mysql:host=localhost;port=3306;dbname=yii_space',
-        'username' => 'root',
-        'password' => '',
-    ),
-
-    // api 平台管理
-    'apiPlatform',
-
-    // api文档
-    'apiDoc',
-
-    // menubuilder
-    /*
-    'menubuilder'=>array(
-        'theme'=>'bootstrap', //comment for bluegrid theme (=default)
-        //'checkInstall'=>false, //uncomment after first usage
-        //'cacheDuration'=> -1, //uncomment for disabling the menucaching
-        'languages'=>array('de','en_us'),
-        'supportedScenarios'=>array('backend' => 'Backend', 'frontend' => 'Frontend', 'dashboard' => 'Dashboard'),
-
-        //set EMBDbAdapter to switch to mysql (checkInstall=>true on first run)
-        //'dataAdapterClass'=> 'EMBDbAdapter', //'EMBMongoDbAdapter',
-
-        //the available menus/lists for the preview
-        'previewMenus'=>array(
-            // 'superfish'=>'Superfish',
-            // 'mbmenu'=>'MbMenu',
-            'bootstrapnavbar'=>'Bootstrap Navbar',
-            'bootstrapmenu'=>'Bootstrap Menu',
-            // 'dropdownlist'=>'Dropdownlist',
-            'unorderedlist'=>'Unordered list'
-        )
-    ),
-    */
 );
 

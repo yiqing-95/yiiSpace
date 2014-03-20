@@ -10,17 +10,21 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php echo "<?php"; ?> YsPageBox::beginPanel(); ?>
 
-<div class="col">
-    <div class="cell panel">
-        <div class="body">
-            <div class="cell">
-                <div class="col">
-                    <div class="cell">
+<div class="col cell">
 
 <?php echo "<?php \$form=\$this->beginWidget('CActiveForm', array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
 	'enableAjaxValidation'=>false,
+	'enableClientValidation'=>true,
+    //'focus'=>array(\$model,''),
+	 'htmlOptions' => array(
+                    'class'=>'cell',
+                    ),
+     'clientOptions' => array(
+                    'validateOnSubmit'=>true,
+                    ),
 )); ?>\n"; ?>
 
                         <div class="col">
@@ -37,18 +41,18 @@
                         ?>
 
                             <div class="col">
-                                <div class="col size1of4">
+                                <div class="col width-1of4">
                                     <div class="cell">
                                         <?php echo "<?php echo ".$this->generateActiveLabel($this->modelClass,$column)."; ?>\n"; ?>
                                     </div>
                                 </div>
-                                <div class="col size2of4">
+                                <div class="col width-2of4">
                                     <div class="cell">
                                         <?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$column)."; ?>\n"; ?>
                                     </div>
                                 </div>
 
-                                <div class="col sizefill">
+                                <div class="col width-fill">
                                     <div class="cell">
                                         <?php echo "<?php echo \$form->error(\$model,'{$column->name}'); ?>\n"; ?>
                                     </div>
@@ -59,19 +63,17 @@
                         }
                         ?>
                         <div class="col">
-                            <div class="col size1of4">
+                            <div class="col width-1of4">
                             </div>
-                            <div class="col sizefill">
+                            <div class="col width-fill">
                                 <div class="cell">
                                     <?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save',array('class'=>'button')); ?>\n"; ?>
                                 </div>
                             </div>
                         </div>
                             <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
+
+<?php echo "<?php"; ?>  YsPageBox::endPanel(); ?>
 

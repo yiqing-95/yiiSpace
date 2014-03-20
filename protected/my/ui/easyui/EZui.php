@@ -79,8 +79,51 @@ class EZui extends CComponent
         $cs->registerScriptFile(self::$assetsUrl . '/' . self::$scriptFile, CClientScript::POS_END);
     }
 
+    //-----------------------------------------------------------------------------
+    /**
+     * AR实例
+     * @param CActiveRecord $model
+     * @param bool $returnJson
+     * @return Json String|array
+     */
+    public static function activeFormLoad(CActiveRecord $model, $returnJson = true) {
+        $className = get_class($model);
+        $arr = array();
 
-   public  static function droppable($dataOptions=array(),$htmlOptions=array()){
-
+        foreach($model->attributes as $k=>$v) {
+            $arr["$className\[$k\]"] = $v;
+        }
+        //	CVarDumper::dump($arr);
+        if($returnJson) return CJSON::encode($arr);
+        return $arr;
     }
+
+    /**
+     * Grid 数据
+     * @param CActiveDataProvider $dataProvider
+     * @param bool $returnJson
+     * @internal param \CActiveDataProvider $model
+     * @return CActiveDataProvider | json string
+     */
+    public static function activeDataProvider(CActiveDataProvider $dataProvider, $returnJson = true) {
+        $page = Yii::app()->getRequest()->getPost('page',0);
+        $pageSize = Yii::app()->getRequest()->getPost('rows',1);
+        $sort = Yii::app()->getRequest()->getPost('sort', 'id');
+        $order = Yii::app()->getRequest()->getPost('order','DESC');
+        $dataProvider->getPagination()->setPageSize($pageSize);
+
+        $dataProvider->getPagination()->setCurrentPage($page==0?$page:($page-1));
+        $dataProvider->getCriteria()->order = "$sort $order";
+
+        if($returnJson) {
+            return CJSON::encode(array(
+                'rows'=> $dataProvider->getData(),
+                'total'=> $dataProvider->getPagination()->getItemCount(),
+            ));
+
+        }
+
+        return $dataProvider;
+    }
+//-----------------------------------------------------------------------------
 }

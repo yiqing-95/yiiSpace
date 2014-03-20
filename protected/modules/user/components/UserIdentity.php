@@ -11,6 +11,11 @@ class UserIdentity extends CUserIdentity
 	const ERROR_EMAIL_INVALID=3;
 	const ERROR_STATUS_NOTACTIV=4;
 	const ERROR_STATUS_BAN=5;
+
+    /**
+     * @var User
+     */
+    public $userModel = null ;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -26,6 +31,9 @@ class UserIdentity extends CUserIdentity
 		} else {
 			$user=User::model()->notsafe()->findByAttributes(array('username'=>$this->username));
 		}
+        // cache for other usages!
+        $this->userModel = $user;
+
 		if($user===null)
 			if (strpos($this->username,"@")) {
 				$this->errorCode=self::ERROR_EMAIL_INVALID;

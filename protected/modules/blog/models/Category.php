@@ -9,6 +9,8 @@
  * @property string $name
  * @property string $alias
  * @property string $position
+ * @property string $uid
+ * @property string $mbr_count
  */
 class Category extends CActiveRecord
 {
@@ -42,7 +44,7 @@ class Category extends CActiveRecord
 			array('name, alias', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pid, name, alias, position', 'safe', 'on'=>'search'),
+			array('id, pid, name, alias, position,uid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +59,11 @@ class Category extends CActiveRecord
             'posts' => array(self::HAS_MANY, 'Post', 'category_id'),
 		);
 	}
+
+    protected function afterDelete(){
+        Post::model()->updateAll(array('category_id'=>0),'category_id=:cate',array(':cate'=>$this->primaryKey));
+        parent::afterDelete();
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -84,6 +91,7 @@ class Category extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+        $criteria->compare('uid',$this->uid);
 		$criteria->compare('pid',$this->pid,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('alias',$this->alias,true);

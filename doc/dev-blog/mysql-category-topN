@@ -1,0 +1,105 @@
+@SEE http://stackoverflow.com/questions/12113699/get-top-n-records-for-each-group-of-grouped-results
+
+Mysql group by top N的问题
+2013-09-30 13:20:31     我来说两句    来源：heaven的专栏   收藏     我要投稿
+Mysql group by top N的问题
+
+   在日常工作中,经常要查询分组的前几名.oracle中可以通过row_num来支持查询,mysql暂时不支持row_num.那么如何来完成这个需求呢?
+
+   例如：
+
+表中的数据：
+
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
++--------+-------+-----+
+| Person | Group | Age |
++--------+-------+-----+
+| Bob    | 1     | 32  |
+| Jill   | 1     | 34  |
+| Shawn  | 1     | 42  |
+| Jake   | 2     | 29  |
+| Paul   | 2     | 36  |
+| Laura  | 2     | 39  |
++--------+-------+-----+
+
+
+期望的结果：
+
+?
+1
+2
+3
+4
+5
+6
++--------+-------+-----+
+| Shawn  | 1     | 42  |
+| Jill   | 1     | 34  |
+| Laura  | 2     | 39  |
+| Paul   | 2     | 36  |
++--------+-------+-----+
+
+
+
+   方式一:借鉴oracle中row_num的思想,在sql中增加伪列.
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+set @num := 0, @group := '';
+
+select person, `group`, age
+from
+(
+   select person, `group`, age,
+      @num := if(@group = `group`, @num + 1, 1) as row_number,
+      @group := `group` as dummy
+  from mytable
+  order by `Group`, Age desc, person
+) as x
+where x.row_number <= 2;
+
+
+方式二:利用关联子查询
+?
+1
+2
+3
+4
+SELECT a.person, a.group, a.age FROM person AS a WHERE
+(SELECT COUNT(*) FROM person AS b
+WHERE b.group = a.group AND b.age >= a.age) <= 2
+ORDER BY a.group ASC, a.age DESC
+
+
+##   可用来解决 取某个对象同时获取其top条评论的问题：
+SET @num := 0, @group := '';
+
+SELECT *
+FROM
+(
+   SELECT *,
+      @num := IF(@group = model_id, @num + 1, 1) AS row_number,
+      @group := model_id AS dummy
+  FROM COMMENT
+  ORDER BY create_time DESC) AS X
+WHERE x.row_number <= 3;

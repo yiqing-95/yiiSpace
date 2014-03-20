@@ -1,26 +1,12 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'yiisession-form',
-	'type'=> 'horizontal', // TbActiveForm::TYPE_HORIZONTAL,
 	'enableAjaxValidation'=>false,
-	'enableClientValidation'=>true,
-    //'focus'=>array($model,''),
-	 'htmlOptions' => array(
-                    // 'class' => ' form-horizontal'
-                    'class'=>'well',
-                    ),
-     'clientOptions' => array(
-                    'validateOnSubmit'=>true
-                    ),
-
+	 'type'=>'horizontal',
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
- <fieldset>
-
-     <legend>Legend</legend>
 
 	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>32)); ?>
 
@@ -38,5 +24,4 @@
 		)); ?>
 	</div>
 
-     </fieldset>
 <?php $this->endWidget(); ?>

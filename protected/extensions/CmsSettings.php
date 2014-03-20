@@ -448,7 +448,7 @@ class CmsSettings extends CApplicationComponent
                     unset($this->saveItemsToDatabase[$catName]);
             }
         }
-        
+
         if(count($this->deleteItemsFromDatabase)>0)
         {
             foreach($this->deleteItemsFromDatabase AS $catName=>$keys)

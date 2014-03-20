@@ -1,0 +1,16 @@
+图片存储策略
+===================
+
+
+flikr
+------------
+> 来自 ：《Getting Started with GEO,CouchDB, and Node.js》
+
+// Save the URL to the Flickr image.
+// http://farm{farm-id}.static.flickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+photo.image_url_small = "http://farm"+photo.farm+".static.flickr.com/"+
+photo.server+"/"+photo.id+"_"+photo.secret+"_s.jpg";
+db.save(photo.id, photo, function(er, ok) {
+if (er) {sys.puts("error: "+er); return;}
+});
+

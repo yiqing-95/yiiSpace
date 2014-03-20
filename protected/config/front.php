@@ -9,6 +9,7 @@
 return CMap::mergeArray(
     require(dirname(__FILE__).'/main.php'),
     array(
+        'theme'=>'sns_new',
         // Put front-end settings there
         // (for example, url rules).
             // Put back-end settings there.

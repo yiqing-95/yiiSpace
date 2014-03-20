@@ -10,7 +10,7 @@
 				'url': link.attr('href'),
 				'dataType': 'json',
 				'success': function(data){
-					var dialog=$('<div style="display:none;"><div class="forView"></div></div>');			
+                    var dialog=$('<div style="display:none;"><div class="forView"></div></div>');
 					$('body').append(dialog);
                     if(options["dialogOptions"]){
                         dialog.dialog(options["dialogOptions"]);

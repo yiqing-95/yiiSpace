@@ -21,6 +21,35 @@ class Controller extends CController
      */
     public $breadcrumbs = array();
 
+    /**
+     * @return array
+     * easyUi 跟dwz 是互斥的两个css 只能二选一！！
+     */
+    public function behaviors()
+    {
+
+
+        return array(
+            'flyerp' => array('class' => 'my.behaviors.YsControllerBehavior'),
+            'eventBridge' => array(
+                'class'  => 'ext.static-events.EventBridgeBehavior',
+            ),
+            'seo' => array('class' => 'my.seo.SeoControllerBehavior'),
+        );
+    }
+
+    public function filters()
+    {
+        
+		return array(
+            /*    
+    		array(
+                // 'my.filters.ERequestLockFilter',
+                // 'method'=>'ANY',// POST
+            ),
+			*/
+        );
+    }
 
     public function actions()
     {
@@ -36,14 +65,15 @@ class Controller extends CController
             ),
         );
     }
+
     /**
      * @Desc('use this action to list the all available actions of this controller ')
      */
     public function actionHelp()
     {
-        if(! YS_CONTROLLER_HELP ){
+        if (!YS_CONTROLLER_HELP) {
 
-            return ;
+            return;
 
         }
         $controller = $this;
@@ -112,8 +142,8 @@ class Controller extends CController
                 } else {
                     $actionDesc = 'no action description now';
                 }
-            } elseif($action = $controller->createAction($actions[$i])){
-                if(! ($action instanceof CInlineAction)){
+            } elseif ($action = $controller->createAction($actions[$i])) {
+                if (!($action instanceof CInlineAction)) {
                     //not inline action , we think it to be a object which extends the CAction
                     $ram = new ReflectionAnnotatedMethod($action, 'run');
                     if (($decsAnnotation = $ram->getAnnotation('Desc')) !== false) {
@@ -122,7 +152,7 @@ class Controller extends CController
                         $actionDesc = 'no action description now';
                     }
                 }
-            }else{
+            } else {
                 $actionDesc = 'no action description now';
             }
             ?>
@@ -177,19 +207,20 @@ class Controller extends CController
         */
 
     }
-  //........................<introduce smarty for string template render.............................................................................................
 
-    public function renderString($tplString='',$data=null,$return=false)
+    //........................<introduce smarty for string template render.............................................................................................
+
+    public function renderString($tplString = '', $data = null, $return = false)
     {
-        if(empty($this->smarty)){
-          $this->getSmarty();
+        if (empty($this->smarty)) {
+            $this->getSmarty();
         }
         //assign data
         $this->smarty->assign($data);
         //render or return
-        if($return){
+        if ($return) {
             return $this->smarty->fetch("string:{$tplString}");
-        } else{
+        } else {
             $this->smarty->display("string:{$tplString}");
         }
     }
@@ -197,26 +228,28 @@ class Controller extends CController
     /**
      * @var Smarty
      */
-    protected $smarty ;
-    public function getSmarty(){
-        if($this->smarty !== null) {
-            return $this->smarty ;
-        }else{
+    protected $smarty;
+
+    public function getSmarty()
+    {
+        if ($this->smarty !== null) {
+            return $this->smarty;
+        } else {
             Yii::import('application.vendors.*');
             // need this since Yii autoload handler raises an error if class is not found
-            spl_autoload_unregister(array('YiiBase','autoload'));
+            spl_autoload_unregister(array('YiiBase', 'autoload'));
             // including Smarty class and registering autoload handler
             require_once('Smarty/Smarty.class.php');
             // adding back Yii autoload handler
-            spl_autoload_register(array('YiiBase','autoload'));
+            spl_autoload_register(array('YiiBase', 'autoload'));
 
             $this->smarty = new Smarty();
 
             $this->smarty->setTemplateDir('');
             //$this->smarty->template_dir = '';
-            $compileDir = Yii::app()->getRuntimePath().'/smarty/compiled/';
+            $compileDir = Yii::app()->getRuntimePath() . '/smarty/compiled/';
             // create compiled directory if not exists
-            if(!file_exists($compileDir)){
+            if (!file_exists($compileDir)) {
                 mkdir($compileDir, 0755, true);
             }
             $this->smarty->setCompileDir($compileDir);
@@ -226,21 +259,19 @@ class Controller extends CController
             if(!empty($this->pluginsDir)){
                 $this->smarty->plugins_dir[] = Yii::getPathOfAlias($this->pluginsDir);
             }*/
-           /*
-            if(!empty($this->configDir)){
-                $this->smarty->config_dir = Yii::getPathOfAlias($this->configDir);
-            }*/
-            $cacheDir = Yii::app()->getRuntimePath().'/smarty/cache/';
+            /*
+             if(!empty($this->configDir)){
+                 $this->smarty->config_dir = Yii::getPathOfAlias($this->configDir);
+             }*/
+            $cacheDir = Yii::app()->getRuntimePath() . '/smarty/cache/';
             // create compiled directory if not exists
-            if(!file_exists($cacheDir)){
+            if (!file_exists($cacheDir)) {
                 mkdir($cacheDir, 0755, true);
             }
             $this->smarty->setCacheDir($cacheDir);
-            return $this->smarty ;
+            return $this->smarty;
         }
     }
-    //.....................................................................................................................
-
 
     //.....................................................................................................................
 
@@ -266,9 +297,11 @@ class Controller extends CController
      *    data  : "...."
      * }
      * ----------------------------------------
+     * @param bool $exit
      */
-    public function ajaxSuccess($data = array())
+    public function ajaxSuccess($data = array(),$exit=true)
     {
+        Yii::import('ext.NJSON');
         $ajaxReturn = array();
         if (is_string($data)) {
             $ajaxReturn['data'] = $data;
@@ -277,30 +310,44 @@ class Controller extends CController
             if (!isset($data['status'])) {
                 $data['status'] = 'success';
             }
-            $ajaxReturn = &$data ;
+            $ajaxReturn = & $data;
         }
-        echo CJSON::encode($ajaxReturn);
+        echo NJSON::encode($ajaxReturn);
+        if($exit == true){
+            Yii::app()->end();
+        }
     }
 
     /**
      * @param array|string $data
+     * @param bool $exit
      */
-    public function ajaxFailure($data)
+    public function ajaxFailure($data,$exit=true)
     {
+        Yii::import('ext.NJSON');
         $ajaxReturn = array();
         if (is_string($data)) {
             $ajaxReturn['data'] = $data;
+            $ajaxReturn['msg'] = $data;
             $ajaxReturn['status'] = 'failure';
         } elseif (is_array($data)) {
             if (!isset($data['status'])) {
                 $data['status'] = 'failure';
             }
-            $ajaxReturn = &$data ;
+            $ajaxReturn = & $data;
         }
-        echo CJSON::encode($ajaxReturn);
-
+        echo NJSON::encode($ajaxReturn);
+        if($exit == true){
+            Yii::app()->end();
+        }
     }
+
     //----------<define controller action event>---------------------------------------------------
+    /**
+     * @deprecated
+     * TODO will be removed in future
+     * @param $event
+     */
     public function onControllerAction($event)
     {
         $this->raiseEvent('onControllerAction', $event);

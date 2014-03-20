@@ -1,0 +1,72 @@
+What's it all about?
+=====================
+With this behavior, you can generate an URI for a single or combination of
+columns in your table. Some call it permalink, others call it slug or
+human readable url.
+
+_Check out the latest version at:_
+<a href="https://github.com/mintao/yii-behavior-sluggable">github.com/mintao/yii-behavior-sluggable</a>
+
+Imagine a blog table
+--------------------
+<pre>
+| id | category | title                             |
+|----+----------+-----------------------------------|
+|  1 | security | NASA Server hacked by hacker kids |
+| ...
+</pre>
+
+So you'd like a better URL than that?
+-------------------------------------
+*http://your-blog.org/index.php?r=blog/show&id=1422*
+
+What about
+----------
+*http://your-blog.org/security/nasa-server-hacked-by-hacker-kids*
+
+**Google will love you** ;)
+
+How to get it done
+==================
+* Add another column called "*slug*" to your table
+* Download this extension and drop it into your protected/extensions folder,
+* Add the behavior to your model (shown below)
+
+**If you're using git**, I'd recommend:
+<pre>
+cd &lt;YOUR YII-PROJECT&gt;
+mkdir -p protected/extensions/behaviors (optional)
+git submodule add git://github.com/mintao/yii-behavior-sluggable.git protected/extensions/behaviors/SluggableBehavior
+</pre>
+
+Demo configuration of this behavior for your model
+--------------------------------------------------
+<pre>
+/**
+ * Behaviors for this model
+ */
+public function behaviors(){
+  return array(
+    'sluggable' => array(
+      'class'=>'ext.behaviors.SluggableBehavior.SluggableBehavior',
+      'columns' => array('category', 'title', 'author.name'),
+      'unique' => true,
+      'update' => true,
+    ),
+  );
+}
+</pre>
+
+* **class** Defines the path where to find the SluggableBehavor.php  
+* **columns** Needs to be an array of the fields to use for slug creation
+* **unique** Set this to true to ensure a unique slug (Numbers will be added to duplicate slugs, if already existing)
+* **update** Set this to true is every time you change the entry, the slug should be updated too. Set it to false, if the slug should be only created once
+
+Download this extension (and fork it):
+--------------------------------------
+<a href="https://github.com/mintao/yii-behavior-sluggable">github.com/mintao/yii-behavior-sluggable</a>
+
+Changelog
+---------
+* 2011-04-30 Added _update_ functionality
+* 2011-06-23 Added support for dependent models (see demo configuration, author.name)

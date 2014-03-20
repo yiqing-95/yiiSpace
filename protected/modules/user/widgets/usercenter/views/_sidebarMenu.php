@@ -1,5 +1,4 @@
-<?php $this->widget('bootstrap.widgets.TbMenu', array(
-    'type'=>'list',
+<?php $this->widget('zii.widgets.CMenu', array(
     'items'=>array(
         array('label'=>'朋友'),
         array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),

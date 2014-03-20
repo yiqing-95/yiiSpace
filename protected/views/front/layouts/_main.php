@@ -3,36 +3,76 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo CHtml::encode(Yii::app()->name); ?></title>
-    <?php //WebUtil::bootSwatch() ;
-    WebUtil::registerRandomBootstrapTheme();
-    //
-    $themeName = (isset(Yii::app()->request->cookies['themeName'])) ? Yii::app()->request->cookies['themeName']->value : '';
+    <?php
+    $this->widget('my.widgets.amazium.Amazium'); ?>
+    <style type="text/css">
 
-    if (empty($themeName)) {
-        $themeUrl = '';
-    } else {
-        $themeUrl = Yii::app()->request->baseUrl . "/public/bootswatch2-0-4/{$themeName}/bootstrap.min.css";
-    }
-    ?>
+            /* 由于css的继承性 高度的百分比设定如果不设定父级的高度那么会不起作用的*/
+        html {
+            min-height: 100%;
+            _height: 100%;
+        }
 
-    <link id="theme_style" rel="stylesheet"
-          href="<?php  echo $themeUrl?>" type="text/css"
-          media="screen"/>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            _height: 100%;
+        }
+
+        #content {
+            background: #EEE;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            /*padding: 0 20px 0 20px;*/
+            /*margin: auto;*/
+            font: 1.5em arial, verdana, sans-serif;
+            /*width: 960px;*/
+            min-height: 100%;
+            _height: 100%;
+        }
+
+        #header {
+            background: #ff33cc;
+        }
+
+        .top-nav {
+            background: #cc8e72;
+            text-align: center;
+            height: 28px;
+            line-height: 28px; /*线高跟高一样可以实现垂直居中*/
+        }
+
+        .top-nav-menu {
+            list-style-type: none;
+        }
+
+        .footer .friend-links li {
+            list-style-type: none;
+            float: left;
+        }
+
+        .footer .friend-links {
+            text-align: center;
+        }
+
+        .divider {
+            width: 100%;
+            height: 5px; /*IE 下最小18 大于18在IE下才有效果！*/
+            clear: both;
+            overflow: hidden; /*解决18px的IE问题*/
+        }
+
+        /* 没啥效果呀！*/
+        .FullHeight {
+            height: auto !important; /* ie 6 will ignore this */
+            height: 100%; /* ie 6 will use this instead of min-height */
+            min-height: 100%; /* ie 6 will ignore this */
+        }
+    </style>
 
     <script type="text/javascript">
-        function changeTheme(ddlEle) {
-            //  alert($(ddlEle).val());
-            var themeStyle = "";
-            if ($(ddlEle).val().length !== 0) {
-                themeStyle = "<?php echo Yii::app()->request->baseUrl; ?>/public/bootswatch2-0-4/{themeName}/bootstrap.min.css";
-            }
-            $("#theme_style").attr("href", themeStyle.replace("{themeName}", $(ddlEle).val()));
-            /**
-             * write it  to cookie
-             * http://www.yiiframework.com/wiki/152/cookie-management-in-yii
-             */
-            $.cookie('themeName', $(ddlEle).val());
-        }
+
         /**
          * http://www.eirikhoem.net/blog/2011/08/29/yii-framework-preventing-duplicate-jscss-includes-for-ajax-requests/
          */
@@ -118,61 +158,53 @@ if (Yii::app()->user->isGuest) {
     );
 }
 
-//换肤实现
-$themesDir = Yii::getPathOfAlias('webroot.public.bootswatch2-0-4');
-$di = new DirectoryIterator($themesDir);
-$themes = array();
-foreach ($di as $d) {
-    if (!$d->isDot()) {
-        if ($d->getFilename() !== 'img') {
-            $themes[] = $d->getFilename();
-        }
+?>
+<div id="header">
+    <div class="head-top">
+        this is header
+    </div>
+    <div class="row">
+        <div class="grid_4">
+            <span class="logo example">
+                <img src="http://static.yiiframework.com/css/img/logo.png"/>
+            </span>
 
-    }
-}
+        </div>
+        <div class="grid_5"><span class="example">4</span></div>
+        <div class="grid_3">
+            <?php foreach (range(0, 10) as $i): ?>
+            <a href="">tool menu</a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="top-nav">
+        this is header nav
 
-
-
-
-
-$this->widget('bootstrap.widgets.TbNavbar', array(
-    //'type'=>'inverse',
-    'fluid' => true,
-    'brand' => CHtml::encode(Yii::app()->name),
-    'collapse' => true,
-    'items' => array(
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => array(
-                array('url' => array('/user/user/space', 'u' => Yii::app()->user->isGuest ? 0 : Yii::app()->user->getId()), 'label' => '个人首页',
-                    'visible' => !Yii::app()->user->isGuest),
-                array('label' => 'user', 'url' => array('/user/user/index'),
-                    'active' => Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
-                array('label' => 'blog', 'url' => Yii::app()->homeUrl,
-                    'active' => Yii::app()->controller->id === 'blog' && Yii::app()->controller->action->id === 'index'),
-
-            ),
-            'htmlOptions' => array('class' => 'pull-left'),
-        ),
-        '<form class="navbar-search pull-left" action="">' .
-            CHtml::dropDownList('chang_theme', '', array('' => '请选择') + array_combine($themes, $themes), array('onchange' => 'changeTheme(this)', 'class' => 'input-mini'))
-            . '</form>',
-        array(
-            'class' => 'bootstrap.widgets.TbMenu',
-            'items' => $topUserMenus,
-            'htmlOptions' => array('class' => 'pull-right'),
-        ),
-    ),
-)); ?>
-<div style="margin-top: 90px;">
-
+        <?php foreach (range(0, 10) as $i): ?>
+        <a href="">topNav <?php echo $i ?></a>|
+        <?php endforeach;  ?>
+    </div>
 </div>
-<!--    主布局不做宽度限制 交由下面的子布局决定-->
-<?php echo $content; ?>
 
+<div class="divider"></div>
+<div id="content" class="FullHeight">
+    <!--    主布局不做宽度限制 交由下面的子布局决定-->
+    <?php echo $content; ?>
+</div>
 <hr/>
-<div class="row" style="text-align: center;">
+<div class="row footer" style="text-align: center; padding-bottom: 10px;">
     <footer>
+        <div>
+            <ul class="friend-links">
+                <?php for ($i = 1; $i <= 20; $i++): ?>
+                <li>
+                    <a href="">友链</a>
+                </li>
+                <?php endfor;?>
+            </ul>
+        </div>
+        <div class="divider"></div>
         <p class="powered">
             Powered
             by <?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com', array('target' => '_blank')); ?>
@@ -189,25 +221,11 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
     </footer>
 </div>
 <?php
-$this->widget('ext.scrolltop.ScrollTop',
-    array(
-        //Default values
-        'fadeTransitionStart' => 10,
-        'fadeTransitionEnd' => 200,
-        'speed' => 'slow'
-    ));
-$this->widget('application.my.widgets.jnotify.JNotify',
-    array(
-    ));
+
+$this->widget('application.my.widgets.jnotify.JNotify');
 
 
 ?>
-<script type="text/javascript">
-    $(function(){
-       // jSuccess('welcome to yiiSpace!');
-    });
-</script>
-
 </body>
 
 </html>

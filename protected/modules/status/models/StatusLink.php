@@ -19,7 +19,6 @@ class StatusLink extends Status
     {
 
         parent::__construct($scenario);
-        parent::setTypeReference('link');
     }
 
     /**

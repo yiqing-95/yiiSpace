@@ -1,0 +1,115 @@
+
+
+
+.logo {
+    background:url('../images/rcyx_logo.png');
+    height: 44px;
+    width: 438px;
+    text-indent: -500px;
+    display: inline-block;
+}
+
+.logo:hover {
+    background:url('../images/rcyx_logo.png');
+}
+
+.powered-by {
+    background:url('../images/cascade icons/powered-by.png');
+    width:150px;
+    height:56px;
+    display:block;
+}
+
+.leuven {
+    width:48%;
+    max-width: 400px !important;
+    float: right;
+}
+
+.narrow .site-header,.narrow .site-body {
+    -webkit-border-top-left-radius:8px;
+    -moz-border-radius-topleft:8px;
+    border-top-left-radius:8px;
+    -webkit-border-top-right-radius:8px;
+    -moz-border-radius-topright:8px;
+    border-top-right-radius:8px;
+}
+
+.narrow .site-center .site-body {
+    -webkit-border-bottom-left-radius:8px;
+    -moz-border-radius-bottomleft:8px;
+    border-bottom-left-radius:8px;
+    -webkit-border-bottom-right-radius:8px;
+    -moz-border-radius-bottomright:8px;
+    border-bottom-right-radius:8px;
+}
+
+.template-header h2 {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#sociallogos {
+    float:right;
+    width:130px;
+}
+
+#sociallogos a:hover {
+    text-decoration: none;
+}
+
+.sitemenutags {
+    float:right;
+    _width:145px;
+}
+
+.sitemenutags .nav li {
+    border:0;
+    margin:0;
+}
+
+.centered-content .content {
+    width:75%;
+}
+
+.centered-content input {
+    width:95%;
+    _width:55px;
+}
+
+.centered-content label {
+    float: right;
+}
+
+@media (max-width:979px) {
+    .leuven {
+        margin: 0 auto;
+        float: none !important;
+        width: 100%;
+    }
+
+    .template-header {
+        text-align: center;
+    }
+
+    .template-header h2 {
+        display: inline-block;
+    }
+
+    .sitemenutags {
+        float:left;
+    }
+
+    .sitemenu {
+        display:block;
+        clear:both;
+    }
+
+    .centered-content .content {
+        width: 100%;
+    }
+
+    .centered-content label {
+        float: left;
+    }
+}
