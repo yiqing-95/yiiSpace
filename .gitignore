@@ -68,6 +68,9 @@ Session.vim
 #yiiSpace ignore:
 public/thumbs/
 protected/runtime/
+# 音乐文件太大了
+uploads/*.mp3
+
 assets/
 #  qq 纯真ip库
 
