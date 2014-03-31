@@ -29,7 +29,7 @@ $this->widget('blog.widgets.pagebox.BlogSliderPageBox');
 
 <?php YsPageBox::beginPanelWithHeader(array('header' => ' 标签云')) ?>
     <div class="cell">
-        <?php $this->widget('UserMenu'); ?>
+        <?php // $this->widget('UserMenu'); ?>
 
         <?php
         /*

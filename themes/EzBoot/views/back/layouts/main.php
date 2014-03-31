@@ -8,7 +8,9 @@
 
 <body id="top">
 
-<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+<?php
+
+$this->widget('bootstrap.widgets.TbNavbar', array(
     'type' => 'inverse',
     'brand' => CHtml::encode(Yii::app()->name),
     'brandUrl' => false,
