@@ -25,6 +25,8 @@ references:
 
 关于ElasticSearch
 -------------------
+下载分词集成版(elasticsearch-rtf)[https://github.com/medcl/elasticsearch-rtf]
+
 安装请搜索相关文档
 后台管理可以使用 (elasticsearch-HQ)[https://github.com/royrusso/elasticsearch-HQ]
 
