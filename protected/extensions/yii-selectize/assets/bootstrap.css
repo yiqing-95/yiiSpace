@@ -1,0 +1,22 @@
+
+.yii-selectize {
+    margin: 0em 0em 10px;
+    min-width: 220px;
+}
+
+/* Reduce input padding / margin: */
+.yii-selectize .selectize-input input {
+    margin-bottom: 0;
+}
+
+/* Color of the active menu item */
+.selectize-dropdown .active {
+    background-color: #0088cc;
+    color: #FFFFFF;
+}
+
+/* Highlight search string */
+.selectize-dropdown [data-selectable] .highlight {
+    background: #f89406;
+    color: #FFFFFF;
+}

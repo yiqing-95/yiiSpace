@@ -1,0 +1,26 @@
+div.smileys {
+    float: left;
+    width: 430px;
+    margin-left: 5px;
+    padding-bottom: 5px;
+}
+
+div.smiley {
+    float: left;
+    margin: 1px;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+}
+
+div.smiley:hover {
+    border-color: #FCE0C3;
+    background-color: #fff9ec
+}
+
+div.smiley img {
+    border: 0px;
+}
+
+div.clear {
+    clear: both;
+}

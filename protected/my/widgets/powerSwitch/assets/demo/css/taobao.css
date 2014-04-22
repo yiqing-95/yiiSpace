@@ -1,0 +1,243 @@
+img { vertical-align: bottom; }
+.tb_top_body {
+	height: 531px;
+	padding-left: 160px; padding-top: 60px;
+}
+.tb_main_slide {
+	width: 720px;
+	position: relative;
+	float: left;
+}
+.tb_slide_box {
+	width: 520px;	
+	overflow: hidden;
+	position: relative;
+}
+.tb_slide_ad {
+	height: 280px;	
+}
+.tb_slide_brand {
+	height: 250px;
+	border-top: 1px solid #f3f3f3; border-bottom: 1px solid #f3f3f3;
+	margin-top: -2px;
+}
+.tb_slide_img {
+	position: absolute;
+}
+.tb_slide_on,
+.tb_slide_a {
+	display: inline-block;
+	width: 9px; height: 9px;
+	*margin: 0 2px;
+	border-radius: 9px;
+	overflow: hidden;
+}
+.tb_slide_btn {
+	position: absolute; bottom: 0; left: 0; bottom: 10px;
+	width: 100%;
+	text-align: center;
+	letter-spacing: 1px;
+}
+.tb_slide_a {
+	background-color: #b7b7b7;
+}
+.tb_slide_on {
+	background-color: #f40;
+}
+.tb_icon_tmall,
+.tb_slide_prev,
+.tb_slide_next,
+.tb_service_fl_shut {
+	background: url(../img/taobao/sprite_s.png) no-repeat;
+}
+.tb_icon_tmall {
+	position: absolute; z-index: 1;
+	padding-top: 20px;
+	width: 94px; height: 0;
+	background-position: -260px -100px;
+	overflow: hidden;
+}
+.tb_slide_tmall {
+	position: absolute;
+	width: 100%; height: 100%;
+}
+.tb_slide_line_v,
+.tb_slide_line_h {
+	position: absolute;
+	background-color: #f3f3f3;
+}
+.tb_slide_line_v {
+	height: 100%; width: 1px;
+	left: 50%; top: 0;
+}
+.tb_slide_line_h {
+	width: 100%; height: 1px;
+	left: 0; top: 50%;
+	overflow: hidden;
+}
+.tb_slide_prev,
+.tb_slide_next {
+	position: absolute; top: 50%;
+	width: 40px; height: 40px;
+	margin-top: -20px;
+	background-color: #666;
+	background-color: rgba(0,0,0,.3);
+	*background-color: #999;
+	visibility: hidden;
+}
+.tb_slide_prev {
+	background-position: -190px 8px;
+	left: 20px;
+}
+.tb_slide_next {
+	background-position: -188px -32px;
+	right: 20px;
+}
+.tb_slide_box:hover .tb_slide_prev,
+.tb_slide_box:hover .tb_slide_next {
+	visibility: visible;
+}
+
+.tb_ad_aside {
+	width: 200px;
+	position: absolute; right: 0; top: 0;
+}
+
+.tb_quick_panel {
+	width: 300px;
+	float: right;
+}
+.tb_tab_notice {
+	border: 1px solid #eee;
+	overflow: hidden;
+}
+.tb_tab_notice_ul {
+	margin-left: -1px; margin-right: -1px;
+	_width: 300px;
+	*zoom: 1;
+}
+.tb_tab_notice_li {
+	width: 58px; line-height: 26px;
+	padding: 0 1px;
+	border-bottom: 1px solid #eee;
+	background-color: #f7f7f7;
+	float: left;
+}
+.tb_tab_notice_ul .selected {
+	padding: 0;
+	border-bottom-color: #fff;
+	border-left: 1px solid #eee; border-right: 1px solid #eee;
+	background-color: #fff;
+}
+.tb_tab_notice_a {
+	display: block;
+	color: #333;
+	text-align: center;
+}
+.tb_tab_notice_a:hover {
+	text-decoration: none;
+}
+.tb_tab_panel {
+	height: 50px;
+	padding: 10px 5px 10px 19px;
+	overflow: hidden;
+	display: none;
+}
+
+.tb_tab_panel_li {
+	width: 134px;
+	line-height: 25px;
+	float: left;
+}
+.tb_tab_panel_a {
+	color: #333;
+}
+.tb_tab_panel_a:hover,
+.tb_tab_panel_li .h {
+	text-decoration: none;
+	color: #f50;
+}
+.tb_my_info {
+	margin-top: 10px;
+}
+.tb_service {
+	width: 300px; height: 280px;
+	background: url(../img/taobao/service.png) no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.tb_service_x {
+	padding: 44px 0 0 17px;
+	overflow: hidden;
+	_zoom: 1;
+}
+.tb_service_li {
+	width: 58px; height: 28px;
+	padding-top: 37px;
+	margin: 0 10px 10px 0;
+	text-align: center;
+	color: #9c9c9c;
+	float: left;
+	position: relative;
+}
+.tb_service_li:hover,
+.tb_service_on {
+	text-decoration: none;
+	color: #f50;	
+}
+.tb_service_li:after {
+	content: '';
+	position: absolute; left: 0; bottom: 0;
+	z-index: 1;
+	width: 100%; height: 2px;
+	background-color: #fff;
+	visibility: hidden;
+	-webkit-transition: visibility .01s .1s;
+	        transition: visibility .01s .1s;
+}
+.done .tb_service_li:after {
+	-webkit-transition: none;
+	        transition: none;
+}
+.tb_service_on:after {
+	visibility: visible;
+}
+.tb_service_corner {
+	position: absolute; left: 50%; bottom: 6px;
+	margin-left: -3px;
+	width: 6px; height: 4px;
+	background: url(../img/taobao/corner.png) no-repeat 0 -6px;
+	-webkit-transition: -webkit-transform .1s;
+	        transition: -webkit-transform .1s;
+	overflow: hidden;
+}
+.tb_service_on .tb_service_corner {
+	-webkit-transform: rotate(180deg);
+	        transform: rotate(180deg);
+}
+.fuck-ie6-ie9 .tb_service_on .tb_service_corner {
+	background-position: 0 0 ;
+}
+
+.tb_service_fl {
+	position: absolute; left: 1px; right: 1px; top: 280px;
+	width: 298px; height: 170px;
+	border-top: 1px solid #ddd;
+	background-color: #fff;
+	-webkit-transition: top .25s;
+	        transition: top .25s;
+}
+.tb_service .active {
+	top: 107px;
+}
+.tb_service_fl_shut {
+	position: absolute;
+	width: 18px; height: 18px;
+	margin: 1px 0 0 280px;
+	background-position: -376px -36px;	
+	background-color: #fff;
+}
+.tb_service_fl_shut:hover {
+	background-position: -376px -56px;
+	background-color: #f40;
+}

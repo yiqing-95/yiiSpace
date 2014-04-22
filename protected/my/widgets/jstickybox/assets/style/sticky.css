@@ -1,0 +1,84 @@
+#wrap { width: 800px; margin: 0 auto; }
+#main { width: 500px; height: 1500px; margin: 0 25px 0 0; float: left; }
+#side {
+  width: 275px;
+  float: left;
+  position: relative;
+}
+#basket {
+  border: solid 1px silver;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  padding: 10px;
+  background: white;
+  position: relative;
+}
+#basket h3 {
+  margin: 0 0 15px 0;
+}
+#basket p { margin: 32px 0 0 0; text-align: right; font-size: 1.2em; }
+#items { 
+  position: absolute; 
+  top: 0px; 
+  right: 6px;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 14px 38px 8px 6px;
+  background: url(images/cart.png) right top no-repeat;
+}
+#products { margin: 0; padding: 0; list-style: none;}
+#products li {
+  width: 126px;
+  margin: 0 25px 25px 0;
+  float: left;
+  padding: 10px;
+  border: solid 2px #ddd;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  text-align: center;
+}
+.end { margin-right: 0 !important }
+
+/* =Multi page demo
+--------------------------------------------------------------------------*/
+#right { width: 200px; float: left; }
+#left { 
+		width: 178px; 
+		height: 800px; 
+		float: left; 
+		border: solid 1px red; 
+		position: relative;
+		padding: 10px;
+}
+#middle { width: 400px; float: left; height: 2000px; }
+#navbox { 
+  list-style: none;
+  margin: 0;
+  padding: 10px 10px 0 10px;
+  border: solid 1px silver;
+  height: 200px;
+}
+#navbox li {
+  margin: 0 0 10px 0;
+}
+
+#realtest { 
+	position: absolute; 
+	left: 20px; 
+	top: 450px; 
+	height: 300px; 
+	width: 300px; 
+	border: solid 2px black;
+}
+#floatedbox {
+  width: 150px;
+  height: 150px;
+  background-color: white; 
+  position: absolute; 
+  top: 10px; 
+  left: 20px; 
+  border: solid 1px silver;
+  padding: 10px;
+}

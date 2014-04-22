@@ -1,0 +1,39 @@
+
+.yii-selectize {
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    min-width: 180px;
+}
+
+.yii-selectize.full-width {
+    width: 100%;
+}
+
+/* Reduce input padding: */
+.yii-selectize .selectize-dropdown,
+.yii-selectize .selectize-input,
+.yii-selectize .selectize-input input {
+    padding: 5px;
+}
+
+.yii-selectize .selectize-input input {
+    margin: 0;
+}
+
+/* Reduce input padding: */
+.selectize-control.single .selectize-input.focus {
+    padding: 5px 30px 5px 5px;
+    background: white;
+}
+
+/* Color of the active menu item */
+.selectize-dropdown .active {
+    background-color: #C9E0ED;
+}
+
+/* Highlight search string */
+.selectize-dropdown [data-selectable] .highlight {
+    background: #298dcd;
+    color: #FFFFFF;
+}
+

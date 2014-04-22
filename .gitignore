@@ -69,9 +69,9 @@ Session.vim
 public/thumbs/
 protected/runtime/
 # 音乐文件太大了
-uploads/*.mp3
+/uploads/*.mp3
 
-assets/
+/assets/
 #  qq 纯真ip库
 
 #protected/vendors/ip/

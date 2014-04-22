@@ -1,0 +1,18 @@
+pre code {
+	display: block;
+	padding: 5px;
+	background-color: #FFFFCC;
+	/*border: 1px solid #d3d3d6;*/
+    border: 1px solid #FFFF00;
+	border-left-width: 5px;
+	white-space: pre;
+	overflow-x: auto;
+	width: 98%;
+}
+pre code ol { list-style: decimal; margin-left: 35px; }
+code {
+	color: #666;
+	font-family: 'lucida console', 'Courier New', monospace;
+	font-size: 1em;
+}
+

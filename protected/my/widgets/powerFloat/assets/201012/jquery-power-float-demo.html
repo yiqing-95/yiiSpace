@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="description" content="jQuery万能浮动框插件测试" />
+<meta name="description" content="张鑫旭web前端学习之jQuery万能浮动框插件测试实例页面" />
+<meta name="keywords" content="张鑫旭,鑫空间-鑫生活,博客,web前端,css,jQuery,demo页面,学习," />
+<meta name="author" content="张鑫旭,zhangxixnu" />
+<title>jQuery万能浮动框插件测试 » 张鑫旭-鑫空间-鑫生活</title>
+<link rel="stylesheet" href="../css/common.css" type="text/css" />
+<link rel="stylesheet" href="../css/powerFloat.css" type="text/css" />
+<style>
+.shadow{-moz-box-shadow:1px 1px 3px rgba(0,0,0,.4); -webkit-box-shadow:1px 1px 3px rgba(0,0,0,.4); box-shadow:1px 1px 3px rgba(0,0,0,.4);}
+.target_box{width:250px; padding:10px; border:1px solid #aaa; background-color:#fff;}
+.target_list{padding:4px; border-bottom:1px dotted #ddd; overflow:hidden; _zoom:1;}
+.target_list a{width:22px; line-height:20px; margin-right:5px; padding:1px; color:#333; font-size:12px; text-align:center; text-decoration:none; float:left;}
+.target_list a:hover{padding:0; border:1px solid #ddd; color:#cd0000;}
+.target_more{margin-top:-20px;}
+
+.target_fixed{height:25px; padding:1px; position:fixed; _position:absolute; top:0; right:0;}
+.custom_container{position:absolute; background-color:rgba(0, 0, 0, .5); background-color:#999\9;}
+.custom_container img{padding:0; position:relative; top:-5px; left:-5px;}
+</style>
+</head>
+<body>
+<div class="zxx_out_box">
+    <div class="zxx_in_box">
+        <div class="zxx_header">
+            <a href="http://www.zhangxinxu.com/">
+                <img class="l" src="http://www.zhangxinxu.com/wordpress/wp-content/themes/default/images/index_logo.gif" />
+            </a>
+            <span class="zxx_author_time">by zhangxinxu 2010-12-08 15:22</span>
+        </div>
+        <h1 class="zxx_title">jQuery万能浮动框插件测试</h1>
+        <div class="zxx_main_con">
+			<div class="zxx_test_list">
+            	<h4 class="mb10 f11">一、加载页面上元素</h4>
+                <p><a id="trigger1" href="javascript:;" rel="targetBox">默认rel加载</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger1" href="javascript:;" rel="targetBox">默认rel加载</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger1").powerFloat();</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p><a id="trigger2" href="###">target参数加载</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger2" href="###">target参数加载</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger2").powerFloat({
+    target: $("#targetBox")	
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p><a id="trigger3" href="###">target参数为选择器</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger3" href="###">target参数为选择器</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger3").powerFloat({
+    target: ".target_box"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">二、Ajax加载外部元素</h4>
+                <p><a id="trigger4" href="javascript:;" rel="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">rel属性显示图片</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger4" href="javascript:;" rel="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">rel属性显示图片</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger4").powerFloat({
+    targetMode: "ajax"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p><a id="trigger5" href="javascript:;">target参数为图片地址</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger5" href="javascript:;">target参数为图片地址</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger5").powerFloat({
+    target: "http://image.zhangxinxu.com/image/study/s/s512/mm2.jpg",
+    targetMode: "ajax"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>加载外部HTML片段：<button id="trigger6">点击切换显示</button></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><button id="trigger6">点击切换显示</button></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger6").powerFloat({
+    eventType: "click",
+    target: "/study/201009/html-load.html",
+    targetMode: "ajax"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>加载外部页面数据失败：<button id="trigger7">点击测试</button></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><button id="trigger7">点击测试</button></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger7").powerFloat({
+    eventType: "click",
+    target: "http://www.baidu.com/",
+    targetMode: "ajax"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">三、下拉列表的显示</h4>
+                <p>纯文字列表下拉：<button id="trigger8">点击显示姓名列表▼</button></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><button id="trigger8">点击显示姓名列表▼</button></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger8").powerFloat({
+    width: "inherit",
+    eventType: "click",
+    target: ["唐丽霞", "徐栋梁", "成霞", "王庆花", "王腊梅", "朱小丽", "束方娟", "吉回秀", "陈阳", "<a href='##'>更多 >></a>"],
+    targetMode: "list"	
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>带链接的文字下拉：<a id="trigger9" href="/wordpress/">更多文章▼</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger9" href="/wordpress/">更多文章▼</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger9").powerFloat({
+    width: 250,
+    target: [
+        {
+            href: "##",
+            text: "这是文章1的说"	
+        },
+        {
+            href: "##",
+            text: "啊，看，文章2"	
+        },
+        {
+            href: "##",
+            text: "啊啦，不好，我把文章3忘家里了！"	
+        },
+        {
+            href: "##",
+            text: "马萨噶，这就是传说中的...文章4..."	
+        },
+        {
+            href: "##",
+            text: "什么嘛，就是文章5，害我白期待一场"	
+        }
+    ],
+    targetMode: "list"	
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p><a id="trigger10" href="#">无列表数据显示</a></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a id="trigger10" href="#">无列表数据显示</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger10").powerFloat({
+    targetMode: "list"	
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">四、简单提示的显示</h4>
+                <p>输入密码：<input class="pwdTrigger" type="password" placeholder="6~20个字符" /></p>
+                <p class="mt5">再次输入：<input class="pwdTrigger" type="password" placeholder="输入与上面一样的密码" /></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp>输入密码：<input class="pwdTrigger" type="password" placeholder="6~20个字符" />
+再次输入：<input class="pwdTrigger" type="password" placeholder="输入与上面一样的密码" /></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$(".pwdTrigger").powerFloat({
+    eventType: "focus",
+    targetMode: "remind",
+    targetAttr: "placeholder",
+    position: "1-4"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>点击确定按钮或失去焦点后显示提示(文本框数据留空/输入奇怪字符等)：</p><p class="mt5"><input id="posTrigger1" type="text" /> <button id="trigger11">确定</button></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><input id="posTrigger1" type="text" /> <button id="trigger11">确定</button></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>var fnPosTri = function() {
+    var oPosTri = $("#posTrigger1"), vPosTri = $.trim(oPosTri.val());
+    if (vPosTri === "") {
+        oPosTri.powerFloat({
+            eventType: null,
+            targetMode: "remind",
+            target: "输入内容不能为空！",
+            position: "1-4"
+        }).focus();
+    } else if (/\W/g.test(vPosTri)) {
+        oPosTri.powerFloat({
+            eventType: null,
+            targetMode: "remind",
+            target: "只能输入英文字符、数字和下划线",
+            position: "1-4"
+        }).focus();	
+    } else {
+        $.powerFloat.hide();
+    }
+};
+$("#trigger11").bind("click", fnPosTri);
+$("#posTrigger1").bind("blur", fnPosTri);</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">四、自定义浮动提示</h4>
+                <p>
+                	模拟title的tip提示显示：
+                    <a class="tipTrigger" href="###" tip="摸我">摸我</a>
+                    <a class="tipTrigger" href="###" tip="我也要">我也要</a>
+                    <a class="tipTrigger" href="###" tip="还有我">还有我</a>
+                </p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a class="tipTrigger" href="###" tip="摸我">摸我</a>
+<a class="tipTrigger" href="###" tip="我也要">我也要</a>
+<a class="tipTrigger" href="###" tip="还有我">还有我</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$(".tipTrigger").powerFloat({
+    offsets: {
+        x: -10,
+        y: 22
+    },
+    showDelay: 200,
+    
+    hoverHold: false,
+    
+    targetMode: "tip",
+    targetAttr: "tip",
+    position: "3-4"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>右上角固定位置的操作提示层(ajax请求中提示，页面跳转中提示等)：</p>
+                <p class="mt5">
+                	<span id="targetFixed" class="target_fixed"></span>
+                    <button class="operateTrigger">登录</button>
+                    <button class="operateTrigger">提交</button>
+                    <button class="operateTrigger">刷新</button>
+                </p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><span id="targetFixed" class="target_fixed"></span>
+<button class="operateTrigger">登录</button>
+<button class="operateTrigger">提交</button>
+<button class="operateTrigger">刷新</button></xmp></div>
+				<div class="zxx_code"><strong class="db mb5 f9">CSS代码：</strong><xmp>.target_fixed { height:25px; padding:1px; position:fixed; _position:absolute; top:0; right:0; }</xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><pre>$(".operateTrigger").click(function() {
+    var txt = $(this).text();
+    <span style="color:green;">//IE6位置</span>
+    if (!window.XMLHttpRequest) {
+        $("#targetFixed").css("top", $(document).scrollTop() + 2);	
+    }
+    <span style="color:green;">//创建半透明遮罩层</span>
+    if (!$("#overLay").size()) {
+        $('&lt;div id="overLay">&lt;/div>').prependTo($("body"));
+        $("#overLay").css({
+            width: "100%",
+            backgroundColor: "#000",
+            opacity: 0.2,
+            position: "absolute",
+            left: 0,
+            top: 0,
+            zIndex: 99
+        }).height($(document).height());
+    }
+    <span style="color:green;">//显示操作提示，最关键核心代码</span>
+    $("#targetFixed").powerFloat({
+        eventType: null,
+        targetMode: "doing",	
+        target: "正在" + txt + "中...",
+        position: "1-2"
+    });
+    <span style="color:green;">//定时关闭，测试用</span>
+    setTimeout(function() {
+        $("#overLay").remove();
+        $.powerFloat.hide();
+    }, 2000);
+});</pre></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">五、自定义装载容器</h4>
+                <div id="customContainer" class="custom_container"></div>
+                <p>自定义容器装载外部图片(无柔化投影)：<input id="trigger12" type="button" src="http://image.zhangxinxu.com/image/study/s/s256/mm10.jpg" value="点击我" /></p>
+                <div class="zxx_code"><strong class="db mb5 f9">CSS代码：</strong><pre>.custom_container{position:absolute; background-color:rgba(0, 0, 0, .5); background-color:#999\9;}
+.custom_container img{padding:0; position:relative; top:-5px; left:-5px;}</pre></div>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><div id="customContainer" class="custom_container"></div>
+<input id="trigger12" type="button" src="http://image.zhangxinxu.com/image/study/s/s256/mm10.jpg" value="点击我" /></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger12").powerFloat({
+    eventType: "click",
+    targetMode: "ajax",
+    targetAttr: "src",
+    
+    container: $("#customContainer"),
+    reverseSharp: true
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p>自定义容器装载页面元素：<input id="trigger13" type="button" src="targetBox" value="点击我" /></p>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><input id="trigger13" type="button" src="targetBox" value="点击我" /></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger13").powerFloat({
+    eventType: "click",
+    targetMode: null,
+    targetAttr: "src",
+    
+    container: $("#customContainer")
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<h4 class="mb10 f11">六、鼠标跟随效果</h4>
+                <p class="mb10">缩略图显示大图，同时鼠标跟随(垂直方向)：</p>
+                <a class="dib" id="trigger14" href="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+                	<img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+                </a>
+                <div class="zxx_code"><strong class="db mb5 f9">CSS代码：</strong><xmp>.dib { display: inline-block; }</xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a class="dib" id="trigger14" href="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger14").powerFloat({
+    targetMode: "ajax",
+    targetAttr: "href",
+    hoverFollow: "y",
+    position: "6-8"
+});</xmp></div>
+            </div>
+            <div class="zxx_test_list">
+            	<p class="mb10">缩略图显示大图，同时鼠标跟随(水平方向)：</p>
+                <a class="dib" id="trigger15" href="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+                	<img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+                </a>
+                <div class="zxx_code"><strong class="db mb5 f9">CSS代码：</strong><xmp>.dib { display: inline-block; }</xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">HTML代码：</strong><xmp><a class="dib" id="trigger15" href="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" />
+</a></xmp></div>
+                <div class="zxx_code"><strong class="db mb5 f9">JS代码：</strong><xmp>$("#trigger15").powerFloat({
+    targetMode: "ajax",
+    targetAttr: "href",
+    hoverFollow: "x",
+    hoverHold: false,
+    position: "5-7"
+});</xmp></div>
+            </div>
+        </div>
+        <div class="zxx_footer">
+            Copyright &copy; <a href="http://www.zhangxinxu.com/">张鑫旭-鑫空间-鑫生活</a>
+            |
+            <a href="http://www.zhangxinxu.com/wordpress/?p=1328">该篇相关文章</a>
+        </div>
+    </div>
+</div>
+
+<div id="targetBox" class="shadow target_box dn">
+	<div class="target_list">
+    	<a href="javascript:;">1</a>
+        <a href="javascript:;">2</a>
+        <a href="javascript:;">3</a>
+        <a href="javascript:;">4</a>
+        <a href="javascript:;">5</a>
+        <a href="javascript:;">6</a>
+        <a href="javascript:;">7</a>
+        <a href="javascript:;">8</a>
+    </div>
+    <div class="target_list">
+    	<a href="javascript:;">9</a>
+        <a href="javascript:;">10</a>
+        <a href="javascript:;">11</a>
+        <a href="javascript:;">12</a>
+        <a href="javascript:;">13</a>
+        <a href="javascript:;">14</a>
+        <a href="javascript:;">15</a>
+        <a href="javascript:;">16</a>
+    </div>
+    <div class="target_list" style="border-bottom:0;">
+        <a href="javascript:;">17</a>
+        <a href="javascript:;">18</a>
+        <a href="javascript:;">19</a>
+        <a href="javascript:;">20</a>
+    </div>
+    <a href="##" class="r mr5 target_more">显示更多 »</a>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-powerFloat.js"></script>
+<script>
+$(function() {
+	//通过默认rel属性加载
+	$("#trigger1").powerFloat();
+	//target参数加载
+	$("#trigger2").powerFloat({
+		target: $("#targetBox")	
+	});
+	//target参数为选择器
+	$("#trigger3").powerFloat({
+		target: ".target_box"
+	});
+	//rel加载图片
+	$("#trigger4").powerFloat({
+		targetMode: "ajax"
+	});
+	//target参数为图片地址
+	$("#trigger5").powerFloat({
+		target: "http://image.zhangxinxu.com/image/study/s/s512/mm2.jpg",
+		targetMode: "ajax"
+	});
+	//加载外部HTML片段
+	$("#trigger6").powerFloat({
+		eventType: "click",
+		target: "/study/201009/html-load.html",
+		targetMode: "ajax"
+	});
+	//加载外部数据失败
+	$("#trigger7").powerFloat({
+		eventType: "click",
+		target: "http://www.baidu.com/",
+		targetMode: "ajax"	
+	});
+	//显示纯文本的下拉
+	$("#trigger8").powerFloat({
+		width: "inherit",
+		eventType: "click",
+		target: ["唐丽霞", "徐栋梁", "成霞", "王庆花", "王腊梅", "朱小丽", "束方娟", "吉回秀", "陈阳", "<a href='##'>更多 >></a>"],
+		targetMode: "list"	
+	});
+	//带链接下拉
+	$("#trigger9").powerFloat({
+		width: 250,
+		target: [
+			{
+				href: "##",
+				text: "这是文章1的说"	
+			},
+			{
+				href: "##",
+				text: "啊，看，文章2"	
+			},
+			{
+				href: "##",
+				text: "啊啦，不好，我把文章3忘家里了！"	
+			},
+			{
+				href: "##",
+				text: "马萨噶，这就是传说中的...文章4..."	
+			},
+			{
+				href: "##",
+				text: "什么嘛，就是文章5，害我白期待一场"	
+			}
+		],
+		targetMode: "list"	
+	});
+	//无列表数据显示
+	$("#trigger10").powerFloat({
+		targetMode: "list"	
+	});
+	//简单的提示
+	$(".pwdTrigger").powerFloat({
+		eventType: "focus",
+		targetMode: "remind",
+		targetAttr: "placeholder",
+		position: "1-4"
+	});
+	//指定对象显示提示信息
+	var fnPosTri = function() {
+		var oPosTri = $("#posTrigger1"), vPosTri = $.trim(oPosTri.val());
+		if (vPosTri === "") {
+			oPosTri.powerFloat({
+				eventType: null,
+				targetMode: "remind",
+				target: "输入内容不能为空！",
+				position: "1-4"
+			}).focus();
+		} else if (/\W/g.test(vPosTri)) {
+			oPosTri.powerFloat({
+				eventType: null,
+				targetMode: "remind",
+				target: "只能输入英文字符、数字和下划线",
+				position: "1-4"
+			}).focus();	
+		} else {
+			$.powerFloat.hide();
+		}
+	};
+	$("#trigger11").bind("click", fnPosTri);
+	$("#posTrigger1").bind("blur", fnPosTri);
+	//自定义的浮动提示，如tip效果
+	$(".tipTrigger").powerFloat({
+		offsets: {
+			x: -10,
+			y: 22
+		},
+		showDelay: 200,
+		
+		hoverHold: false,
+		
+		targetMode: "tip",
+		targetAttr: "tip",
+		position: "3-4"
+	});
+	//固定位置的操作提示
+	$(".operateTrigger").click(function() {
+		var txt = $(this).text();
+		//IE6位置
+		if (!window.XMLHttpRequest) {
+			$("#targetFixed").css("top", $(document).scrollTop() + 2);	
+		}
+		//创建半透明遮罩层
+		if (!$("#overLay").size()) {
+			$('<div id="overLay"></div>').prependTo($("body"));
+			$("#overLay").css({
+				width: "100%",
+				backgroundColor: "#000",
+				opacity: 0.2,
+				position: "absolute",
+				left: 0,
+				top: 0,
+				zIndex: 99
+			}).height($(document).height());
+		}
+		//显示操作提示
+		$("#targetFixed").powerFloat({
+			eventType: null,
+			targetMode: "doing",	
+			target: "正在" + txt + "中...",
+			position: "1-2"
+		});
+		//定时关闭，测试用
+		setTimeout(function() {
+			$("#overLay").remove();
+			$.powerFloat.hide();
+		}, 2000);
+		
+	});
+	//自定义容器
+	$("#trigger12").powerFloat({
+		offsets: {
+			x: 5,
+			y: 5
+		},
+		eventType: "click",
+		targetMode: "ajax",
+		targetAttr: "src",
+		
+		container: $("#customContainer"),
+		reverseSharp: true
+	});
+	//自定义容器装载页面元素
+	$("#trigger13").powerFloat({
+		eventType: "click",
+		targetMode: null,
+		targetAttr: "src",
+		
+		container: $("#customContainer")
+	});
+	//鼠标跟随显示大图
+	$("#trigger14").powerFloat({
+		targetMode: "ajax",
+		targetAttr: "href",
+		hoverFollow: "y",
+		position: "2-1"
+	});
+	$("#trigger15").powerFloat({
+		targetMode: "ajax",
+		targetAttr: "href",
+		hoverFollow: "x",
+		hoverHold: false,
+		position: "5-7"
+	});
+});
+</script>
+
+
+</body>
+</html>
